@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: La jerarquía de Notion (de la épica a la tarea)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para diseño fluido y adaptativo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (identidad retro) y 'Rajdhani' (legibilidad proyectada) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjetas de Estrato Metodológico */
+        .tier-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(20, 30, 48, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tier-card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Nivel 1: Épica (Carmesí / Alerta) */
+        .tier-epic {
+            border-color: rgba(248, 113, 113, 0.45);
+            box-shadow: 0 0 16px rgba(248, 113, 113, 0.15);
+        }
+        .tier-epic:hover {
+            border-color: #f87171;
+            box-shadow: 0 0 24px rgba(248, 113, 113, 0.35);
+        }
+
+        /* Nivel 2: Historia de Usuario (Cian Neón) */
+        .tier-story {
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .tier-story:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
+        }
+
+        /* Nivel 3: Tarea Técnica (Violeta Místico) */
+        .tier-task {
+            border-color: rgba(167, 139, 250, 0.45);
+            box-shadow: 0 0 16px rgba(167, 139, 250, 0.15);
+        }
+        .tier-task:hover {
+            border-color: #a78bfa;
+            box-shadow: 0 0 24px rgba(167, 139, 250, 0.35);
+        }
+
+        /* Panel interactivo del auditor */
+        .auditor-box {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(10, 16, 28, 0.98) 100%);
+            border: 2px solid rgba(253, 224, 71, 0.45);
+            box-shadow: 0 0 24px rgba(253, 224, 71, 0.18);
+        }
+
+        /* Rotación suave del chevron indicador */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Barra HUD inferior en flujo natural */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 15/15</span>
+      <a href="14%20Briefing%20de%20misi%C3%B3n.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="../t3/01%20Lean%2C%20Agile%20y%20Scrum.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-6xl w-full">
+        <!-- Encabezado Proyectable de la SPA -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/80 border border-cyan-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                    VJ1224 // TEMA 2: EL ESTÁNDAR DE REDACCIÓN EN NOTION
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-cyan-300 to-emerald-400 tracking-wide leading-relaxed py-1">
+                LA JERARQUÍA DE NOTION
+            </h1>
+            
+            <p class="text-amber-300 text-xs sm:text-base font-pixel mt-1 tracking-wider">
+                &lt;Épicas, Historias de Usuario y Tareas Técnicas&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                La evaluación continua de Notion (40%) no perdona la ambigüedad. Redactar títulos como <em>«Inventario»</em> o <em>«Espada»</em> destruye la trazabilidad del diseño y bloquea el avance del equipo en Unity.
+            </p>
+        </header>
+
+        <!-- Selector de Actos -->
+        <nav class="flex flex-wrap justify-center gap-3 mb-8" aria-label="Secciones del taller">
+            <button id="tab-btn-act1" onclick="switchAct(1)" class="font-pixel text-xs px-5 py-3 rounded-xl border-2 border-cyan-400 bg-cyan-950 text-cyan-200 shadow-[0_0_12px_rgba(34,211,238,0.35)] transition-all flex items-center gap-2 active:scale-95">
+                <span>01.</span> LOS 3 NIVELES Y SUS REGLAS
+            </button>
+            <button id="tab-btn-act2" onclick="switchAct(2)" class="font-pixel text-xs px-5 py-3 rounded-xl border-2 border-slate-700 bg-slate-900 text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2 active:scale-95">
+                <span>02.</span> AUDITOR INTERACTIVO DE TÍTULOS
+            </button>
+        </nav>
+
+        <!-- ==================================================== -->
+        <!-- ACTO I: LOS TRES NIVELES DE ABSTRACCIÓN EN NOTION    -->
+        <!-- ==================================================== -->
+        <section id="act-1" class="space-y-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                
+                <!-- NIVEL 1: ÉPICA -->
+                <article class="tier-card tier-epic rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4 border-b border-rose-500/30 pb-3">
+                            <span class="font-pixel text-[10px] text-rose-300 bg-rose-950 px-2.5 py-1 rounded border border-rose-800">
+                                NIVEL 01 // MACRO
+                            </span>
+                            <span class="font-pixel text-[10px] text-slate-400">ESTRATÉGICO</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-400 flex items-center justify-center text-rose-300 shrink-0 font-pixel text-base">
+                                ⚠
+                            </div>
+                            <h2 class="font-pixel text-base sm:text-lg text-rose-300 tracking-wide">
+                                ÉPICA
+                            </h2>
+                        </div>
+
+                        <div class="space-y-2.5 text-base text-slate-200 font-medium mb-5 leading-relaxed">
+                            <p><strong class="text-slate-400">QUÉ ES:</strong> Gran subsistema de juego que agrupa múltiples historias dependientes.</p>
+                            <p><strong class="text-slate-400">DURACIÓN:</strong> Abarca <strong>múltiples sprints</strong>. Ningún sprint puede contener una épica completa.</p>
+                            <p><strong class="text-slate-400">ERROR CLÁSICO:</strong> Asignarle una disciplina (ej.: <em>«Arte»</em> o <em>«Programación»</em> no son épicas).</p>
+                        </div>
+
+                        <!-- Regla de Sintaxis Obligatoria -->
+                        <div class="p-3 bg-slate-950/90 rounded-xl border border-rose-500/40 text-xs sm:text-sm space-y-1">
+                            <span class="font-pixel text-[10px] text-rose-400 block tracking-wider">REGLA GRAMATICAL DE TÍTULO:</span>
+                            <p class="text-slate-100 font-semibold">
+                                <strong>Sustantivo del sistema de juego</strong> (sin verbos de acción directa).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Ejemplos Semáforo -->
+                    <div class="space-y-2.5 pt-4 border-t border-slate-800 text-xs sm:text-sm mt-5">
+                        <div class="p-3 bg-emerald-950/70 border border-emerald-500/60 rounded-xl text-emerald-100 text-sm sm:text-base font-medium leading-relaxed">
+                            <strong class="font-pixel text-xs text-emerald-400 block mb-1">✔ CORRECTO:</strong>
+                            «Sistema de crafteo y alquimia», «Exploración del bosque inicial»
+                        </div>
+                        <div class="p-3 bg-rose-950/70 border border-rose-500/60 rounded-xl text-rose-100 text-sm sm:text-base font-medium leading-relaxed">
+                            <strong class="font-pixel text-xs text-rose-400 block mb-1">✖ INCORRECTO:</strong>
+                            «Craftear espada» (es una historia), «Programación C#» (es una disciplina)
+                        </div>
+                    </div>
+                </article>
+
+                <!-- NIVEL 2: HISTORIA DE USUARIO -->
+                <article class="tier-card tier-story rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4 border-b border-cyan-500/30 pb-3">
+                            <span class="font-pixel text-[10px] text-cyan-300 bg-cyan-950 px-2.5 py-1 rounded border border-cyan-800">
+                                NIVEL 02 // SPRINT
+                            </span>
+                            <span class="font-pixel text-[10px] text-slate-400">LÚDICO</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0 font-pixel text-base">
+                                📄
+                            </div>
+                            <h2 class="font-pixel text-base sm:text-lg text-cyan-300 tracking-wide">
+                                HISTORIA
+                            </h2>
+                        </div>
+
+                        <div class="space-y-2.5 text-base text-slate-200 font-medium mb-5 leading-relaxed">
+                            <p><strong class="text-slate-400">QUÉ ES:</strong> Rebanada vertical de valor perceptible para el jugador. Se prueba en playtesting.</p>
+                            <p><strong class="text-slate-400">DURACIÓN:</strong> Cabe con holgura en <strong>1 único sprint</strong> de 1 a 2 semanas.</p>
+                            <p><strong class="text-slate-400">ESTIMACIÓN:</strong> Se dimensiona en <strong>Puntos de Historia</strong> (Escala Fibonacci).</p>
+                        </div>
+
+                        <!-- Regla de Sintaxis Obligatoria -->
+                        <div class="p-3 bg-slate-950/90 rounded-xl border border-cyan-500/40 text-xs sm:text-sm space-y-1">
+                            <span class="font-pixel text-[10px] text-cyan-400 block tracking-wider">REGLA GRAMATICAL DE TÍTULO:</span>
+                            <p class="text-slate-100 font-semibold">
+                                <strong>Verbo de acción + Objetivo lúdico</strong> (desde los ojos de quien juega).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Ejemplos Semáforo -->
+                    <div class="space-y-2.5 pt-4 border-t border-slate-800 text-xs sm:text-sm mt-5">
+                        <div class="p-3 bg-emerald-950/70 border border-emerald-500/60 rounded-xl text-emerald-100 text-sm sm:text-base font-medium leading-relaxed">
+                            <strong class="font-pixel text-xs text-emerald-400 block mb-1">✔ CORRECTO:</strong>
+                            «Fabricar espada de madera básica», «Consultar recetas descubiertas»
+                        </div>
+                        <div class="p-3 bg-rose-950/70 border border-rose-500/60 rounded-xl text-rose-100 text-sm sm:text-base font-medium leading-relaxed">
+                            <strong class="font-pixel text-xs text-rose-400 block mb-1">✖ INCORRECTO:</strong>
+                            «Espada de madera» (sustantivo mudo), «Crear tabla SQLite» (tarea técnica)
+                        </div>
+                    </div>
+                </article>
+
+                <!-- NIVEL 3: TAREA TÉCNICA -->
+                <article class="tier-card tier-task rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4 border-b border-purple-500/30 pb-3">
+                            <span class="font-pixel text-[10px] text-purple-300 bg-purple-950 px-2.5 py-1 rounded border border-purple-800">
+                                NIVEL 03 // TÁCTICO
+                            </span>
+                            <span class="font-pixel text-[10px] text-slate-400">INGENIERÍA</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-400 flex items-center justify-center text-purple-300 shrink-0 font-pixel text-base">
+                                ⚙
+                            </div>
+                            <h2 class="font-pixel text-base sm:text-lg text-purple-300 tracking-wide">
+                                TAREA TÉCNICA
+                            </h2>
+                        </div>
+
+                        <div class="space-y-2.5 text-base text-slate-200 font-medium mb-5 leading-relaxed">
+                            <p><strong class="text-slate-400">QUÉ ES:</strong> Unidad atómica de trabajo disciplinar (código C#, modelado 3D, FMOD).</p>
+                            <p><strong class="text-slate-400">DURACIÓN:</strong> Asignable a 1 integrante y medible en <strong>Horas o Días Ideales</strong>.</p>
+                            <p><strong class="text-slate-400">FOCO:</strong> Resuelve el «cómo» técnico (sub-item en la historia o tarjeta en el tablero).</p>
+                        </div>
+
+                        <!-- Regla de Sintaxis Obligatoria -->
+                        <div class="p-3 bg-slate-950/90 rounded-xl border border-purple-500/40 text-xs sm:text-sm space-y-1">
+                            <span class="font-pixel text-[10px] text-purple-400 block tracking-wider">REGLA GRAMATICAL DE TÍTULO:</span>
+                            <p class="text-slate-100 font-semibold">
+                                <strong>Verbo técnico + Artefacto concreto</strong> (clase, textura, evento sonoro).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Ejemplos Semáforo -->
+                    <div class="space-y-2.5 pt-4 border-t border-slate-800 text-xs sm:text-sm mt-5">
+                        <div class="p-3 bg-emerald-950/70 border border-emerald-500/60 rounded-xl text-emerald-100 text-sm sm:text-base font-medium leading-relaxed">
+                            <strong class="font-pixel text-xs text-emerald-400 block mb-1">✔ CORRECTO:</strong>
+                            «Programar ScriptableObject de recetas», «Dibujar sprite de espada 32x32»
+                        </div>
+                        <div class="p-3 bg-rose-950/70 border border-rose-500/60 rounded-xl text-rose-100 text-sm sm:text-base font-medium leading-relaxed">
+                            <strong class="font-pixel text-xs text-rose-400 block mb-1">✖ INCORRECTO:</strong>
+                            «Lógica crafteo» (vago), «Sprite» (sin acción ni especificación)
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Pro-Tip del Docente para las Prácticas en Notion -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-slate-950/95 via-purple-950/40 to-slate-950/95 border border-purple-500/40 space-y-2">
+                <div class="flex items-center gap-2">
+                    <span class="text-purple-400 text-lg">💡</span>
+                    <h4 class="font-pixel text-xs sm:text-sm text-purple-300">
+                        MODELADO REAL EN VUESTRA PLANTILLA NOTION
+                    </h4>
+                </div>
+                <p class="text-slate-200 text-sm sm:text-base font-medium leading-relaxed">
+                    Para mantener el flujo ágil y no complicar la gestión, vuestra plantilla no necesita dos bases de datos relacionales complejas: la tabla principal es el <strong>Backlog de Historias</strong> y las <strong class="text-rose-400">Épicas</strong> se etiquetan directamente con una propiedad de tipo <strong class="text-amber-300">Select</strong> (ej.: <em>«Combate»</em>, <em>«Alquimia»</em>, <em>«Exploración»</em>). Las <strong class="text-purple-400">Tareas Técnicas</strong> se gestionan preferentemente como sub-items o listas de control dentro de la propia página de la historia para no saturar la vista, aunque <strong>también se admiten como tarjetas de actividad independientes en el tablero Kanban</strong> si el equipo necesita visualizar su avance diario directo (asignando siempre la disciplina: Código C#, Arte 2D/3D, Audio FMOD).
+                </p>
+            </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- ACTO II: AUDITOR INTERACTIVO DE TÍTULOS (EN AULA)    -->
+        <!-- ==================================================== -->
+        <section id="act-2" class="hidden space-y-6">
+            
+            <div class="auditor-box rounded-2xl p-5 sm:p-7 max-w-4xl mx-auto space-y-6">
+                
+                <!-- Encabezado del Desafío -->
+                <div class="flex items-center justify-between border-b border-amber-500/30 pb-3">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-3 h-3 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span class="font-pixel text-xs sm:text-sm text-amber-300">AUDITORÍA DE CALIDAD EN DIRECTO</span>
+                    </div>
+                    <span id="quiz-progress" class="font-pixel text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700">
+                        CASO 1 / 4
+                    </span>
+                </div>
+
+                <!-- Título Evaluado -->
+                <div class="text-center py-2">
+                    <span class="font-pixel text-xs text-slate-400 block mb-2 uppercase tracking-widest">
+                        Tarjeta extraída del Backlog de un equipo:
+                    </span>
+                    <div id="quiz-card-display" class="font-pixel text-lg sm:text-2xl text-cyan-300 bg-slate-950 px-6 sm:px-8 py-4 sm:py-5 rounded-xl border-2 border-cyan-400/60 shadow-[0_0_18px_rgba(34,211,238,0.2)] inline-block max-w-full leading-relaxed">
+                        «Salud del jugador»
+                    </div>
+                </div>
+
+                <!-- Pregunta y Opciones -->
+                <div class="space-y-4">
+                    <p class="font-pixel text-xs sm:text-sm text-amber-200 text-center tracking-wide">
+                        ¿Qué dictamen emites como ingeniero docente?
+                    </p>
+                    <div id="quiz-options-container" class="grid grid-cols-1 gap-3.5">
+                        <!-- Botones de opción inyectados dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Banner de Feedback -->
+                <div id="quiz-feedback-box" class="hidden p-4 sm:p-5 rounded-xl text-base sm:text-lg font-medium leading-relaxed animate-cascade">
+                    <!-- Mensaje inyectado por JS -->
+                </div>
+
+                <!-- Botón de siguiente caso -->
+                <div class="flex justify-end pt-2">
+                    <button id="btn-quiz-next" onclick="nextQuizQuestion()" class="hidden px-6 py-3.5 rounded-xl bg-emerald-950 hover:bg-emerald-900 border-2 border-emerald-400 text-emerald-300 font-pixel text-xs sm:text-sm transition active:scale-95 shadow-[0_0_16px_rgba(52,211,153,0.3)]">
+                        SIGUIENTE CASO ➔
+                    </button>
+                </div>
+            </div>
+
+            <!-- Resumen de Criterio Docente -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-slate-950/95 via-amber-950/30 to-slate-950/95 border border-amber-500/40 text-center space-y-1.5">
+                <span class="font-pixel text-xs text-amber-300">💡 ¿POR QUÉ AUDITAMOS LOS TÍTULOS?</span>
+                <p class="text-slate-200 text-sm sm:text-base font-medium max-w-3xl mx-auto leading-relaxed">
+                    Un título ambiguo genera debates estériles en las reuniones de planificación y oculta el alcance real en el TDD. Si un diseñador lee el título de la tarjeta y no visualiza de inmediato qué se puede hacer con el mando en la mano, la tarjeta debe devolverse para refactorizar.
+                </p>
+            </div>
+        </section>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <!-- ==================================================== -->
+    <!-- LÓGICA JAVASCRIPT DE LA SPA                          -->
+    <!-- ==================================================== -->
+    <script>
+        function switchAct(actNumber) {
+            const act1 = document.getElementById('act-1');
+            const act2 = document.getElementById('act-2');
+            const btn1 = document.getElementById('tab-btn-act1');
+            const btn2 = document.getElementById('tab-btn-act2');
+
+            if (actNumber === 1) {
+                if (act1) act1.classList.remove('hidden');
+                if (act2) act2.classList.add('hidden');
+                if (btn1) btn1.className = "font-pixel text-xs px-5 py-3 rounded-xl border-2 border-cyan-400 bg-cyan-950 text-cyan-200 shadow-[0_0_12px_rgba(34,211,238,0.35)] transition-all flex items-center gap-2 active:scale-95";
+                if (btn2) btn2.className = "font-pixel text-xs px-5 py-3 rounded-xl border-2 border-slate-700 bg-slate-900 text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2 active:scale-95";
+            } else {
+                if (act1) act1.classList.add('hidden');
+                if (act2) act2.classList.remove('hidden');
+                if (btn2) btn2.className = "font-pixel text-xs px-5 py-3 rounded-xl border-2 border-amber-400 bg-amber-950 text-yellow-300 shadow-[0_0_12px_rgba(253,224,71,0.35)] transition-all flex items-center gap-2 active:scale-95";
+                if (btn1) btn1.className = "font-pixel text-xs px-5 py-3 rounded-xl border-2 border-slate-700 bg-slate-900 text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2 active:scale-95";
+            }
+        }
+
+        const quizData = [
+            {
+                title: "«Salud del jugador»",
+                options: [
+                    { 
+                        text: "Ambiguo e inaceptable: es un sustantivo sin acción. Debe ser 'Recibir daño y reducir barra de vida' (Historia) o 'Programar struct Health en C#' (Tarea).", 
+                        correct: true,
+                        feedback: "¡Exacto! 'Salud del jugador' es un sustantivo mudo. No aclara si es diseñar la interfaz HUD, programar el sistema de curación o gestionar la muerte del héroe. En Notion, los títulos deben ser autoexplicativos."
+                    },
+                    { 
+                        text: "Correcto: es conciso y todo el equipo ya sabe de sobra qué significa.", 
+                        correct: false,
+                        feedback: "¡Trampa de equipo clásica! En desarrollo ágil, asumir que 'todos sabemos lo que es' genera atascos en Unity. Arte modelará un botiquín mientras programación diseña una clase abstracta sin coordinarse."
+                    },
+                    { 
+                        text: "Válido como Épica legítima para todo el sprint.", 
+                        correct: false,
+                        feedback: "No es una épica bien formulada. Las épicas nombran sistemas holísticos (ej.: 'Sistema de daño y regeneración vital'). Además, una épica jamás cabe en un solo sprint."
+                    }
+                ]
+            },
+            {
+                title: "«Sistema de combate cuerpo a cuerpo»",
+                options: [
+                    { 
+                        text: "Es una tarea técnica de programación que se resuelve en dos tardes.", 
+                        correct: false,
+                        feedback: "Imposible en dos tardes. El combate cuerpo a cuerpo involucra animaciones con raíz, cajas de colisión (hitboxes), timing de impacto, sonidos en FMOD y balanceo. Subestimar el tamaño arruina el sprint."
+                    },
+                    { 
+                        text: "Es una Épica legítima: representa un subsistema global que agrupará múltiples historias (atacar, esquivar, parry, animaciones).", 
+                        correct: true,
+                        feedback: "¡Brillante! Las épicas son sustantivos que engloban subsistemas completos de juego. Jamás caben en un único sprint y requieren dividirse."
+                    },
+                    { 
+                        text: "Está mal redactado porque le falta la fórmula 'Como jugador quiero...'.", 
+                        correct: false,
+                        feedback: "Ojo: la fórmula 'Como / Quiero / Para' aplica a las Historias de Usuario, no a los títulos de las Épicas. Las épicas se titulan como grandes sistemas conceptuales."
+                    }
+                ]
+            },
+            {
+                title: "«Programar máquina de estados del enemigo en C#»",
+                options: [
+                    { 
+                        text: "Es una tarea técnica impecable: incluye verbo técnico de implementación + artefacto concreto de código.", 
+                        correct: true,
+                        feedback: "¡Criterio de ingeniería puro! Es una tarea técnica de manual. Especifica qué se programa y sobre qué artefacto técnico de Unity (C#)."
+                    },
+                    { 
+                        text: "Es una historia de usuario porque aporta diversión directa a quien juega.", 
+                        correct: false,
+                        feedback: "El jugador no experimenta 'máquinas de estados en C#'; experimenta 'enemigos que persiguen al ser alertados'. Eso es una tarea técnica de ingeniería, no una historia."
+                    },
+                    { 
+                        text: "Debe eliminarse porque en Notion está prohibido registrar código.", 
+                        correct: false,
+                        feedback: "Al contrario: Notion es el cuaderno de bitácora del equipo. Las tareas técnicas desglosan las historias para repartir el trabajo disciplinar."
+                    }
+                ]
+            },
+            {
+                title: "«Fabricar poción de vida en el caldero alquímico»",
+                options: [
+                    { 
+                        text: "Es una tarea técnica de modelado 3D.", 
+                        correct: false,
+                        feedback: "Modelar el caldero sería la tarea ('Modelar caldero en Blender'). 'Fabricar poción...' expresa la interacción jugable completa."
+                    },
+                    { 
+                        text: "Es una historia de usuario idónea: combina verbo de acción y un objetivo lúdico de valor tangible para el jugador.", 
+                        correct: true,
+                        feedback: "¡Totalmente acertado! Describe una mecánica jugable concreta que cabe en un sprint y puede verificarse con criterios de aceptación Gherkin."
+                    },
+                    { 
+                        text: "Es una épica porque la alquimia requiere muchas líneas de código.", 
+                        correct: false,
+                        feedback: "La épica sería 'Sistema de Alquimia y Recetas'. Fabricar una poción concreta es una rebanada vertical atómica que cabe perfectamente en un sprint."
+                    }
+                ]
+            }
+        ];
+
+        let currentQuizIndex = 0;
+
+        function loadQuizQuestion() {
+            const current = quizData[currentQuizIndex];
+            const progress = document.getElementById('quiz-progress');
+            const display = document.getElementById('quiz-card-display');
+            const optionsContainer = document.getElementById('quiz-options-container');
+            const feedback = document.getElementById('quiz-feedback-box');
+            const nextBtn = document.getElementById('btn-quiz-next');
+
+            if (progress) progress.innerText = `CASO ${currentQuizIndex + 1} / ${quizData.length}`;
+            if (display) display.innerText = current.title;
+            if (feedback) {
+                feedback.className = "hidden p-4 sm:p-5 rounded-xl text-base sm:text-lg font-medium leading-relaxed animate-cascade";
+                feedback.innerHTML = "";
+            }
+            if (nextBtn) nextBtn.classList.add('hidden');
+
+            if (optionsContainer) {
+                optionsContainer.innerHTML = '';
+                current.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full text-left p-4 sm:p-5 rounded-xl border-2 border-slate-700 bg-slate-900/95 hover:bg-slate-800 hover:border-cyan-400/60 text-slate-100 text-base sm:text-lg font-semibold transition-all flex items-start gap-3.5 active:scale-[0.99] shadow-md";
+                    btn.innerHTML = `
+                        <span class="font-pixel text-xs sm:text-sm text-amber-400 mt-1 shrink-0 bg-slate-950 px-2 py-1 rounded border border-slate-700">${String.fromCharCode(65 + idx)}.</span>
+                        <span class="leading-snug">${opt.text}</span>
+                    `;
+                    btn.onclick = () => selectQuizOption(btn, opt);
+                    optionsContainer.appendChild(btn);
+                });
+            }
+        }
+
+        function selectQuizOption(selectedBtn, optionData) {
+            const feedback = document.getElementById('quiz-feedback-box');
+            const nextBtn = document.getElementById('btn-quiz-next');
+
+            if (optionData.correct) {
+                // Respuesta correcta: bloquear todas y permitir avanzar
+                const allBtns = document.querySelectorAll('#quiz-options-container button');
+                allBtns.forEach(b => {
+                    b.disabled = true;
+                    if (b !== selectedBtn) {
+                        b.classList.add('opacity-40', 'pointer-events-none');
+                    }
+                });
+
+                selectedBtn.className = "w-full text-left p-4 sm:p-5 rounded-xl border-2 border-emerald-400 bg-emerald-950/90 text-emerald-100 text-base sm:text-lg font-semibold flex items-start gap-3.5 shadow-[0_0_20px_rgba(52,211,153,0.35)]";
+
+                if (feedback) {
+                    feedback.classList.remove('hidden');
+                    feedback.className = "p-4 sm:p-5 rounded-xl text-base sm:text-lg font-medium leading-relaxed bg-emerald-950/90 border-2 border-emerald-500 text-emerald-200 shadow-lg animate-cascade";
+                    feedback.innerHTML = `<strong class="font-pixel text-xs sm:text-sm text-emerald-300 block mb-1">✔ ¡DICTAMEN DE INGENIERÍA EXACTO!</strong> ${optionData.feedback}`;
+                }
+
+                if (nextBtn) nextBtn.classList.remove('hidden');
+            } else {
+                // Respuesta errónea: deshabilitar solo este botón con estilo tachado/rojo y permitir seguir probando
+                selectedBtn.disabled = true;
+                selectedBtn.className = "w-full text-left p-4 sm:p-5 rounded-xl border-2 border-rose-800 bg-rose-950/40 text-rose-300/80 text-base sm:text-lg font-semibold flex items-start gap-3.5 opacity-60 cursor-not-allowed line-through";
+
+                if (feedback) {
+                    feedback.classList.remove('hidden');
+                    feedback.className = "p-4 sm:p-5 rounded-xl text-base sm:text-lg font-medium leading-relaxed bg-rose-950/90 border-2 border-rose-500 text-rose-200 shadow-lg animate-cascade";
+                    feedback.innerHTML = `<strong class="font-pixel text-xs sm:text-sm text-rose-300 block mb-1">✖ DICTAMEN DENEGADO (¡INTÉNTALO DE NUEVO!):</strong> ${optionData.feedback}`;
+                }
+            }
+        }
+
+        function nextQuizQuestion() {
+            currentQuizIndex++;
+            if (currentQuizIndex >= quizData.length) {
+                currentQuizIndex = 0;
+            }
+            loadQuizQuestion();
+        }
+
+        // Inicialización al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            loadQuizQuestion();
+        });
+    </script>
+</body>
+</html>

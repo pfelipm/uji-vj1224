@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: Jerarquía del diseño en videojuegos</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para diseño responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (identidad retro) y 'Rajdhani' (legibilidad máxima en proyector) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjeta de estrato con efecto cristal y acento neón */
+        .hierarchy-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(24, 33, 47, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(56, 189, 248, 0.25);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hierarchy-card:hover {
+            border-color: rgba(56, 189, 248, 0.7);
+            box-shadow: 0 0 22px rgba(56, 189, 248, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .hierarchy-card.active-card {
+            border-color: #38bdf8;
+            box-shadow: 0 0 26px rgba(56, 189, 248, 0.35);
+        }
+
+        /* Conector vertical entre niveles */
+        .flow-connector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 24px;
+        }
+
+        .flow-connector svg {
+            width: 22px;
+            height: 24px;
+            fill: #38bdf8;
+            opacity: 0.85;
+            filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+        }
+
+        /* Rotación suave del chevron */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Animación suave de revelado */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-reveal {
+            animation: fadeInDown 0.3s ease-out forwards;
+        }
+
+        /* Barra de control en flujo natural: siempre por debajo de la última sección, sin flotar por encima */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 02/15</span>
+      <a href="01%20La%20cita%20filos%C3%B3fica.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="03%20Historias%20de%20usuario.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-4xl w-full">
+        <!-- Encabezado Proyectable con la frase original -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/80 border border-cyan-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                    VJ1224 // TEMA 2: DESCOMPOSICIÓN DE REQUISITOS
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-emerald-300 to-teal-200 tracking-wide leading-relaxed py-1">
+                JERARQUÍA DEL DISEÑO
+            </h1>
+            
+            <p class="text-slate-400 text-xs sm:text-sm font-pixel mt-1 tracking-wider">
+                &lt;Del sueño al píxel&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                Todo gran videojuego nace de una visión. Esta jerarquía muestra cómo esa idea se descompone en piezas manejables que un equipo puede construir.
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                Usa la barra inferior de navegación para desvelar cada estrato; haz clic en cualquier tarjeta para desplegar sus detalles.
+            </p>
+        </header>
+
+        <!-- Contenedor de la Jerarquía con revelado progresivo (4 Niveles) -->
+        <main class="space-y-2">
+            
+            <!-- NIVEL 1: EL VIDEOJUEGO -->
+            <div id="wrapper-lvl-1" class="hidden">
+                <article class="hierarchy-card animate-reveal rounded-xl p-5 cursor-pointer select-none" onclick="toggleDetail('lvl-1')">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-500/20 border border-emerald-500 flex items-center justify-center text-emerald-300 font-pixel text-sm shrink-0">
+                                01
+                            </div>
+                            <div>
+                                <span class="font-pixel text-[11px] sm:text-xs text-purple-400 uppercase tracking-wider block">Estrato Macro</span>
+                                <h2 class="text-2xl sm:text-3xl font-bold text-white leading-tight">1. El videojuego (visión holística)</h2>
+                            </div>
+                        </div>
+                        <span id="icon-lvl-1" class="text-cyan-400 text-2xl transition-transform duration-200">▼</span>
+                    </div>
+                    
+                    <p class="text-slate-200 mt-3 text-lg sm:text-xl font-medium leading-snug">
+                        La experiencia global que se pretende evocar en el jugador. Es la estrella polar que guía toda decisión creativa y técnica del equipo.
+                    </p>
+
+                    <!-- Detalle interior proyectable (Tipografía amplia) -->
+                    <div id="lvl-1" class="hidden mt-4 pt-4 border-t border-slate-700/80 bg-slate-900/80 p-5 rounded-lg">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="font-pixel text-xs text-cyan-300 px-2.5 py-1 bg-cyan-950 border border-cyan-800 rounded">
+                                CASO DE ESTUDIO // THE LAST OF US
+                            </span>
+                        </div>
+                        <p class="text-base sm:text-lg text-slate-100 italic leading-relaxed">
+                            «Un viaje cinematográfico de supervivencia, redención y vínculo afectivo entre Joel y Ellie en un mundo devastado, donde la escasez extrema confronta constantemente la moral del jugador».
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CONECTOR 1-2 -->
+            <div id="con-1" class="flow-connector hidden">
+                <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h12z"/></svg>
+            </div>
+
+            <!-- NIVEL 2: PILARES DE DISEÑO -->
+            <div id="wrapper-lvl-2" class="hidden">
+                <article class="hierarchy-card animate-reveal rounded-xl p-5 cursor-pointer select-none" onclick="toggleDetail('lvl-2')">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 font-pixel text-sm shrink-0">
+                                02
+                            </div>
+                            <div>
+                                <span class="font-pixel text-[11px] sm:text-xs text-purple-400 uppercase tracking-wider block">Principios Rectores</span>
+                                <h2 class="text-2xl sm:text-3xl font-bold text-white leading-tight">2. Pilares de diseño</h2>
+                            </div>
+                        </div>
+                        <span id="icon-lvl-2" class="text-cyan-400 text-2xl transition-transform duration-200">▼</span>
+                    </div>
+                    
+                    <p class="text-slate-200 mt-3 text-lg sm:text-xl font-medium leading-snug">
+                        De 3 a 4 directrices inquebrantables. Filtran mecánicas: cualquier propuesta que choque con un pilar se descarta inmediatamente.
+                    </p>
+
+                    <div id="lvl-2" class="hidden mt-4 pt-4 border-t border-slate-700/80 bg-slate-900/80 p-5 rounded-lg">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="font-pixel text-xs text-cyan-300 px-2.5 py-1 bg-cyan-950 border border-cyan-800 rounded">
+                                PILARES EN THE LAST OF US
+                            </span>
+                        </div>
+                        <ul class="space-y-3 text-base sm:text-lg text-slate-100">
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-cyan-400 font-bold font-pixel text-xs mt-1.5">▸</span>
+                                <span><strong class="text-cyan-300">Vulnerabilidad y escasez:</strong> Cada recurso (munición, vendajes) debe contarse al milímetro; el combate frontal prolongado es letal.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-cyan-400 font-bold font-pixel text-xs mt-1.5">▸</span>
+                                <span><strong class="text-cyan-300">Vínculo orgánico con la IA:</strong> La acompañante (Ellie) no puede sentirse como un estorbo mecánico, sino como un apoyo humano tangible.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-cyan-400 font-bold font-pixel text-xs mt-1.5">▸</span>
+                                <span><strong class="text-cyan-300">Combate visceral e improvisado:</strong> Resolver situaciones bajo presión mediante sigilo acústico y armas improvisadas de un solo uso.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CONECTOR 2-3 -->
+            <div id="con-2" class="flow-connector hidden">
+                <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h12z"/></svg>
+            </div>
+
+            <!-- NIVEL 3: ÉPICAS -->
+            <div id="wrapper-lvl-3" class="hidden">
+                <article class="hierarchy-card animate-reveal rounded-xl p-5 cursor-pointer select-none" onclick="toggleDetail('lvl-3')">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-indigo-500/20 border border-indigo-400 flex items-center justify-center text-indigo-300 font-pixel text-sm shrink-0">
+                                03
+                            </div>
+                            <div>
+                                <span class="font-pixel text-[11px] sm:text-xs text-purple-400 uppercase tracking-wider block">Grandes Subsistemas</span>
+                                <h2 class="text-2xl sm:text-3xl font-bold text-white leading-tight">3. Épicas</h2>
+                            </div>
+                        </div>
+                        <span id="icon-lvl-3" class="text-cyan-400 text-2xl transition-transform duration-200">▼</span>
+                    </div>
+                    
+                    <p class="text-slate-200 mt-3 text-lg sm:text-xl font-medium leading-snug">
+                        Grandes bloques de funcionalidad lúdica o arquitectónica que agrupan múltiples historias y abarcan varios sprints de desarrollo.
+                    </p>
+
+                    <div id="lvl-3" class="hidden mt-4 pt-4 border-t border-slate-700/80 bg-slate-900/80 p-5 rounded-lg">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="font-pixel text-xs text-cyan-300 px-2.5 py-1 bg-cyan-950 border border-cyan-800 rounded">
+                                ÉPICAS DE EJEMPLO
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-base sm:text-lg text-slate-100">
+                            <div class="p-3 bg-slate-800/90 rounded-lg border border-slate-700">
+                                <span class="text-indigo-300 font-bold block mb-1">🎒 Subsistema de Fabricación</span>
+                                Fabricación de supervivencia en tiempo real sin pausar el entorno del juego.
+                            </div>
+                            <div class="p-3 bg-slate-800/90 rounded-lg border border-slate-700">
+                                <span class="text-indigo-300 font-bold block mb-1">👂 Percepción y Sigilo Dinámico</span>
+                                Modo escucha táctica, propagación sonora y visión reactiva por conos de patrulla.
+                            </div>
+                            <div class="p-3 bg-slate-800/90 rounded-lg border border-slate-700">
+                                <span class="text-indigo-300 font-bold block mb-1">🤖 Compañero Reactivo (IA)</span>
+                                Agente autónomo que busca coberturas, ofrece suministros y reacciona al sigilo.
+                            </div>
+                            <div class="p-3 bg-slate-800/90 rounded-lg border border-slate-700">
+                                <span class="text-indigo-300 font-bold block mb-1">🔫 Balística e Impacto Corporal</span>
+                                Disparo con pulso inestable, retroceso pesado y armas cuerpo a cuerpo con desgaste.
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CONECTOR 3-4 -->
+            <div id="con-3" class="flow-connector hidden">
+                <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h12z"/></svg>
+            </div>
+
+            <!-- NIVEL 4: ELEMENTOS DEL BACKLOG (HU Y TAREAS TÉCNICAS) -->
+            <div id="wrapper-lvl-4" class="hidden">
+                <article class="hierarchy-card animate-reveal rounded-xl p-5 cursor-pointer select-none border-emerald-500/50" onclick="toggleDetail('lvl-4')">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-300 font-pixel text-sm shrink-0">
+                                04
+                            </div>
+                            <div>
+                                <span class="font-pixel text-[11px] sm:text-xs text-emerald-400 uppercase tracking-wider block">Elementos del Backlog (Notion)</span>
+                                <h2 class="text-2xl sm:text-3xl font-bold text-emerald-300 leading-tight">4. Historias de usuario y tareas técnicas</h2>
+                            </div>
+                        </div>
+                        <span id="icon-lvl-4" class="text-emerald-400 text-2xl transition-transform duration-200">▼</span>
+                    </div>
+                    
+                    <p class="text-slate-200 mt-3 text-lg sm:text-xl font-medium leading-snug">
+                        Las unidades de trabajo que pueblan el Backlog del equipo. El foco primordial son las <strong>Historias de Usuario (HU)</strong> que entregan valor al jugador, complementadas por <strong>Tareas Técnicas</strong> al mismo nivel jerárquico.
+                    </p>
+
+                    <!-- Detalle interior: Descomposición en Subactividades / Página de Notion -->
+                    <div id="lvl-4" class="hidden mt-4 pt-4 border-t border-slate-700/80 bg-slate-900/90 p-5 rounded-lg space-y-4">
+                        
+                        <!-- Comparativa HU vs Tarea Técnica al mismo nivel -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-emerald-950/40 border border-emerald-500/40 rounded-lg">
+                                <span class="font-pixel text-xs text-emerald-300 block mb-2">★ HISTORIA DE USUARIO (FOCO DE VALOR)</span>
+                                <p class="text-base sm:text-lg text-slate-100 font-medium">
+                                    «El superviviente puede fabricar una daga improvisada en tiempo real combinando tijeras y cinta, para ejecutar sigilosamente a un infectado ciego».
+                                </p>
+                            </div>
+                            <div class="p-4 bg-slate-800/80 border border-slate-600 rounded-lg">
+                                <span class="font-pixel text-xs text-amber-300 block mb-2">⚙ TAREA TÉCNICA (MISMO NIVEL EN BACKLOG)</span>
+                                <p class="text-base sm:text-lg text-slate-200 font-medium">
+                                    «Refactorizar el bus de eventos en C# para sincronizar las señales de audio con las alertas de la IA sin sobrecargar el hilo principal».
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- CÓMO SE DESGLOSA EN NOTION (SUBACTIVIDADES O CUERPO DE PÁGINA) -->
+                        <div class="p-4 bg-slate-950/70 border border-cyan-500/40 rounded-lg">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="font-pixel text-[11px] text-cyan-300 px-2 py-0.5 bg-cyan-950 border border-cyan-800 rounded">
+                                    DESCOMPOSICIÓN EN NOTION // SUBACTIVIDADES Y ACCIONES ATÓMICAS
+                                </span>
+                            </div>
+                            <p class="text-base sm:text-lg text-slate-200 mb-3">
+                                En el seguimiento de los Sprints, cada actividad se descompone en <strong>sub-items</strong> o en una lista de verificación dentro de su propia página de Notion:
+                            </p>
+                            
+                            <div class="space-y-2 text-base sm:text-lg">
+                                <div class="p-2.5 bg-slate-800/90 rounded border-l-4 border-emerald-400 flex items-start gap-2.5">
+                                    <span class="font-pixel text-xs text-emerald-400 shrink-0 mt-1">[CÓDIGO C#]</span>
+                                    <span>Implementar <code>CraftingRecipe.cs</code> con validación de inventario y consumo de ingredientes.</span>
+                                </div>
+                                <div class="p-2.5 bg-slate-800/90 rounded border-l-4 border-cyan-400 flex items-start gap-2.5">
+                                    <span class="font-pixel text-xs text-cyan-400 shrink-0 mt-1">[ANIMACIÓN / UNITY]</span>
+                                    <span>Configurar Animator Controller con bloqueo de locomoción e interrupción por impacto.</span>
+                                </div>
+                                <div class="p-2.5 bg-slate-800/90 rounded border-l-4 border-amber-400 flex items-start gap-2.5">
+                                    <span class="font-pixel text-xs text-amber-400 shrink-0 mt-1">[AUDIO / FMOD]</span>
+                                    <span>Diseñar evento de sonido con atenuación espacial 3D para la acción de fabricación.</span>
+                                </div>
+                                <div class="p-2.5 bg-slate-800/90 rounded border-l-4 border-purple-400 flex items-start gap-2.5">
+                                    <span class="font-pixel text-xs text-purple-400 shrink-0 mt-1">[ARTE 3D]</span>
+                                    <span>Modelar el prefab de la daga artesanal y configurar partículas de rotura tras un único uso.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+            </div>
+
+        </main>
+
+        <!-- CONTROLES DE NAVEGACIÓN: En flujo natural relativo, garantizando que siempre queden DEBAJO y NUNCA superpuestos -->
+        <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+            <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <button id="btn-next" onclick="revealNext()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                    <span class="font-pixel text-[11px]">▶</span> Siguiente estrato <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/4)</span>
+                </button>
+                <button onclick="revealAll()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                    Mostrar todo
+                </button>
+                <button onclick="resetAll()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                    Reiniciar
+                </button>
+            </nav>
+        </div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <script>
+        let currentLevelRevealed = 0;
+        const totalLevels = 4;
+
+        function updateCounter() {
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.innerText = `(${currentLevelRevealed}/${totalLevels})`;
+            }
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentLevelRevealed >= totalLevels) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        // Revelado progresivo con scroll natural: enfoca la nueva sección y la botonera que le sigue
+        function revealNext() {
+            if (currentLevelRevealed < totalLevels) {
+                currentLevelRevealed++;
+                const wrapper = document.getElementById('wrapper-lvl-' + currentLevelRevealed);
+                if (wrapper) {
+                    wrapper.classList.remove('hidden');
+                }
+
+                if (currentLevelRevealed > 1) {
+                    const connector = document.getElementById('con-' + (currentLevelRevealed - 1));
+                    if (connector) connector.classList.remove('hidden');
+                }
+
+                // Desplazamiento suave para que la nueva tarjeta y los controles queden a la vista sin solaparse
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) {
+                        controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 90);
+
+                updateCounter();
+            }
+        }
+
+        function revealAll() {
+            for (let i = 1; i <= totalLevels; i++) {
+                const wrapper = document.getElementById('wrapper-lvl-' + i);
+                if (wrapper) wrapper.classList.remove('hidden');
+                if (i > 1) {
+                    const connector = document.getElementById('con-' + (i - 1));
+                    if (connector) connector.classList.remove('hidden');
+                }
+            }
+            currentLevelRevealed = totalLevels;
+            updateCounter();
+        }
+
+        function resetAll() {
+            for (let i = 1; i <= totalLevels; i++) {
+                const wrapper = document.getElementById('wrapper-lvl-' + i);
+                if (wrapper) wrapper.classList.add('hidden');
+                
+                const detail = document.getElementById('lvl-' + i);
+                if (detail) detail.classList.add('hidden');
+                
+                const icon = document.getElementById('icon-' + i);
+                if (icon) icon.classList.remove('rotate-chevron');
+                
+                if (wrapper) {
+                    const card = wrapper.querySelector('.hierarchy-card');
+                    if (card) card.classList.remove('active-card');
+                }
+
+                if (i > 1) {
+                    const connector = document.getElementById('con-' + (i - 1));
+                    if (connector) connector.classList.add('hidden');
+                }
+            }
+            currentLevelRevealed = 0;
+            updateCounter();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            const card = panel.closest('.hierarchy-card');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+                if (card) card.classList.add('active-card');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (card) card.classList.remove('active-card');
+            }
+        }
+
+        // Navegación por teclado mediante barra espaciadora o flecha derecha
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentLevelRevealed < totalLevels) {
+                    e.preventDefault();
+                    revealNext();
+                }
+            }
+        });
+
+        // Inicializar estado del contador
+        updateCounter();
+    </script>
+</body>
+</html>

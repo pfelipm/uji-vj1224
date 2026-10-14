@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VJ1224 - Metodologías de desarrollo: cascada vs. ágil</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Space Grotesk & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Space Mono', monospace;
+      background-color: #08080c;
+      color: #ffffff;
+      background-image: 
+        radial-gradient(#1e1e2e 2px, transparent 2px),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 28px 28px, 42px 42px, 42px 42px;
+    }
+
+    .font-grotesk {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* High impact brutalist boxes & shadows for high-contrast projection */
+    .brutal-box-yellow {
+      border: 5px solid #000000;
+      box-shadow: 8px 8px 0px 0px #ffffff;
+    }
+
+    .brutal-box-white {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #facc15;
+    }
+
+    .brutal-box-blue {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #60a5fa;
+    }
+
+    .brutal-box-emerald {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #34d399;
+    }
+
+    .brutal-box-rose {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #f43f5e;
+    }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    .sprint-animate {
+      animation: pulse-ring 3s infinite ease-in-out;
+    }
+      .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="p-4 sm:p-8 md:p-10">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 1 · 04/07</span>
+      <a href="03%20Las%20leyes%20no%20escritas%20del%20desarrollo%20del%20software.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="05%20UML%20-%20los%20planos%20del%20videojuego.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+  <div class="w-full max-w-full mx-auto space-y-8 sm:space-y-12">
+
+    <!-- HERO HEADER BANNER (PROJECTION MODE) -->
+    <div class="w-full bg-yellow-400 text-black p-6 sm:p-10 text-center brutal-box-yellow space-y-3">
+      <div class="flex flex-wrap justify-between items-center gap-3 mb-2">
+        <span class="text-sm sm:text-base font-extrabold uppercase tracking-widest bg-black text-yellow-400 inline-block px-4 py-1.5">
+          VJ1224 // TEMA 1 & TEMA 3: METODOLOGÍAS DE DESARROLLO
+        </span>
+        <span class="text-xs sm:text-sm font-bold bg-zinc-900 text-white px-4 py-1.5 border-2 border-black uppercase">
+          Guía de Selección Técnica
+        </span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-grotesk uppercase tracking-tight leading-none">
+        CASCADA vs. ÁGIL (SCRUM)
+      </h1>
+      <p class="text-xl sm:text-2xl md:text-3xl font-extrabold font-grotesk uppercase text-zinc-900 pt-1">
+        ¿Cómo estructurar la producción de un videojuego sin morir en el intento?
+      </p>
+    </div>
+
+    <!-- MAIN TWO COLUMN COMPARISON -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
+
+      <!-- COLUMNA CASCADA (WATERFALL) -->
+      <div class="bg-zinc-950 p-6 sm:p-9 brutal-box-blue space-y-8">
+        
+        <div class="border-b-4 border-blue-500/40 pb-5">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-xs sm:text-sm font-extrabold bg-blue-950 text-blue-300 border-2 border-blue-500 px-3 py-1 uppercase tracking-wider">
+              SECUENCIAL / SECUENCIAL RÍGIDO
+            </span>
+            <span class="text-3xl sm:text-4xl">🌊</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-black font-grotesk text-blue-400 uppercase tracking-wide">
+            Modelo en Cascada
+          </h2>
+          <p class="text-sm sm:text-base md:text-lg text-zinc-300 italic font-grotesk mt-2">
+            "Planifícalo todo, documenta todo y no avances sin aprobar el paso anterior."
+          </p>
+        </div>
+
+        <!-- FASES EN CASCADA -->
+        <div class="space-y-4">
+          <h3 class="text-base sm:text-lg md:text-xl font-black text-zinc-200 uppercase tracking-widest flex items-center gap-2">
+            <span>📋</span> Flujo de Fases Tradicional (6 Etapas):
+          </h3>
+
+          <div class="relative pl-8 space-y-4 border-l-4 border-blue-500/40 ml-4">
+            
+            <!-- PASO 1 -->
+            <div class="relative group">
+              <div class="absolute -left-[42px] top-1 bg-blue-500 text-black font-black w-8 h-8 text-base rounded-full flex items-center justify-center">1</div>
+              <div class="bg-zinc-900 p-4 border border-zinc-800 rounded-lg">
+                <h4 class="font-bold font-grotesk text-blue-300 text-base sm:text-lg md:text-xl">1. Captura de requisitos</h4>
+                <p class="text-sm sm:text-base text-zinc-300 leading-relaxed mt-1">Se define el 100% del alcance del proyecto por adelantado. Documento de Visión.</p>
+              </div>
+            </div>
+
+            <!-- PASO 2: EL PASO DE ANÁLISIS DESTACADO -->
+            <div class="relative group">
+              <div class="absolute -left-[42px] top-1 bg-yellow-400 text-black font-black w-8 h-8 text-base rounded-full flex items-center justify-center">2</div>
+              <div class="bg-zinc-900 p-4 border-2 border-yellow-400 rounded-lg shadow-lg">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                  <h4 class="font-extrabold font-grotesk text-yellow-400 text-base sm:text-lg md:text-xl">2. Análisis del sistema (UML)</h4>
+                  <span class="text-xs sm:text-sm bg-yellow-400 text-black font-black px-2.5 py-0.5 border border-black uppercase">CLAVE VJ1224</span>
+                </div>
+                <p class="text-sm sm:text-base text-zinc-200 leading-relaxed mt-2">
+                  Modelado conceptual de requisitos. Especificación de casos de uso (<strong class="text-yellow-400 font-bold">Diagramas DCU</strong>), actores, límites del sistema y reglas de negocio.
+                </p>
+              </div>
+            </div>
+
+            <!-- PASO 3 -->
+            <div class="relative group">
+              <div class="absolute -left-[42px] top-1 bg-blue-500 text-black font-black w-8 h-8 text-base rounded-full flex items-center justify-center">3</div>
+              <div class="bg-zinc-900 p-4 border border-zinc-800 rounded-lg">
+                <h4 class="font-bold font-grotesk text-blue-300 text-base sm:text-lg md:text-xl">3. Diseño técnico y GDD</h4>
+                <p class="text-sm sm:text-base text-zinc-300 leading-relaxed mt-1">Arquitectura de software (<strong class="text-blue-300 font-bold">Diagramas de Clases DC</strong>), diagramas de actividad (DA) y Game Design Document detallado.</p>
+              </div>
+            </div>
+
+            <!-- PASO 4 -->
+            <div class="relative group">
+              <div class="absolute -left-[42px] top-1 bg-blue-500 text-black font-black w-8 h-8 text-base rounded-full flex items-center justify-center">4</div>
+              <div class="bg-zinc-900 p-4 border border-zinc-800 rounded-lg">
+                <h4 class="font-bold font-grotesk text-blue-300 text-base sm:text-lg md:text-xl">4. Implementación y desarrollo</h4>
+                <p class="text-sm sm:text-base text-zinc-300 leading-relaxed mt-1">Programación monolítica y creación de arte siguiendo los planos del diseño sin cambios.</p>
+              </div>
+            </div>
+
+            <!-- PASO 5 -->
+            <div class="relative group">
+              <div class="absolute -left-[42px] top-1 bg-blue-500 text-black font-black w-8 h-8 text-base rounded-full flex items-center justify-center">5</div>
+              <div class="bg-zinc-900 p-4 border border-zinc-800 rounded-lg">
+                <h4 class="font-bold font-grotesk text-blue-300 text-base sm:text-lg md:text-xl">5. Pruebas y QA (verificación)</h4>
+                <p class="text-sm sm:text-base text-zinc-300 leading-relaxed mt-1">Pruebas masivas al final del desarrollo. Detección tardía de fallos de integración y divertimento.</p>
+              </div>
+            </div>
+
+            <!-- PASO 6 -->
+            <div class="relative group">
+              <div class="absolute -left-[42px] top-1 bg-blue-500 text-black font-black w-8 h-8 text-base rounded-full flex items-center justify-center">6</div>
+              <div class="bg-zinc-900 p-4 border border-zinc-800 rounded-lg">
+                <h4 class="font-bold font-grotesk text-blue-300 text-base sm:text-lg md:text-xl">6. Despliegue y mantenimiento</h4>
+                <p class="text-sm sm:text-base text-zinc-300 leading-relaxed mt-1">Entrega final del producto completo y corrección de bugs post-lanzamiento.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CARACTERÍSTICAS CASCADA -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-grotesk text-sm sm:text-base">
+          <div class="bg-zinc-900 p-4 border-2 border-blue-900 rounded-lg">
+            <span class="text-blue-400 font-extrabold text-base sm:text-lg block mb-1">🎯 FLEXIBILIDAD</span>
+            <span class="text-zinc-300">Muy baja. Modificar requisitos a mitad de camino obliga a rehacer documentación de Análisis y Diseño.</span>
+          </div>
+          <div class="bg-zinc-900 p-4 border-2 border-blue-900 rounded-lg">
+            <span class="text-blue-400 font-extrabold text-base sm:text-lg block mb-1">🗣️ FEEDBACK</span>
+            <span class="text-zinc-300">Tardío. El cliente o jugador no prueba el juego interactivo hasta la fase final de QA.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- COLUMNA ÁGIL (AGILE / SCRUM) -->
+      <div class="bg-zinc-950 p-6 sm:p-9 brutal-box-emerald space-y-8">
+        
+        <div class="border-b-4 border-emerald-500/40 pb-5">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-xs sm:text-sm font-extrabold bg-emerald-950 text-emerald-300 border-2 border-emerald-500 px-3 py-1 uppercase tracking-wider">
+              ITERATIVO E INCREMENTAL
+            </span>
+            <span class="text-3xl sm:text-4xl">🏃‍♂️</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-black font-grotesk text-emerald-400 uppercase tracking-wide">
+            Metodología Ágil (Scrum)
+          </h2>
+          <p class="text-sm sm:text-base md:text-lg text-zinc-300 italic font-grotesk mt-2">
+            "Construye un Core Loop jugable, prueba con usuarios, aprende y adapta el siguiente Sprint."
+          </p>
+        </div>
+
+        <!-- CICLO SPRINT ANIMADO E INTERACTIVO -->
+        <div class="bg-zinc-900 p-6 border-2 border-emerald-700 rounded-lg text-center space-y-5">
+          <h3 class="text-base sm:text-lg md:text-xl font-extrabold text-emerald-400 uppercase tracking-widest font-grotesk">
+            🔄 El bucle iterativo: Sprint (1 a 3 semanas)
+          </h3>
+          
+          <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto flex items-center justify-center my-3">
+            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="40" stroke="#064e3b" stroke-width="8" fill="none" />
+              <circle cx="50" cy="50" r="40" stroke="#10b981" stroke-width="8" fill="none" stroke-dasharray="251.2" stroke-dashoffset="60" class="sprint-animate" />
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-3">
+              <span class="font-black font-grotesk text-emerald-400 text-lg sm:text-xl">SPRINT</span>
+              <span class="text-xs sm:text-sm text-zinc-200 font-bold uppercase font-mono mt-1">Incremento Jugable</span>
+            </div>
+          </div>
+
+          <p class="text-sm sm:text-base md:text-lg text-zinc-200 font-grotesk leading-relaxed">
+            Las fases de <strong class="text-emerald-400 font-bold">Requisitos, Análisis, Diseño, Código y Testeo</strong> no son aisladas, sino que <span class="underline font-bold text-emerald-300">se ejecutan de forma continua en CADA Sprint</span> sobre un subconjunto priorizado de historias de usuario.
+          </p>
+        </div>
+
+        <!-- ELEMENTOS CLAVE DE SCRUM EN VJ1224 -->
+        <div class="space-y-3 font-grotesk">
+          <h3 class="text-base sm:text-lg md:text-xl font-black text-zinc-200 uppercase tracking-widest flex items-center gap-2">
+            <span>⚙️</span> Artefactos y Prácticas en Videojuegos:
+          </h3>
+
+          <div class="grid grid-cols-1 gap-3 text-sm sm:text-base">
+            <div class="bg-zinc-900 p-4 border border-emerald-800 rounded-lg flex items-start gap-3">
+              <span class="text-emerald-400 font-black text-lg">01.</span>
+              <div>
+                <strong class="text-emerald-300 text-base sm:text-lg block">Product Backlog (Historias de Usuario)</strong>
+                <span class="text-zinc-300">Lista priorizada por valor de juego ("Como jugador quiero saltar doble para alcanzar plataformas altas").</span>
+              </div>
+            </div>
+
+            <div class="bg-zinc-900 p-4 border border-emerald-800 rounded-lg flex items-start gap-3">
+              <span class="text-emerald-400 font-black text-lg">02.</span>
+              <div>
+                <strong class="text-emerald-300 text-base sm:text-lg block">Sprint Backlog & Tablero Kanban / Notion</strong>
+                <span class="text-zinc-300">Tareas concretas asumidas por el equipo multidisciplinar durante las próximas 2 semanas.</span>
+              </div>
+            </div>
+
+            <div class="bg-zinc-900 p-4 border border-emerald-800 rounded-lg flex items-start gap-3">
+              <span class="text-emerald-400 font-black text-lg">03.</span>
+              <div>
+                <strong class="text-emerald-300 text-base sm:text-lg block">Incremento Potencialmente Entregable & Playtesting</strong>
+                <span class="text-zinc-300">Build funcional jugable al final de cada Sprint evaluable por el equipo e imprevistos corregidos rápido.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARACTERÍSTICAS ÁGIL -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-grotesk text-sm sm:text-base">
+          <div class="bg-zinc-900 p-4 border-2 border-emerald-900 rounded-lg">
+            <span class="text-emerald-400 font-extrabold text-base sm:text-lg block mb-1">🎯 FLEXIBILIDAD</span>
+            <span class="text-zinc-300">Muy alta. Si una mecánica no es divertida en el playtest, se re-prioriza o desecha en el siguiente Sprint.</span>
+          </div>
+          <div class="bg-zinc-900 p-4 border-2 border-emerald-900 rounded-lg">
+            <span class="text-emerald-400 font-extrabold text-base sm:text-lg block mb-1">🗣️ FEEDBACK</span>
+            <span class="text-zinc-300">Continuo. Playtests frecuentes al cierre de cada ciclo (coordinado con VJ1222/VJ1223).</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- COMPARATIVE TABLE / METRICS MATRIX (ENLARGED FOR CLASSROOM PROJECTION) -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-10 brutal-box-white space-y-6">
+      <div class="flex items-center space-x-4 border-b-4 border-zinc-800 pb-4">
+        <span class="bg-yellow-400 text-black font-black px-3 py-1.5 text-base sm:text-lg font-grotesk">VS</span>
+        <h2 class="text-2xl sm:text-4xl font-black font-grotesk text-yellow-400 uppercase tracking-wide">
+          Matriz de Comparación Directa
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left font-grotesk text-sm sm:text-base md:text-lg text-zinc-200 border-collapse">
+          <thead>
+            <tr class="bg-zinc-900 text-yellow-400 border-b-2 border-zinc-700">
+              <th class="p-4 uppercase text-base sm:text-lg md:text-xl font-extrabold">Criterio de Evaluación</th>
+              <th class="p-4 uppercase text-blue-400 text-base sm:text-lg md:text-xl font-extrabold">Cascada (Waterfall)</th>
+              <th class="p-4 uppercase text-emerald-400 text-base sm:text-lg md:text-xl font-extrabold">Ágil (Scrum)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-800">
+            <tr class="hover:bg-zinc-900/60">
+              <td class="p-4 font-bold text-zinc-200">Gestión de Requisitos</td>
+              <td class="p-4 text-zinc-300">Congelados al inicio tras el Análisis. Difícil cambiar.</td>
+              <td class="p-4 text-zinc-100 font-medium">Evolutivos en el Product Backlog. Adaptables.</td>
+            </tr>
+            <tr class="hover:bg-zinc-900/60">
+              <td class="p-4 font-bold text-zinc-200">Papel de la Documentación</td>
+              <td class="p-4 text-zinc-300">Extensa y exhaustiva antes de picar código (GDD masivo).</td>
+              <td class="p-4 text-zinc-100 font-medium">Documentación viva, ligera (Historias de Usuario / Notion).</td>
+            </tr>
+            <tr class="hover:bg-zinc-900/60">
+              <td class="p-4 font-bold text-zinc-200">Validación de "Game Feel"</td>
+              <td class="p-4 text-zinc-300">Muy tardía. Riesgo alto de descubrir que no es divertido al final.</td>
+              <td class="p-4 text-zinc-100 font-medium">Temprana y constante (Prototipe-early, Playtesting).</td>
+            </tr>
+            <tr class="hover:bg-zinc-900/60">
+              <td class="p-4 font-bold text-zinc-200">Gestión de Riesgos</td>
+              <td class="p-4 text-zinc-300">Acumulados hacia la fase final de integración y QA.</td>
+              <td class="p-4 text-zinc-100 font-medium">Mitigados en cada Sprint mediante entregas funcionales.</td>
+            </tr>
+            <tr class="hover:bg-zinc-900/60">
+              <td class="p-4 font-bold text-zinc-200">Ideal para...</td>
+              <td class="p-4 text-blue-300 font-extrabold">Proyectos con tecnología conocida y requisitos inmutables (ej. Remakes directos).</td>
+              <td class="p-4 text-emerald-300 font-extrabold">Videojuegos nuevos, proyectos de asignatura VJ1224, innovación de gameplay.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GAMEDEV SPECIFIC APPLICATION FOR VJ1224 -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-10 brutal-box-rose space-y-6">
+      <div class="flex items-center space-x-4 border-b-4 border-zinc-800 pb-4">
+        <span class="bg-rose-500 text-white font-black px-3 py-1.5 text-base sm:text-lg font-grotesk">🎮 GAMEDEV REALITY</span>
+        <h2 class="text-2xl sm:text-4xl font-black font-grotesk text-rose-500 uppercase tracking-wide">
+          ¿Por qué la industria del videojuego migró a Scrum?
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-grotesk">
+        <div class="bg-zinc-900 p-5 border-2 border-zinc-800 rounded-lg">
+          <span class="text-yellow-400 font-black block text-base sm:text-lg mb-2">💡 "Fun Factor" Incalculable</span>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            Es imposible predecir en un documento impreso de diseño si un salto o un combo de combate se sentirá divertido. Se requiere interacción inmediata.
+          </p>
+        </div>
+        <div class="bg-zinc-900 p-5 border-2 border-zinc-800 rounded-lg">
+          <span class="text-cyan-400 font-black block text-base sm:text-lg mb-2">🛠️ Equipos Multidisciplinares</span>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            Programadores, artistas, diseñadores de sonido y level designers deben colaborar en paralelo en un mismo incremento jugable en lugar de en silos aislados.
+          </p>
+        </div>
+        <div class="bg-zinc-900 p-5 border-2 border-zinc-800 rounded-lg">
+          <span class="text-emerald-400 font-black block text-base sm:text-lg mb-2">🚀 Coordinación VJ1224 + VJ1222/23</span>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            Vuestro proyecto de cuatrimestre se evalúa por Sprints: entregar builds funcionales en las prácticas permite detectar bloqueos técnicos a tiempo.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINALE SUMMARY -->
+    <div class="w-full bg-yellow-400 text-black p-6 sm:p-9 text-center brutal-box-yellow space-y-2">
+      <h3 class="text-xl sm:text-3xl font-black font-grotesk uppercase">
+        💡 CONCLUSIÓN
+      </h3>
+      <p class="text-lg sm:text-2xl font-black font-grotesk leading-relaxed">
+        El análisis (UML) no desaparece en un entorno ágil: se reparte orgánicamente en cada Sprint mediante historias de usuario e incrementos sin la rigidez de la cascada.
+      </p>
+    </div>
+
+  </div>
+
+
+    <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

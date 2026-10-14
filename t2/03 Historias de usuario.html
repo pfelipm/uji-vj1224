@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: Los 6 pilares de las historias de usuario</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para diseño responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (identidad retro) y 'Rajdhani' (legibilidad proyectada) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjeta de pilar interactiva */
+        .pillar-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(24, 33, 47, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(56, 189, 248, 0.3);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pillar-card:hover {
+            border-color: rgba(56, 189, 248, 0.75);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .pillar-card.active-card {
+            border-color: #34d399;
+            box-shadow: 0 0 24px rgba(52, 211, 153, 0.3);
+        }
+
+        /* Rotación suave del chevron */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Animación de entrada suave */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-reveal {
+            animation: fadeInDown 0.3s ease-out forwards;
+        }
+
+        /* Barra de control inferior en flujo natural */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 03/15</span>
+      <a href="02%20La%20jerarqu%C3%ADa%20del%20dise%C3%B1o.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="04%20Historia%20vs.%20tarea.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-6xl w-full">
+        <!-- Encabezado Proyectable del Hub -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/80 border border-cyan-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                    VJ1224 // TEMA 2: HISTORIAS DE USUARIO
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-300 to-teal-200 tracking-wide leading-relaxed py-1">
+                HISTORIAS DE USUARIO
+            </h1>
+            
+            <p class="text-slate-400 text-xs sm:text-sm font-pixel mt-1 tracking-wider">
+                &lt;Los 6 Pilares Fundamentales&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                Una descripción simple de una funcionalidad contada desde la perspectiva del jugador. No es un requisito técnico, sino una invitación a conversar para crear la mejor experiencia posible.
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                Usa el botón inferior o la barra espaciadora para iluminar cada pilar; haz clic en cualquier tarjeta para desplegar sus detalles.
+            </p>
+        </header>
+
+        <!-- Cuadrícula interactiva de 6 Pilares con Revelado Progresivo -->
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            
+            <!-- PILAR 1: PLANTILLA -->
+            <div id="wrapper-pilar-1" class="hidden">
+                <article class="pillar-card animate-reveal rounded-xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('pilar-1')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-lg bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0">
+                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+                            </div>
+                            <span class="font-pixel text-[11px] text-cyan-400">PILAR 01</span>
+                            <span id="icon-pilar-1" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+                        
+                        <h2 class="font-pixel text-lg sm:text-xl text-purple-300 tracking-wide mb-2">PLANTILLA</h2>
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            Define <strong>QUIÉN</strong>, <strong>QUÉ</strong> y <strong>PARA QUÉ</strong>. La estructura base de toda historia.
+                        </p>
+                    </div>
+
+                    <!-- Detalle interior proyectable -->
+                    <div id="pilar-1" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-900/90 p-4 rounded-lg space-y-2">
+                        <span class="font-pixel text-[10px] text-cyan-300 px-2 py-0.5 bg-cyan-950 border border-cyan-800 rounded inline-block mb-1">
+                            TRIPLA CANÓNICA
+                        </span>
+                        <div class="space-y-1.5 text-base text-slate-200">
+                            <p><strong class="text-emerald-400">Como</strong> [Rol específico de jugador]</p>
+                            <p><strong class="text-cyan-300">Quiero</strong> [Acción / Mecánica jugable]</p>
+                            <p><strong class="text-purple-300">Para</strong> [Propósito / Emoción / Valor táctico]</p>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-400 italic pt-1 border-t border-slate-800">
+                            Ejemplo: «Como superviviente en sigilo, quiero lanzar una botella para distraer a un enemigo ciego sin delatar mi posición».
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- PILAR 2: VALOR > TAREA -->
+            <div id="wrapper-pilar-2" class="hidden">
+                <article class="pillar-card animate-reveal rounded-xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('pilar-2')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-lg bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-300 shrink-0">
+                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+                            </div>
+                            <span class="font-pixel text-[11px] text-emerald-400">PILAR 02</span>
+                            <span id="icon-pilar-2" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+                        
+                        <h2 class="font-pixel text-lg sm:text-xl text-purple-300 tracking-wide mb-2">VALOR &gt; TAREA</h2>
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            Se centran en el <strong>valor para el jugador</strong>, no en la solución técnica.
+                        </p>
+                    </div>
+
+                    <div id="pilar-2" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-900/90 p-4 rounded-lg space-y-2">
+                        <span class="font-pixel text-[10px] text-emerald-300 px-2 py-0.5 bg-emerald-950 border border-emerald-800 rounded inline-block mb-1">
+                            PRINCIPIO ÁGIL
+                        </span>
+                        <p class="text-base text-slate-200">
+                            El usuario final no interactúa con scripts de C# ni con colliders; experimenta <strong>tensión, desafío y diversión</strong>.
+                        </p>
+                        <div class="p-2 bg-slate-950/80 rounded border-l-4 border-amber-400 text-xs sm:text-sm text-slate-300">
+                            <strong class="text-amber-300">Regla de oro:</strong> Una tarea técnica describe <em>cómo</em> se programa; una historia describe <em>qué valor</em> recibe quien juega.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- PILAR 3: EL EMBUDO -->
+            <div id="wrapper-pilar-3" class="hidden">
+                <article class="pillar-card animate-reveal rounded-xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('pilar-3')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-lg bg-indigo-500/20 border border-indigo-400 flex items-center justify-center text-indigo-300 shrink-0">
+                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M3 4h18v2H3V4zm4 7h10v2H7v-2zm4 5h2v2h-2v-2z"/></svg>
+                            </div>
+                            <span class="font-pixel text-[11px] text-indigo-400">PILAR 03</span>
+                            <span id="icon-pilar-3" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+                        
+                        <h2 class="font-pixel text-lg sm:text-xl text-purple-300 tracking-wide mb-2">EL EMBUDO</h2>
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            De la gran visión a la pequeña tarea. Un proceso de <strong>desglose progresivo</strong>.
+                        </p>
+                    </div>
+
+                    <div id="pilar-3" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-900/90 p-4 rounded-lg space-y-2">
+                        <span class="font-pixel text-[10px] text-indigo-300 px-2 py-0.5 bg-indigo-950 border border-indigo-800 rounded inline-block mb-1">
+                            REFINAMIENTO
+                        </span>
+                        <p class="text-base text-slate-200">
+                            Las ideas abstractas se van detallando a medida que se acerca su implementación en el sprint:
+                        </p>
+                        <p class="text-xs sm:text-sm text-cyan-200 font-mono bg-slate-950 p-2 rounded">
+                            Visión Macro ➔ Épica ➔ Historias estimables ➔ Acciones en Notion
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- PILAR 4: JERARQUÍA -->
+            <div id="wrapper-pilar-4" class="hidden">
+                <article class="pillar-card animate-reveal rounded-xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('pilar-4')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-lg bg-teal-500/20 border border-teal-400 flex items-center justify-center text-teal-300 shrink-0">
+                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.5a5.5 5.5 0 0 1 5.5 5.5c0 1.84-1.13 3.6-2.78 4.67-.3.2-.44.57-.36.92.09.39.46.61.85.61H18c1.1 0 2 .9 2 2v2.5c0 1.38-1.12 2.5-2.5 2.5S15.5 21.88 15.5 20.5V18h-7v2.5c0 1.38-1.12 2.5-2.5 2.5S3.5 21.88 3.5 20.5V18c0-1.1.9-2 2-2h2.79c.39 0 .76-.22.85-.61.08-.35-.06-.72-.36-.92C7.63 11.6 6.5 9.84 6.5 8a5.5 5.5 0 0 1 5.5-5.5z"/></svg>
+                            </div>
+                            <span class="font-pixel text-[11px] text-teal-400">PILAR 04</span>
+                            <span id="icon-pilar-4" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+                        
+                        <h2 class="font-pixel text-lg sm:text-xl text-purple-300 tracking-wide mb-2">JERARQUÍA</h2>
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            Las <strong>ÉPICAS (jefes)</strong> se descomponen en <strong>HISTORIAS manejables (enemigos)</strong>.
+                        </p>
+                    </div>
+
+                    <div id="pilar-4" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-900/90 p-4 rounded-lg space-y-2">
+                        <span class="font-pixel text-[10px] text-teal-300 px-2 py-0.5 bg-teal-950 border border-teal-800 rounded inline-block mb-1">
+                            METÁFORA GAMER
+                        </span>
+                        <p class="text-base text-slate-200">
+                            Una Épica es un subsistema demasiado formidable para derrotar en un solo sprint. Se divide en encuentros tácticos (Historias de Usuario) que entregan valor incremental.
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- PILAR 5: INVEST -->
+            <div id="wrapper-pilar-5" class="hidden">
+                <article class="pillar-card animate-reveal rounded-xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('pilar-5')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-lg bg-amber-500/20 border border-amber-400 flex items-center justify-center text-amber-300 shrink-0">
+                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                            </div>
+                            <span class="font-pixel text-[11px] text-amber-400">PILAR 05</span>
+                            <span id="icon-pilar-5" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+                        
+                        <h2 class="font-pixel text-lg sm:text-xl text-purple-300 tracking-wide mb-2">INVEST</h2>
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            Los <strong>6 criterios de calidad</strong> que toda historia debe superar antes del sprint.
+                        </p>
+                    </div>
+
+                    <div id="pilar-5" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-900/90 p-4 rounded-lg space-y-2">
+                        <span class="font-pixel text-[10px] text-amber-300 px-2 py-0.5 bg-amber-950 border border-amber-800 rounded inline-block mb-1">
+                            CHECKLIST DE CALIDAD
+                        </span>
+                        <div class="grid grid-cols-2 gap-1.5 text-xs sm:text-sm text-slate-200 font-medium">
+                            <div><strong class="text-amber-400">I</strong>ndependiente</div>
+                            <div><strong class="text-amber-400">N</strong>egociable</div>
+                            <div><strong class="text-amber-400">V</strong>aliosa</div>
+                            <div><strong class="text-amber-400">E</strong>stimable</div>
+                            <div><strong class="text-amber-400">S</strong>mall (Pequeña)</div>
+                            <div><strong class="text-amber-400">T</strong>esteable</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- PILAR 6: DEFINITION OF DONE (DoD) -->
+            <div id="wrapper-pilar-6" class="hidden">
+                <article class="pillar-card animate-reveal rounded-xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('pilar-6')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-lg bg-rose-500/20 border border-rose-400 flex items-center justify-center text-rose-300 shrink-0">
+                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6z"/></svg>
+                            </div>
+                            <span class="font-pixel text-[11px] text-rose-400">PILAR 06</span>
+                            <span id="icon-pilar-6" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+                        
+                        <h2 class="font-pixel text-lg sm:text-xl text-purple-300 tracking-wide mb-2">DoD</h2>
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            El pacto del equipo para saber cuándo algo está <strong>REALMENTE terminado</strong>.
+                        </p>
+                    </div>
+
+                    <div id="pilar-6" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-900/90 p-4 rounded-lg space-y-2">
+                        <span class="font-pixel text-[10px] text-rose-300 px-2 py-0.5 bg-rose-950 border border-rose-800 rounded inline-block mb-1">
+                            CRITERIO DE FINALIZACIÓN
+                        </span>
+                        <ul class="text-xs sm:text-sm text-slate-200 space-y-1">
+                            <li>✔ Código integrado en la rama principal sin errores de consola en Unity.</li>
+                            <li>✔ Probado y verificado en la build jugable con gamepad/teclado.</li>
+                            <li>✔ Aceptado unánimemente por el equipo en la reunión de revisión.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+
+        </main>
+
+        <!-- CONTROLES DE NAVEGACIÓN: En flujo natural relativo inferior (nunca superpuesto) -->
+        <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+            <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <button id="btn-next" onclick="revealNext()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                    <span class="font-pixel text-[11px]">▶</span> Siguiente pilar <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/6)</span>
+                </button>
+                <button onclick="revealAll()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                    Mostrar todos
+                </button>
+                <button onclick="resetAll()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                    Reiniciar
+                </button>
+            </nav>
+        </div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <script>
+        let currentPillarRevealed = 0;
+        const totalPillars = 6;
+
+        function updateCounter() {
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.innerText = `(${currentPillarRevealed}/${totalPillars})`;
+            }
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentPillarRevealed >= totalPillars) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        // Revelado progresivo con scroll suave hacia el contenedor de controles
+        function revealNext() {
+            if (currentPillarRevealed < totalPillars) {
+                currentPillarRevealed++;
+                const wrapper = document.getElementById('wrapper-pilar-' + currentPillarRevealed);
+                if (wrapper) {
+                    wrapper.classList.remove('hidden');
+                }
+
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) {
+                        controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 80);
+
+                updateCounter();
+            }
+        }
+
+        function revealAll() {
+            for (let i = 1; i <= totalPillars; i++) {
+                const wrapper = document.getElementById('wrapper-pilar-' + i);
+                if (wrapper) wrapper.classList.remove('hidden');
+            }
+            currentPillarRevealed = totalPillars;
+            updateCounter();
+        }
+
+        function resetAll() {
+            for (let i = 1; i <= totalPillars; i++) {
+                const wrapper = document.getElementById('wrapper-pilar-' + i);
+                if (wrapper) wrapper.classList.add('hidden');
+                
+                const detail = document.getElementById('pilar-' + i);
+                if (detail) detail.classList.add('hidden');
+                
+                const icon = document.getElementById('icon-pilar-' + i);
+                if (icon) icon.classList.remove('rotate-chevron');
+                
+                if (wrapper) {
+                    const card = wrapper.querySelector('.pillar-card');
+                    if (card) card.classList.remove('active-card');
+                }
+            }
+            currentPillarRevealed = 0;
+            updateCounter();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            const card = panel.closest('.pillar-card');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+                if (card) card.classList.add('active-card');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (card) card.classList.remove('active-card');
+            }
+        }
+
+        // Navegación rápida por teclado
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentPillarRevealed < totalPillars) {
+                    e.preventDefault();
+                    revealNext();
+                }
+            }
+        });
+
+        // Inicializar estado del contador al cargar
+        updateCounter();
+    </script>
+</body>
+</html>

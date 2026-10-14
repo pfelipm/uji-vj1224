@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: Lean, Agile y Scrum (La jerarquía visual)</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .font-pixel {
+            font-family: 'Press Start 2P', monospace;
+        }
+        .font-body {
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        html, body {
+            background-color: #080c14;
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.14), transparent 55%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        /* Muñecas rusas (matrioskas) en estilo Retro-HUD de alto contraste */
+        .matryoshka-shell {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(20, 30, 48, 0.94) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 50% 50% 42% 42% / 55% 55% 42% 42%;
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .matryoshka-shell:hover {
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .doll-lean {
+            border: 3px solid #f43f5e;
+            box-shadow: 0 0 28px rgba(244, 63, 94, 0.3);
+        }
+        .doll-agile {
+            border: 3px solid #fb923c;
+            box-shadow: 0 0 28px rgba(251, 146, 60, 0.3);
+        }
+        .doll-scrum {
+            border: 3px solid #facc15;
+            box-shadow: 0 0 28px rgba(250, 204, 21, 0.35);
+        }
+
+        /* Tarjetas de desglose inferior */
+        .hud-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.96) 0%, rgba(20, 30, 48, 0.94) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hud-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card-lean {
+            border-color: rgba(244, 63, 94, 0.6);
+            box-shadow: 0 0 18px rgba(244, 63, 94, 0.15);
+        }
+        .card-lean:hover, .card-lean.active-card {
+            border-color: #f43f5e;
+            box-shadow: 0 0 26px rgba(244, 63, 94, 0.38);
+        }
+
+        .card-agile {
+            border-color: rgba(251, 146, 60, 0.6);
+            box-shadow: 0 0 18px rgba(251, 146, 60, 0.15);
+        }
+        .card-agile:hover, .card-agile.active-card {
+            border-color: #fb923c;
+            box-shadow: 0 0 26px rgba(251, 146, 60, 0.38);
+        }
+
+        .card-scrum {
+            border-color: rgba(250, 204, 21, 0.6);
+            box-shadow: 0 0 18px rgba(250, 204, 21, 0.15);
+        }
+        .card-scrum:hover, .card-scrum.active-card {
+            border-color: #facc15;
+            box-shadow: 0 0 26px rgba(250, 204, 21, 0.38);
+        }
+
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: translateY(14px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .animate-reveal {
+            animation: fadeInScale 0.35s ease-out forwards;
+        }
+
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.96);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(56, 189, 248, 0.55);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.65), 0 0 16px rgba(56, 189, 248, 0.18);
+        }
+    </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center min-h-screen selection:bg-cyan-500 selection:text-black">
+
+    <div class="max-w-6xl w-full flex-1 flex flex-col justify-between">
+        <div>
+            <!-- Barra superior de navegación (oculta cuando se incrusta en Google Sites) -->
+            <nav aria-label="Navegación del portal" class="hide-in-embed flex flex-wrap items-center justify-between gap-3 mb-6 px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 shadow-lg text-xs sm:text-sm">
+                <div class="flex items-center gap-2">
+                    <a href="../index.html" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-950/80 hover:bg-cyan-900 text-cyan-300 border border-cyan-500/40 font-semibold transition">
+                        <span>🏠</span>
+                        <span>Índice general</span>
+                    </a>
+                    <span class="text-slate-500 hidden sm:inline">·</span>
+                    <span class="font-pixel text-[10px] text-slate-400 hidden sm:inline">TEMA 3 // 01 DE 08</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="../t2/15%20La%20jerarqu%C3%ADa%20de%20Notion.html" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-600 font-semibold transition" title="Módulo anterior (Tema 2)">
+                        ← T2.15 Notion
+                    </a>
+                    <a href="02%20El%20origen%20de%20Scrum.html" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/40 font-semibold transition" title="Siguiente módulo">
+                        02. El origen de Scrum →
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Encabezado proyectable -->
+            <header class="text-center mb-6 sm:mb-8">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-cyan-950/90 border-2 border-cyan-400/70 rounded-full mb-3 shadow-inner">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                        VJ1224 // TEMA 3: GESTIÓN ÁGIL Y SCRUM
+                    </span>
+                </div>
+
+                <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-amber-300 to-yellow-300 tracking-wide leading-relaxed py-1">
+                    LEAN, AGILE Y SCRUM
+                </h1>
+
+                <p class="text-slate-400 text-xs sm:text-sm font-pixel mt-1 tracking-wider">
+                    &lt;Desentrañando la jerarquía: el porqué, el qué y el cómo&gt;
+                </p>
+
+                <p class="text-cyan-300 text-base sm:text-xl max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                    A menudo se usan como sinónimos, pero no lo son: imagínalos como muñecas matrioskas donde cada capa envuelve y da sentido a la siguiente.
+                </p>
+
+                <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                    Pulsa el botón inferior o la barra espaciadora para revelar cada estrato; haz clic en las tarjetas inferiores para desplegar los detalles.
+                </p>
+            </header>
+
+            <!-- SECCIÓN 1: LAS MUÑECAS RUSAS (MATRIOSKAS) -->
+            <section aria-label="Metáfora de las matrioskas" class="mb-10">
+                <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+
+                    <!-- CAPA 1: LEAN -->
+                    <div id="step-1" class="hidden animate-reveal flex flex-col items-center">
+                        <div class="matryoshka-shell doll-lean w-72 sm:w-80 h-[390px] sm:h-[420px] p-6 flex flex-col justify-between items-center text-center relative">
+                            <span class="font-pixel text-[10px] bg-rose-950 text-rose-300 border border-rose-500/70 px-3 py-1 rounded-full">
+                                CAPA EXTERIOR 01
+                            </span>
+                            <div>
+                                <div class="text-4xl mb-2">🏭</div>
+                                <h2 class="font-pixel text-2xl sm:text-3xl text-rose-400 tracking-wide">LEAN</h2>
+                                <p class="text-lg sm:text-xl font-bold text-white mt-1">La filosofía madre</p>
+                                <p class="text-base text-slate-200 mt-3 leading-snug font-medium">
+                                    Nacida en el sistema de producción de Toyota: busca maximizar el valor para el jugador eliminando todo lo que sea «desperdicio».
+                                </p>
+                            </div>
+                            <div class="bg-rose-500 text-slate-950 px-5 py-2 rounded-full border-2 border-white shadow-lg">
+                                <span class="font-pixel text-xs sm:text-sm font-bold">EL PORQUÉ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CAPA 2: AGILE -->
+                    <div id="step-2" class="hidden animate-reveal flex flex-col items-center">
+                        <div class="matryoshka-shell doll-agile w-64 sm:w-72 h-[340px] sm:h-[365px] p-6 flex flex-col justify-between items-center text-center relative">
+                            <span class="font-pixel text-[10px] bg-orange-950 text-orange-300 border border-orange-500/70 px-3 py-1 rounded-full">
+                                CAPA INTERMEDIA 02
+                            </span>
+                            <div>
+                                <div class="text-3xl mb-1.5">⚡</div>
+                                <h2 class="font-pixel text-xl sm:text-2xl text-orange-400 tracking-wide">AGILE</h2>
+                                <p class="text-base sm:text-lg font-bold text-white mt-1">La mentalidad</p>
+                                <p class="text-sm sm:text-base text-slate-200 mt-2 leading-snug font-medium">
+                                    Aplica los principios Lean al desarrollo de software. Es un «paraguas» de valores y principios para ser adaptables ante la incertidumbre.
+                                </p>
+                            </div>
+                            <div class="bg-orange-400 text-slate-950 px-5 py-1.5 rounded-full border-2 border-white shadow-lg">
+                                <span class="font-pixel text-xs font-bold">EL QUÉ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CAPA 3: SCRUM -->
+                    <div id="step-3" class="hidden animate-reveal flex flex-col items-center">
+                        <div class="matryoshka-shell doll-scrum w-56 sm:w-64 h-[290px] sm:h-[310px] p-5 flex flex-col justify-between items-center text-center relative">
+                            <span class="font-pixel text-[10px] bg-yellow-950 text-yellow-300 border border-yellow-400/70 px-2.5 py-1 rounded-full">
+                                NÚCLEO TÁCTICO 03
+                            </span>
+                            <div>
+                                <div class="text-3xl mb-1">🏉</div>
+                                <h2 class="font-pixel text-lg sm:text-xl text-yellow-300 tracking-wide">SCRUM</h2>
+                                <p class="text-base font-bold text-white mt-1">El marco de trabajo</p>
+                                <p class="text-sm text-slate-200 mt-2 leading-snug font-medium">
+                                    Un conjunto ligero de reglas de juego para poner en práctica la mentalidad Agile de forma concreta en cada sprint.
+                                </p>
+                            </div>
+                            <div class="bg-yellow-400 text-slate-950 px-4 py-1.5 rounded-full border-2 border-black shadow-lg">
+                                <span class="font-pixel text-[11px] font-bold">EL CÓMO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: UNIENDO LAS PIEZAS (PASO 4) -->
+            <section id="step-4" class="hidden animate-reveal space-y-5">
+                <div class="text-center">
+                    <span class="font-pixel text-[10px] text-cyan-300 bg-cyan-950 border border-cyan-500/60 px-3 py-1 rounded-full">
+                        SÍNTESIS ARQUITECTÓNICA
+                    </span>
+                    <h2 class="font-pixel text-lg sm:text-2xl text-white mt-3">
+                        Uniendo las piezas en el estudio
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                    <!-- TARJETA 1: LEAN -->
+                    <article class="hud-card card-lean rounded-2xl p-6 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-lean')">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-pixel text-[10px] text-rose-300 bg-rose-950 px-2.5 py-1 rounded border border-rose-500/60">1. FILOSOFÍA</span>
+                                <span id="icon-detail-lean" class="text-rose-400 text-lg transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-base sm:text-lg text-rose-400 mb-2">1. Lean (El porqué)</h3>
+                            <p class="text-slate-200 text-base sm:text-lg font-medium leading-snug">
+                                Es la base de todo: nos da la razón fundamental para cambiar nuestra forma de producir videojuegos.
+                            </p>
+                            <ul class="list-outside pl-1 space-y-2 text-sm sm:text-base text-slate-200 mt-4 font-medium">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-400 font-bold shrink-0">✔</span>
+                                    <span>Crear valor real para quien juega.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-rose-400 font-bold shrink-0">✖</span>
+                                    <span>Eliminar el desperdicio (<em>muda</em>): mecánicas que nadie usa o documentación obsoleta.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan-400 font-bold shrink-0">🔄</span>
+                                    <span>Búsqueda incesante de la mejora continua (<em>kaizen</em>).</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="detail-lean" class="hidden mt-4 pt-3 border-t border-rose-500/30 bg-slate-950/90 p-3.5 rounded-xl text-sm text-slate-300">
+                            <strong class="text-rose-300">En videojuegos:</strong> Programar durante meses un sistema de clima hiperrealista antes de validar si el bucle principal de juego es divertido es puro desperdicio Lean.
+                        </div>
+                    </article>
+
+                    <!-- TARJETA 2: AGILE -->
+                    <article class="hud-card card-agile rounded-2xl p-6 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-agile')">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-pixel text-[10px] text-orange-300 bg-orange-950 px-2.5 py-1 rounded border border-orange-500/60">2. MENTALIDAD</span>
+                                <span id="icon-detail-agile" class="text-orange-400 text-lg transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-base sm:text-lg text-orange-400 mb-2">2. Agile (El qué)</h3>
+                            <p class="text-slate-200 text-base sm:text-lg font-medium leading-snug">
+                                Traduce la filosofía Lean en valores y principios para entornos creativos e inciertos como un estudio de desarrollo.
+                            </p>
+                            <div class="mt-4 bg-slate-950/90 border border-orange-500/40 rounded-xl p-3.5 text-sm sm:text-base">
+                                <p class="font-bold text-orange-300 mb-2">Bajo su «paraguas» viven múltiples marcos:</p>
+                                <ul class="list-disc list-outside pl-5 space-y-1.5 text-slate-200 font-medium">
+                                    <li><strong class="text-white">Scrum:</strong> marco iterativo basado en sprints.</li>
+                                    <li><strong class="text-white">Kanban:</strong> gestión centrada en el flujo visual y límites WIP.</li>
+                                    <li><strong class="text-white">XP (Extreme Programming):</strong> excelencia en ingeniería (TDD, refactorización, integración continua).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="detail-agile" class="hidden mt-4 pt-3 border-t border-orange-500/30 bg-slate-950/90 p-3.5 rounded-xl text-sm text-slate-300">
+                            <strong class="text-orange-300">Manifiesto Ágil (2001):</strong> Prioriza un prototipo jugable funcionando y la respuesta al feedback de playtesting por encima de seguir ciegamente un GDD estático de 300 páginas.
+                        </div>
+                    </article>
+
+                    <!-- TARJETA 3: SCRUM -->
+                    <article class="hud-card card-scrum rounded-2xl p-6 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-scrum')">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-pixel text-[10px] text-yellow-300 bg-yellow-950 px-2.5 py-1 rounded border border-yellow-400/60">3. MARCO (FRAMEWORK)</span>
+                                <span id="icon-detail-scrum" class="text-yellow-300 text-lg transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-base sm:text-lg text-yellow-300 mb-2">3. Scrum (El cómo)</h3>
+                            <p class="text-slate-200 text-base sm:text-lg font-medium leading-snug">
+                                Es la implementación más adoptada de Agile. No te dice cómo programar tu juego, pero establece las reglas tácticas para que tu equipo gane la partida.
+                            </p>
+                            <ul class="list-disc list-outside pl-5 space-y-2 text-sm sm:text-base text-slate-200 mt-4 font-medium">
+                                <li><strong class="text-yellow-300">Responsabilidades:</strong> Product Owner, Scrum Master y Developers.</li>
+                                <li><strong class="text-yellow-300">Eventos:</strong> Sprint, Sprint Planning, Daily Scrum, Review y Retrospective.</li>
+                                <li><strong class="text-yellow-300">Artefactos:</strong> Product Backlog, Sprint Backlog e Incremento.</li>
+                            </ul>
+                        </div>
+
+                        <div id="detail-scrum" class="hidden mt-4 pt-3 border-t border-yellow-400/30 bg-slate-950/90 p-3.5 rounded-xl text-sm text-slate-300">
+                            <strong class="text-yellow-300">En VJ1224:</strong> Combinamos Scrum (ciclos de sprint) con tableros Kanban e historias de usuario en Notion para entregar incrementos jugables reales.
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- CONTROLES DE NAVEGACIÓN HUD -->
+            <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+                <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                    <button id="btn-next" onclick="revealNext()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                        <span class="font-pixel text-[11px]">▶</span> Siguiente capa <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/4)</span>
+                    </button>
+                    <button onclick="revealAll()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                        Mostrar todo
+                    </button>
+                    <button onclick="resetAll()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                        Reiniciar
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Pie de página académico oficial UJI -->
+        <footer class="mt-8 pt-5 border-t border-slate-800/90 text-center text-xs text-slate-400 space-y-1.5 pb-4">
+            <p class="font-pixel text-[10px] sm:text-xs text-slate-400 tracking-wider">
+                VJ1224 // INGENIERÍA DEL SOFTWARE · GRADO EN DISEÑO Y DESARROLLO DE VIDEOJUEGOS
+            </p>
+            <p class="text-slate-400 text-xs sm:text-sm font-medium">
+                Autor: <a href="https://www.pablofelip.uji.es" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-semibold">Pablo Felip Monferrer</a> ·
+                <a href="https://www.uji.es/departaments/lsi/" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:underline">DLSI (Universitat Jaume I)</a> ·
+                Curso 2026/2027 ·
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">CC BY-NC-SA 4.0</a>
+                <span class="hide-in-embed"> · <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">GitHub ↗</a></span>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const totalSteps = 4;
+
+        function updateCounter() {
+            const counter = document.getElementById('counter');
+            if (counter) counter.innerText = `(${currentStep}/${totalSteps})`;
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentStep >= totalSteps) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        function revealNext() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                const el = document.getElementById('step-' + currentStep);
+                if (el) el.classList.remove('hidden');
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 80);
+                updateCounter();
+            }
+        }
+
+        function revealAll() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const el = document.getElementById('step-' + i);
+                if (el) el.classList.remove('hidden');
+            }
+            currentStep = totalSteps;
+            updateCounter();
+        }
+
+        function resetAll() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const el = document.getElementById('step-' + i);
+                if (el) el.classList.add('hidden');
+            }
+            ['detail-lean', 'detail-agile', 'detail-scrum'].forEach(id => {
+                const panel = document.getElementById(id);
+                if (panel) panel.classList.add('hidden');
+                const icon = document.getElementById('icon-' + id);
+                if (icon) icon.classList.remove('rotate-chevron');
+            });
+            currentStep = 0;
+            updateCounter();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            if (!panel) return;
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+            }
+        }
+
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentStep < totalSteps) {
+                    e.preventDefault();
+                    revealNext();
+                }
+            } else if (e.code === 'ArrowLeft') {
+                if (currentStep > 0) {
+                    e.preventDefault();
+                    const el = document.getElementById('step-' + currentStep);
+                    if (el) el.classList.add('hidden');
+                    currentStep--;
+                    updateCounter();
+                }
+            }
+        });
+
+        updateCounter();
+    </script>
+</body>
+</html>

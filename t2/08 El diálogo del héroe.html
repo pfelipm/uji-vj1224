@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: El diálogo del héroe (claves de la entrevista de requisitos)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para estilizado ágil y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (identidad retro-gaming) y 'Rajdhani' (legibilidad máxima en proyector) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjeta base interactiva con efecto cristal */
+        .tip-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(20, 30, 48, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+            opacity: 0;
+            transform: translateY(18px) scale(0.98);
+        }
+        .tip-card:hover {
+            transform: translateY(-3px) scale(1.01);
+        }
+
+        /* Fase 1: Ámbar / Oro (Preparación) */
+        .theme-phase-1 {
+            border-color: rgba(253, 224, 71, 0.35);
+            box-shadow: 0 0 16px rgba(253, 224, 71, 0.1);
+        }
+        .theme-phase-1:hover {
+            border-color: #fde047;
+            box-shadow: 0 0 24px rgba(253, 224, 71, 0.3);
+        }
+
+        /* Fase 2: Cian Neón (Ejecución) */
+        .theme-phase-2 {
+            border-color: rgba(56, 189, 248, 0.35);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.1);
+        }
+        .theme-phase-2:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Fase 3: Esmeralda Victorioso (Consolidación) */
+        .theme-phase-3 {
+            border-color: rgba(52, 211, 153, 0.35);
+            box-shadow: 0 0 16px rgba(52, 211, 153, 0.1);
+        }
+        .theme-phase-3:hover {
+            border-color: #34d399;
+            box-shadow: 0 0 24px rgba(52, 211, 153, 0.3);
+        }
+
+        /* Estado activo con borde resaltado */
+        .card-active {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 28px rgba(56, 189, 248, 0.45) !important;
+        }
+
+        /* Animación suave de aparición escalonada (Staggered Cascade) */
+        @keyframes cascadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.97);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .card-revealed {
+            animation: cascadeIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Rotación suave del chevron indicador */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Barra HUD inferior en flujo natural */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 08/15</span>
+      <a href="07%20La%20forja%20de%20la%20misi%C3%B3n.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="09%20La%20receta%20de%20una%20buena%20historia%20-%20INVEST.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-5xl w-full">
+        <!-- Encabezado Proyectable de la SPA -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/80 border border-cyan-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                    VJ1224 // TEMA 2: ELICITACIÓN Y ENTREVISTAS
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-cyan-300 to-emerald-400 tracking-wide leading-relaxed py-1">
+                EL DIÁLOGO DEL HÉROE
+            </h1>
+            
+            <p class="text-slate-400 text-xs sm:text-sm font-pixel mt-1 tracking-wider">
+                &lt;Claves de la Entrevista de Requisitos en Videojuegos&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                Nadie programa un gran videojuego asumiendo en silencio. La entrevista de requisitos es el diálogo fundacional entre la visión artística y la viabilidad de ingeniería.
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                Usa el botón inferior o la barra espaciadora para desvelar cada acto; observa la aparición secuencial y haz clic en cada tarjeta para consultar su consejo de trinchera.
+            </p>
+        </header>
+
+        <!-- Main: Las 3 Fases del Diálogo con Despliegue en Cascada -->
+        <main class="space-y-10 w-full">
+            
+            <!-- ========================================== -->
+            <!-- FASE 1: ANTES DE LA MISIÓN (PREPARACIÓN) -->
+            <!-- ========================================== -->
+            <section id="phase-1-wrapper" class="hidden space-y-4">
+                <div class="flex items-center gap-3 border-b border-amber-500/30 pb-2.5">
+                    <span class="font-pixel text-xs bg-amber-500/20 text-amber-300 border border-amber-400/50 px-2.5 py-1 rounded">
+                        ACTO I
+                    </span>
+                    <h2 class="font-pixel text-lg sm:text-xl text-amber-300 tracking-wide">
+                        1. ANTES DE LA MISIÓN (PREPARACIÓN)
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+                    
+                    <!-- Tarjeta 1.1: Investiga -->
+                    <article id="card-1-1" class="tip-card theme-phase-1 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-1-1')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400 flex items-center justify-center text-amber-300 shrink-0 shadow-[0_0_10px_rgba(253,224,71,0.25)]">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L21.5,20L20,21.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-amber-400">PASO 01</span>
+                                <span id="icon-detail-1-1" class="text-amber-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-amber-200 mb-2">INVESTIGA</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                Conoce el dominio del juego y los referentes antes de la cita. No vayas a ciegas a hablar con diseño.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 1.1 -->
+                        <div id="detail-1-1" class="hidden mt-4 pt-3 border-t border-amber-500/30 bg-slate-950/90 p-3.5 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-amber-300 px-2 py-0.5 bg-amber-950 border border-amber-800 rounded inline-block">
+                                EN EL AULA UJI // TDD & GDD
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                Lee el borrador del <strong>Game Design Document (GDD)</strong> y analiza títulos referentes (ej.: la movilidad de <em>Celeste</em> o el ritmo de <em>Hades</em>). Llegar con vocabulario del género ahorra horas de debate estéril.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 1.2: Define Objetivos -->
+                    <article id="card-1-2" class="tip-card theme-phase-1 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-1-2')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400 flex items-center justify-center text-amber-300 shrink-0 shadow-[0_0_10px_rgba(253,224,71,0.25)]">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-amber-400">PASO 02</span>
+                                <span id="icon-detail-1-2" class="text-amber-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-amber-200 mb-2">DEFINE OBJETIVOS</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                ¿Qué buscas acotar hoy? ¿El bucle jugable nuclear, las condiciones de victoria o la interfaz de inventario?
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 1.2 -->
+                        <div id="detail-1-2" class="hidden mt-4 pt-3 border-t border-amber-500/30 bg-slate-950/90 p-3.5 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-amber-300 px-2 py-0.5 bg-amber-950 border border-amber-800 rounded inline-block">
+                                ENFOQUE DE INGENIERÍA
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                No intentes abarcar todo el juego en una reunión. Establece como meta salir con una <strong>Épica acotada</strong> y las primeras 3 Historias de Usuario claras para el siguiente sprint.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 1.3: Prepara un Guion -->
+                    <article id="card-1-3" class="tip-card theme-phase-1 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-1-3')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400 flex items-center justify-center text-amber-300 shrink-0 shadow-[0_0_10px_rgba(253,224,71,0.25)]">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2M18 20H6V4H13V9H18V20Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-amber-400">PASO 03</span>
+                                <span id="icon-detail-1-3" class="text-amber-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-amber-200 mb-2">PREPARA UN GUION</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                Diseña preguntas abiertas que inviten a describir la experiencia sin condicionar prematuramente la solución técnica.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 1.3 -->
+                        <div id="detail-1-3" class="hidden mt-4 pt-3 border-t border-amber-500/30 bg-slate-950/90 p-3.5 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-amber-300 px-2 py-0.5 bg-amber-950 border border-amber-800 rounded inline-block">
+                                PREGUNTA MODELO
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed italic">
+                                «¿Qué emoción debe sentir el jugador al empuñar esta arma?» en vez de «¿Qué valor numérico le pongo a la variable float <code>damageRate</code>?».
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- FASE 2: DURANTE EL DIÁLOGO (EJECUCIÓN) -->
+            <!-- ========================================== -->
+            <section id="phase-2-wrapper" class="hidden space-y-4">
+                <div class="flex items-center gap-3 border-b border-cyan-500/30 pb-2.5">
+                    <span class="font-pixel text-xs bg-cyan-500/20 text-cyan-300 border border-cyan-400/50 px-2.5 py-1 rounded">
+                        ACTO II
+                    </span>
+                    <h2 class="font-pixel text-lg sm:text-xl text-cyan-300 tracking-wide">
+                        2. DURANTE EL DIÁLOGO (EJECUCIÓN)
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+                    
+                    <!-- Tarjeta 2.1: Crea un Vínculo -->
+                    <article id="card-2-1" class="tip-card theme-phase-2 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-2-1')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0 shadow-[0_0_10px_rgba(56,189,248,0.25)]">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12,12C14.21,12 16,10.21 16,8C16,5.79 14.21,4 12,4C9.79,4 8,5.79 8,8C8,10.21 9.79,12 12,12M12,14C9.33,14 4,15.33 4,18V20H20V18C20,15.33 14.67,14 12,14Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-cyan-400">PASO 04</span>
+                                <span id="icon-detail-2-1" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-cyan-200 mb-2">CREA UN VÍNCULO</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                Rompe el hielo. Un clima de confianza y complicidad creativa extrae la visión artística real del equipo.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 2.1 -->
+                        <div id="detail-2-1" class="hidden mt-4 pt-3 border-t border-cyan-500/30 bg-slate-950/90 p-3.5 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-cyan-300 px-2 py-0.5 bg-cyan-950 border border-cyan-800 rounded inline-block">
+                                CULTURA MULTIDISCIPLINAR
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                Respeta la visión de los perfiles de arte y narrativa. Como ingenieros, vuestro papel no es decir «eso es imposible», sino explorar cómo construirlo con elegancia.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 2.2: Escucha Activa -->
+                    <article id="card-2-2" class="tip-card theme-phase-2 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-2-2')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0 shadow-[0_0_10px_rgba(56,189,248,0.25)]">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12,4C7.58,4 4,7.58 4,12C4,16.42 7.58,20 12,20C16.42,20 20,16.42 20,12C20,7.58 16.42,4 12,4M12,18C8.69,18 6,15.31 6,12C6,8.69 8.69,6 12,6C15.31,6 18,8.69 18,12C18,15.31 15.31,18 12,18M12.5,8H11V13.5L15.42,16.17L16.17,14.92L12.5,12.81V8Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-cyan-400">PASO 05</span>
+                                <span id="icon-detail-2-2" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-cyan-200 mb-2">ESCUCHA ACTIVA</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                No interrumpas con soluciones técnicas de código. Parafrasea para confirmar que ambos visualizáis lo mismo.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 2.2 -->
+                        <div id="detail-2-2" class="hidden mt-4 pt-3 border-t border-cyan-500/30 bg-slate-950/90 p-3.5 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-cyan-300 px-2 py-0.5 bg-cyan-950 border border-cyan-800 rounded inline-block">
+                                FÓRMULA DE FEEDBACK
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed italic">
+                                «Entonces, si lo he entendido bien: cuando el personaje se desliza por el barro, ¿la cámara debe descender y ensuciarse con partículas durante 1.5 segundos?».
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 2.3: Pregunta y Explora -->
+                    <article id="card-2-3" class="tip-card theme-phase-2 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-2-3')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0 shadow-[0_0_10px_rgba(56,189,248,0.25)]">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M20,2H4C2.9,2 2,2.9 2,4V22L6,18H20C21.1,18 22,17.1 22,16V4C22,2.9 21.1,2 20,2M20,16H5.2L4,17.2V4H20V16Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-cyan-400">PASO 06</span>
+                                <span id="icon-detail-2-3" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-cyan-200 mb-2">PREGUNTA Y EXPLORA</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                Alterna preguntas abiertas para descubrir la fantasía lúdica con preguntas cerradas para acotar el alcance en Unity.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 2.3 -->
+                        <div id="detail-2-3" class="hidden mt-4 pt-3 border-t border-cyan-500/30 bg-slate-950/90 p-3.5 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-cyan-300 px-2 py-0.5 bg-cyan-950 border border-cyan-800 rounded inline-block">
+                                ACOTAMIENTO TÉCNICO
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                Pregunta abierta: <em>«¿Qué sensación debe dar el inventario?»</em>. Pregunta cerrada: <em>«¿El inventario pausa la acción del mundo o se consulta en tiempo real?»</em>.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- FASE 3: TRAS LA AVENTURA (CONSOLIDACIÓN) -->
+            <!-- ========================================== -->
+            <section id="phase-3-wrapper" class="hidden space-y-4">
+                <div class="flex items-center gap-3 border-b border-emerald-500/30 pb-2.5">
+                    <span class="font-pixel text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-400/50 px-2.5 py-1 rounded">
+                        ACTO III
+                    </span>
+                    <h2 class="font-pixel text-lg sm:text-xl text-emerald-300 tracking-wide">
+                        3. TRAS LA AVENTURA (CONSOLIDACIÓN)
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                    
+                    <!-- Tarjeta 3.1: Resume y Documenta -->
+                    <article id="card-3-1" class="tip-card theme-phase-3 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-3-1')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-11 h-11 rounded-xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-300 shrink-0 shadow-[0_0_10px_rgba(52,211,153,0.25)]">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M17.5,12A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 20.5,12A1.5,1.5 0 0,1 19,13.5A1.5,1.5 0 0,1 17.5,12M12,12A1.5,1.5 0 0,1 13.5,10.5A1.5,1.5 0 0,1 15,12A1.5,1.5 0 0,1 13.5,13.5A1.5,1.5 0 0,1 12,12M6.5,12A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 9.5,12A1.5,1.5 0 0,1 8,13.5A1.5,1.5 0 0,1 6.5,12M3,12A3,3 0 0,0 0,15A3,3 0 0,0 3,18A3,3 0 0,0 6,15A3,3 0 0,0 3,12Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-emerald-400">PASO 07</span>
+                                <span id="icon-detail-3-1" class="text-emerald-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-emerald-200 mb-2">RESUME Y DOCUMENTA</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                Traslada las notas a Historias de Usuario con criterios de aceptación antes de que se enfríen los acuerdos.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 3.1 -->
+                        <div id="detail-3-1" class="hidden mt-4 pt-3 border-t border-emerald-500/30 bg-slate-950/90 p-3.5 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-emerald-300 px-2 py-0.5 bg-emerald-950 border border-emerald-800 rounded inline-block">
+                                INTEGRACIÓN EN NOTION (40%)
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                Redacta en el Backlog de Notion las Historias en formato canónico (<em>«Como... Quiero... Para...»</em>) y compártelas con el equipo para su validación inmediata.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 3.2: Agradece y Continúa -->
+                    <article id="card-3-2" class="tip-card theme-phase-3 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-3-2')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-11 h-11 rounded-xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-300 shrink-0 shadow-[0_0_10px_rgba(52,211,153,0.25)]">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M17.6,15.8L16.2,14.4L12,10.2L7.8,14.4L6.4,15.8L12,10.2L7.6,15.8Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-emerald-400">PASO 08</span>
+                                <span id="icon-detail-3-2" class="text-emerald-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-emerald-200 mb-2">AGRADECE Y CONTINÚA</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                La ingeniería de requisitos es un diálogo continuo. Deja la puerta abierta para reajustes tras el playtesting.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 3.2 -->
+                        <div id="detail-3-2" class="hidden mt-4 pt-3 border-t border-emerald-500/30 bg-slate-950/90 p-3.5 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-emerald-300 px-2 py-0.5 bg-emerald-950 border border-emerald-800 rounded inline-block">
+                                ESPÍRITU ÁGIL DE SCRUM
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                Un requisito no es una condena de piedra. Cuando tengamos la primera build jugable en la sesión de Playtesting (P4), volveremos a dialogar sobre sensaciones reales.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ========================================== -->
+        <!-- CONTROLES DE NAVEGACIÓN: HUD Flujo Natural -->
+        <!-- ========================================== -->
+        <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+            <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <button id="btn-next" onclick="revealNextAct()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                    <span class="font-pixel text-[11px]">▶</span> Siguiente acto <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/3)</span>
+                </button>
+                <button onclick="revealAllActs()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                    Mostrar todo
+                </button>
+                <button onclick="resetAllActs()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                    Reiniciar
+                </button>
+            </nav>
+        </div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <script>
+        let currentAct = 0;
+        const totalActs = 3;
+
+        // Definición de las tarjetas por cada fase para la animación escalonada
+        const actCards = {
+            1: ['card-1-1', 'card-1-2', 'card-1-3'],
+            2: ['card-2-1', 'card-2-2', 'card-2-3'],
+            3: ['card-3-1', 'card-3-2']
+        };
+
+        function updateHUD() {
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.innerText = `(${currentAct}/${totalActs})`;
+            }
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentAct >= totalActs) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        // Revelado progresivo con aparición suave escalonada (Staggered Cascade)
+        function revealNextAct() {
+            if (currentAct < totalActs) {
+                currentAct++;
+                const wrapper = document.getElementById(`phase-${currentAct}-wrapper`);
+                if (wrapper) {
+                    wrapper.classList.remove('hidden');
+                }
+
+                // Animación automática escalonada tarjeta a tarjeta
+                const cards = actCards[currentAct] || [];
+                cards.forEach((cardId, index) => {
+                    const card = document.getElementById(cardId);
+                    if (card) {
+                        setTimeout(() => {
+                            card.classList.add('card-revealed');
+                        }, index * 180); // 180ms de retraso entre tarjetas para ritmo ágil y fluido
+                    }
+                });
+
+                // Scroll suave enfocado hacia la botonera sin solapar
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) {
+                        controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 100);
+
+                updateHUD();
+            }
+        }
+
+        function revealAllActs() {
+            for (let i = 1; i <= totalActs; i++) {
+                const wrapper = document.getElementById(`phase-${i}-wrapper`);
+                if (wrapper) wrapper.classList.remove('hidden');
+
+                const cards = actCards[i] || [];
+                cards.forEach(cardId => {
+                    const card = document.getElementById(cardId);
+                    if (card) card.classList.add('card-revealed');
+                });
+            }
+            currentAct = totalActs;
+            updateHUD();
+        }
+
+        function resetAllActs() {
+            for (let i = 1; i <= totalActs; i++) {
+                const wrapper = document.getElementById(`phase-${i}-wrapper`);
+                if (wrapper) wrapper.classList.add('hidden');
+
+                const cards = actCards[i] || [];
+                cards.forEach(cardId => {
+                    const card = document.getElementById(cardId);
+                    if (card) {
+                        card.classList.remove('card-revealed');
+                        card.classList.remove('card-active');
+                    }
+                });
+
+                // Ocultar detalles abiertos
+                const details = wrapper ? wrapper.querySelectorAll('[id^="detail-"]') : [];
+                details.forEach(d => d.classList.add('hidden'));
+
+                const icons = wrapper ? wrapper.querySelectorAll('[id^="icon-detail-"]') : [];
+                icons.forEach(ic => ic.classList.remove('rotate-chevron'));
+            }
+
+            currentAct = 0;
+            updateHUD();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            const card = panel.closest('.tip-card');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+                if (card) card.classList.add('card-active');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (card) card.classList.remove('card-active');
+            }
+        }
+
+        // Control por teclado para dinamizar la explicación en clase
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentAct < totalActs) {
+                    e.preventDefault();
+                    revealNextAct();
+                }
+            }
+        });
+
+        // Inicialización
+        updateHUD();
+    </script>
+</body>
+</html>

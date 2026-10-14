@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: El consejo de guerra (Planning Poker)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para estilizado fluido y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (identidad retro-gaming) y 'Rajdhani' (legibilidad proyectada) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjetas de Modos de Juego */
+        .mode-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(20, 30, 48, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .mode-card:hover {
+            transform: translateY(-3px) scale(1.01);
+        }
+
+        .mode-strategic {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.12);
+        }
+        .mode-strategic:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
+        }
+
+        .mode-tactical {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 0 16px rgba(167, 139, 250, 0.12);
+        }
+        .mode-tactical:hover {
+            border-color: #a78bfa;
+            box-shadow: 0 0 24px rgba(167, 139, 250, 0.35);
+        }
+
+        /* Tarjetas de los 5 Pasos del Consejo */
+        .step-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(20, 26, 40, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(71, 85, 105, 0.5);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .step-card:hover {
+            border-color: #34d399;
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.25);
+            transform: translateY(-3px);
+        }
+        .step-card.active-card {
+            border-color: #34d399 !important;
+            box-shadow: 0 0 24px rgba(52, 211, 153, 0.4) !important;
+        }
+
+        /* Rotación suave del chevron indicador */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Animación suave de entrada */
+        @keyframes cascadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(16px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .animate-cascade {
+            animation: cascadeIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Barra HUD inferior en flujo natural */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 11/15</span>
+      <a href="10%20Puntos%20de%20historia.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="12%20Definition%20of%20done.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-5xl w-full">
+        <!-- Encabezado Proyectable de la SPA -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/80 border border-cyan-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                    VJ1224 // TEMA 2: EL RITUAL DE ESTIMACIÓN ÁGIL
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-cyan-300 to-emerald-400 tracking-wide leading-relaxed py-1">
+                EL CONSEJO DE GUERRA
+            </h1>
+            
+            <p class="text-amber-300 text-xs sm:text-base font-pixel mt-1 tracking-wider">
+                &lt;Planning Poker: Donde el desacuerdo salva proyectos&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                Estimar no es regatear ni imponer. Es el ritual colectivo donde el equipo multidisciplinar revela riesgos ocultos antes de comprometer el sprint en el tablero de trabajo.
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                Usa el botón inferior o la barra espaciadora para desvelar cada acto; haz clic en cada tarjeta para consultar su caso de trinchera y su regla de oro.
+            </p>
+        </header>
+
+        <!-- Main: Los 2 Actos de Planning Poker -->
+        <main class="space-y-10 w-full">
+            
+            <!-- ========================================== -->
+            <!-- ACTO I: DOS MODOS DE JUEGO -->
+            <!-- ========================================== -->
+            <section id="act-1-wrapper" class="hidden space-y-4">
+                <div class="flex items-center justify-between border-b border-cyan-500/30 pb-2.5">
+                    <div class="flex items-center gap-3">
+                        <span class="font-pixel text-xs bg-cyan-500/20 text-cyan-300 border border-cyan-400/50 px-2.5 py-1 rounded whitespace-nowrap shrink-0">
+                            ACTO I
+                        </span>
+                        <h2 class="font-pixel text-lg sm:text-xl text-cyan-300 tracking-wide">
+                            DOS MODOS DE JUEGO (ALCANCE VS. DEDICACIÓN)
+                        </h2>
+                    </div>
+                    <span class="font-pixel text-[10px] text-cyan-400 hidden sm:inline-block">PRODUCTO VS. ITERACIÓN</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                    
+                    <!-- Tarjeta 1: Modo Estratégico -->
+                    <article id="card-mode-strategic" class="mode-card mode-strategic animate-cascade rounded-2xl p-5 sm:p-6 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-mode-strategic')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0 shadow-[0_0_12px_rgba(56,189,248,0.25)]">
+                                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M17,22V20H19V18H17V16H15V18H13V20H15V22H17M17.5,12A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 20.5,12A1.5,1.5 0 0,1 19,13.5A1.5,1.5 0 0,1 17.5,12M12,12A1.5,1.5 0 0,1 13.5,10.5A1.5,1.5 0 0,1 15,12A1.5,1.5 0 0,1 13.5,13.5A1.5,1.5 0 0,1 12,12M6.5,12A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 9.5,12A1.5,1.5 0 0,1 8,13.5A1.5,1.5 0 0,1 6.5,12M18,3H6C4.89,3 4,3.89 4,5V15A2,2 0 0,0 6,17H12.09A5.5,5.5 0 0,1 12,16.5A5.5,5.5 0 0,1 17.5,11A5.5,5.5 0 0,1 23,16.5C23,17.47 22.65,18.36 22.09,19H6A4,4 0 0,1 2,15V5C2,2.79 3.79,1 6,1H16L20,5V9.09C19.36,9.03 18.69,9 18,9A6.5,6.5 0 0,0 11.5,15.5C11.5,15.82 11.53,16.14 11.58,16.45L11,17H9V15H11V13H9V11H13V9H11V7H13V5H7V7H5V5H7V3H5M17.5,13A3.5,3.5 0 0,0 14,16.5A3.5,3.5 0 0,0 17.5,20A3.5,3.5 0 0,0 21,16.5A3.5,3.5 0 0,0 17.5,13Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-cyan-400">PILA DE PRODUCTO</span>
+                                <span id="icon-mode-strategic" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-lg sm:text-xl text-cyan-200 mb-3">MODO ESTRATÉGICO</h3>
+                            
+                            <div class="space-y-2 text-base sm:text-lg text-slate-200 font-medium">
+                                <p><strong class="text-slate-400">SE ESTIMA:</strong> Historias de Usuario (valor para el jugador).</p>
+                                <p><strong class="text-slate-400">SE MIDE:</strong> Complejidad Relativa (esfuerzo, arquitectura y riesgo).</p>
+                                <p><strong class="text-slate-400">UNIDAD:</strong> Puntos de Historia (Escala Fibonacci: 1, 2, 3, 5, 8...).</p>
+                            </div>
+                        </div>
+
+                        <!-- Detalle Desplegable Modo Estratégico -->
+                        <div id="detail-mode-strategic" class="hidden mt-4 pt-3 border-t border-cyan-500/30 bg-slate-950/90 p-4 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-cyan-300 px-2 py-0.5 bg-cyan-950 border border-cyan-800 rounded inline-block">
+                                ENFOQUE EN LA PLANIFICACIÓN
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                Responde a: <em>«¿Cómo de grande es este desafío respecto a las mecánicas que ya conocemos?»</em>. Se utiliza para calibrar la velocidad del equipo y decidir qué historias caben en el siguiente ciclo sin atarse a horas de reloj.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 2: Modo Táctico -->
+                    <article id="card-mode-tactical" class="mode-card mode-tactical animate-cascade rounded-2xl p-5 sm:p-6 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-mode-tactical')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400 flex items-center justify-center text-purple-300 shrink-0 shadow-[0_0_12px_rgba(167,139,250,0.25)]">
+                                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M2,6H8V11H2V6M9,6H15V8H9V6M16,6H22V8H16V6M2,12H8V17H2V12M9,9H15V14H9V9M16,9H22V11H16V9M2,18H8V23H2V18M9,15H15V20H9V15M16,12H22V17H16V12M9,21H15V23H9V21M16,18H22V23H16V18Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-purple-400">PILA DE LA ITERACIÓN</span>
+                                <span id="icon-mode-tactical" class="text-purple-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-lg sm:text-xl text-purple-200 mb-3">MODO TÁCTICO</h3>
+                            
+                            <div class="space-y-2 text-base sm:text-lg text-slate-200 font-medium">
+                                <p><strong class="text-slate-400">SE ESTIMAN:</strong> Tareas Técnicas (código C#, modelos 3D, audio en FMOD).</p>
+                                <p><strong class="text-slate-400">SE MIDE:</strong> Esfuerzo de ingeniería y duración estimada.</p>
+                                <p><strong class="text-slate-400">UNIDAD:</strong> Días u Horas Ideales de dedicación.</p>
+                            </div>
+                        </div>
+
+                        <!-- Detalle Desplegable Modo Táctico -->
+                        <div id="detail-mode-tactical" class="hidden mt-4 pt-3 border-t border-purple-500/30 bg-slate-950/90 p-4 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-purple-300 px-2 py-0.5 bg-purple-950 border border-purple-800 rounded inline-block">
+                                ENFOQUE OPERATIVO EN NOTION
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                Responde a: <em>«¿Qué persona se encarga de programar este script hoy y cuánto tiempo real le llevará completarlo?»</em>. Son las subactividades que mueven las tarjetas día a día en las columnas del tablero.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- ACTO II: EL PROCESO DEL CONSEJO (5 PASOS) -->
+            <!-- ========================================== -->
+            <section id="act-2-wrapper" class="hidden space-y-4">
+                <div class="flex items-center justify-between border-b border-emerald-500/30 pb-2.5">
+                    <div class="flex items-center gap-3">
+                        <span class="font-pixel text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-400/50 px-2.5 py-1 rounded whitespace-nowrap shrink-0">
+                            ACTO II
+                        </span>
+                        <h2 class="font-pixel text-lg sm:text-xl text-emerald-300 tracking-wide">
+                            EL ALGORITMO DEL CONSEJO (LOS 5 PASOS)
+                        </h2>
+                    </div>
+                    <span class="font-pixel text-[10px] text-emerald-400 hidden sm:inline-block">HAZ CLIC PARA ANALIZAR</span>
+                </div>
+
+                <p class="text-slate-300 text-base sm:text-lg font-medium leading-relaxed">
+                    Planning Poker no es una votación democrática para calcular medias; es una herramienta de comunicación para forzar que el programador, el artista y el diseñador contrasten sus modelos mentales antes de construir.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4">
+                    
+                    <!-- Paso 1: Presentar Misión -->
+                    <article id="step-card-1" class="step-card animate-cascade rounded-2xl p-4 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-step-1')">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-pixel text-2xl text-emerald-400">01</span>
+                                <span id="icon-step-1" class="text-emerald-400 text-base transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-xs sm:text-sm text-white mb-2 leading-snug">PRESENTAR MISIÓN</h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-snug font-medium">
+                                El responsable de diseño expone la Historia y sus criterios de aceptación.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable Paso 1 -->
+                        <div id="detail-step-1" class="hidden mt-3 pt-2.5 border-t border-slate-700 bg-slate-950/90 p-3 rounded-xl text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                            📌 <strong>Regla:</strong> Explica el <em>qué</em> y el <em>para qué</em> sin prejuzgar la solución técnica en C#.
+                        </div>
+                    </article>
+
+                    <!-- Paso 2: Discutir -->
+                    <article id="step-card-2" class="step-card animate-cascade rounded-2xl p-4 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-step-2')">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-pixel text-2xl text-cyan-400">02</span>
+                                <span id="icon-step-2" class="text-cyan-400 text-base transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-xs sm:text-sm text-white mb-2 leading-snug">DISCUTIR</h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-snug font-medium">
+                                El equipo debate el impacto técnico, arte, audio y dependencias.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable Paso 2 -->
+                        <div id="detail-step-2" class="hidden mt-3 pt-2.5 border-t border-slate-700 bg-slate-950/90 p-3 rounded-xl text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                            📌 <strong>Foco:</strong> Se resuelven ambigüedades arquitectónicas antes de sacar las cartas de la baraja.
+                        </div>
+                    </article>
+
+                    <!-- Paso 3: Votar -->
+                    <article id="step-card-3" class="step-card animate-cascade rounded-2xl p-4 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-step-3')">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-pixel text-2xl text-amber-400">03</span>
+                                <span id="icon-step-3" class="text-amber-400 text-base transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-xs sm:text-sm text-white mb-2 leading-snug">VOTAR EN SECRETO</h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-snug font-medium">
+                                Cada integrante elige su carta y se revelan todas a la vez.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable Paso 3 -->
+                        <div id="detail-step-3" class="hidden mt-3 pt-2.5 border-t border-slate-700 bg-slate-950/90 p-3 rounded-xl text-sm sm:text-base text-amber-200 font-medium leading-relaxed">
+                            🛡 <strong>Anti-Sesgo:</strong> Evita el <em>anclaje cognitivo</em> (que el líder condicione la estimación de los demás).
+                        </div>
+                    </article>
+
+                    <!-- Paso 4: Justificar -->
+                    <article id="step-card-4" class="step-card animate-cascade rounded-2xl p-4 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-step-4')">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-pixel text-2xl text-rose-400">04</span>
+                                <span id="icon-step-4" class="text-rose-400 text-base transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-xs sm:text-sm text-white mb-2 leading-snug">JUSTIFICAR EXTREMOS</h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-snug font-medium">
+                                Solo defienden su postura el voto más alto y el más bajo.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable Paso 4 -->
+                        <div id="detail-step-4" class="hidden mt-3 pt-2.5 border-t border-slate-700 bg-slate-950/90 p-3 rounded-xl text-sm sm:text-base text-rose-200 font-medium leading-relaxed">
+                            ⛔ <strong>Prohibido hacer medias:</strong> Si uno vota 2 y otro 13, ¡acaban de descubrir un riesgo monumental no hablado!
+                        </div>
+                    </article>
+
+                    <!-- Paso 5: Consenso -->
+                    <article id="step-card-5" class="step-card animate-cascade rounded-2xl p-4 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-step-5')">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-pixel text-2xl text-emerald-300">05</span>
+                                <span id="icon-step-5" class="text-emerald-300 text-base transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-xs sm:text-sm text-white mb-2 leading-snug">CONSENSO</h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-snug font-medium">
+                                Se repite la votación hasta converger en una cifra común.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable Paso 5 -->
+                        <div id="detail-step-5" class="hidden mt-3 pt-2.5 border-t border-slate-700 bg-slate-950/90 p-3 rounded-xl text-sm sm:text-base text-emerald-200 font-medium leading-relaxed">
+                            🏁 <strong>Compromiso:</strong> Toda la escuadra asume como propio el tamaño acordado antes de incluir la historia en el sprint.
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ========================================== -->
+        <!-- CONTROLES DE NAVEGACIÓN: HUD Flujo Natural -->
+        <!-- ========================================== -->
+        <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+            <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <button id="btn-next" onclick="revealNextAct()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                    <span class="font-pixel text-[11px]">▶</span> Siguiente acto <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/2)</span>
+                </button>
+                <button onclick="revealAllActs()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                    Mostrar todo
+                </button>
+                <button onclick="resetAllActs()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                    Reiniciar
+                </button>
+            </nav>
+        </div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- LÓGICA INTERACTIVA JAVASCRIPT -->
+    <!-- ========================================== -->
+    <script>
+        let currentAct = 0;
+        const totalActs = 2;
+
+        function updateHUD() {
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.innerText = `(${currentAct}/${totalActs})`;
+            }
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentAct >= totalActs) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        function revealNextAct() {
+            if (currentAct < totalActs) {
+                currentAct++;
+                const wrapper = document.getElementById(`act-${currentAct}-wrapper`);
+                if (wrapper) {
+                    wrapper.classList.remove('hidden');
+                }
+
+                // Scroll suave hacia la botonera sin solapar
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) {
+                        controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 100);
+
+                updateHUD();
+            }
+        }
+
+        function revealAllActs() {
+            for (let i = 1; i <= totalActs; i++) {
+                const wrapper = document.getElementById(`act-${i}-wrapper`);
+                if (wrapper) wrapper.classList.remove('hidden');
+            }
+            currentAct = totalActs;
+            updateHUD();
+        }
+
+        function resetAllActs() {
+            for (let i = 1; i <= totalActs; i++) {
+                const wrapper = document.getElementById(`act-${i}-wrapper`);
+                if (wrapper) wrapper.classList.add('hidden');
+
+                // Cerrar detalles abiertos
+                const details = wrapper ? wrapper.querySelectorAll('[id^="detail-"]') : [];
+                details.forEach(d => d.classList.add('hidden'));
+
+                const icons = wrapper ? wrapper.querySelectorAll('[id^="icon-"]') : [];
+                icons.forEach(ic => ic.classList.remove('rotate-chevron'));
+
+                const cards = wrapper ? wrapper.querySelectorAll('.step-card, .mode-card') : [];
+                cards.forEach(c => c.classList.remove('active-card'));
+            }
+
+            currentAct = 0;
+            updateHUD();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id.replace('detail-', ''));
+            const card = panel.closest('article');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+                if (card) card.classList.add('active-card');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (card) card.classList.remove('active-card');
+            }
+        }
+
+        // Navegación por teclado para agilizar la explicación en clase
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentAct < totalActs) {
+                    e.preventDefault();
+                    revealNextAct();
+                }
+            }
+        });
+
+        // Inicialización
+        updateHUD();
+    </script>
+</body>
+</html>

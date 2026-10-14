@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VJ1224 - Notion: el centro de mando para Scrum en videojuegos</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Space Grotesk & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Space Mono', monospace;
+      background-color: #08080c;
+      color: #ffffff;
+      background-image: 
+        radial-gradient(#1e1e2e 2px, transparent 2px),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 28px 28px, 42px 42px, 42px 42px;
+    }
+
+    .font-grotesk {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* High impact brutalist boxes for classroom projection & Google Sites embedding */
+    .brutal-box-yellow {
+      border: 5px solid #000000;
+      box-shadow: 8px 8px 0px 0px #ffffff;
+    }
+
+    .brutal-box-white {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #facc15;
+    }
+
+    .brutal-box-cyan {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #22d3ee;
+    }
+
+    .brutal-box-emerald {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #34d399;
+    }
+
+    .brutal-box-rose {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #f43f5e;
+    }
+
+    .brutal-box-purple {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #c084fc;
+    }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.97); opacity: 0.85; }
+      50% { transform: scale(1.03); opacity: 1; }
+      100% { transform: scale(0.97); opacity: 0.85; }
+    }
+
+    .sprint-pulse {
+      animation: pulse-ring 3s infinite ease-in-out;
+    }
+      .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="p-4 sm:p-8 md:p-10">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 1 · 07/07</span>
+      <a href="06%20El%20ecosistema%20Scrum.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="../t2/01%20La%20cita%20filos%C3%B3fica.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+  <div class="w-full max-w-full mx-auto space-y-8 sm:space-y-12">
+
+    <!-- HERO HEADER BANNER -->
+    <div class="w-full bg-yellow-400 text-black p-6 sm:p-10 text-center brutal-box-yellow space-y-3">
+      <div class="flex flex-wrap justify-between items-center gap-3 mb-2">
+        <span class="text-xs sm:text-base font-extrabold uppercase tracking-widest bg-black text-yellow-400 inline-block px-4 py-1.5">
+          SCRUM CON NOTION
+        </span>
+        <span class="text-xs sm:text-sm font-bold bg-zinc-900 text-white px-4 py-1.5 border-2 border-black uppercase">
+          Guía y consejos de uso
+        </span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-grotesk uppercase tracking-tight leading-none">
+        SCRUM & NOTION
+      </h1>
+      <p class="text-lg sm:text-2xl md:text-3xl font-extrabold font-grotesk uppercase text-zinc-900 pt-1">
+        El centro de mando colaborativo para la gestión ágil de tu videojuego
+      </p>
+      <div class="inline-block bg-black text-yellow-400 font-extrabold text-xs sm:text-sm px-3 py-1 font-mono uppercase mt-2">
+        📌 Tu espacio de trabajo centralizado para conectar Product Backlog, Sprints, GDD y control de Git.
+      </div>
+    </div>
+
+    <!-- SECTION 1: ¿QUÉ ES NOTION? -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-10 brutal-box-white space-y-8">
+      
+      <div class="border-b-4 border-yellow-400/40 pb-4 flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <span class="text-xs sm:text-sm font-extrabold bg-yellow-400 text-black px-3 py-1 uppercase tracking-wider font-grotesk">
+            BLOQUE 01
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-black font-grotesk text-yellow-400 uppercase tracking-wide mt-2">
+            1. ¿Qué es Notion?
+          </h2>
+        </div>
+        <p class="text-sm sm:text-base text-zinc-300 font-grotesk max-w-xl">
+          Notion es un <strong>espacio de trabajo "Todo en Uno" (All-in-One Workspace)</strong> modular. Combina documentos vivos, bases de datos relacionales, tableros Kanban y wikis de proyecto en una única plataforma colaborativa en tiempo real.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 font-grotesk">
+
+        <!-- CONCEPTO 1: SISTEMA MODULAR POR BLOQUES -->
+        <div class="bg-zinc-900 p-6 brutal-box-purple space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">🧩</span>
+              <span class="text-xs bg-purple-950 text-purple-300 font-bold px-2.5 py-1 border border-purple-700 uppercase">
+                Bloques flexibles
+              </span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-black text-purple-400 uppercase">Arquitectura modular</h3>
+            <p class="text-yellow-400 font-bold text-sm sm:text-base uppercase mt-1">"Todo elemento es un bloque manipulable"</p>
+            <ul class="text-sm sm:text-base text-zinc-300 space-y-2 mt-4 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-purple-400 font-black">▸</span>
+                <span>Permite integrar texto, imágenes, código, vídeos y listas desplegables.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-purple-400 font-black">▸</span>
+                <span>Permite arrastrar y reordenar elementos para estructurar la documentación como queráis.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-purple-400 font-black">▸</span>
+                <span>Anidamiento infinito de páginas para crear la wiki de tu estudio.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-sm sm:text-base text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> Documentación ágil sin el caos de archivos <code>.docx</code> desactualizados.
+          </div>
+        </div>
+
+        <!-- CONCEPTO 2: BASES DE DATOS PODEROSAS -->
+        <div class="bg-zinc-900 p-6 brutal-box-cyan space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">🗄️</span>
+              <span class="text-xs bg-cyan-950 text-cyan-300 font-bold px-2.5 py-1 border border-cyan-700 uppercase">
+                Multivista
+              </span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-black text-cyan-400 uppercase">Bases de datos vivas</h3>
+            <p class="text-yellow-400 font-bold text-sm sm:text-base uppercase mt-1">"Misma información, múltiples formatos"</p>
+            <ul class="text-sm sm:text-base text-zinc-300 space-y-2 mt-4 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-400 font-black">▸</span>
+                <span>Una sola lista de tareas puede verse como <strong>Kanban, Tabla, Lista, Cronograma o Galería</strong>.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-400 font-black">▸</span>
+                <span>Propiedades personalizadas: estado, etiqueta, estimación de horas, responsable y enlaces a Git.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-400 font-black">▸</span>
+                <span>Relaciones y fórmulas entre bases de datos de distintas áreas.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-sm sm:text-base text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> Trazabilidad completa de historias de usuario e incrementos.
+          </div>
+        </div>
+
+        <!-- CONCEPTO 3: TRABAJO COLABORATIVO -->
+        <div class="bg-zinc-900 p-6 brutal-box-emerald space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">👥</span>
+              <span class="text-xs bg-emerald-950 text-emerald-300 font-bold px-2.5 py-1 border border-emerald-700 uppercase">
+                Multiusuario
+              </span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-black text-emerald-400 uppercase">Colaboración real</h3>
+            <p class="text-yellow-400 font-bold text-sm sm:text-base uppercase mt-1">"Edición simultánea y transparencia"</p>
+            <ul class="text-sm sm:text-base text-zinc-300 space-y-2 mt-4 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-black">▸</span>
+                <span>Comentarios directamente en párrafos o tareas concretas del Sprint.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-black">▸</span>
+                <span>Menciones con `@` para notificar a programadores, artistas o diseñadores.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-black">▸</span>
+                <span>Permisos de lectura/escritura para el profesorado de VJ1224 durante la evaluación.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-sm sm:text-base text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> Mantiene a todo el equipo de desarrollo alineado en cada Sprint.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SECTION 2: CARACTERÍSTICAS DESTACADAS PARA GAMEDEV -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-10 brutal-box-cyan space-y-8">
+      
+      <div class="border-b-4 border-cyan-400/40 pb-4">
+        <span class="text-xs sm:text-sm font-extrabold bg-cyan-400 text-black px-3 py-1 uppercase tracking-wider font-grotesk">
+          BLOQUE 02
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-black font-grotesk text-cyan-400 uppercase tracking-wide mt-2">
+          2. Características clave para la producción de videojuegos
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-300 font-grotesk mt-2">
+          ¿Por qué elegimos Notion frente a otras herramientas tradicionales de gestión?
+        </p>
+      </div>
+
+      <!-- HIGHLIGHT CONTAINER -->
+      <div class="bg-zinc-900 p-6 border-4 border-yellow-400 rounded-lg text-center space-y-3 sprint-pulse">
+        <div class="flex justify-center items-center gap-3">
+          <span class="text-3xl sm:text-4xl">⚡</span>
+          <h3 class="text-2xl sm:text-4xl font-black font-grotesk text-yellow-400 uppercase">
+            Documentación viva + gestión dinámica en un solo lugar
+          </h3>
+        </div>
+        <p class="text-sm sm:text-lg text-zinc-200 font-grotesk leading-relaxed max-w-4xl mx-auto">
+          En lugar de tener el Game Design Document (GDD) en Google Docs, las tareas en Trello y las actas de reunión en WhatsApp, <strong class="text-yellow-400 uppercase">Notion unifica todo el ecosistema de producción en un único enlace</strong>.
+        </p>
+      </div>
+
+      <!-- FEATURE GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-grotesk">
+
+        <!-- FEATURE 1 -->
+        <div class="bg-zinc-900 p-5 border-2 border-rose-500 rounded-lg space-y-3">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <h4 class="text-xl sm:text-2xl font-black text-rose-400 uppercase flex items-center gap-2">
+              <span>📋</span> Tableros Kanban de alta visibilidad
+            </h4>
+            <span class="text-xs bg-rose-950 text-rose-300 font-mono px-2 py-0.5 border border-rose-700">Flujo visual</span>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            Gestión fluida de tareas agrupadas por estado (<em>Por hacer, En progreso, QA/Testing, Hecho</em>). Podréis filtrar por desarrollador, disciplina (Arte, Código, Sonido) o Sprint actual con un solo clic.
+          </p>
+        </div>
+
+        <!-- FEATURE 2 -->
+        <div class="bg-zinc-900 p-5 border-2 border-yellow-400 rounded-lg space-y-3">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <h4 class="text-xl sm:text-2xl font-black text-yellow-400 uppercase flex items-center gap-2">
+              <span>🎨</span> Gestor de assets multimedia
+            </h4>
+            <span class="text-xs bg-yellow-950 text-yellow-300 font-mono px-2 py-0.5 border border-yellow-700">Vista galería</span>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            A diferencia de los gestores de software tradicional, Notion permite previsualizar sprites, bocetos 2D, renders 3D o clips de audio directamente dentro de las fichas de tarea.
+          </p>
+        </div>
+
+        <!-- FEATURE 3 -->
+        <div class="bg-zinc-900 p-5 border-2 border-cyan-400 rounded-lg space-y-3">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <h4 class="text-xl sm:text-2xl font-black text-cyan-400 uppercase flex items-center gap-2">
+              <span>🔗</span> Vinculación con Git e inserción de código
+            </h4>
+            <span class="text-xs bg-cyan-950 text-cyan-300 font-mono px-2 py-0.5 border border-cyan-700">Integración técnica</span>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            Podréis incluir bloques de código resaltados (C#, C++, HLSL) y enlaces directos a commits o pull requests de GitHub/GitLab para vincular la solución técnica con la tarea.
+          </p>
+        </div>
+
+        <!-- FEATURE 4 -->
+        <div class="bg-zinc-900 p-5 border-2 border-emerald-400 rounded-lg space-y-3">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <h4 class="text-xl sm:text-2xl font-black text-emerald-400 uppercase flex items-center gap-2">
+              <span>📊</span> Métricas y estimaciones rápidas
+            </h4>
+            <span class="text-xs bg-emerald-950 text-emerald-300 font-mono px-2 py-0.5 border border-emerald-700">Scrum metrics</span>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            Suma automática de story points, cálculo de carga de trabajo por desarrollador e indicadores visuales de avance del Sprint.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SECTION 3: CÓMO LO USAREMOS EN LAS PRÁCTICAS VJ1224 -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-10 brutal-box-emerald space-y-8">
+      
+      <div class="border-b-4 border-emerald-400/40 pb-4">
+        <span class="text-xs sm:text-sm font-extrabold bg-emerald-400 text-black px-3 py-1 uppercase tracking-wider font-grotesk">
+          BLOQUE 03
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-black font-grotesk text-emerald-400 uppercase tracking-wide mt-2">
+          3. Uso de Notion en las prácticas Scrum de VJ1224
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-300 font-grotesk mt-2">
+          Estructura obligatoria del espacio de trabajo para la gestión del proyecto de asignatura.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 font-grotesk">
+
+        <!-- APLICACIÓN 1 -->
+        <div class="bg-zinc-900 p-5 border-2 border-emerald-700 rounded-lg space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="bg-emerald-950 p-3 border border-emerald-500 rounded">
+              <span class="text-xs text-emerald-300 font-extrabold uppercase block">PASO 01</span>
+              <h3 class="text-xl font-black text-emerald-400 uppercase">Product Backlog</h3>
+            </div>
+            <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+              El <strong>Product Owner</strong> mantendrá la lista completa de historias de usuario (US) ordenadas por prioridad de valor de juego.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border-l-4 border-yellow-400 rounded-r">
+            <span class="text-l text-yellow-400 font-bold block uppercase mb-1">📌 EN NOTION:</span>
+            <p class="text-m text-zinc-200">Base de datos principal con etiquetas de épicas (Ej: <em>Combate, IA, UI, Audio, Nivel 1</em>).</p>
+          </div>
+        </div>
+
+        <!-- APLICACIÓN 2 -->
+        <div class="bg-zinc-900 p-5 border-2 border-emerald-700 rounded-lg space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="bg-emerald-950 p-3 border border-emerald-500 rounded">
+              <span class="text-xs text-emerald-300 font-extrabold uppercase block">PASO 02</span>
+              <h3 class="text-xl font-black text-emerald-400 uppercase">Sprint Backlog</h3>
+            </div>
+            <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+              En la <strong>Sprint Planning</strong>, las historias seleccionadas se descomponen en tareas técnicas concretas asignadas a los developers.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border-l-4 border-cyan-400 rounded-r">
+            <span class="text-l text-cyan-400 font-bold block uppercase mb-1">📌 EN NOTION:</span>
+            <p class="text-m text-zinc-200">Tablero Kanban filtrado por "Sprint activo" para el seguimiento diario (Daily Scrum).</p>
+          </div>
+        </div>
+
+        <!-- APLICACIÓN 3 -->
+        <div class="bg-zinc-900 p-5 border-2 border-emerald-700 rounded-lg space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="bg-emerald-950 p-3 border border-emerald-500 rounded">
+              <span class="text-xs text-emerald-300 font-extrabold uppercase block">PASO 03</span>
+              <h3 class="text-xl font-black text-emerald-400 uppercase">GDD vivo y wikis</h3>
+            </div>
+            <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+              Documento de diseño del juego sincronizado con el desarrollo técnico. Evita incongruencias de diseño entre miembros.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border-l-4 border-purple-400 rounded-r">
+            <span class="text-l text-purple-400 font-bold block uppercase mb-1">📌 EN NOTION:</span>
+            <p class="text-m text-zinc-200">Secciones de game mechanics, lore, art style guide y especificaciones UML.</p>
+          </div>
+        </div>
+
+        <!-- APLICACIÓN 4 -->
+        <div class="bg-zinc-900 p-5 border-2 border-emerald-700 rounded-lg space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="bg-emerald-950 p-3 border border-emerald-500 rounded">
+              <span class="text-xs text-emerald-300 font-extrabold uppercase block">PASO 04</span>
+              <h3 class="text-xl font-black text-emerald-400 uppercase">Bitácora y retrospectivas</h3>
+            </div>
+            <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+              Registro formal de los acuerdos alcanzados en cada evento de Scrum (Planning, Review y Retrospectiva).
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border-l-4 border-rose-500 rounded-r">
+            <span class="text-l text-rose-400 font-bold block uppercase mb-1">📌 EN NOTION:</span>
+            <p class="text-m text-zinc-200">Plantilla de acta con preguntas: ¿Qué funcionó? ¿Qué corregir? Compromisos de mejora.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SUMMARY BANNER FOR CLASSROOM PROJECTION -->
+    <div class="w-full bg-yellow-400 text-black p-6 sm:p-9 text-center brutal-box-yellow space-y-3 font-grotesk">
+      <h3 class="text-2xl sm:text-4xl font-black uppercase">
+        🚀 Reglas de oro para el espacio de Notion en VJ1224
+      </h3>
+      <p class="text-base sm:text-xl font-bold leading-relaxed max-w-5xl mx-auto">
+        1. <strong>Mantenlo actualizado a diario:</strong> Si cambias de tarea en la práctica, mueve la tarjeta en Notion.<br>
+        2. <strong>Sin duendes:</strong> Todo commit en Git debe corresponderse con una tarjeta activa en Notion.<br>
+        3. <strong>Revisión en evaluación:</strong> La calidad del backlog en Notion formará parte directa de la nota de Scrum.
+      </p>
+    </div>
+
+  </div>
+
+
+    <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

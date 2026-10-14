@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VJ1224 - Leyes fundamentales del desarrollo de software</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Space Grotesk & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Space Mono', monospace;
+      background-color: #08080c;
+      color: #ffffff;
+      background-image: 
+        radial-gradient(#1e1e2e 2px, transparent 2px),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 28px 28px, 42px 42px, 42px 42px;
+    }
+
+    .font-grotesk {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* High impact brutalist boxes for classroom projection & Google Sites embedding */
+    .brutal-box-yellow {
+      border: 5px solid #000000;
+      box-shadow: 8px 8px 0px 0px #ffffff;
+    }
+
+    .brutal-box-cyan {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #22d3ee;
+    }
+
+    .brutal-box-emerald {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #34d399;
+    }
+
+    .brutal-box-rose {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #f43f5e;
+    }
+
+    .brutal-box-purple {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #c084fc;
+    }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.97); opacity: 0.85; }
+      50% { transform: scale(1.03); opacity: 1; }
+      100% { transform: scale(0.97); opacity: 0.85; }
+    }
+
+    .sprint-pulse {
+      animation: pulse-ring 3s infinite ease-in-out;
+    }
+      .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="p-4 sm:p-8 md:p-10">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 1 · 03/07</span>
+      <a href="02%20La%20crisis%20del%20software.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="04%20Cascada%20vs.%20%C3%A1gil%20%28Scrum%29.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+  <div class="w-full max-w-full mx-auto space-y-8 sm:space-y-12">
+
+    <!-- HERO HEADER BANNER -->
+    <div class="w-full bg-yellow-400 text-black p-6 sm:p-10 text-center brutal-box-yellow space-y-3">
+      <div class="flex flex-wrap justify-between items-center gap-3 mb-2">
+        <span class="text-xs sm:text-base font-extrabold uppercase tracking-widest bg-black text-yellow-400 inline-block px-4 py-1.5 font-grotesk">
+          FUNDAMENTOS DE INGENIERÍA DEL SOFTWARE
+        </span>
+        <span class="text-xs sm:text-sm font-bold bg-zinc-900 text-white px-4 py-1.5 border-2 border-black uppercase font-grotesk">
+          Heurísticas de desarrollo
+        </span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-grotesk uppercase tracking-tight leading-none">
+        LAS LEYES NO ESCRITAS DEL
+      </h1>
+      <p class="text-xl sm:text-3xl md:text-4xl font-black font-grotesk uppercase text-zinc-900 pt-1">
+        Desarrollo de Software y Videojuegos
+      </p>
+      <div class="inline-block bg-black text-yellow-400 font-extrabold text-xs sm:text-sm px-3 py-1 font-mono uppercase mt-2">
+        📌 Principios fundamentales para tomar mejores decisiones arquitectónicas y de gestión en tu estudio.
+      </div>
+    </div>
+
+    <!-- MAIN GRID CONTAINER FOR LAWS -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-10 brutal-box-cyan space-y-8">
+      
+      <div class="border-b-4 border-cyan-400/40 pb-4 flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <span class="text-xs sm:text-sm font-extrabold bg-cyan-400 text-black px-3 py-1 uppercase tracking-wider font-grotesk">
+            REPERTORIO TÉCNICO
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-black font-grotesk text-cyan-400 uppercase tracking-wide mt-2">
+            Leyes y Principios Fundamentales
+          </h2>
+        </div>
+        <p class="text-sm sm:text-base text-zinc-300 font-grotesk max-w-xl">
+          Principios y heurísticas fundamentales que todo desarrollador debe conocer. Entenderlas ayuda a tomar mejores decisiones y a comprender por qué los proyectos se comportan de ciertas maneras.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-grotesk">
+
+        <!-- LEY 1: BROOKS -->
+        <div class="bg-zinc-900 p-6 brutal-box-purple space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">👥📉</span>
+              <span class="text-xs bg-purple-950 text-purple-300 font-bold px-2.5 py-1 border border-purple-700 uppercase">
+                Gestión de Equipos
+              </span>
+            </div>
+            <h3 class="text-2xl font-black text-purple-400 uppercase">Ley de Brooks</h3>
+            <p class="text-yellow-400 font-bold text-sm uppercase mt-1">"Añadir más gente a un proyecto de software que va con retraso, lo retrasa todavía más"</p>
+            <p class="text-sm sm:text-base text-zinc-300 mt-4 leading-relaxed">
+              El coste de la comunicación y la coordinación aumenta exponencialmente con cada nuevo miembro, ralentizando el progreso general.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-m text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> Evita sobrecargar sprints tardíos con refuerzos no sincronizados.
+          </div>
+        </div>
+
+        <!-- LEY 2: CONWAY -->
+        <div class="bg-zinc-900 p-6 brutal-box-cyan space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">🏛️🔗</span>
+              <span class="text-xs bg-cyan-950 text-cyan-300 font-bold px-2.5 py-1 border border-cyan-700 uppercase">
+                Arquitectura
+              </span>
+            </div>
+            <h3 class="text-2xl font-black text-cyan-400 uppercase">Ley de Conway</h3>
+            <p class="text-yellow-400 font-bold text-sm uppercase mt-1">"La estructura de un sistema es un reflejo de la comunicación de la organización"</p>
+            <p class="text-sm sm:text-base text-zinc-300 mt-4 leading-relaxed">
+              Equipos divididos en silos producen arquitecturas fuertemente acopladas a esa división. La estructura del equipo define la arquitectura.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-m text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> Diseña equipos multidisciplinares simétricos al diseño modular del videojuego.
+          </div>
+        </div>
+
+        <!-- LEY 3: POSTEL -->
+        <div class="bg-zinc-900 p-6 brutal-box-emerald space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">📤📥</span>
+              <span class="text-xs bg-emerald-950 text-emerald-300 font-bold px-2.5 py-1 border border-emerald-700 uppercase">
+                Robustez
+              </span>
+            </div>
+            <h3 class="text-2xl font-black text-emerald-400 uppercase">Ley de Postel</h3>
+            <p class="text-yellow-400 font-bold text-sm uppercase mt-1">"Sé conservador en lo que envías, sé liberal en lo que aceptas"</p>
+            <p class="text-sm sm:text-base text-zinc-300 mt-4 leading-relaxed">
+              Al enviar datos, cumple las especificaciones estrictamente. Al recibirlos, sé flexible para manejar errores y crear sistemas más resilientes.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-m text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> Diseña parsers de guardado y APIs de red tolerantes a fallos inesperados.
+          </div>
+        </div>
+
+        <!-- LEY 4: HOFSTADTER -->
+        <div class="bg-zinc-900 p-6 brutal-box-rose space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">⏳</span>
+              <span class="text-xs bg-rose-950 text-rose-300 font-bold px-2.5 py-1 border border-rose-700 uppercase">
+                Estimación
+              </span>
+            </div>
+            <h3 class="text-2xl font-black text-rose-400 uppercase">Ley de Hofstadter</h3>
+            <p class="text-yellow-400 font-bold text-sm uppercase mt-1">"Siempre se tarda más de lo esperado, incluso teniendo en cuenta esta ley"</p>
+            <p class="text-sm sm:text-base text-zinc-300 mt-4 leading-relaxed">
+              Reflexión sobre la dificultad de estimar tareas complejas. Siempre surgen imprevistos y la complejidad oculta es inevitable.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-m text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> Añade holguras de tiempo lógicas en las estimaciones de los Sprints.
+          </div>
+        </div>
+
+        <!-- LEY 5: PETER -->
+        <div class="bg-zinc-900 p-6 brutal-box-rose space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">🧗🚫</span>
+              <span class="text-xs bg-rose-950 text-rose-300 font-bold px-2.5 py-1 border border-rose-700 uppercase">
+                Liderazgo
+              </span>
+            </div>
+            <h3 class="text-2xl font-black text-rose-400 uppercase">Principio de Peter</h3>
+            <p class="text-yellow-400 font-bold text-sm uppercase mt-1">"Todo empleado tiende a ascender hasta su nivel de incompetencia"</p>
+            <p class="text-sm sm:text-base text-zinc-300 mt-4 leading-relaxed">
+              Un excelente programador puede ser ascendido a un rol de gestión para el que no tiene habilidades, dejando de ser competente.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-m text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> Capacita adecuadamente en gestión a los leads de los equipos de desarrollo.
+          </div>
+        </div>
+
+        <!-- LEY 6: KERCKHOFFS -->
+        <div class="bg-zinc-900 p-6 brutal-box-cyan space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">🔑</span>
+              <span class="text-xs bg-cyan-950 text-cyan-300 font-bold px-2.5 py-1 border border-cyan-700 uppercase">
+                Seguridad
+              </span>
+            </div>
+            <h3 class="text-2xl font-black text-cyan-400 uppercase">Ley de Kerckhoffs</h3>
+            <p class="text-yellow-400 font-bold text-sm uppercase mt-1">"Un criptosistema debe ser seguro incluso si todo, excepto la clave, es público"</p>
+            <p class="text-sm sm:text-base text-zinc-300 mt-4 leading-relaxed">
+              La seguridad no debe depender del secreto del diseño (oscuridad), sino de la robustez de sus algoritmos y protección de claves.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-m text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> No confíes la seguridad del multijugador o guardados a la ofuscación simple.
+          </div>
+        </div>
+
+        <!-- LEY 7: LINUS -->
+        <div class="bg-zinc-900 p-6 brutal-box-emerald space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">👁️</span>
+              <span class="text-xs bg-emerald-950 text-emerald-300 font-bold px-2.5 py-1 border border-emerald-700 uppercase">
+                Calidad
+              </span>
+            </div>
+            <h3 class="text-2xl font-black text-emerald-400 uppercase">Ley de Linus</h3>
+            <p class="text-yellow-400 font-bold text-sm uppercase mt-1">"Con suficientes ojos, todos los errores son superficiales"</p>
+            <p class="text-sm sm:text-base text-zinc-300 mt-4 leading-relaxed">
+              Base del código abierto. Cuanta más gente revise y pruebe un código, más rápido se encontrarán y solucionarán los fallos.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-m text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> Fomenta las revisiones cruzadas de código (Code Reviews) entre compañeros.
+          </div>
+        </div>
+
+        <!-- LEY 8: PARETO -->
+        <div class="bg-zinc-900 p-6 brutal-box-yellow space-y-4 flex flex-col justify-between text-black">
+          <div class="text-zinc-100">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">⚖️</span>
+              <span class="text-xs bg-yellow-950 text-yellow-300 font-bold px-2.5 py-1 border border-yellow-700 uppercase">
+                Priorización
+              </span>
+            </div>
+            <h3 class="text-2xl font-black text-yellow-400 uppercase">Ley de Pareto</h3>
+            <p class="text-zinc-200 font-bold text-sm uppercase mt-1">"El 80% de los resultados provienen del 20% de las causas"</p>
+            <p class="text-sm sm:text-base text-zinc-300 mt-4 leading-relaxed">
+              El 80% de los usuarios usa el 20% de las funcionalidades, o el 20% del código contiene el 80% de los errores. Ayuda a priorizar.
+            </p>
+          </div>
+          <div class="bg-zinc-950 p-3.5 border border-zinc-800 text-m text-zinc-300 rounded">
+            🎯 <strong>Uso:</strong> Enfoca las mecánicas core del juego antes que los detalles superficiales.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FOOTER / REFERENCE BANNER -->
+    <div class="w-full bg-yellow-400 text-black p-6 sm:p-9 text-center brutal-box-yellow space-y-3 font-grotesk">
+      <h3 class="text-xl sm:text-3xl font-black uppercase">
+        💡 ¡ATENCIÓN!
+      </h3>
+      <p class="text-sm sm:text-lg font-bold leading-relaxed max-w-5xl mx-auto">
+        Estos principios son herramientas para pensar, no reglas inflexibles. Aplícalos con criterio en tus proyectos de desarrollo coordinados.
+      </p>
+      <p class="text-xs text-zinc-900 font-mono pt-2">
+        Basado en el artículo <a href="https://ingenieriadesoftware.es/leyes-fundamentales-desarrollo-software/" target="_blank" rel="noopener noreferrer" class="underline hover:text-white">«Leyes Fundamentales de Software»</a> de Jordi Cabot.
+      </p>
+    </div>
+
+  </div>
+
+
+    <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

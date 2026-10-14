@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224 · Ingeniería del Software | Materiales docentes interactivos (UJI)</title>
+    <meta name="description" content="Catálogo de píldoras web interactivas (SPA) de la asignatura VJ1224 Ingeniería del Software del Grado en Diseño y Desarrollo de Videojuegos de la Universitat Jaume I (UJI).">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --neon-cyan: #22d3ee;
+            --neon-purple: #a855f7;
+            --neon-emerald: #34d399;
+            --neon-amber: #facc15;
+            --neon-rose: #f43f5e;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            background-image:
+                radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.1) 0%, transparent 45%),
+                radial-gradient(circle at 85% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 45%),
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+            overflow-x: hidden;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', monospace;
+        }
+
+        .hud-panel {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid rgba(51, 65, 85, 0.9);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+        }
+
+        .spa-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #334155;
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .spa-card:hover {
+            transform: translateY(-4px);
+            border-color: #22d3ee;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6), 0 0 20px rgba(34, 211, 238, 0.2);
+        }
+
+        .filter-btn.active {
+            background: #22d3ee;
+            color: #080c14;
+            border-color: #a5f3fc;
+            box-shadow: 0 0 16px rgba(34, 211, 238, 0.45);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-6 md:p-10 selection:bg-cyan-400 selection:text-slate-950">
+
+    <div class="w-full max-w-7xl mx-auto">
+
+        <!-- HERO CABECERA -->
+        <header class="hud-panel rounded-2xl p-6 sm:p-10 mb-8 relative overflow-hidden">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-cyan-950/90 border-2 border-cyan-400/50 text-cyan-300 pixel-font text-[10px]">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>UNIVERSITAT JAUME I · GRADO EN DISEÑO Y DESARROLLO DE VIDEOJUEGOS</span>
+                </div>
+                <span class="pixel-font text-[10px] px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-400/50 text-amber-300">
+                    CURSO 2026/2027 · 3.º CURSO
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-8">
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-tight mb-3">
+                        <span class="text-cyan-400">VJ1224</span> · Ingeniería del Software
+                    </h1>
+                    <p class="text-xl sm:text-2xl text-slate-300 font-semibold leading-relaxed max-w-3xl">
+                        Repositorio interactivo de píldoras docentes (SPA) de apoyo a las sesiones de teoría: de la visión creativa al videojuego jugable con <strong class="text-amber-300">Agile</strong>, <strong class="text-emerald-300">Scrum</strong>, <strong class="text-cyan-300">Historias de usuario</strong> y <strong class="text-purple-300">UML</strong>.
+                    </p>
+
+                    <!-- Botonera de accesos principales -->
+                    <div class="mt-6 flex flex-wrap items-center gap-3">
+                        <a href="auxiliar/Gu%C3%ADa%20docente%20interactiva%20%28d%C3%ADa%200%20-%20presentaci%C3%B3n%29.html" class="inline-flex items-center gap-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold py-3 px-5 rounded-xl border-2 border-amber-200 shadow-lg transition-all text-base sm:text-lg">
+                            <span>🎮</span>
+                            <span>Guía docente interactiva (Día 0)</span>
+                            <span>→</span>
+                        </a>
+                        <a href="https://sites.google.com/uji.es/vj1224-2026" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold py-3 px-5 rounded-xl border-2 border-cyan-500/50 transition-all text-base sm:text-lg">
+                            <span>🌐</span>
+                            <span>Google Sites VJ1224</span>
+                            <span>↗</span>
+                        </a>
+                        <a href="https://aulavirtual.uji.es/course/view.php?id=88360" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3 px-5 rounded-xl border-2 border-slate-600 transition-all text-base sm:text-lg">
+                            <span>🎓</span>
+                            <span>Aula Virtual UJI</span>
+                            <span>↗</span>
+                        </a>
+                        <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold py-3 px-5 rounded-xl border-2 border-slate-700 transition-all text-base sm:text-lg">
+                            <span>💻</span>
+                            <span>GitHub</span>
+                            <span>↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de estadísticas HUD -->
+                <div class="lg:col-span-4 bg-slate-950/90 border-2 border-slate-700 rounded-2xl p-5 space-y-3">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                        <span class="pixel-font text-[10px] text-cyan-400">TELEMETRÍA DEL REPO</span>
+                        <span class="text-xs font-bold text-emerald-400">● ONLINE</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 text-center">
+                        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3">
+                            <div class="pixel-font text-xl text-amber-300">31</div>
+                            <div class="text-sm font-bold text-slate-300 mt-1">SPAs interactivas</div>
+                        </div>
+                        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3">
+                            <div class="pixel-font text-xl text-cyan-300">3 / 7</div>
+                            <div class="text-sm font-bold text-slate-300 mt-1">Temas publicados</div>
+                        </div>
+                        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3">
+                            <div class="pixel-font text-xl text-purple-300">2</div>
+                            <div class="text-sm font-bold text-slate-300 mt-1">Gems de IA activos</div>
+                        </div>
+                        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3">
+                            <div class="pixel-font text-xl text-emerald-300">100%</div>
+                            <div class="text-sm font-bold text-slate-300 mt-1">Google Sites Ready</div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 font-semibold text-center pt-1">
+                        Responsable de teoría: <strong class="text-slate-200">Pablo Felip Monferrer</strong> (DLSI · UJI)
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- BANNER DESTACADO: LOS 2 ASISTENTES DE IA (GEMS DE GEMINI) -->
+        <section class="mb-10">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-2.5">
+                    <span>🤖</span>
+                    <span>Compañeros de IA del estudio (Gems de Google Gemini)</span>
+                </h2>
+                <span class="pixel-font text-[10px] text-purple-300 bg-purple-950/80 border border-purple-500/40 px-3 py-1 rounded">
+                    ASISTENTES ENTRENADOS PARA VJ1224
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Gem 1: El Oráculo -->
+                <div class="hud-panel rounded-2xl p-6 border-2 border-amber-400/60 bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/25 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-400/40">TEMA 2 · SIMULADOR DE CLIENTE</span>
+                            <span class="text-3xl">🔮</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-1">El Oráculo (Product Owner)</h3>
+                        <p class="text-slate-300 text-lg font-medium mb-4">
+                            Entrevista de elicitación de requisitos: interroga al Oráculo para descubrir la visión oculta del videojuego, extraer historias de usuario y negociar prioridades antes del <em>Planning Poker</em>.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3 mt-2">
+                        <a href="https://gemini.google.com/gem/1MNB-Wb78FOJpZrOTtComZjmg8nXRdU92?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold py-2.5 px-5 rounded-xl border border-amber-200 transition-all text-base">
+                            <span>Interrogar al Oráculo en Gemini</span>
+                            <span>↗</span>
+                        </a>
+                        <a href="t2/14%20Briefing%20de%20misi%C3%B3n.html" class="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 font-bold py-2.5 px-4 rounded-xl border border-slate-600 transition-all text-sm">
+                            <span>Ver SPA 14 (Briefing)</span>
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gem 2: GameDev-Scrum Sensei -->
+                <div class="hud-panel rounded-2xl p-6 border-2 border-purple-400/60 bg-gradient-to-br from-slate-900 via-slate-900 to-purple-950/25 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-400/40">TEMA 3 · MENTOR DE PRODUCCIÓN</span>
+                            <span class="text-3xl">🧘‍♂️</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-1">GameDev-Scrum Sensei</h3>
+                        <p class="text-slate-300 text-lg font-medium mb-4">
+                            Asistente experto en producción ágil de videojuegos: audita tu <em>Product Backlog</em>, revisa tus criterios de aceptación en formato <em>Gherkin</em>, aplica la regla INVEST y resuelve dudas de Scrum y Unity.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3 mt-2">
+                        <a href="https://gemini.google.com/gem/1gyutyBOh6RUnwjhyVlKhJEPRTvrN0yEB?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-purple-400 hover:bg-purple-300 text-slate-950 font-bold py-2.5 px-5 rounded-xl border border-purple-200 transition-all text-base">
+                            <span>Consultar al Sensei en Gemini</span>
+                            <span>↗</span>
+                        </a>
+                        <a href="t3/06%20Auditor%C3%ADa%20del%20backlog.html" class="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-purple-300 font-bold py-2.5 px-4 rounded-xl border border-slate-600 transition-all text-sm">
+                            <span>Ver SPA 06 (Auditoría)</span>
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAPA DEL TEMARIO OFICIAL (7 TEMAS) -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2.5">
+                <span>🗺️</span>
+                <span>Mapa de contenidos del semestre (7 temas)</span>
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3">
+                <button onclick="setFilter('t1')" class="text-left p-4 rounded-xl bg-slate-900/95 border-2 border-cyan-500/50 hover:border-cyan-400 transition-all cursor-pointer">
+                    <span class="pixel-font text-[9px] text-cyan-300 block mb-1">TEMA 1 · 7 SPAs</span>
+                    <div class="font-bold text-white text-base leading-snug">IS y videojuegos</div>
+                    <span class="inline-block mt-2 text-xs font-bold text-emerald-400">● Disponible</span>
+                </button>
+                <button onclick="setFilter('t2')" class="text-left p-4 rounded-xl bg-slate-900/95 border-2 border-cyan-500/50 hover:border-cyan-400 transition-all cursor-pointer">
+                    <span class="pixel-font text-[9px] text-cyan-300 block mb-1">TEMA 2 · 15 SPAs</span>
+                    <div class="font-bold text-white text-base leading-snug">Historias de usuario</div>
+                    <span class="inline-block mt-2 text-xs font-bold text-emerald-400">● Disponible</span>
+                </button>
+                <button onclick="setFilter('t3')" class="text-left p-4 rounded-xl bg-slate-900/95 border-2 border-cyan-500/50 hover:border-cyan-400 transition-all cursor-pointer">
+                    <span class="pixel-font text-[9px] text-cyan-300 block mb-1">TEMA 3 · 8 SPAs</span>
+                    <div class="font-bold text-white text-base leading-snug">Scrum Manager</div>
+                    <span class="inline-block mt-2 text-xs font-bold text-emerald-400">● Disponible</span>
+                </button>
+                <div class="p-4 rounded-xl bg-slate-900/45 border-2 border-slate-800 opacity-75">
+                    <span class="pixel-font text-[9px] text-slate-500 block mb-1">TEMA 4 · UML</span>
+                    <div class="font-bold text-slate-300 text-base leading-snug">DCU de UML (casos de uso)</div>
+                    <span class="inline-block mt-2 text-xs font-bold text-amber-400/80">⏳ Próximamente</span>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/45 border-2 border-slate-800 opacity-75">
+                    <span class="pixel-font text-[9px] text-slate-500 block mb-1">TEMA 5 · UML</span>
+                    <div class="font-bold text-slate-300 text-base leading-snug">DC de UML (clases)</div>
+                    <span class="inline-block mt-2 text-xs font-bold text-amber-400/80">⏳ Próximamente</span>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/45 border-2 border-slate-800 opacity-75">
+                    <span class="pixel-font text-[9px] text-slate-500 block mb-1">TEMA 6 · UML</span>
+                    <div class="font-bold text-slate-300 text-base leading-snug">DA de UML (actividades)</div>
+                    <span class="inline-block mt-2 text-xs font-bold text-amber-400/80">⏳ Próximamente</span>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/45 border-2 border-slate-800 opacity-75">
+                    <span class="pixel-font text-[9px] text-slate-500 block mb-1">TEMA 7 · GESTIÓN</span>
+                    <div class="font-bold text-slate-300 text-base leading-snug">Presupuesto y contrato</div>
+                    <span class="inline-block mt-2 text-xs font-bold text-amber-400/80">⏳ Próximamente</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- BARRA DE FILTROS Y BUSCADOR EN TIEMPO REAL -->
+        <section class="hud-panel rounded-2xl p-5 mb-8 sticky top-3 z-30 backdrop-blur-md">
+            <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+                <!-- Pestañas de filtro -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="setFilter('all')" id="filter-all" class="filter-btn active px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 text-slate-200 font-bold text-sm sm:text-base transition-all cursor-pointer">
+                        Todos (31)
+                    </button>
+                    <button onclick="setFilter('aux')" id="filter-aux" class="filter-btn px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 text-slate-200 font-bold text-sm sm:text-base transition-all cursor-pointer">
+                        Día 0 · Presentación (1)
+                    </button>
+                    <button onclick="setFilter('t1')" id="filter-t1" class="filter-btn px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 text-slate-200 font-bold text-sm sm:text-base transition-all cursor-pointer">
+                        Tema 1 · IS y videojuegos (7)
+                    </button>
+                    <button onclick="setFilter('t2')" id="filter-t2" class="filter-btn px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 text-slate-200 font-bold text-sm sm:text-base transition-all cursor-pointer">
+                        Tema 2 · Historias de usuario (15)
+                    </button>
+                    <button onclick="setFilter('t3')" id="filter-t3" class="filter-btn px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 text-slate-200 font-bold text-sm sm:text-base transition-all cursor-pointer">
+                        Tema 3 · Scrum Manager (8)
+                    </button>
+                </div>
+
+                <!-- Buscador -->
+                <div class="relative flex-grow max-w-md">
+                    <input
+                        type="search"
+                        id="search-input"
+                        placeholder="Buscar SPA (ej. Kanban, INVEST, LEGO, UML, Brooks...)"
+                        class="w-full bg-slate-950 border-2 border-slate-700 focus:border-cyan-400 rounded-xl py-2.5 pl-10 pr-4 text-white placeholder-slate-400 font-semibold text-base focus:outline-none transition-colors"
+                    >
+                    <span class="absolute left-3.5 top-3 text-slate-400">🔍</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENEDOR DINÁMICO DE TARJETAS -->
+        <main id="catalog-container" class="space-y-10"></main>
+
+        <!-- Mensaje sin resultados -->
+        <div id="empty-state" class="hidden hud-panel rounded-2xl p-12 text-center my-8">
+            <div class="text-5xl mb-3">👾</div>
+            <h3 class="text-2xl font-bold text-white mb-1">No se han encontrado píldoras con ese criterio</h3>
+            <p class="text-slate-400 text-lg">Prueba con otro término o pulsa en «Todos (31)».</p>
+        </div>
+
+    </div>
+
+    <!-- Notificación flotante al copiar URL para Google Sites -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-emerald-400 text-slate-950 font-bold px-5 py-3 rounded-xl border-2 border-white shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+        <span>✅</span>
+        <span id="toast-msg">URL de GitHub Pages copiada al portapapeles</span>
+    </div>
+
+    <!-- PIE DE PÁGINA ACADÉMICO -->
+    <footer class="w-full max-w-7xl mx-auto mt-14 pt-8 pb-6 border-t-2 border-slate-800 text-slate-400 text-sm sm:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+                <p class="font-bold text-white text-lg">VJ1224 · Ingeniería del Software · Grado en Diseño y Desarrollo de Videojuegos</p>
+                <p>Autor: <a href="https://www.pablofelip.uji.es/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-bold">Pablo Felip Monferrer</a> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I (UJI) · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-700 text-xs font-bold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-xs font-bold text-cyan-300 transition-colors">
+                    github.com/pfelipm/uji-vj1224 ↗
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const BASE_PAGES_URL = 'https://pfelipm.github.io/uji-vj1224/';
+
+        const sections = [
+            {
+                id: 'aux',
+                badge: 'DÍA 0 · PRESENTACIÓN',
+                title: 'Presentación de la asignatura',
+                subtitle: 'Guía docente interactiva, equipo de profesorado, temario, sistema de evaluación y calculadora de nota final',
+                color: 'amber',
+                items: [
+                    {
+                        num: '00',
+                        title: 'Guía docente interactiva (día 0 - presentación)',
+                        path: 'auxiliar/Guía docente interactiva (día 0 - presentación).html',
+                        icon: '🎓',
+                        desc: 'Presentación gamificada de VJ1224: equipo docente, Quest Log de teoría y prácticas, desglose de evaluación y simulador interactivo de nota final.',
+                        tags: ['Guía docente', 'Evaluación', 'Calculadora XP', 'UJI']
+                    }
+                ]
+            },
+            {
+                id: 't1',
+                badge: 'TEMA 1 · 7 PÍLDORAS INTERACTIVAS',
+                title: 'Tema 1. La ingeniería del software y los videojuegos',
+                subtitle: 'Fundamentos de ingeniería del software, crisis de 1968, leyes clásicas, comparativa cascada vs. ágil, introducción a UML, Scrum y Notion',
+                color: 'cyan',
+                items: [
+                    {
+                        num: '01',
+                        title: 'La ingeniería del software',
+                        path: 't1/01 La ingeniería del software.html',
+                        icon: '⚙️',
+                        desc: 'Definición canónica con revelación progresiva paso a paso de los 4 pilares que sostienen el desarrollo profesional de software y videojuegos.',
+                        tags: ['Definición', 'Disciplina', 'Restricciones']
+                    },
+                    {
+                        num: '02',
+                        title: 'La crisis del software',
+                        path: 't1/02 La crisis del software.html',
+                        icon: '💥',
+                        desc: 'De la Conferencia de la OTAN de 1968 a los grandes desastres de la industria del videojuego: E.T. (1982), Duke Nukem Forever y Cyberpunk 2077.',
+                        tags: ['Historia', 'OTAN 1968', 'Crunch', 'Deuda técnica']
+                    },
+                    {
+                        num: '03',
+                        title: 'Las leyes no escritas del desarrollo del software',
+                        path: 't1/03 Las leyes no escritas del desarrollo del software.html',
+                        icon: '📜',
+                        desc: 'Ocho leyes empíricas esenciales: Brooks, Conway, Postel, Hofstadter, principio de Peter, Kerckhoffs, Linus y Pareto aplicadas a estudios de videojuegos.',
+                        tags: ['Ley de Brooks', 'Ley de Conway', 'Hofstadter', 'Pareto']
+                    },
+                    {
+                        num: '04',
+                        title: 'Cascada vs. ágil (Scrum)',
+                        path: 't1/04 Cascada vs. ágil (Scrum).html',
+                        icon: '🌊',
+                        desc: 'Comparativa directa entre el ciclo secuencial en cascada (6 etapas) y el bucle iterativo e incremental de Scrum para encontrar la diversión (find the fun).',
+                        tags: ['Cascada', 'Agile', 'Scrum', 'Iterativo']
+                    },
+                    {
+                        num: '05',
+                        title: 'UML: los planos del videojuego',
+                        path: 't1/05 UML - los planos del videojuego.html',
+                        icon: '📐',
+                        desc: 'Introducción visual a los tres diagramas clave del grado: casos de uso (DCU), clases (DC) y actividades (DA) como puente entre diseño y código.',
+                        tags: ['UML', 'DCU', 'Diagrama de clases', 'Actividades']
+                    },
+                    {
+                        num: '06',
+                        title: 'El ecosistema Scrum',
+                        path: 't1/06 El ecosistema Scrum.html',
+                        icon: '🔄',
+                        desc: 'Mapa completo del marco Scrum según la Scrum Guide: los 3 roles (Product Owner, Developers, Scrum Master), los 5 eventos y los 3 artefactos con sus compromisos.',
+                        tags: ['Scrum Guide', 'Roles', 'Eventos', 'Artefactos']
+                    },
+                    {
+                        num: '07',
+                        title: 'Scrum con Notion',
+                        path: 't1/07 Scrum con Notion.html',
+                        icon: '📝',
+                        desc: 'Cómo articular el centro de mando del estudio en Notion: bases de datos relacionales, Product Backlog, Sprint Backlog, GDD vivo y bitácora de retrospectivas.',
+                        tags: ['Notion', 'Backlog', 'GDD vivo', 'Prácticas']
+                    }
+                ]
+            },
+            {
+                id: 't2',
+                badge: 'TEMA 2 · 15 PÍLDORAS INTERACTIVAS',
+                title: 'Tema 2. Historias de usuario y gestión ágil de requisitos',
+                subtitle: 'Del concepto general a las tareas técnicas: redacción de historias de usuario, épicas, entrevistas al cliente, INVEST, estimación Fibonacci, Planning Poker, DoD y Kanban',
+                color: 'emerald',
+                items: [
+                    {
+                        num: '01',
+                        title: 'La cita filosófica',
+                        path: 't2/01 La cita filosófica.html',
+                        icon: '💬',
+                        desc: 'Reflexión inaugural de Jason Woodward sobre por qué describir un videojuego solo mediante tareas técnicas equivale a describir un cuadro solo por sus colores.',
+                        tags: ['Jason Woodward', 'Filosofía ágil', 'Visión']
+                    },
+                    {
+                        num: '02',
+                        title: 'La jerarquía del diseño',
+                        path: 't2/02 La jerarquía del diseño.html',
+                        icon: '🏛️',
+                        desc: 'Descomposición interactiva en 4 estratos (del sueño al píxel): visión holística del videojuego, pilares de diseño, épicas e historias de usuario con tareas.',
+                        tags: ['Jerarquía', 'Pilares', 'Épicas', 'Historias']
+                    },
+                    {
+                        num: '03',
+                        title: 'Historias de usuario',
+                        path: 't2/03 Historias de usuario.html',
+                        icon: '🃏',
+                        desc: 'Los 6 pilares de las historias de usuario: plantilla Connextra (Como… quiero… para…), valor frente a tarea, el embudo, jerarquía, INVEST y Definition of Done.',
+                        tags: ['User Stories', 'Connextra', 'Valor']
+                    },
+                    {
+                        num: '04',
+                        title: 'Historia vs. tarea',
+                        path: 't2/04 Historia vs. tarea.html',
+                        icon: '⚔️',
+                        desc: 'Duelo comparativo entre el diario de misiones centrado en la experiencia del jugador (historia de usuario) y el informe técnico de implementación (tarea).',
+                        tags: ['Historia vs. tarea', 'Jugador', 'Implementación']
+                    },
+                    {
+                        num: '05',
+                        title: 'Épica vs. historia',
+                        path: 't2/05 Épica vs. historia.html',
+                        icon: '🐉',
+                        desc: 'Metáfora del jefe final (épica demasiado grande para un Sprint) frente a los esbirros manejables (historias de usuario listas para ser implementadas).',
+                        tags: ['Épicas', 'Desglose', 'Refinamiento']
+                    },
+                    {
+                        num: '06',
+                        title: 'El viaje de la idea',
+                        path: 't2/06 El viaje de la idea.html',
+                        icon: '🌪️',
+                        desc: 'El embudo de especificación en 5 niveles: Charter, Features/Épicas, Stories, Scenarios (criterios de aceptación en formato Gherkin) y Test.',
+                        tags: ['Embudo', 'Gherkin', 'Criterios de aceptación']
+                    },
+                    {
+                        num: '07',
+                        title: 'La forja de la misión',
+                        path: 't2/07 La forja de la misión.html',
+                        icon: '🔨',
+                        desc: 'El ciclo clásico de la ingeniería de requisitos adaptado al desarrollo ágil de videojuegos: elicitación, análisis, especificación, validación y gestión.',
+                        tags: ['Ingeniería de requisitos', 'Ciclo', 'Validación']
+                    },
+                    {
+                        num: '08',
+                        title: 'El diálogo del héroe',
+                        path: 't2/08 El diálogo del héroe.html',
+                        icon: '🎙️',
+                        desc: 'Guía táctica en 3 actos (antes, durante y después) para realizar entrevistas efectivas de captura de requisitos con el Product Owner.',
+                        tags: ['Entrevista', 'Elicitación', 'Escucha activa']
+                    },
+                    {
+                        num: '09',
+                        title: 'La receta de una buena historia - INVEST',
+                        path: 't2/09 La receta de una buena historia - INVEST.html',
+                        icon: '🧪',
+                        desc: 'Dinámica interactiva para descubrir el acrónimo INVEST de Bill Wake: Independiente, Negociable, Valiosa, Estimable, Pequeña (Small) y Testeable.',
+                        tags: ['INVEST', 'Calidad', 'Bill Wake']
+                    },
+                    {
+                        num: '10',
+                        title: 'Puntos de historia',
+                        path: 't2/10 Puntos de historia.html',
+                        icon: '📐',
+                        desc: 'Estimación relativa frente a horas absolutas: esfuerzo, complejidad e incertidumbre mediante la baraja de Fibonacci y tallas de camiseta.',
+                        tags: ['Story Points', 'Fibonacci', 'Complejidad']
+                    },
+                    {
+                        num: '11',
+                        title: 'Planning poker',
+                        path: 't2/11 Planning poker.html',
+                        icon: '🎴',
+                        desc: 'El consejo de guerra para estimar en equipo: diferencia entre alcance y dedicación, y el algoritmo de 5 pasos para lograr consenso sin promediar.',
+                        tags: ['Planning Poker', 'Consenso', 'Estimación']
+                    },
+                    {
+                        num: '12',
+                        title: 'Definition of done',
+                        path: 't2/12 Definition of done.html',
+                        icon: '🏅',
+                        desc: 'El sello de calidad global del estudio: diferencia entre criterios de aceptación (Gherkin por historia) y la Definition of Done (contrato de calidad del Incremento).',
+                        tags: ['Definition of Done', 'DoD', 'Gherkin', 'Calidad']
+                    },
+                    {
+                        num: '13',
+                        title: 'El tablero Kanban',
+                        path: 't2/13 El tablero Kanban.html',
+                        icon: '📋',
+                        desc: 'El mapa de la mazmorra: las 3 leyes del flujo (visualizar el trabajo, limitar el WIP y gestionar el flujo) con simulador interactivo de sobrecarga.',
+                        tags: ['Kanban', 'Límite WIP', 'Flujo', 'Simulador']
+                    },
+                    {
+                        num: '14',
+                        title: 'Briefing de misión',
+                        path: 't2/14 Briefing de misión.html',
+                        icon: '⏱️',
+                        desc: 'Consola de aula con cronómetro configurable para la práctica en dos fases: entrevista en vivo a «El Oráculo» (IA) y sesión de estimación con Planning Poker.',
+                        tags: ['El Oráculo', 'Gem IA', 'Taller en aula', 'Cronómetro']
+                    },
+                    {
+                        num: '15',
+                        title: 'La jerarquía de Notion',
+                        path: 't2/15 La jerarquía de Notion.html',
+                        icon: '🗂️',
+                        desc: 'Cómo modelar épicas, historias de usuario y tareas técnicas en la plantilla oficial de Notion del curso, con auditor interactivo de títulos.',
+                        tags: ['Notion', 'Épicas', 'Historias', 'Auditor interactivo']
+                    }
+                ]
+            },
+            {
+                id: 't3',
+                badge: 'TEMA 3 · 8 PÍLDORAS INTERACTIVAS',
+                title: 'Tema 3. Gestión ágil de proyectos con Scrum',
+                subtitle: 'Filosofía Lean y Agile, raíces históricas en Takeuchi y Nonaka (1986), la Quest Loop de Scrum, métricas de Sprint, evidencia científica (Chow y Cao, 2008), escalado Scrum of Scrums y simulación LEGO City',
+                color: 'purple',
+                items: [
+                    {
+                        num: '01',
+                        title: 'Lean, Agile y Scrum',
+                        path: 't3/01 Lean, Agile y Scrum.html',
+                        icon: '🪆',
+                        desc: 'Las muñecas rusas del desarrollo moderno: cómo conectan la filosofía de eficiencia Lean, la mentalidad del Manifiesto Ágil y el marco táctico Scrum.',
+                        tags: ['Lean', 'Agile', 'Scrum', 'Matrioshka']
+                    },
+                    {
+                        num: '02',
+                        title: 'El origen de Scrum',
+                        path: 't3/02 El origen de Scrum.html',
+                        icon: '🏉',
+                        desc: 'De la carrera de relevos al rugby: las 6 características de los equipos de alto rendimiento descubiertas por Takeuchi y Nonaka en Harvard Business Review (1986).',
+                        tags: ['Takeuchi y Nonaka', '1986', 'Rugby', 'Autoorganización']
+                    },
+                    {
+                        num: '03',
+                        title: 'El corazón de Scrum',
+                        path: 't3/03 El corazón de Scrum.html',
+                        icon: '⚡',
+                        desc: 'Recorrido interactivo por la Quest Loop de 6 fases, simulador de escenarios de Sprint burn-down (saludable, crunch y scope creep) y distribución de esfuerzo.',
+                        tags: ['Quest Loop', 'Burn-down Chart', 'Chart.js', 'Sprint']
+                    },
+                    {
+                        num: '04',
+                        title: 'El equipo de ensueño',
+                        path: 't3/04 El equipo de ensueño.html',
+                        icon: '🛡️',
+                        desc: 'La party del estudio (Product Owner como bardo, Scrum Master como paladín y Developers como artesanos), radar interactivo de responsabilidades y flujo de colaboración.',
+                        tags: ['Roles Scrum', 'Gráfico radar', 'Party RPG', 'Colaboración']
+                    },
+                    {
+                        num: '05',
+                        title: 'Factores de éxito',
+                        path: 't3/05 Factores de éxito.html',
+                        icon: '🔬',
+                        desc: 'Lo que dice la ciencia de datos sobre 109 proyectos ágiles reales (Chow y Cao, 2008): las 3 claves verdaderas del éxito frente a los 3 mitos corporativos.',
+                        tags: ['Chow y Cao (2008)', 'Excelencia técnica', 'Debate']
+                    },
+                    {
+                        num: '06',
+                        title: 'Auditoría del backlog',
+                        path: 't3/06 Auditoría del backlog.html',
+                        icon: '🩺',
+                        desc: 'Lista de control interactiva con barra de salud para auditar el Product Backlog en clase y enlace directo al asistente de IA GameDev-Scrum Sensei.',
+                        tags: ['Auditoría', 'Checklist', 'GameDev-Scrum Sensei', 'Gem IA']
+                    },
+                    {
+                        num: '07',
+                        title: 'Scrum of Scrums',
+                        path: 't3/07 Scrum of Scrums.html',
+                        icon: '🏰',
+                        desc: 'Escalado ágil para grandes estudios: simulador interactivo del consejo de embajadores (combate, arte, misiones e IA) y las 4 preguntas de integración.',
+                        tags: ['Escalado', 'Scrum of Scrums', 'Dependencias', 'Gremios']
+                    },
+                    {
+                        num: '08',
+                        title: 'Scrum Lego city',
+                        path: 't3/08 Scrum Lego city.html',
+                        icon: '🧱',
+                        desc: 'Consola completa de facilitación para el taller práctico Scrum with LEGO: temporizador por fases con alertas sonoras Tone.js, gráfico Release burn-down y detector de anomalías.',
+                        tags: ['Taller LEGO', 'Simulador en vivo', 'Release Burn-down', 'Tone.js']
+                    }
+                ]
+            }
+        ];
+
+        let activeFilter = 'all';
+        let searchQuery = '';
+
+        function encodePath(relPath) {
+            return relPath.split('/').map(encodeURIComponent).join('/');
+        }
+
+        function copyEmbedUrl(relPath, event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const fullUrl = BASE_PAGES_URL + encodePath(relPath);
+            navigator.clipboard.writeText(fullUrl).then(() => {
+                const toast = document.getElementById('toast');
+                const msg = document.getElementById('toast-msg');
+                msg.textContent = `Copiada URL para Google Sites: ${relPath}`;
+                toast.classList.remove('translate-y-24', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('translate-y-24', 'opacity-0');
+                }, 2800);
+            });
+        }
+
+        function renderCatalog() {
+            const container = document.getElementById('catalog-container');
+            const emptyState = document.getElementById('empty-state');
+            const q = searchQuery.trim().toLowerCase();
+
+            let html = '';
+            let totalVisible = 0;
+
+            const colorClasses = {
+                amber: {
+                    badge: 'bg-amber-950/80 border-amber-400/50 text-amber-300',
+                    num: 'bg-amber-500/20 border-amber-400/50 text-amber-300'
+                },
+                cyan: {
+                    badge: 'bg-cyan-950/80 border-cyan-400/50 text-cyan-300',
+                    num: 'bg-cyan-500/20 border-cyan-400/50 text-cyan-300'
+                },
+                emerald: {
+                    badge: 'bg-emerald-950/80 border-emerald-400/50 text-emerald-300',
+                    num: 'bg-emerald-500/20 border-emerald-400/50 text-emerald-300'
+                },
+                purple: {
+                    badge: 'bg-purple-950/80 border-purple-400/50 text-purple-300',
+                    num: 'bg-purple-500/20 border-purple-400/50 text-purple-300'
+                }
+            };
+
+            sections.forEach(sec => {
+                if (activeFilter !== 'all' && activeFilter !== sec.id) return;
+
+                const filteredItems = sec.items.filter(item => {
+                    if (!q) return true;
+                    const haystack = `${item.num} ${item.title} ${item.desc} ${item.tags.join(' ')}`.toLowerCase();
+                    return haystack.includes(q);
+                });
+
+                if (filteredItems.length === 0) return;
+                totalVisible += filteredItems.length;
+
+                const c = colorClasses[sec.color];
+
+                html += `
+                    <section class="space-y-5">
+                        <div class="border-b-2 border-slate-800 pb-4">
+                            <span class="pixel-font text-[10px] px-3 py-1 rounded border ${c.badge} inline-block mb-2">${sec.badge}</span>
+                            <h2 class="text-2xl sm:text-3xl font-bold text-white">${sec.title}</h2>
+                            <p class="text-slate-300 text-lg font-medium mt-1">${sec.subtitle}</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                            ${filteredItems.map(item => {
+                                const href = encodePath(item.path);
+                                return `
+                                    <div class="spa-card rounded-2xl p-6 flex flex-col justify-between">
+                                        <div>
+                                            <div class="flex items-center justify-between gap-2 mb-3">
+                                                <span class="pixel-font text-xs px-2.5 py-1 rounded border ${c.num}">#${item.num}</span>
+                                                <span class="text-3xl">${item.icon}</span>
+                                            </div>
+                                            <a href="${href}" class="block group">
+                                                <h3 class="text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors mb-2 leading-snug">
+                                                    ${item.title}
+                                                </h3>
+                                            </a>
+                                            <p class="text-slate-300 text-base font-medium leading-relaxed mb-4">
+                                                ${item.desc}
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <div class="flex flex-wrap gap-1.5 mb-5">
+                                                ${item.tags.map(t => `<span class="px-2.5 py-0.5 rounded-md bg-slate-900 border border-slate-700 text-xs font-bold text-slate-300">${t}</span>`).join('')}
+                                            </div>
+                                            <div class="flex items-center justify-between gap-2 pt-3 border-t border-slate-800/90">
+                                                <a href="${href}" class="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 font-bold text-base">
+                                                    <span>Abrir píldora interactiva</span>
+                                                    <span>→</span>
+                                                </a>
+                                                <button
+                                                    onclick="copyEmbedUrl('${item.path.replace(/'/g, "\\'")}', event)"
+                                                    title="Copiar URL pública de GitHub Pages para insertar en Google Sites"
+                                                    class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300 hover:text-amber-300 transition-colors cursor-pointer"
+                                                >
+                                                    📋 URL Sites
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </section>
+                `;
+            });
+
+            container.innerHTML = html;
+            emptyState.classList.toggle('hidden', totalVisible > 0);
+        }
+
+        function setFilter(filterId) {
+            activeFilter = filterId;
+            ['all', 'aux', 't1', 't2', 't3'].forEach(id => {
+                document.getElementById(`filter-${id}`).classList.toggle('active', id === filterId);
+            });
+            renderCatalog();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCatalog();
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                renderCatalog();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === '/' && document.activeElement !== searchInput) {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

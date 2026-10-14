@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: Épica vs. historia (jefe final vs. esbirros)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para diseño fluido y adaptativo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' para estética arcade/RPG y 'Rajdhani' para legibilidad en aula -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjeta Épica (Jefe Final - Acento Carmesí/Ámbar) */
+        .card-epic {
+            background: linear-gradient(135deg, rgba(20, 15, 30, 0.95) 0%, rgba(45, 18, 25, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(248, 113, 113, 0.35);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-epic:hover {
+            border-color: #f87171;
+            box-shadow: 0 0 26px rgba(248, 113, 113, 0.35);
+            transform: translateY(-2px);
+        }
+        .card-epic.active-card {
+            border-color: #fca5a5;
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.4);
+        }
+
+        /* Tarjeta Historias (Esbirros Tácticos - Acento Cian/Esmeralda) */
+        .card-stories {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(12, 38, 48, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(56, 189, 248, 0.35);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-stories:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 26px rgba(56, 189, 248, 0.35);
+            transform: translateY(-2px);
+        }
+        .card-stories.active-card {
+            border-color: #34d399;
+            box-shadow: 0 0 30px rgba(52, 211, 153, 0.4);
+        }
+
+        /* Bloque individual de historia */
+        .story-badge-item {
+            background: rgba(10, 16, 28, 0.85);
+            border-left: 4px solid #38bdf8;
+            transition: all 0.2s ease;
+        }
+        .story-badge-item:hover {
+            border-left-color: #34d399;
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        /* Conector de descomposición */
+        .flow-arrow-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .arrow-pulse {
+            filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.7));
+            animation: bouncePulse 2s infinite ease-in-out;
+        }
+        @keyframes bouncePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+        }
+
+        /* Rotación suave del chevron */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Animación de entrada suave */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.97) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .animate-reveal {
+            animation: fadeInScale 0.35s ease-out forwards;
+        }
+
+        /* Barra HUD inferior en flujo natural */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 05/15</span>
+      <a href="04%20Historia%20vs.%20tarea.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="06%20El%20viaje%20de%20la%20idea.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-5xl w-full">
+        <!-- Encabezado Proyectable -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/80 border border-cyan-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                    VJ1224 // TEMA 2: DIMENSIONALIDAD DEL REQUISITO
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-amber-300 to-emerald-400 tracking-wide leading-relaxed py-1">
+                JEFE FINAL VS. ESBIRROS
+            </h1>
+            
+            <p class="text-slate-400 text-xs sm:text-sm font-pixel mt-1 tracking-wider">
+                &lt;Épica vs. Historia // Fronteras y Desglose&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                Un jefe de fase no se derrota de un solo golpe. Las épicas son grandes subsistemas que ningún equipo puede abordar en un único sprint: debemos dividirlas en historias ágiles que entreguen valor jugable continuo.
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                Usa el botón inferior o la barra espaciadora para desvelar la progresión; haz clic en cada tarjeta para desplegar sus criterios técnicos.
+            </p>
+        </header>
+
+        <!-- Arena de Dimensionalidad (Grid Responsivo de 2 Bloques con Conector Central) -->
+        <main class="grid grid-cols-1 lg:grid-cols-11 gap-4 items-stretch justify-center relative">
+            
+            <!-- BLOQUE 1: LA ÉPICA (JEFE FINAL) - Columnas 1 a 5 -->
+            <div id="wrapper-epic" class="lg:col-span-5 hidden">
+                <article class="card-epic animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('detail-epic')">
+                    <div>
+                        <!-- Cabecera de la Tarjeta Épica -->
+                        <div class="flex items-center justify-between gap-3 mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-rose-500/20 border border-rose-400 flex items-center justify-center text-rose-300 shrink-0">
+                                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"/></svg>
+                                </div>
+                                <div>
+                                    <span class="font-pixel text-[10px] text-rose-400 block">JEFE DE MAZMORRA</span>
+                                    <h2 class="font-pixel text-lg sm:text-xl text-rose-300 tracking-wide">ÉPICA</h2>
+                                </div>
+                            </div>
+                            <span id="icon-detail-epic" class="text-rose-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+
+                        <!-- Bloque de contenido del Jefe -->
+                        <div class="bg-slate-900/90 border border-rose-500/20 rounded-xl p-4 mb-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <span class="font-pixel text-[10px] sm:text-xs text-amber-300 px-2.5 py-1 bg-amber-950/80 border border-amber-800 rounded">
+                                    SUBSISTEMA MAYOR
+                                </span>
+                                <span class="font-pixel text-[10px] sm:text-xs text-rose-400">MULTISPRINT // INABARCABLE</span>
+                            </div>
+
+                            <h3 class="text-xl sm:text-2xl font-bold text-amber-300 mb-2">
+                                «Sistema de fabricación de supervivencia»
+                            </h3>
+                            
+                            <p class="text-slate-200 text-base sm:text-lg leading-relaxed font-medium">
+                                Una funcionalidad masiva y compleja que engloba recolección de materiales, interfaz de recetas, animación física en tiempo real, validación de inventario y retroalimentación sonora.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable: Checklist de Dimensionalidad (Cuándo es una Épica) -->
+                        <div id="detail-epic" class="hidden border-t border-rose-500/30 pt-3 space-y-3">
+                            <span class="font-pixel text-[10px] text-amber-300 px-2 py-0.5 bg-amber-950/80 border border-amber-800 rounded inline-block">
+                                DIAGNÓSTICO DOCENTE // SÍNTOMAS DE UN JEFE FINAL
+                            </span>
+                            <div class="bg-slate-950/90 border-l-4 border-rose-500 p-3 rounded-r-lg space-y-2 text-base sm:text-lg text-slate-200 font-medium">
+                                <p><strong class="text-rose-300">1. Desborda el Sprint:</strong> Es imposible de finalizar y probar en un ciclo estándar de 1 a 2 semanas.</p>
+                                <p><strong class="text-rose-300">2. Exceso de Incertidumbre:</strong> Resulta inviable estimar sus Story Points con precisión sin desglosarla antes.</p>
+                                <p><strong class="text-rose-300">3. Multidisciplinar obligatoria:</strong> Requiere a todo el gremio del equipo (programación C#, arte 3D, animación en Unity, audio en FMOD y diseño).</p>
+                            </div>
+                            <div class="p-2.5 bg-slate-950/80 rounded-lg border border-rose-500/30 text-sm sm:text-base text-rose-200 font-medium flex items-start gap-2">
+                                <span class="text-amber-400 font-bold text-lg leading-none shrink-0">⚠</span>
+                                <span><strong>Regla de oro para el Backlog:</strong> Si colocas una épica directamente en la columna <em>En progreso</em> de Notion, atascarás el sprint completo.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estadísticas RPG inferiores -->
+                    <div class="mt-4 pt-3 border-t border-slate-700/60 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-pixel">
+                        <div class="flex items-center gap-3">
+                            <span class="text-rose-400">+500 HP</span>
+                            <span class="text-amber-400">Peligro Crítico</span>
+                        </div>
+                        <span class="px-2.5 py-1 rounded bg-rose-950/90 border border-rose-500/40 text-rose-300 text-[10px] sm:text-xs font-pixel">
+                            ☠ REQUIERE ESTRATEGIA DE DESGLOSE
+                        </span>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CONECTOR CENTRAL: FLECHA DE DESCOMPOSICIÓN - Columna 6 -->
+            <div id="wrapper-arrow" class="lg:col-span-1 flow-arrow-box my-2 lg:my-0 hidden">
+                <div class="flex flex-col items-center justify-center gap-1">
+                    <span class="font-pixel text-[9px] sm:text-[10px] text-emerald-400 hidden lg:block tracking-widest text-center mb-1">
+                        DESGLOSE
+                    </span>
+                    <div class="w-12 h-12 rounded-full bg-slate-900 border-2 border-emerald-400 flex items-center justify-center arrow-pulse">
+                        <!-- Flecha derecha en escritorio, abajo en móviles -->
+                        <svg class="w-6 h-6 fill-emerald-400 hidden lg:block" viewBox="0 0 24 24">
+                            <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/>
+                        </svg>
+                        <svg class="w-6 h-6 fill-emerald-400 block lg:hidden" viewBox="0 0 24 24">
+                            <path d="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z"/>
+                        </svg>
+                    </div>
+                    <span class="font-pixel text-[9px] sm:text-[10px] text-emerald-400 block lg:hidden tracking-widest text-center mt-1">
+                        DESGLOSE
+                    </span>
+                </div>
+            </div>
+
+            <!-- BLOQUE 2: HISTORIAS DE USUARIO (ESBIRROS TÁCTICOS) - Columnas 7 a 11 -->
+            <div id="wrapper-stories" class="lg:col-span-5 hidden">
+                <article class="card-stories animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('detail-stories')">
+                    <div>
+                        <!-- Cabecera de la Tarjeta Historias -->
+                        <div class="flex items-center justify-between gap-3 mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0">
+                                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20A8 8 0 0 1 4 12A8 8 0 0 1 12 4M11 16.5L18 9.5L16.59 8.09L11 13.67L7.91 10.59L6.5 12L11 16.5Z"/></svg>
+                                </div>
+                                <div>
+                                    <span class="font-pixel text-[10px] text-cyan-400 block">ENCUENTROS TÁCTICOS</span>
+                                    <h2 class="font-pixel text-lg sm:text-xl text-cyan-300 tracking-wide">HISTORIAS</h2>
+                                </div>
+                            </div>
+                            <span id="icon-detail-stories" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+
+                        <!-- Bloque de contenido de las Historias Tácticas -->
+                        <div class="bg-slate-900/90 border border-cyan-500/20 rounded-xl p-4 mb-4 space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                                <span class="font-pixel text-[10px] sm:text-xs text-amber-300 px-2.5 py-1 bg-amber-950/80 border border-amber-800 rounded">
+                                    REBANADAS VERTICALES INDEPENDIENTES
+                                </span>
+                                <span class="font-pixel text-[10px] sm:text-xs text-emerald-400">VALOR EN SPRINT</span>
+                            </div>
+
+                            <!-- Historia 1 -->
+                            <div class="story-badge-item p-3 rounded-lg text-base sm:text-lg text-slate-100 font-medium">
+                                «Como <strong class="text-cyan-300">superviviente acorralado</strong>, quiero <strong class="text-emerald-300">combinar alcohol y trapos</strong> para <strong class="text-purple-300">fabricar un cóctel molotov en tiempo real</strong>».
+                            </div>
+
+                            <!-- Historia 2 -->
+                            <div class="story-badge-item p-3 rounded-lg text-base sm:text-lg text-slate-100 font-medium">
+                                «Como <strong class="text-cyan-300">jugador táctico</strong>, quiero <strong class="text-emerald-300">consultar la rueda rápida de recetas</strong> para <strong class="text-purple-300">saber qué ingredientes me faltan sin pausar la acción</strong>».
+                            </div>
+
+                            <!-- Historia 3 -->
+                            <div class="story-badge-item p-3 rounded-lg text-base sm:text-lg text-slate-100 font-medium">
+                                «Como <strong class="text-cyan-300">combatiente en apuros</strong>, quiero <strong class="text-emerald-300">recibir un aviso táctil y sonoro</strong> para <strong class="text-purple-300">confirmar que el arma arrojadiza está lista para lanzar</strong>».
+                            </div>
+                        </div>
+
+                        <!-- Detalle Desplegable: Criterio de Victoria Táctica -->
+                        <div id="detail-stories" class="hidden border-t border-cyan-500/30 pt-3 space-y-3">
+                            <span class="font-pixel text-[10px] text-amber-300 px-2 py-0.5 bg-amber-950/80 border border-amber-800 rounded inline-block">
+                                ESTRATEGIA SCRUM // CÓMO VENCER AL JEFE
+                            </span>
+                            <div class="bg-slate-950/90 border-l-4 border-emerald-400 p-3 rounded-r-lg space-y-2 text-base sm:text-lg text-slate-200 font-medium">
+                                <p><strong class="text-emerald-300">1. Entregable en 1 Sprint:</strong> Cada una de estas historias puede completarse, probarse y jugarse en una misma iteración.</p>
+                                <p><strong class="text-emerald-300">2. Estimación manejable:</strong> El equipo puede asignarles Story Points precisos en la sesión de Planning.</p>
+                                <p><strong class="text-emerald-300">3. Valor para Playtesting:</strong> Si completas solo la primera historia, ¡ya tienes una mecánica divertida y evaluable en la build de Unity!</p>
+                            </div>
+                            <div class="p-2.5 bg-slate-950/80 rounded-lg border border-cyan-500/30 text-sm sm:text-base text-cyan-200 font-medium flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold text-lg leading-none shrink-0">✔</span>
+                                <span><strong>En Notion:</strong> Las historias se vinculan como ítems hijos de la Épica en la base de datos, manteniendo la trazabilidad total del diseño.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estadísticas RPG inferiores con ajuste anti-colisión -->
+                    <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between gap-4 text-xs sm:text-sm font-pixel">
+                        <div class="flex items-center gap-3">
+                            <span class="text-emerald-400 whitespace-nowrap shrink-0">+25 EXP c/u</span>
+                            <span class="text-cyan-400">Totalmente Derrotables</span>
+                        </div>
+                        <span class="px-2.5 py-1 rounded bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 text-[10px] sm:text-xs font-pixel">
+                            ⚔ UNIDADES DE VALOR EN SPRINT
+                        </span>
+                    </div>
+                </article>
+            </div>
+
+        </main>
+
+        <!-- CONTROLES DE NAVEGACIÓN: Flujo natural relativo inferior (nunca superpuesto, sin huecos en Google Sites) -->
+        <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+            <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <button id="btn-next" onclick="revealNextFase()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                    <span class="font-pixel text-[11px]">▶</span> Siguiente fase <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/2)</span>
+                </button>
+                <button onclick="revealAllFases()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                    Mostrar todo
+                </button>
+                <button onclick="resetAllFases()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                    Reiniciar
+                </button>
+            </nav>
+        </div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <script>
+        let currentStep = 0; // 0: nada, 1: épica, 2: flecha + historias
+        const totalSteps = 2;
+
+        function updateUI() {
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.innerText = `(${currentStep}/${totalSteps})`;
+            }
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentStep >= totalSteps) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        function revealNextFase() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                if (currentStep === 1) {
+                    const epic = document.getElementById('wrapper-epic');
+                    if (epic) epic.classList.remove('hidden');
+                } else if (currentStep === 2) {
+                    const arrow = document.getElementById('wrapper-arrow');
+                    const stories = document.getElementById('wrapper-stories');
+                    if (arrow) arrow.classList.remove('hidden');
+                    if (stories) stories.classList.remove('hidden');
+                }
+
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) {
+                        controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 90);
+
+                updateUI();
+            }
+        }
+
+        function revealAllFases() {
+            const epic = document.getElementById('wrapper-epic');
+            const arrow = document.getElementById('wrapper-arrow');
+            const stories = document.getElementById('wrapper-stories');
+            if (epic) epic.classList.remove('hidden');
+            if (arrow) arrow.classList.remove('hidden');
+            if (stories) stories.classList.remove('hidden');
+            currentStep = totalSteps;
+            updateUI();
+        }
+
+        function resetAllFases() {
+            const epic = document.getElementById('wrapper-epic');
+            const arrow = document.getElementById('wrapper-arrow');
+            const stories = document.getElementById('wrapper-stories');
+            if (epic) epic.classList.add('hidden');
+            if (arrow) arrow.classList.add('hidden');
+            if (stories) stories.classList.add('hidden');
+
+            const detailEpic = document.getElementById('detail-epic');
+            const detailStories = document.getElementById('detail-stories');
+            if (detailEpic) detailEpic.classList.add('hidden');
+            if (detailStories) detailStories.classList.add('hidden');
+
+            const iconEpic = document.getElementById('icon-detail-epic');
+            const iconStories = document.getElementById('icon-detail-stories');
+            if (iconEpic) iconEpic.classList.remove('rotate-chevron');
+            if (iconStories) iconStories.classList.remove('rotate-chevron');
+
+            if (epic) {
+                const cardE = epic.querySelector('.card-epic');
+                if (cardE) cardE.classList.remove('active-card');
+            }
+            if (stories) {
+                const cardS = stories.querySelector('.card-stories');
+                if (cardS) cardS.classList.remove('active-card');
+            }
+
+            currentStep = 0;
+            updateUI();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            const card = panel.closest('article');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+                if (card) card.classList.add('active-card');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (card) card.classList.remove('active-card');
+            }
+        }
+
+        // Navegación por teclado (Barra espaciadora o Flecha Derecha)
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentStep < totalSteps) {
+                    e.preventDefault();
+                    revealNextFase();
+                }
+            }
+        });
+
+        // Inicializar estado de la interfaz
+        updateUI();
+    </script>
+</body>
+</html>

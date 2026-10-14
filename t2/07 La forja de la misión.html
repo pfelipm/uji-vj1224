@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: La forja de la misión (el ciclo de la ingeniería de requisitos)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para diseño fluido y adaptativo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (identidad retro-gaming) y 'Rajdhani' (legibilidad proyectada) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        .phase-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(20, 30, 48, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .phase-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Codificación cromática de las 5 fases canónicas */
+        /* Fase 1: Elicitación (Cian Neón) */
+        .stage-elicitacion {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.12);
+        }
+        .stage-elicitacion:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
+        }
+
+        /* Fase 2: Análisis (Violeta Místico) */
+        .stage-analisis {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 0 16px rgba(167, 139, 250, 0.12);
+        }
+        .stage-analisis:hover {
+            border-color: #a78bfa;
+            box-shadow: 0 0 24px rgba(167, 139, 250, 0.35);
+        }
+
+        /* Fase 3: Especificación (Amarillo Ámbar) */
+        .stage-especificacion {
+            border-color: rgba(253, 224, 71, 0.4);
+            box-shadow: 0 0 16px rgba(253, 224, 71, 0.12);
+        }
+        .stage-especificacion:hover {
+            border-color: #fde047;
+            box-shadow: 0 0 24px rgba(253, 224, 71, 0.35);
+        }
+
+        /* Fase 4: Validación (Esmeralda Victorioso) */
+        .stage-validacion {
+            border-color: rgba(52, 211, 153, 0.4);
+            box-shadow: 0 0 16px rgba(52, 211, 153, 0.12);
+        }
+        .stage-validacion:hover {
+            border-color: #34d399;
+            box-shadow: 0 0 24px rgba(52, 211, 153, 0.35);
+        }
+
+        /* Fase 5: Gestión (Rojo Carmesí) */
+        .stage-gestion {
+            border-color: rgba(248, 113, 113, 0.4);
+            box-shadow: 0 0 16px rgba(248, 113, 113, 0.12);
+        }
+        .stage-gestion:hover {
+            border-color: #f87171;
+            box-shadow: 0 0 24px rgba(248, 113, 113, 0.35);
+        }
+
+        /* Estado activo con borde resaltado */
+        .card-active {
+            box-shadow: 0 0 28px rgba(56, 189, 248, 0.4) !important;
+        }
+
+        /* Conector vertical descendente animado */
+        .flow-down-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 28px;
+        }
+        .arrow-pulse {
+            animation: arrowBounce 1.8s infinite ease-in-out;
+        }
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.7; }
+            50% { transform: translateY(4px); opacity: 1; filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.8)); }
+        }
+
+        /* Rotación suave del chevron indicador */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Animación suave de entrada */
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-reveal {
+            animation: fadeInSlide 0.28s ease-out forwards;
+        }
+
+        /* Barra HUD inferior en flujo natural */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 07/15</span>
+      <a href="06%20El%20viaje%20de%20la%20idea.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="08%20El%20di%C3%A1logo%20del%20h%C3%A9roe.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-4xl w-full">
+        <!-- Encabezado Proyectable -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/80 border border-cyan-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                    VJ1224 // TEMA 2: INGENIERÍA DE REQUISITOS
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-300 to-emerald-400 tracking-wide leading-relaxed py-1">
+                LA FORJA DE LA MISIÓN
+            </h1>
+            
+            <p class="text-slate-400 text-xs sm:text-sm font-pixel mt-1 tracking-wider">
+                &lt;El Ciclo de la Ingeniería de Requisitos&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                Los requisitos no caen del cielo ni son estáticos: se descubren, se analizan, se especifican en contratos jugables y se validan en un ciclo vivo que alimenta cada iteración del desarrollo.
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                Usa el botón inferior o la barra espaciadora para desvelar la progresión; haz clic en cada tarjeta para desplegar sus criterios técnicos.
+            </p>
+        </header>
+
+        <!-- Contenedor de las 5 Fases del Ciclo -->
+        <main class="space-y-1 flex flex-col items-center w-full">
+            
+            <!-- FASE 1: ELICITACIÓN -->
+            <div id="wrapper-stage-1" class="w-full hidden">
+                <article class="phase-card stage-elicitacion animate-reveal rounded-2xl p-5 cursor-pointer select-none" onclick="toggleDetail('detail-stage-1')">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center font-pixel text-lg sm:text-xl text-cyan-300 shrink-0 shadow-[0_0_12px_rgba(56,189,248,0.25)]">
+                                01
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-pixel text-[10px] text-cyan-400">FASE 01 // DESCUBRIMIENTO</span>
+                                    <span class="font-pixel text-[9px] bg-cyan-950/80 text-cyan-300 border border-cyan-800 px-1.5 py-0.5 rounded hidden sm:inline-block">ROL: «ESCUCHAR LOS RUMORES»</span>
+                                </div>
+                                <h2 class="font-pixel text-lg sm:text-xl text-cyan-300 tracking-wide mt-0.5">ELICITACIÓN</h2>
+                            </div>
+                        </div>
+                        <span id="icon-detail-stage-1" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                    </div>
+
+                    <p class="text-slate-200 text-base sm:text-lg mt-3 leading-snug font-medium">
+                        <strong>Descubrir la necesidad real.</strong> La aventura comienza interrogando a diseñadores de juego, guionistas, artistas y jugadores para extraer la visión antes de escribir una sola línea de código.
+                    </p>
+
+                    <!-- Detalle Desplegable Interior Fase 1 -->
+                    <div id="detail-stage-1" class="hidden mt-4 pt-4 border-t border-cyan-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-cyan-300 px-2 py-0.5 bg-cyan-950 border border-cyan-800 rounded inline-block">
+                            EN LA PRÁCTICA REAL
+                        </span>
+                        <p class="text-base sm:text-lg text-slate-100 italic leading-relaxed">
+                            «El Lead Designer dice: <em>"Queremos que el gancho de agarre transmita vértigo al balancearse"</em>. Tu labor no es adivinar, sino preguntar: ¿qué alcance tiene?, ¿se engancha a cualquier superficie o solo a anclajes específicos?, ¿hay caída libre si se suelta antes de tiempo?»
+                        </p>
+                        <div class="p-3 sm:p-3.5 bg-slate-900 rounded-lg border border-cyan-500/30 text-sm sm:text-base text-cyan-200 font-semibold leading-relaxed">
+                            📌 <strong>Herramientas:</strong> Entrevistas semiestructuradas, análisis del Game Design Document (GDD) y revisión de referentes en juegos existentes.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CONECTOR 1-2 -->
+            <div id="con-1" class="flow-down-box hidden">
+                <svg class="w-6 h-6 fill-emerald-400 arrow-pulse" viewBox="0 0 24 24"><path d="M11 4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z"/></svg>
+            </div>
+
+            <!-- FASE 2: ANÁLISIS -->
+            <div id="wrapper-stage-2" class="w-full hidden">
+                <article class="phase-card stage-analisis animate-reveal rounded-2xl p-5 cursor-pointer select-none" onclick="toggleDetail('detail-stage-2')">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400 flex items-center justify-center font-pixel text-lg sm:text-xl text-purple-300 shrink-0 shadow-[0_0_12px_rgba(167,139,250,0.25)]">
+                                02
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-pixel text-[10px] text-purple-400">FASE 02 // VIABILIDAD</span>
+                                    <span class="font-pixel text-[9px] bg-purple-950/80 text-purple-300 border border-purple-800 px-1.5 py-0.5 rounded hidden sm:inline-block">ROL: «DESCIFRAR EL MAPA»</span>
+                                </div>
+                                <h2 class="font-pixel text-lg sm:text-xl text-purple-300 tracking-wide mt-0.5">ANÁLISIS</h2>
+                            </div>
+                        </div>
+                        <span id="icon-detail-stage-2" class="text-purple-400 text-xl transition-transform duration-200">▼</span>
+                    </div>
+
+                    <p class="text-slate-200 text-base sm:text-lg mt-3 leading-snug font-medium">
+                        <strong>Filtrar, clasificar y resolver conflictos.</strong> Se evalúa la viabilidad técnica en el motor, el impacto en el rendimiento y la coherencia con los pilares del juego.
+                    </p>
+
+                    <!-- Detalle Desplegable Interior Fase 2 -->
+                    <div id="detail-stage-2" class="hidden mt-4 pt-4 border-t border-purple-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-purple-300 px-2 py-0.5 bg-purple-950 border border-purple-800 rounded inline-block">
+                            RESOLUCIÓN DE CONFLICTOS
+                        </span>
+                        <p class="text-base sm:text-lg text-slate-100 font-medium">
+                            «El equipo de diseño pide física de cuerdas hiperrealista con deformación en tiempo real; el equipo de programación advierte que eso colapsará el framerate en la build de Unity para la feria de enero».
+                        </p>
+                        <div class="p-3 sm:p-3.5 bg-slate-900 rounded-lg border border-purple-500/30 text-sm sm:text-base text-purple-200 font-semibold leading-relaxed">
+                            📌 <strong>Solución de ingeniería:</strong> Negociar un modelo simplificado mediante cinemática inversa y curvas de Bézier que conserve la sensación de juego sin penalizar los recursos.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CONECTOR 2-3 -->
+            <div id="con-2" class="flow-down-box hidden">
+                <svg class="w-6 h-6 fill-emerald-400 arrow-pulse" viewBox="0 0 24 24"><path d="M11 4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z"/></svg>
+            </div>
+
+            <!-- FASE 3: ESPECIFICACIÓN -->
+            <div id="wrapper-stage-3" class="w-full hidden">
+                <article class="phase-card stage-especificacion animate-reveal rounded-2xl p-5 cursor-pointer select-none" onclick="toggleDetail('detail-stage-3')">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-yellow-500/20 border border-yellow-400 flex items-center justify-center font-pixel text-lg sm:text-xl text-yellow-300 shrink-0 shadow-[0_0_12px_rgba(253,224,71,0.25)]">
+                                03
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-pixel text-[10px] text-yellow-400">FASE 03 // CONTRATO</span>
+                                    <span class="font-pixel text-[9px] bg-yellow-950/80 text-yellow-300 border border-yellow-800 px-1.5 py-0.5 rounded hidden sm:inline-block">ROL: «ESCRIBIR EL PERGAMINO»</span>
+                                </div>
+                                <h2 class="font-pixel text-lg sm:text-xl text-yellow-300 tracking-wide mt-0.5">ESPECIFICACIÓN</h2>
+                            </div>
+                        </div>
+                        <span id="icon-detail-stage-3" class="text-yellow-400 text-xl transition-transform duration-200">▼</span>
+                    </div>
+
+                    <p class="text-slate-200 text-base sm:text-lg mt-3 leading-snug font-medium">
+                        <strong>Formalizar sin ambigüedades.</strong> Se documenta el comportamiento esperado en artefactos claros y comprensibles por todo el equipo multidisciplinar: ¡las Historias de Usuario!
+                    </p>
+
+                    <!-- Detalle Desplegable Interior Fase 3 -->
+                    <div id="detail-stage-3" class="hidden mt-4 pt-4 border-t border-yellow-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-yellow-300 px-2 py-0.5 bg-yellow-950 border border-yellow-800 rounded inline-block">
+                            ESTRUCTURA FORMAL
+                        </span>
+                        <div class="p-3 bg-slate-900 rounded-lg border-l-4 border-yellow-400 text-base sm:text-lg text-slate-100 font-medium">
+                            «Como <strong>explorador acrobático</strong>, quiero <strong>disparar el gancho hacia salientes metálicos</strong> para <strong>cruzar abismos de hasta 15 metros sin tocar el suelo</strong>».
+                        </div>
+                        <div class="p-3 sm:p-3.5 bg-slate-900 rounded-lg border border-yellow-500/30 text-sm sm:text-base text-yellow-200 font-semibold leading-relaxed">
+                            📌 <strong>Artefactos del TDD:</strong> Historias de Usuario en Notion, criterios de aceptación Gherkin y diagramas UML de apoyo (Casos de Uso, Clases, Actividad).
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CONECTOR 3-4 -->
+            <div id="con-3" class="flow-down-box hidden">
+                <svg class="w-6 h-6 fill-emerald-400 arrow-pulse" viewBox="0 0 24 24"><path d="M11 4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z"/></svg>
+            </div>
+
+            <!-- FASE 4: VALIDACIÓN -->
+            <div id="wrapper-stage-4" class="w-full hidden">
+                <article class="phase-card stage-validacion animate-reveal rounded-2xl p-5 cursor-pointer select-none" onclick="toggleDetail('detail-stage-4')">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center font-pixel text-lg sm:text-xl text-emerald-300 shrink-0 shadow-[0_0_12px_rgba(52,211,153,0.25)]">
+                                04
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-pixel text-[10px] text-emerald-400">FASE 04 // COMPROBACIÓN</span>
+                                    <span class="font-pixel text-[9px] bg-emerald-950/80 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded hidden sm:inline-block">ROL: «PROBAR EL FILO»</span>
+                                </div>
+                                <h2 class="font-pixel text-lg sm:text-xl text-emerald-300 tracking-wide mt-0.5">VALIDACIÓN</h2>
+                            </div>
+                        </div>
+                        <span id="icon-detail-stage-4" class="text-emerald-400 text-xl transition-transform duration-200">▼</span>
+                    </div>
+
+                    <p class="text-slate-200 text-base sm:text-lg mt-3 leading-snug font-medium">
+                        <strong>Comprobar si satisface la necesidad real.</strong> ¿Hemos construido el sistema correcto? Se evalúa en sesiones de juego con mando en mano para contrastar las sensaciones de gameplay.
+                    </p>
+
+                    <!-- Detalle Desplegable Interior Fase 4 -->
+                    <div id="detail-stage-4" class="hidden mt-4 pt-4 border-t border-emerald-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-emerald-300 px-2 py-0.5 bg-emerald-950 border border-emerald-800 rounded inline-block">
+                            EVALUACIÓN EN BUILD (PLAYTESTING)
+                        </span>
+                        <div class="space-y-1.5 text-base sm:text-lg text-slate-100 font-medium">
+                            <p>✔ <strong>Verificación técnica:</strong> El raycast impacta con la capa <code>GrappleLayer</code> y el personaje inicia el arco parabólico.</p>
+                            <p>✔ <strong>Validación lúdica:</strong> El diseñador prueba con mando y detecta que la aceleración provoca mareo; se ajusta el FOV de la cámara de inmediato.</p>
+                        </div>
+                        <div class="p-3 sm:p-3.5 bg-slate-900 rounded-lg border border-emerald-500/30 text-sm sm:text-base text-emerald-200 font-semibold leading-relaxed">
+                            📌 <strong>Diferencia clave:</strong> <em>Verificar</em> es comprobar si cumple el código; <em>Validar</em> es comprobar si divierte y cumple la visión artística.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CONECTOR 4-5 -->
+            <div id="con-4" class="flow-down-box hidden">
+                <svg class="w-6 h-6 fill-emerald-400 arrow-pulse" viewBox="0 0 24 24"><path d="M11 4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z"/></svg>
+            </div>
+
+            <!-- FASE 5: GESTIÓN -->
+            <div id="wrapper-stage-5" class="w-full hidden">
+                <article class="phase-card stage-gestion animate-reveal rounded-2xl p-5 cursor-pointer select-none" onclick="toggleDetail('detail-stage-5')">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-rose-500/20 border border-rose-400 flex items-center justify-center font-pixel text-lg sm:text-xl text-rose-300 shrink-0 shadow-[0_0_12px_rgba(248,113,113,0.25)]">
+                                05
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-pixel text-[10px] text-rose-400">FASE 05 // CONTROL DE CAMBIOS</span>
+                                    <span class="font-pixel text-[9px] bg-rose-950/80 text-rose-300 border border-rose-800 px-1.5 py-0.5 rounded hidden sm:inline-block">ROL: «CUSTODIAR EL DIARIO»</span>
+                                </div>
+                                <h2 class="font-pixel text-lg sm:text-xl text-rose-300 tracking-wide mt-0.5">GESTIÓN</h2>
+                            </div>
+                        </div>
+                        <span id="icon-detail-stage-5" class="text-rose-400 text-xl transition-transform duration-200">▼</span>
+                    </div>
+
+                    <p class="text-slate-200 text-base sm:text-lg mt-3 leading-snug font-medium">
+                        <strong>Gobernar la evolución del proyecto.</strong> El desarrollo es largo y los requisitos mutan inevitablemente. Se prioriza el backlog, se mitiga el <em>feature creep</em> y se cierra el ciclo hacia la siguiente iteración.
+                    </p>
+
+                    <!-- Detalle Desplegable Interior Fase 5 -->
+                    <div id="detail-stage-5" class="hidden mt-4 pt-4 border-t border-rose-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-rose-300 px-2 py-0.5 bg-rose-950 border border-rose-800 rounded inline-block">
+                            CONTROL EN NOTION Y METODOLOGÍA ÁGIL
+                        </span>
+                        <div class="space-y-1.5 text-base sm:text-lg text-slate-100 font-medium">
+                            <p>🛡 <strong>Frenar el Feature Creep:</strong> Nuevas ideas no entran en medio del sprint; se añaden al Product Backlog y se negocian en la siguiente planificación.</p>
+                            <p>🔄 <strong>Cierre del Ciclo:</strong> Cada sprint concluido genera feedback que vuelve a alimentar la <strong>Elicitación</strong> para las siguientes mecánicas del juego.</p>
+                        </div>
+                        <div class="p-3 sm:p-3.5 bg-slate-900 rounded-lg border border-rose-500/30 text-sm sm:text-base text-rose-200 font-semibold leading-relaxed">
+                            📌 <strong>Regla de oro de Scrum:</strong> El cambio es bienvenido, pero se gestiona con disciplina sin romper los compromisos del sprint actual.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </main>
+
+        <!-- CONTROLES DE NAVEGACIÓN: En flujo natural relativo inferior (nunca superpuesto, sin huecos en Google Sites) -->
+        <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+            <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <button id="btn-next" onclick="revealNextStage()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                    <span class="font-pixel text-[11px]">▶</span> Siguiente fase <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/5)</span>
+                </button>
+                <button onclick="revealAllStages()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                    Mostrar todo
+                </button>
+                <button onclick="resetAllStages()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                    Reiniciar
+                </button>
+            </nav>
+        </div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <script>
+        let currentStage = 0;
+        const totalStages = 5;
+
+        function updateHUD() {
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.innerText = `(${currentStage}/${totalStages})`;
+            }
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentStage >= totalStages) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        function revealNextStage() {
+            if (currentStage < totalStages) {
+                currentStage++;
+                
+                const wrapper = document.getElementById('wrapper-stage-' + currentStage);
+                if (wrapper) wrapper.classList.remove('hidden');
+
+                if (currentStage > 1) {
+                    const connector = document.getElementById('con-' + (currentStage - 1));
+                    if (connector) connector.classList.remove('hidden');
+                }
+
+                // Desplazamiento suave enfocado a la botonera para mantener el encuadre natural
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) {
+                        controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 90);
+
+                updateHUD();
+            }
+        }
+
+        function revealAllStages() {
+            for (let i = 1; i <= totalStages; i++) {
+                const wrapper = document.getElementById('wrapper-stage-' + i);
+                if (wrapper) wrapper.classList.remove('hidden');
+                if (i > 1) {
+                    const connector = document.getElementById('con-' + (i - 1));
+                    if (connector) connector.classList.remove('hidden');
+                }
+            }
+            currentStage = totalStages;
+            updateHUD();
+        }
+
+        function resetAllStages() {
+            for (let i = 1; i <= totalStages; i++) {
+                const wrapper = document.getElementById('wrapper-stage-' + i);
+                if (wrapper) wrapper.classList.add('hidden');
+
+                const detail = document.getElementById('detail-stage-' + i);
+                if (detail) detail.classList.add('hidden');
+
+                const icon = document.getElementById('icon-detail-stage-' + i);
+                if (icon) icon.classList.remove('rotate-chevron');
+
+                if (wrapper) {
+                    const card = wrapper.querySelector('.phase-card');
+                    if (card) card.classList.remove('card-active');
+                }
+
+                if (i > 1) {
+                    const connector = document.getElementById('con-' + (i - 1));
+                    if (connector) connector.classList.add('hidden');
+                }
+            }
+            currentStage = 0;
+            updateHUD();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            const card = panel.closest('.phase-card');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+                if (card) card.classList.add('card-active');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (card) card.classList.remove('card-active');
+            }
+        }
+
+        // Navegación por teclado para control ágil en el aula
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentStage < totalStages) {
+                    e.preventDefault();
+                    revealNextStage();
+                }
+            }
+        });
+
+        // Inicializar interfaz
+        updateHUD();
+    </script>
+</body>
+</html>

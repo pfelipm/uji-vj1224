@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: El sello de calidad (Definition of Done)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para diseño fluido y adaptativo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (identidad retro-gaming) y 'Rajdhani' (legibilidad máxima en proyector) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(253, 224, 71, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjeta de Duelo Conceptual */
+        .vs-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(20, 30, 48, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .vs-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card-ac {
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .card-ac:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
+        }
+
+        .card-dod {
+            border-color: rgba(253, 224, 71, 0.45);
+            box-shadow: 0 0 16px rgba(253, 224, 71, 0.15);
+        }
+        .card-dod:hover {
+            border-color: #fde047;
+            box-shadow: 0 0 24px rgba(253, 224, 71, 0.35);
+        }
+
+        /* Tarjeta Mandamiento DoD */
+        .dod-item {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(20, 26, 40, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(71, 85, 105, 0.5);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dod-item:hover {
+            border-color: #34d399;
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.25);
+            transform: translateY(-2px);
+        }
+        .dod-item.active-card {
+            border-color: #34d399 !important;
+            box-shadow: 0 0 24px rgba(52, 211, 153, 0.4) !important;
+        }
+
+        /* Rotación suave del chevron indicador */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Animación suave de entrada */
+        @keyframes cascadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(16px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .animate-cascade {
+            animation: cascadeIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Sello animado de certificación final */
+        @keyframes stampPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(253, 224, 71, 0.4);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 32px rgba(52, 211, 153, 0.7);
+            }
+        }
+        .stamp-certified {
+            animation: stampPulse 2.4s infinite ease-in-out;
+        }
+
+        /* Barra HUD inferior en flujo natural */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 12/15</span>
+      <a href="11%20Planning%20poker.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="13%20El%20tablero%20Kanban.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-5xl w-full">
+        <!-- Encabezado Proyectable de la SPA -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-yellow-950/80 border border-yellow-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-yellow-300 tracking-wider">
+                    VJ1224 // TEMA 2: EL PACTO DE CALIDAD DEL EQUIPO
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-cyan-300 to-emerald-400 tracking-wide leading-relaxed py-1">
+                EL SELLO DE CALIDAD
+            </h1>
+            
+            <p class="text-amber-300 text-xs sm:text-base font-pixel mt-1 tracking-wider">
+                &lt;Definition of Done (DoD): Cuándo algo está REALMENTE terminado&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                En videojuegos, «funciona en mi ordenador» no significa terminado. La Definition of Done es el pacto innegociable de ingeniería que blinda la rama principal de Git y garantiza que cada sprint entregue una build jugable y sin fisuras.
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                Usa el botón inferior o la barra espaciadora para desvelar cada acto; haz clic en cada tarjeta para consultar su caso de trinchera y su regla de oro.
+            </p>
+        </header>
+
+        <!-- Main: Los 2 Actos de la Calidad Ágil -->
+        <main class="space-y-10 w-full">
+            
+            <!-- ========================================== -->
+            <!-- ACTO I: EL DUELO CONCEPTUAL (AC VS. DOD) -->
+            <!-- ========================================== -->
+            <section id="act-1-wrapper" class="hidden space-y-4">
+                <div class="flex items-center justify-between border-b border-cyan-500/30 pb-2.5">
+                    <div class="flex items-center gap-3">
+                        <span class="font-pixel text-xs bg-cyan-500/20 text-cyan-300 border border-cyan-400/50 px-2.5 py-1 rounded whitespace-nowrap shrink-0">
+                            ACTO I
+                        </span>
+                        <h2 class="font-pixel text-lg sm:text-xl text-cyan-300 tracking-wide">
+                            EL DUELO: CRITERIOS DE ACEPTACIÓN VS. DEFINITION OF DONE
+                        </h2>
+                    </div>
+                    <span class="font-pixel text-[10px] text-cyan-400 hidden sm:inline-block">LOCAL VS. GLOBAL</span>
+                </div>
+
+                <p class="text-slate-300 text-base sm:text-lg font-medium leading-relaxed">
+                    El error más extendido en el aula es confundir ambos conceptos. Ambos responden a <em>«¿cuándo está listo?»</em>, pero a dos niveles completamente distintos de la ingeniería del videojuego.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                    
+                    <!-- Tarjeta A: Criterios de Aceptación (Gherkin) -->
+                    <article id="card-ac" class="vs-card card-ac animate-cascade rounded-2xl p-5 sm:p-6 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-ac')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0 shadow-[0_0_12px_rgba(56,189,248,0.25)]">
+                                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M17,17H7V15H17V17M17,13H7V11H17V13M17,9H7V7H17V9Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-cyan-400">ÁMBITO LOCAL // POR CADA HISTORIA</span>
+                                <span id="icon-ac" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-lg sm:text-xl text-cyan-200 mb-3">CRITERIOS DE ACEPTACIÓN (GHERKIN)</h3>
+                            
+                            <div class="space-y-2 text-base sm:text-lg text-slate-200 font-medium">
+                                <p><strong class="text-slate-400">QUÉ EVALÚA:</strong> El comportamiento funcional específico de una mecánica jugable.</p>
+                                <p><strong class="text-slate-400">DÓNDE APLICA:</strong> Es <strong>único y exclusivo</strong> para cada tarjeta de Historia de Usuario.</p>
+                                <p><strong class="text-slate-400">FORMATO:</strong> Sintaxis canónica: <em>Dado... Cuando... Entonces...</em></p>
+                            </div>
+                        </div>
+
+                        <!-- Detalle Desplegable Criterios de Aceptación -->
+                        <div id="detail-ac" class="hidden mt-4 pt-3 border-t border-cyan-500/30 bg-slate-950/90 p-4 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-cyan-300 px-2 py-0.5 bg-cyan-950 border border-cyan-800 rounded inline-block">
+                                EJEMPLO EN UNITY // MECÁNICA DE DISPARO
+                            </span>
+                            <div class="p-3 bg-slate-900 rounded-lg border-l-4 border-cyan-400 text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                «<strong>DADO</strong> que el cargador está a 0 balas, <strong>CUANDO</strong> pulso el gatillo derecho, <strong>ENTONCES</strong> la cámara no tiembla y se reproduce el audio de percutor vacío en FMOD».
+                            </div>
+                            <p class="text-xs sm:text-sm text-cyan-200/90 font-medium pt-1">
+                                📌 Este criterio solo sirve para la pistola. ¡No sirve para el inventario ni para el menú de pausa!
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta B: Definition of Done (DoD) -->
+                    <article id="card-dod-vs" class="vs-card card-dod animate-cascade rounded-2xl p-5 sm:p-6 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-dod-vs')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-yellow-500/20 border border-yellow-400 flex items-center justify-center text-yellow-300 shrink-0 shadow-[0_0_12px_rgba(253,224,71,0.25)]">
+                                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M17.13,17C15.92,18.85 14.11,20.24 12,20.92C9.89,20.24 8.08,18.85 6.87,17C6.53,16.5 6.24,16 6,15.47C6,13.82 8.71,12.47 12,12.47C15.29,12.47 18,13.82 18,15.47C17.76,16 17.47,16.5 17.13,17Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-yellow-400">ÁMBITO GLOBAL // PACTO DEL PROYECTO</span>
+                                <span id="icon-dod-vs" class="text-yellow-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-lg sm:text-xl text-yellow-200 mb-3">DEFINITION OF DONE (DOD)</h3>
+                            
+                            <div class="space-y-2 text-base sm:text-lg text-slate-200 font-medium">
+                                <p><strong class="text-slate-400">QUÉ EVALÚA:</strong> La madurez, salud técnica y estabilidad de ingeniería del software.</p>
+                                <p><strong class="text-slate-400">DÓNDE APLICA:</strong> Es <strong>transversal a TODO el proyecto</strong> y a todas las historias por igual.</p>
+                                <p><strong class="text-slate-400">FORMATO:</strong> Lista de control vinculante acordada por todo el equipo multidisciplinar.</p>
+                            </div>
+                        </div>
+
+                        <!-- Detalle Desplegable Definition of Done -->
+                        <div id="detail-dod-vs" class="hidden mt-4 pt-3 border-t border-yellow-500/30 bg-slate-950/90 p-4 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-yellow-300 px-2 py-0.5 bg-yellow-950 border border-yellow-800 rounded inline-block">
+                                LA RELACIÓN INQUEBRANTABLE
+                            </span>
+                            <div class="p-3 bg-slate-900 rounded-lg border-l-4 border-yellow-400 text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                🛡 <strong>Cumplir Gherkin es solo el paso 1 de la DoD.</strong> Si tu disparo cumple el Gherkin pero está en una rama rota de Git, tiene código espagueti sin comentar y sonidos robados con copyright, <strong>¡NO está terminado y NO se mueve a Done!</strong>
+                            </div>
+                            <p class="text-xs sm:text-sm text-yellow-200/90 font-medium pt-1">
+                                🔄 <em>Ámbito evolutivo:</em> Es un estándar del proyecto que el equipo puede endurecer en cada retrospectiva de sprint.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- ACTO II: LOS 5 MANDAMIENTOS DE LA DOD -->
+            <!-- ========================================== -->
+            <section id="act-2-wrapper" class="hidden space-y-4">
+                <div class="flex items-center justify-between border-b border-emerald-500/30 pb-2.5">
+                    <div class="flex items-center gap-3">
+                        <span class="font-pixel text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-400/50 px-2.5 py-1 rounded whitespace-nowrap shrink-0">
+                            ACTO II
+                        </span>
+                        <h2 class="font-pixel text-lg sm:text-xl text-emerald-300 tracking-wide">
+                            LA FORJA DEL SELLO (LOS 5 REQUISITOS GLOBALES)
+                        </h2>
+                    </div>
+                    <span class="font-pixel text-[10px] text-emerald-400 hidden sm:inline-block">HAZ CLIC EN CADA MANDAMIENTO</span>
+                </div>
+
+                <p class="text-slate-300 text-base sm:text-lg font-medium leading-relaxed">
+                    Ninguna tarjeta pasa a la columna <strong>«Done»</strong> en el tablero de trabajo si le falta una sola de estas cinco marcas de verificación.
+                </p>
+
+                <!-- Cuadrícula de 5 Mandamientos -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4">
+                    
+                    <!-- Mandamiento 1: Criterios Gherkin -->
+                    <article id="dod-card-1" class="dod-item animate-cascade rounded-2xl p-4 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-dod-1')">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-pixel text-2xl text-cyan-400">01</span>
+                                <span id="icon-dod-1" class="text-cyan-400 text-base transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-xs sm:text-sm text-white mb-2 leading-snug">GHERKIN SUPERADO</h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-snug font-medium">
+                                Cumple todos los Criterios de Aceptación especificados por diseño.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 1 -->
+                        <div id="detail-dod-1" class="hidden mt-3 pt-2.5 border-t border-slate-700 bg-slate-950/90 p-3 rounded-xl text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                            📌 <strong>Verificación:</strong> El jugador ejecuta las acciones y la respuesta jugable coincide punto por punto con la tarjeta.
+                        </div>
+                    </article>
+
+                    <!-- Mandamiento 2: Código Integrado -->
+                    <article id="dod-card-2" class="dod-item animate-cascade rounded-2xl p-4 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-dod-2')">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-pixel text-2xl text-purple-400">02</span>
+                                <span id="icon-dod-2" class="text-purple-400 text-base transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-xs sm:text-sm text-white mb-2 leading-snug">CÓDIGO INTEGRADO</h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-snug font-medium">
+                                En la rama principal de Git, sin errores ni avisos críticos en consola.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 2 -->
+                        <div id="detail-dod-2" class="hidden mt-3 pt-2.5 border-t border-slate-700 bg-slate-950/90 p-3 rounded-xl text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                            📌 <strong>Regla de oro:</strong> Si solo funciona en tu portátil y no está subido y mezclado con la rama del grupo, ¡no existe!
+                        </div>
+                    </article>
+
+                    <!-- Mandamiento 3: Cero Regresiones -->
+                    <article id="dod-card-3" class="dod-item animate-cascade rounded-2xl p-4 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-dod-3')">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-pixel text-2xl text-amber-400">03</span>
+                                <span id="icon-dod-3" class="text-amber-400 text-base transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-xs sm:text-sm text-white mb-2 leading-snug">PRUEBAS Y CERO BUGS</h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-snug font-medium">
+                                No rompe mecánicas previas ni genera caídas de rendimiento en Unity.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 3 -->
+                        <div id="detail-dod-3" class="hidden mt-3 pt-2.5 border-t border-slate-700 bg-slate-950/90 p-3 rounded-xl text-sm sm:text-base text-amber-200 font-medium leading-relaxed">
+                            🛡 <strong>Anti-Colapso:</strong> Compilación limpia sin lanzar excepciones en bucle durante la partida.
+                        </div>
+                    </article>
+
+                    <!-- Mandamiento 4: Cero Placeholders -->
+                    <article id="dod-card-4" class="dod-item animate-cascade rounded-2xl p-4 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-dod-4')">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-pixel text-2xl text-rose-400">04</span>
+                                <span id="icon-dod-4" class="text-rose-400 text-base transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-xs sm:text-sm text-white mb-2 leading-snug">ARTE Y AUDIO REALES</h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-snug font-medium">
+                                Cero cajas grises o texturas rosas: recursos y sonido final integrados.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 4 -->
+                        <div id="detail-dod-4" class="hidden mt-3 pt-2.5 border-t border-slate-700 bg-slate-950/90 p-3 rounded-xl text-sm sm:text-base text-rose-200 font-medium leading-relaxed">
+                            ⛔ <strong>Prohibido parches:</strong> Los prototipos provisionales son para investigar; a la build del sprint entran los recursos pactados.
+                        </div>
+                    </article>
+
+                    <!-- Mandamiento 5: Validación del Equipo -->
+                    <article id="dod-card-5" class="dod-item animate-cascade rounded-2xl p-4 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-dod-5')">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-pixel text-2xl text-emerald-300">05</span>
+                                <span id="icon-dod-5" class="text-emerald-300 text-base transition-transform duration-200">▼</span>
+                            </div>
+                            <h3 class="font-pixel text-xs sm:text-sm text-white mb-2 leading-snug">VALIDACIÓN CON MANDO</h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-snug font-medium">
+                                Probado en build jugable y aprobado por diseño antes de darlo por cerrado.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable 5 -->
+                        <div id="detail-dod-5" class="hidden mt-3 pt-2.5 border-t border-slate-700 bg-slate-950/90 p-3 rounded-xl text-sm sm:text-base text-emerald-200 font-medium leading-relaxed">
+                            🏁 <strong>El Pase a Producción:</strong> Si el diseñador y otro compañero dan el visto bueno con el mando en la mano, ¡la tarjeta se mueve a Done!
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- Insignia Dinámica de Build Certificada -->
+                <div id="certified-banner" class="mt-6 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-950/90 via-slate-950/90 to-yellow-950/90 border-2 border-emerald-400 text-center stamp-certified shadow-[0_0_24px_rgba(52,211,153,0.3)]">
+                    <div class="inline-flex items-center gap-2 mb-1">
+                        <span class="text-emerald-400 text-xl">✔</span>
+                        <h4 class="font-pixel text-sm sm:text-base text-emerald-300 tracking-wider">
+                            BUILD CERTIFICADA // INCREMENTO JUGABLE ENTREGABLE
+                        </h4>
+                    </div>
+                    <p class="text-slate-200 text-sm sm:text-base font-medium max-w-2xl mx-auto">
+                        Cuando una historia supera los 5 mandamientos de la DoD, se convierte en un incremento real de software. ¡El proyecto avanza con cimientos de titanio hacia la feria del videojuego!
+                    </p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ========================================== -->
+        <!-- CONTROLES DE NAVEGACIÓN: HUD Flujo Natural -->
+        <!-- ========================================== -->
+        <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+            <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <button id="btn-next" onclick="revealNextAct()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                    <span class="font-pixel text-[11px]">▶</span> Siguiente acto <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/2)</span>
+                </button>
+                <button onclick="revealAllActs()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                    Mostrar todo
+                </button>
+                <button onclick="resetAllActs()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                    Reiniciar
+                </button>
+            </nav>
+        </div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- LÓGICA INTERACTIVA JAVASCRIPT -->
+    <!-- ========================================== -->
+    <script>
+        let currentAct = 0;
+        const totalActs = 2;
+
+        function updateHUD() {
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.innerText = `(${currentAct}/${totalActs})`;
+            }
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentAct >= totalActs) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        function revealNextAct() {
+            if (currentAct < totalActs) {
+                currentAct++;
+                const wrapper = document.getElementById(`act-${currentAct}-wrapper`);
+                if (wrapper) {
+                    wrapper.classList.remove('hidden');
+                }
+
+                // Scroll suave enfocado hacia la botonera sin solapar
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) {
+                        controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 100);
+
+                updateHUD();
+            }
+        }
+
+        function revealAllActs() {
+            for (let i = 1; i <= totalActs; i++) {
+                const wrapper = document.getElementById(`act-${i}-wrapper`);
+                if (wrapper) wrapper.classList.remove('hidden');
+            }
+            currentAct = totalActs;
+            updateHUD();
+        }
+
+        function resetAllActs() {
+            for (let i = 1; i <= totalActs; i++) {
+                const wrapper = document.getElementById(`act-${i}-wrapper`);
+                if (wrapper) wrapper.classList.add('hidden');
+
+                // Cerrar detalles abiertos
+                const details = wrapper ? wrapper.querySelectorAll('[id^="detail-"]') : [];
+                details.forEach(d => d.classList.add('hidden'));
+
+                const icons = wrapper ? wrapper.querySelectorAll('[id^="icon-"]') : [];
+                icons.forEach(ic => ic.classList.remove('rotate-chevron'));
+
+                const cards = wrapper ? wrapper.querySelectorAll('.dod-item, .vs-card') : [];
+                cards.forEach(c => c.classList.remove('active-card'));
+            }
+
+            currentAct = 0;
+            updateHUD();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id.replace('detail-', ''));
+            const card = panel.closest('article');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+                if (card) card.classList.add('active-card');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (card) card.classList.remove('active-card');
+            }
+        }
+
+        // Navegación ágil por teclado para dinamizar la explicación en clase
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentAct < totalActs) {
+                    e.preventDefault();
+                    revealNextAct();
+                }
+            }
+        });
+
+        // Inicialización
+        updateHUD();
+    </script>
+</body>
+</html>

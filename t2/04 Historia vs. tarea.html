@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: Historia vs. tarea</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para diseño responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (identidad retro/RPG) y 'Rajdhani' (legibilidad máxima en aula) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjeta de Historia (Cian / Esmeralda) */
+        .card-story {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(12, 35, 51, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(56, 189, 248, 0.35);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-story:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+        .card-story.active-card {
+            border-color: #34d399;
+            box-shadow: 0 0 28px rgba(52, 211, 153, 0.35);
+        }
+
+        /* Tarjeta de Tarea (Rojo / Ámbar) */
+        .card-task {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(45, 20, 24, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(248, 113, 113, 0.35);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-task:hover {
+            border-color: #f87171;
+            box-shadow: 0 0 24px rgba(248, 113, 113, 0.3);
+            transform: translateY(-2px);
+        }
+        .card-task.active-card {
+            border-color: #fb923c;
+            box-shadow: 0 0 28px rgba(251, 146, 60, 0.35);
+        }
+
+        /* Círculo central VS con pulsación */
+        .vs-badge {
+            background: rgba(10, 16, 28, 0.95);
+            border: 2px solid #34d399;
+            box-shadow: 0 0 16px rgba(52, 211, 153, 0.45);
+        }
+
+        /* Rotación suave del chevron */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Animación suave de revelado */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.97) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .animate-reveal {
+            animation: fadeInScale 0.35s ease-out forwards;
+        }
+
+        /* Barra de control inferior en flujo natural */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 04/15</span>
+      <a href="03%20Historias%20de%20usuario.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="05%20%C3%89pica%20vs.%20historia.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-5xl w-full">
+        <!-- Encabezado Proyectable -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/80 border border-cyan-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                    VJ1224 // TEMA 2: EL DUELO METODOLÓGICO
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-2xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-300 to-teal-200 tracking-wide leading-relaxed py-1">
+                ¡ELIGE TU MISIÓN!
+            </h1>
+            
+            <p class="text-slate-400 text-xs sm:text-sm font-pixel mt-1 tracking-wider">
+                &lt;Historia vs. Tarea&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                No confundas el propósito lúdico con la línea de código. La historia define qué experimenta quien juega; la tarea técnica resuelve cómo lo programa el equipo.
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                Usa el botón inferior o la barra espaciadora para desvelar cada contendiente; haz clic en cada tarjeta para desplegar sus detalles.
+            </p>
+        </header>
+
+        <!-- Arena del Duelo (Contenedor de 2 Contendientes con círculo VS) -->
+        <main class="grid grid-cols-1 lg:grid-cols-11 gap-4 items-stretch justify-center relative">
+            
+            <!-- CONTENDIENTE 1: HISTORIA DE USUARIO (Columnas 1 a 5) -->
+            <div id="wrapper-story" class="lg:col-span-5 hidden">
+                <article class="card-story animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('detail-story')">
+                    <div>
+                        <!-- Cabecera de la Tarjeta -->
+                        <div class="flex items-center justify-between gap-3 mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M18,3H6C4.89,3 4,3.9 4,5V19C4,20.1 4.89,21 6,21H18C19.1,21 20,20.1 20,19V5C20,3.9 19.1,3 18,3M18,19H6V5H18V19M8,11H16V9H8V11M8,13H16V15H8V13Z"/></svg>
+                                </div>
+                                <div>
+                                    <span class="font-pixel text-[10px] text-cyan-400 block">CONTENDIENTE A</span>
+                                    <h2 class="font-pixel text-lg sm:text-xl text-cyan-300 tracking-wide">DIARIO DE MISIONES</h2>
+                                </div>
+                            </div>
+                            <span id="icon-detail-story" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+
+                        <!-- Bloque de contenido principal -->
+                        <div class="bg-slate-900/90 border border-cyan-500/20 rounded-xl p-4 mb-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <span class="font-pixel text-[10px] sm:text-xs text-amber-300 px-2.5 py-1 bg-amber-950/80 border border-amber-800 rounded">
+                                    MISIÓN: EL SALTO DEL HÉROE
+                                </span>
+                                <span class="font-pixel text-[10px] sm:text-xs text-emerald-400">UNIDAD DE VALOR</span>
+                            </div>
+                            
+                            <p class="text-slate-100 text-base sm:text-lg leading-relaxed font-medium">
+                                «Como <strong class="text-cyan-300">explorador acrobático</strong>, quiero <strong class="text-emerald-300">saltar con impulso dinámico</strong> para <strong class="text-purple-300">superar abismos y alcanzar cornisas elevadas</strong>».
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable: Criterios de Aceptación (Gherkin) -->
+                        <div id="detail-story" class="hidden border-t border-cyan-500/30 pt-3 space-y-3">
+                            <span class="font-pixel text-[10px] text-amber-300 px-2 py-0.5 bg-amber-950/80 border border-amber-800 rounded inline-block">
+                                ESPECIFICACIÓN GHERKIN // CRITERIOS DE ACEPTACIÓN
+                            </span>
+                            <div class="bg-slate-950/90 border-l-4 border-amber-400 p-3 rounded-r-lg space-y-1.5 text-base sm:text-lg text-slate-200 font-medium">
+                                <p><span class="text-amber-300 font-bold font-pixel text-xs">DADO</span> que el personaje está ante una cornisa o foso de hasta 3 metros.</p>
+                                <p><span class="text-cyan-300 font-bold font-pixel text-xs">CUANDO</span> pulsa el botón de salto en carrera o al borde de la plataforma.</p>
+                                <p><span class="text-emerald-300 font-bold font-pixel text-xs">ENTONCES</span> ejecuta una parábola fluida con animación reactiva y aterriza al otro lado.</p>
+                            </div>
+                            <div class="p-2.5 bg-slate-950/80 rounded-lg border border-cyan-500/30 text-sm sm:text-base text-cyan-200 font-medium flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold text-lg leading-none shrink-0">✔</span>
+                                <span>Permite al diseñador de niveles y al <em>playtester</em> verificar la sensación jugable sin necesidad de inspeccionar el código fuente.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estadísticas / Atributos RPG inferiores -->
+                    <div class="mt-4 pt-3 border-t border-slate-700/60 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-pixel">
+                        <div class="flex items-center gap-3">
+                            <span class="text-emerald-400">+10 Creatividad</span>
+                            <span class="text-cyan-400">+20 Colaboración</span>
+                        </div>
+                        <span class="px-2.5 py-1 rounded bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 text-[10px] sm:text-xs font-pixel">
+                            ★ ENFOCADO EN EL VALOR JUGABLE
+                        </span>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CÍRCULO VS CENTRAL (Columna 6) -->
+            <div id="wrapper-vs" class="lg:col-span-1 flex items-center justify-center my-2 lg:my-0 hidden">
+                <div class="vs-badge w-14 h-14 rounded-full flex items-center justify-center font-pixel text-emerald-300 text-sm shadow-[0_0_15px_rgba(52,211,153,0.5)]">
+                    VS
+                </div>
+            </div>
+
+            <!-- CONTENDIENTE 2: TAREA TÉCNICA (Columnas 7 a 11) -->
+            <div id="wrapper-task" class="lg:col-span-5 hidden">
+                <article class="card-task animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('detail-task')">
+                    <div>
+                        <!-- Cabecera de la Tarjeta -->
+                        <div class="flex items-center justify-between gap-3 mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-rose-500/20 border border-rose-400 flex items-center justify-center text-rose-300 shrink-0">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"/></svg>
+                                </div>
+                                <div>
+                                    <span class="font-pixel text-[10px] text-rose-400 block">CONTENDIENTE B</span>
+                                    <h2 class="font-pixel text-lg sm:text-xl text-rose-300 tracking-wide">INFORME TÉCNICO</h2>
+                                </div>
+                            </div>
+                            <span id="icon-detail-task" class="text-rose-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+
+                        <!-- Bloque de contenido principal -->
+                        <div class="bg-slate-900/90 border border-rose-500/20 rounded-xl p-4 mb-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <span class="font-pixel text-[10px] sm:text-xs text-amber-300 px-2.5 py-1 bg-amber-950/80 border border-amber-800 rounded">
+                                    ID: #734-JUMP
+                                </span>
+                                <span class="font-pixel text-[10px] sm:text-xs text-rose-400">INGENIERÍA PURA</span>
+                            </div>
+                            
+                            <p class="text-slate-100 text-base sm:text-lg leading-relaxed font-medium">
+                                Implementar método <code class="text-rose-300 font-mono bg-slate-950 px-1.5 py-0.5 rounded">Player.Jump()</code> aplicando un vector de fuerza vertical de <code class="text-rose-300 font-mono bg-slate-950 px-1.5 py-0.5 rounded">8.0f</code> sobre el componente <code class="text-rose-300 font-mono bg-slate-950 px-1.5 py-0.5 rounded">Rigidbody</code> del personaje al capturar el evento de entrada <code class="text-rose-300 font-mono bg-slate-950 px-1.5 py-0.5 rounded">Input.GetButtonDown("Jump")</code>.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable: Por qué es una Tarea y no una Historia -->
+                        <div id="detail-task" class="hidden border-t border-rose-500/30 pt-3 space-y-3">
+                            <span class="font-pixel text-[10px] text-rose-300 px-2 py-0.5 bg-rose-950/80 border border-rose-800 rounded inline-block">
+                                DESGLOSE DE INGENIERÍA // RESOLUCIÓN INTERNA
+                            </span>
+                            <div class="bg-slate-950/90 border-l-4 border-rose-400 p-3 rounded-r-lg space-y-1.5 text-base sm:text-lg text-slate-200 font-medium">
+                                <p><strong class="text-rose-300 font-bold">Ámbito técnico:</strong> Se resuelve en C# dentro del ciclo de actualización física (<code class="text-sm font-mono text-cyan-300">FixedUpdate</code>).</p>
+                                <p><strong class="text-rose-300 font-bold">Riesgo docente:</strong> Si se sitúa en el backlog como historia, el equipo pierde la visión del diseño lúdico y los perfiles de arte o narrativa no pueden evaluarla.</p>
+                                <p><strong class="text-rose-300 font-bold">Lugar idóneo:</strong> Sub-actividad técnica interna dentro de la Historia del Salto en Notion.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estadísticas / Atributos RPG inferiores -->
+                    <div class="mt-4 pt-3 border-t border-slate-700/60 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-pixel">
+                        <div class="flex items-center gap-3">
+                            <span class="text-rose-400">+30 Rigidez</span>
+                            <span class="text-amber-400">-10 Flexibilidad</span>
+                        </div>
+                        <span class="px-2.5 py-1 rounded bg-rose-950/90 border border-rose-500/40 text-rose-300 text-[10px] sm:text-xs font-pixel">
+                            ⚙ ENFOCADO EN LA IMPLEMENTACIÓN
+                        </span>
+                    </div>
+                </article>
+            </div>
+
+        </main>
+
+        <!-- CONTROLES DE NAVEGACIÓN: En flujo natural relativo inferior (nunca superpuesto) -->
+        <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+            <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <button id="btn-next" onclick="revealNextDuelo()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                    <span class="font-pixel text-[11px]">▶</span> Siguiente contendiente <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/2)</span>
+                </button>
+                <button onclick="revealAllDuelo()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                    Mostrar ambos
+                </button>
+                <button onclick="resetAllDuelo()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                    Reiniciar
+                </button>
+            </nav>
+        </div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <script>
+        let currentStep = 0; // 0: nada, 1: historia, 2: vs + tarea
+        const totalSteps = 2;
+
+        function updateDueloUI() {
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.innerText = `(${currentStep}/${totalSteps})`;
+            }
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentStep >= totalSteps) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        function revealNextDuelo() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                if (currentStep === 1) {
+                    const story = document.getElementById('wrapper-story');
+                    if (story) story.classList.remove('hidden');
+                } else if (currentStep === 2) {
+                    const vs = document.getElementById('wrapper-vs');
+                    const task = document.getElementById('wrapper-task');
+                    if (vs) vs.classList.remove('hidden');
+                    if (task) task.classList.remove('hidden');
+                }
+
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) {
+                        controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 90);
+
+                updateDueloUI();
+            }
+        }
+
+        function revealAllDuelo() {
+            const story = document.getElementById('wrapper-story');
+            const vs = document.getElementById('wrapper-vs');
+            const task = document.getElementById('wrapper-task');
+            if (story) story.classList.remove('hidden');
+            if (vs) vs.classList.remove('hidden');
+            if (task) task.classList.remove('hidden');
+            currentStep = totalSteps;
+            updateDueloUI();
+        }
+
+        function resetAllDuelo() {
+            const story = document.getElementById('wrapper-story');
+            const vs = document.getElementById('wrapper-vs');
+            const task = document.getElementById('wrapper-task');
+            if (story) story.classList.add('hidden');
+            if (vs) vs.classList.add('hidden');
+            if (task) task.classList.add('hidden');
+
+            const detailStory = document.getElementById('detail-story');
+            const detailTask = document.getElementById('detail-task');
+            if (detailStory) detailStory.classList.add('hidden');
+            if (detailTask) detailTask.classList.add('hidden');
+
+            const iconStory = document.getElementById('icon-detail-story');
+            const iconTask = document.getElementById('icon-detail-task');
+            if (iconStory) iconStory.classList.remove('rotate-chevron');
+            if (iconTask) iconTask.classList.remove('rotate-chevron');
+
+            if (story) {
+                const cardS = story.querySelector('.card-story');
+                if (cardS) cardS.classList.remove('active-card');
+            }
+            if (task) {
+                const cardT = task.querySelector('.card-task');
+                if (cardT) cardT.classList.remove('active-card');
+            }
+
+            currentStep = 0;
+            updateDueloUI();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            const card = panel.closest('article');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+                if (card) card.classList.add('active-card');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (card) card.classList.remove('active-card');
+            }
+        }
+
+        // Control por teclado (Barra espaciadora o Flecha Derecha)
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentStep < totalSteps) {
+                    e.preventDefault();
+                    revealNextDuelo();
+                }
+            }
+        });
+
+        // Inicializar UI al cargar
+        updateDueloUI();
+    </script>
+</body>
+</html>

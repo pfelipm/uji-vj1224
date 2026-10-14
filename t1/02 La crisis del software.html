@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VJ1224 - La crisis del software (1968)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Space Grotesk & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Space Mono', monospace;
+      background-color: #08080c;
+      color: #ffffff;
+      background-image: 
+        radial-gradient(#1e1e2e 2px, transparent 2px),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 24px 24px, 36px 36px, 36px 36px;
+    }
+
+    .font-grotesk {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* High impact brutalist shadows */
+    .brutal-box-yellow {
+      border: 4px solid #000000;
+      box-shadow: 6px 6px 0px 0px #ffffff;
+    }
+
+    .brutal-box-white {
+      border: 4px solid #ffffff;
+      box-shadow: 6px 6px 0px 0px #facc15;
+    }
+
+    .brutal-box-cyan {
+      border: 4px solid #ffffff;
+      box-shadow: 6px 6px 0px 0px #22d3ee;
+    }
+
+    .brutal-box-rose {
+      border: 4px solid #ffffff;
+      box-shadow: 6px 6px 0px 0px #f43f5e;
+    }
+
+    .brutal-box-emerald {
+      border: 4px solid #000000;
+      box-shadow: 6px 6px 0px 0px #ffffff;
+    }
+      .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="p-3 sm:p-6 md:p-8">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 1 · 02/07</span>
+      <a href="01%20La%20ingenier%C3%ADa%20del%20software.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="03%20Las%20leyes%20no%20escritas%20del%20desarrollo%20del%20software.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+  <div class="w-full max-w-full mx-auto space-y-6 sm:space-y-8">
+
+    <!-- HERO / TITLE BANNER -->
+    <div class="w-full bg-yellow-400 text-black p-5 sm:p-8 text-center brutal-box-yellow">
+      <span class="text-xs sm:text-sm font-extrabold uppercase tracking-widest block mb-2 bg-black text-yellow-400 inline-block px-3 py-1">
+        VJ1224 // TEMA 1: HISTORIA Y FUNDAMENTOS
+      </span>
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-grotesk uppercase tracking-tight leading-none mb-3">
+        LA CRISIS DEL SOFTWARE
+      </h1>
+      <p class="text-base sm:text-xl md:text-2xl font-bold font-grotesk uppercase text-zinc-900">
+        El "Big Bang" que dio origen a la Ingeniería del Software (Garmisch, 1968)
+      </p>
+    </div>
+
+    <!-- SECTION 1: ORIGIN HISTÓRICO -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-8 brutal-box-white">
+      <div class="flex items-center space-x-3 mb-4 border-b-2 border-zinc-800 pb-3">
+        <span class="bg-yellow-400 text-black font-black px-2.5 py-1 text-sm font-grotesk">01</span>
+        <h2 class="text-xl sm:text-3xl font-extrabold font-grotesk text-yellow-400 uppercase tracking-wide">
+          ¿Cómo surgió el término? (Conferencia OTAN 1968)
+        </h2>
+      </div>
+      <p class="text-base sm:text-xl font-medium font-grotesk text-zinc-200 leading-relaxed mb-4">
+        A finales de la década de 1960, la potencia del hardware crecía a ritmo exponencial, pero los métodos para escribir código seguían siendo <strong class="text-yellow-400">artesanales e individuales</strong>.
+      </p>
+      <div class="bg-zinc-900 border-l-4 border-yellow-400 p-4 sm:p-5 text-zinc-100 font-grotesk text-sm sm:text-lg">
+        💡 En <strong>1968</strong>, la OTAN reunió en <strong>Garmisch (Alemania)</strong> a los mejores científicos de la computación (como Edsger Dijkstra). Allí se acuñó formalmente el término <span class="text-yellow-400 font-bold">"Software Engineering"</span> no para celebrar un éxito, sino para <strong>admitir una crisis global</strong>.
+      </div>
+    </div>
+
+    <!-- SECTION 2: LOS 4 SÍNTOMAS DE LA CRISIS (GRID RESPONSIVO) -->
+    <div class="space-y-4">
+      <h2 class="text-2xl sm:text-4xl font-black font-grotesk text-white uppercase tracking-tight">
+        ⚠️ Los 4 síntomas del desastre
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        
+        <!-- CARD 1 -->
+        <div class="bg-zinc-950 p-5 sm:p-6 brutal-box-rose space-y-2">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <span class="text-rose-500 font-black font-grotesk text-lg sm:text-xl">💸 SÍNTOMA 01</span>
+            <span class="text-xs font-bold bg-rose-950 text-rose-300 px-2 py-0.5 border border-rose-700">PRESUPUESTO</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold font-grotesk text-white uppercase">Costes desorbitados</h3>
+          <p class="text-sm sm:text-base text-zinc-300 font-grotesk leading-relaxed">
+            Los proyectos costaban el triple de lo planificado originalmente. El coste del software superó con creces al coste del hardware.
+          </p>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="bg-zinc-950 p-5 sm:p-6 brutal-box-cyan space-y-2">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <span class="text-cyan-400 font-black font-grotesk text-lg sm:text-xl">⏳ SÍNTOMA 02</span>
+            <span class="text-xs font-bold bg-cyan-950 text-cyan-300 px-2 py-0.5 border border-cyan-700">CALENDARIO</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold font-grotesk text-white uppercase">Retrasos infinitos</h3>
+          <p class="text-sm sm:text-base text-zinc-300 font-grotesk leading-relaxed">
+            Fechas de entrega incumplidas sistemáticamente. El software nunca estaba listo a tiempo ("vaporware").
+          </p>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="bg-zinc-950 p-5 sm:p-6 brutal-box-cyan space-y-2">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <span class="text-cyan-400 font-black font-grotesk text-lg sm:text-xl">🐛 SÍNTOMA 03</span>
+            <span class="text-xs font-bold bg-cyan-950 text-cyan-300 px-2 py-0.5 border border-cyan-700">CALIDAD</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold font-grotesk text-white uppercase">Software inestable</h3>
+          <p class="text-sm sm:text-base text-zinc-300 font-grotesk leading-relaxed">
+            Programas llenos de fallos críticos en producción, insatisfacción masiva de los usuarios y falta de requisitos claros.
+          </p>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="bg-zinc-950 p-5 sm:p-6 brutal-box-rose space-y-2">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <span class="text-rose-500 font-black font-grotesk text-lg sm:text-xl">🍝 SÍNTOMA 04</span>
+            <span class="text-xs font-bold bg-rose-950 text-rose-300 px-2 py-0.5 border border-rose-700">MANTENIMIENTO</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold font-grotesk text-white uppercase">Código espagueti</h3>
+          <p class="text-sm sm:text-base text-zinc-300 font-grotesk leading-relaxed">
+            Sistemas imposibles de modificar o ampliar. Tocar una línea de código rompía tres funciones no relacionadas.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 3: PARALELISMO GAMER (CASOS REALES) -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-8 brutal-box-white">
+      <div class="flex items-center space-x-3 mb-4 border-b-2 border-zinc-800 pb-3">
+        <span class="bg-rose-500 text-white font-black px-2.5 py-1 text-sm font-grotesk">🎮 GAMING</span>
+        <h2 class="text-xl sm:text-3xl font-extrabold font-grotesk text-rose-500 uppercase tracking-wide">
+          La crisis en los videojuegos: del crunch a los launch bugs
+        </h2>
+      </div>
+      <p class="text-base sm:text-lg font-grotesk text-zinc-300 leading-relaxed mb-4">
+        En el desarrollo de videojuegos, la Crisis del Software se manifiesta cuando la ambición artística supera la madurez de la gestión del proyecto:
+      </p>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left font-grotesk">
+        <div class="bg-zinc-900 p-4 border border-zinc-700">
+          <span class="text-yellow-400 font-bold block text-sm mb-1">🕹️ ATARI 1982: E.T.</span>
+          <p class="text-xs sm:text-sm text-zinc-300">Desarrollado en solo 5 semanas bajo presión extrema. El colapso de calidad provocó el famoso Crash del 83.</p>
+        </div>
+        <div class="bg-zinc-900 p-4 border border-zinc-700">
+          <span class="text-cyan-400 font-bold block text-sm mb-1">⌛ DUKE NUKEM FOREVER</span>
+          <p class="text-xs sm:text-sm text-zinc-300">14 años de desarrollo por falta de control de alcance (scope creep) y reinicios continuos de motor gráfico.</p>
+        </div>
+        <div class="bg-zinc-900 p-4 border border-zinc-700">
+          <span class="text-rose-400 font-bold block text-sm mb-1">🤖 CYBERPUNK 2077 (2020)</span>
+          <p class="text-xs sm:text-sm text-zinc-300">Lanzamiento prematuro por presión comercial, bugs severos en consolas antiguas y retiro temporal de la Store.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINALE SUMMARY -->
+    <div class="w-full bg-emerald-400 text-black p-5 sm:p-7 text-center brutal-box-emerald">
+      <h3 class="text-lg sm:text-2xl font-black font-grotesk uppercase mb-1">
+        💡 LA LECCIÓN PARA EL ALUMNADO DE VJ1224
+      </h3>
+      <p class="text-base sm:text-xl font-bold font-grotesk leading-snug">
+        Pasar de la "programación artesanal" a la «ingeniería del software» es lo que transforma una buena idea en un videojuego pulido, rentable y entregado a tiempo.
+      </p>
+    </div>
+
+  </div>
+
+
+    <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

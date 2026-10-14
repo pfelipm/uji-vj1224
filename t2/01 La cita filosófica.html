@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La cita filosófica | VJ1224</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .font-pixel {
+            font-family: 'Press Start 2P', monospace;
+        }
+        .font-body {
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 25%, rgba(34, 211, 238, 0.14), transparent 55%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .hud-frame {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(17, 24, 39, 0.92) 100%);
+            border: 2px solid rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 30px rgba(56, 189, 248, 0.12);
+        }
+
+        .quote-word {
+            opacity: 0;
+            animation: fadeIn 0.7s ease-out forwards;
+            display: inline-block;
+        }
+
+        .author, .source-link {
+            opacity: 0;
+            animation: fadeInUp 0.9s ease-out forwards;
+        }
+
+        .instant-reveal .quote-word,
+        .instant-reveal .author,
+        .instant-reveal .source-link {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen flex flex-col items-center justify-between p-4 md:p-6 lg:p-8 selection:bg-cyan-500 selection:text-black">
+
+    <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+    <nav class="hide-in-embed w-full max-w-5xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-2 border-slate-700/80 rounded-xl px-5 py-3 shadow-lg backdrop-blur-md">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-base transition-colors">
+            <span>⌂</span>
+            <span>Índice general VJ1224</span>
+        </a>
+        <div class="flex items-center gap-3 text-sm md:text-base font-semibold">
+            <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-pixel text-[10px]">TEMA 2 · 01/15</span>
+            <a href="../t1/07%20Scrum%20con%20Notion.html" class="text-slate-300 hover:text-white transition-colors">← Anterior (T1)</a>
+            <span class="text-slate-600">|</span>
+            <a href="02%20La%20jerarqu%C3%ADa%20del%20dise%C3%B1o.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+        </div>
+    </nav>
+
+    <main id="quote-container" class="w-full max-w-5xl hud-frame rounded-2xl p-8 md:p-14 text-center my-auto">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-cyan-950/80 border-2 border-cyan-500/50 rounded-full mb-8 shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                VJ1224 // TEMA 2 · REQUISITOS ÁGILES
+            </span>
+        </div>
+
+        <blockquote class="font-pixel text-xl sm:text-3xl md:text-4xl leading-loose md:leading-relaxed text-cyan-300 max-w-4xl mx-auto" style="text-shadow: 0 0 14px rgba(56, 189, 248, 0.55);">
+            <span class="quote-word" style="animation-delay: 0.2s;">«Describir</span>
+            <span class="quote-word" style="animation-delay: 0.55s;">un</span>
+            <span class="quote-word" style="animation-delay: 0.85s;">videojuego</span>
+            <span class="quote-word" style="animation-delay: 1.2s;">mediante</span>
+            <span class="quote-word" style="animation-delay: 1.55s;">tareas</span>
+            <span class="quote-word" style="animation-delay: 1.9s;">es</span>
+            <span class="quote-word" style="animation-delay: 2.2s;">como</span>
+            <span class="quote-word" style="animation-delay: 2.55s;">describir</span>
+            <span class="quote-word" style="animation-delay: 2.9s;">un</span>
+            <span class="quote-word" style="animation-delay: 3.2s;">cuadro</span>
+            <span class="quote-word" style="animation-delay: 3.6s;">solo</span>
+            <span class="quote-word" style="animation-delay: 3.95s;">por</span>
+            <span class="quote-word" style="animation-delay: 4.25s;">sus</span>
+            <span class="quote-word text-amber-300" style="animation-delay: 4.6s;">colores».</span>
+        </blockquote>
+
+        <p class="author text-2xl md:text-3xl font-bold text-slate-300 mt-10" style="animation-delay: 5.2s;">
+            — Jason Woodward <span class="text-slate-400 text-xl font-semibold">(productor y diseñador de videojuegos)</span>
+        </p>
+
+        <div class="source-link mt-10 flex flex-wrap items-center justify-center gap-4" style="animation-delay: 5.6s;">
+            <a href="https://www.gamedeveloper.com/design/user-stories-how-to-maintain-structure-with-creativity" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 font-pixel text-xs bg-amber-400/15 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border-2 border-amber-300 py-3.5 px-6 rounded-xl shadow-lg transition-all">
+                <span>📖</span>
+                <span>Leer artículo original en Game Developer</span>
+                <span>↗</span>
+            </a>
+            <button onclick="replayQuote()" class="inline-flex items-center gap-2 font-bold text-base bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border-2 border-slate-600 py-2.5 px-4 rounded-xl transition-colors cursor-pointer">
+                <span>↺</span>
+                <span>Repetir animación</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- Pie de página académico estandarizado -->
+    <footer class="w-full max-w-5xl mt-8 py-6 border-t border-slate-800/90 text-center text-slate-400 text-sm md:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+            <div class="text-left">
+                <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+                <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function replayQuote() {
+            const container = document.getElementById('quote-container');
+            container.classList.remove('instant-reveal');
+            const cloned = container.cloneNode(true);
+            container.parentNode.replaceChild(cloned, container);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                document.getElementById('quote-container')?.classList.add('instant-reveal');
+            }
+        });
+    </script>
+</body>
+</html>

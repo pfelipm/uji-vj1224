@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VJ1224 - El ecosistema Scrum en videojuegos</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Space Grotesk & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Space Mono', monospace;
+      background-color: #08080c;
+      color: #ffffff;
+      background-image: 
+        radial-gradient(#1e1e2e 2px, transparent 2px),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 28px 28px, 42px 42px, 42px 42px;
+    }
+
+    .font-grotesk {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* High impact brutalist boxes for lecture projection */
+    .brutal-box-yellow {
+      border: 5px solid #000000;
+      box-shadow: 8px 8px 0px 0px #ffffff;
+    }
+
+    .brutal-box-white {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #facc15;
+    }
+
+    .brutal-box-cyan {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #22d3ee;
+    }
+
+    .brutal-box-emerald {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #34d399;
+    }
+
+    .brutal-box-rose {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #f43f5e;
+    }
+
+    .brutal-box-purple {
+      border: 5px solid #ffffff;
+      box-shadow: 8px 8px 0px 0px #c084fc;
+    }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.97); opacity: 0.85; }
+      50% { transform: scale(1.03); opacity: 1; }
+      100% { transform: scale(0.97); opacity: 0.85; }
+    }
+
+    .sprint-pulse {
+      animation: pulse-ring 3s infinite ease-in-out;
+    }
+      .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="p-4 sm:p-8 md:p-10">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 1 · 06/07</span>
+      <a href="05%20UML%20-%20los%20planos%20del%20videojuego.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="07%20Scrum%20con%20Notion.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+  <div class="w-full max-w-full mx-auto space-y-8 sm:space-y-12">
+
+    <!-- HERO HEADER BANNER -->
+    <div class="w-full bg-yellow-400 text-black p-6 sm:p-10 text-center brutal-box-yellow space-y-3">
+      <div class="flex flex-wrap justify-between items-center gap-3 mb-2">
+        <span class="text-xs sm:text-base font-extrabold uppercase tracking-widest bg-black text-yellow-400 inline-block px-4 py-1.5">
+          MARCOS ÁGILES DE DESARROLLO
+        </span>
+        <span class="text-xs sm:text-sm font-bold bg-zinc-900 text-white px-4 py-1.5 border-2 border-black uppercase">
+          Guía Técnica del Ecosistema
+        </span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-grotesk uppercase tracking-tight leading-none">
+        EL ECOSISTEMA SCRUM
+      </h1>
+      <p class="text-lg sm:text-2xl md:text-3xl font-extrabold font-grotesk uppercase text-zinc-900 pt-1">
+        Roles, Eventos y Artefactos aplicados a la Producción de Videojuegos
+      </p>
+      <div class="inline-block bg-black text-yellow-400 font-extrabold text-xs sm:text-sm px-3 py-1 font-mono mt-2">
+        📌 Nota ortográfica: Se escribe "Scrum" (nombre propio de origen rugby), nunca "SCRUM".
+      </div>
+    </div>
+
+    <!-- SECTION 1: LOS 3 ROLES EN SCRUM -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-10 brutal-box-white space-y-8">
+      
+      <div class="border-b-4 border-yellow-400/40 pb-4 flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <span class="text-xs sm:text-sm font-extrabold bg-yellow-400 text-black px-3 py-1 uppercase tracking-wider font-grotesk">
+            BLOQUE 01
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-black font-grotesk text-yellow-400 uppercase tracking-wide mt-2">
+            1. El Equipo Scrum (Scrum Team)
+          </h2>
+        </div>
+        <p class="text-sm sm:text-base text-zinc-300 font-grotesk max-w-xl">
+          Unidad multifuncional y autoorganizada de 3 a 10 personas. No existen jerarquías tradicionales, solo responsabilidades enfocadas a entregar valor.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 font-grotesk">
+
+        <!-- PRODUCT OWNER -->
+        <div class="bg-zinc-900 p-6 brutal-box-rose space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">👤</span>
+              <span class="text-xs bg-rose-950 text-rose-300 font-bold px-2.5 py-1 border border-rose-700 uppercase">
+                1 por Producto
+              </span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-black text-rose-400 uppercase">Product Owner</h3>
+            <p class="text-yellow-400 font-bold text-sm sm:text-base uppercase mt-1">"La Voz del Jugador y del Negocio"</p>
+            <ul class="text-sm sm:text-base text-zinc-300 space-y-2 mt-4 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-rose-400 font-black">▸</span>
+                <span>Define el <strong>QUÉ</strong> se construye y en qué orden de prioridad.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-rose-400 font-black">▸</span>
+                <span>Gestiona y mantiene vivo el <strong>Product Backlog</strong>.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-rose-400 font-black">▸</span>
+                <span>Equivale en gamedev al rol de <strong>Game Director / Lead Producer</strong>.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-zinc-950 p-3 border border-zinc-800 text-m text-zinc-400 rounded">
+            🎯 <strong>Meta:</strong> Maximizar el valor del videojuego y el retorno de inversión.
+          </div>
+        </div>
+
+        <!-- DEVELOPERS -->
+        <div class="bg-zinc-900 p-6 brutal-box-cyan space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">🛠️</span>
+              <span class="text-xs bg-cyan-950 text-cyan-300 font-bold px-2.5 py-1 border border-cyan-700 uppercase">
+                Multidisciplinar
+              </span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-black text-cyan-400 uppercase">Developers</h3>
+            <p class="text-yellow-400 font-bold text-sm sm:text-base uppercase mt-1">"Creadores del Juego"</p>
+            <ul class="text-sm sm:text-base text-zinc-300 space-y-2 mt-4 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-400 font-black">▸</span>
+                <span>Deciden el <strong>CÓMO</strong> técnico y ejecutan el trabajo.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-400 font-black">▸</span>
+                <span>Integra programadores, artistas 2D/3D, diseñadores de sonido y level designers.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-400 font-black">▸</span>
+                <span>Estiman el esfuerzo y garantizan la calidad de la Build.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-zinc-950 p-3 border border-zinc-800 text-m text-zinc-400 rounded">
+            🎯 <strong>Meta:</strong> Entregar un incremento funcional jugable en cada Sprint.
+          </div>
+        </div>
+
+        <!-- SCRUM MASTER -->
+        <div class="bg-zinc-900 p-6 brutal-box-emerald space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">🛡️</span>
+              <span class="text-xs bg-emerald-950 text-emerald-300 font-bold px-2.5 py-1 border border-emerald-700 uppercase">
+                1 por Equipo
+              </span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-black text-emerald-400 uppercase">Scrum Master</h3>
+            <p class="text-yellow-400 font-bold text-sm sm:text-base uppercase mt-1">"El Guardián del Proceso"</p>
+            <ul class="text-sm sm:text-base text-zinc-300 space-y-2 mt-4 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-black">▸</span>
+                <span>Líder servicial. Asegura que Scrum se comprende y se aplica bien.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-black">▸</span>
+                <span>Elimina <strong>impedimentos o bloqueos</strong> (ej: fallos de licencias, problemas de Git).</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-black">▸</span>
+                <span>Protege al equipo contra interferencias o crunch imprevisto.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-zinc-950 p-3 border border-zinc-800 text-m text-zinc-400 rounded">
+            🎯 <strong>Meta:</strong> Optimizar la productividad y salud del equipo.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SECTION 2: LOS 5 EVENTOS DE SCRUM -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-10 brutal-box-cyan space-y-8">
+      
+      <div class="border-b-4 border-cyan-400/40 pb-4">
+        <span class="text-xs sm:text-sm font-extrabold bg-cyan-400 text-black px-3 py-1 uppercase tracking-wider font-grotesk">
+          BLOQUE 02
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-black font-grotesk text-cyan-400 uppercase tracking-wide mt-2">
+          2. El Ritmo de Desarrollo: Los 5 Eventos
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-300 font-grotesk mt-2">
+          Eventos diseñados para inspeccionar y adaptar de forma regular sin necesidad de reuniones improvisadas.
+        </p>
+      </div>
+
+      <!-- EVENTO CONTENEDOR: EL SPRINT -->
+      <div class="bg-zinc-900 p-6 border-4 border-yellow-400 rounded-lg text-center space-y-3 sprint-pulse">
+        <div class="flex justify-center items-center gap-3">
+          <span class="text-3xl sm:text-4xl">🔄</span>
+          <h3 class="text-2xl sm:text-4xl font-black font-grotesk text-yellow-400 uppercase">
+            EVENTO CONTENEDOR: EL SPRINT (1 A 4 SEMANAS)
+          </h3>
+        </div>
+        <p class="text-sm sm:text-lg text-zinc-200 font-grotesk leading-relaxed max-w-4xl mx-auto">
+          Es el corazón latente de Scrum. Un ciclo de duración fija donde se ejecutan los otros 4 eventos para crear un <strong class="text-yellow-400 uppercase">Incremento Jugable Probado</strong>. En VJ1224 equivale a vuestros hitos de entrega.
+        </p>
+      </div>
+
+      <!-- LOS 4 EVENTOS DENTRO DEL SPRINT -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-grotesk">
+
+        <!-- SPRINT PLANNING -->
+        <div class="bg-zinc-900 p-5 border-2 border-rose-500 rounded-lg space-y-3">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <h4 class="text-xl sm:text-2xl font-black text-rose-400 uppercase flex items-center gap-2">
+              <span>🗓️</span> 1. Sprint Planning
+            </h4>
+            <span class="text-xs bg-rose-950 text-rose-300 font-mono px-2 py-0.5 border border-rose-700">Inicio de Sprint</span>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            <strong>¿Qué se hace?</strong> Se define la Meta del Sprint (Sprint Goal) y se seleccionan las Historias de Usuario del Product Backlog que el equipo se compromete a programar y diseñar.
+          </p>
+          <div class="text-l text-zinc-400 bg-zinc-950 p-2 rounded">
+            👥 <strong>Participantes:</strong> Todo el Scrum Team.
+          </div>
+        </div>
+
+        <!-- DAILY SCRUM -->
+        <div class="bg-zinc-900 p-5 border-2 border-yellow-400 rounded-lg space-y-3">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <h4 class="text-xl sm:text-2xl font-black text-yellow-400 uppercase flex items-center gap-2">
+              <span>☀️</span> 2. Daily Scrum
+            </h4>
+            <span class="text-xs bg-yellow-950 text-yellow-300 font-mono px-2 py-0.5 border border-yellow-700">Diario (15 min)</span>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            <strong>¿Qué se hace?</strong> Reunión rápida frente al tablero Kanban/Notion. Cada desarrollador responde: ¿Qué hice ayer? ¿Qué haré hoy? ¿Tengo algún bloqueo técnico?
+          </p>
+          <div class="text-l text-zinc-400 bg-zinc-950 p-2 rounded">
+            👥 <strong>Participantes:</strong> Developers (Scrum Master y PO opcionales).
+          </div>
+        </div>
+
+        <!-- SPRINT REVIEW -->
+        <div class="bg-zinc-900 p-5 border-2 border-cyan-400 rounded-lg space-y-3">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <h4 class="text-xl sm:text-2xl font-black text-cyan-400 uppercase flex items-center gap-2">
+              <span>🕹️</span> 3. Sprint Review
+            </h4>
+            <span class="text-xs bg-cyan-950 text-cyan-300 font-mono px-2 py-0.5 border border-cyan-700">Final de Sprint</span>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            <strong>¿Qué se hace?</strong> Demostración de la Build jugable a los interesados (profesores / playtesters). Se evalúa si la mecánica de juego es divertida y cumple con lo previsto.
+          </p>
+          <div class="text-l text-zinc-400 bg-zinc-950 p-2 rounded">
+            👥 <strong>Participantes:</strong> Scrum Team + Stakeholders (Usuarios/Profesores).
+          </div>
+        </div>
+
+        <!-- SPRINT RETROSPECTIVE -->
+        <div class="bg-zinc-900 p-5 border-2 border-emerald-400 rounded-lg space-y-3">
+          <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+            <h4 class="text-xl sm:text-2xl font-black text-emerald-400 uppercase flex items-center gap-2">
+              <span>🔍</span> 4. Sprint Retrospective
+            </h4>
+            <span class="text-xs bg-emerald-950 text-emerald-300 font-mono px-2 py-0.5 border border-emerald-700">Cierre de Sprint</span>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            <strong>¿Qué se hace?</strong> Inspección interna del <i>PROCESO Y EQUIPO</i> (no del juego): ¿Qué funcionó bien? ¿Qué problemas de comunicación o herramientas tuvimos? Acción de mejora concreta para el siguiente ciclo.
+          </p>
+          <div class="text-xs text-zinc-400 bg-zinc-950 p-2 rounded">
+            👥 <strong>Participantes:</strong> Exclusivamente el Scrum Team.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SECTION 3: LOS 3 ARTEFACTOS Y SUS COMPROMISOS -->
+    <div class="w-full bg-zinc-950 p-6 sm:p-10 brutal-box-emerald space-y-8">
+      
+      <div class="border-b-4 border-emerald-400/40 pb-4">
+        <span class="text-xs sm:text-sm font-extrabold bg-emerald-400 text-black px-3 py-1 uppercase tracking-wider font-grotesk">
+          BLOQUE 03
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-black font-grotesk text-emerald-400 uppercase tracking-wide mt-2">
+          3. Artefactos y sus Compromisos (Scrum Guide)
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-300 font-grotesk mt-2">
+          Cada artefacto representa trabajo o valor, y contiene un compromiso obligatorio para garantizar la transparencia.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-grotesk">
+
+        <!-- ARTEFACTO 1 -->
+        <div class="bg-zinc-900 p-5 border-2 border-emerald-700 rounded-lg space-y-4">
+          <div class="bg-emerald-950 p-3 border border-emerald-500 rounded">
+            <span class="text-xs text-emerald-300 font-extrabold uppercase block">ARTEFACTO 01</span>
+            <h3 class="text-xl font-black text-emerald-400 uppercase">Product Backlog</h3>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed"">
+            Lista ordenada y dinámica de todo lo que podría requerirse en el juego (mecánicas, niveles, bugs, requisitos de arte).
+          </p>
+          <div class="bg-zinc-950 p-3 border-l-4 border-yellow-400">
+            <span class="text-xl text-yellow-400 font-bold block uppercase">📌 COMPROMISO:</span>
+            <span class="text-l font-bold text-white">Objetivo del Producto (Product Goal)</span>
+            <p class="text-m text-zinc-400 mt-1">La visión a largo plazo del juego hacia la cual compite el equipo.</p>
+          </div>
+        </div>
+
+        <!-- ARTEFACTO 2 -->
+        <div class="bg-zinc-900 p-5 border-2 border-emerald-700 rounded-lg space-y-4">
+          <div class="bg-emerald-950 p-3 border border-emerald-500 rounded">
+            <span class="text-xs text-emerald-300 font-extrabold uppercase block">ARTEFACTO 02</span>
+            <h3 class="text-xl font-black text-emerald-400 uppercase">Sprint Backlog</h3>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed"">
+            Conjunto de elementos elegidos para el Sprint actual + el plan técnico concreto para construirlos (tablero Kanban).
+          </p>
+          <div class="bg-zinc-950 p-3 border-l-4 border-cyan-400">
+            <span class="text-xl text-cyan-400 font-bold block uppercase">📌 COMPROMISO:</span>
+            <span class="text-l font-bold text-white">Objetivo del Sprint (Sprint Goal)</span>
+            <p class="text-m text-zinc-400 mt-1">El propósito concreto que se debe cumplir en estas 2 semanas.</p>
+          </div>
+        </div>
+
+        <!-- ARTEFACTO 3 -->
+        <div class="bg-zinc-900 p-5 border-2 border-emerald-700 rounded-lg space-y-4">
+          <div class="bg-emerald-950 p-3 border border-emerald-500 rounded">
+            <span class="text-xs text-emerald-300 font-extrabold uppercase block">ARTEFACTO 03</span>
+            <h3 class="text-xl font-black text-emerald-400 uppercase">Incremento (Build)</h3>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            El peldaño ejecutable hacia el Producto. Una versión compilada del juego probada y utilizable por el jugador.
+          </p>
+          <div class="bg-zinc-950 p-3 border-l-4 border-rose-500">
+            <span class="text-xl text-rose-400 font-bold block uppercase">📌 COMPROMISO:</span>
+            <span class="text-l font-bold text-white">Definición de Hecho (Definition of Done)</span>
+            <p class="text-m text-zinc-400 mt-1">Lista de criterios de calidad (sin bugs críticos, integrado en Git, ejecutable en PC/móvil).</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SUMMARY BANNER FOR CLASSROOM PROJECTION -->
+    <div class="w-full bg-yellow-400 text-black p-6 sm:p-9 text-center brutal-box-yellow space-y-2 font-grotesk">
+      <h3 class="text-2xl sm:text-4xl font-black uppercase">
+        🚀 CONSEJO PRÁCTICO PARA EL PROYECTO DE LA TRIPLE
+      </h3>
+      <p class="text-base sm:text-xl font-bold leading-relaxed max-w-5xl mx-auto">
+        En vuestras prácticas coordinadas, el profesorado alternará en ocasiones los roles de <strong>Product Owner</strong> (encargado de priorizar entregables en Notion) y de <strong>Scrum Master</strong> (encargado de engrasar el desarrollo). Aunque esto no sea algo muy ortodoxo en un desarrollo Scrum real, ¡seguid en todo momento sus indicaciones!
+      </p>
+    </div>
+
+  </div>
+
+
+    <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

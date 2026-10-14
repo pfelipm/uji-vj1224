@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrum of Scrums: coordinando gremios para la raid final | VJ1224</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --neon-cyan: #22d3ee;
+            --neon-purple: #a855f7;
+            --neon-emerald: #34d399;
+            --neon-amber: #facc15;
+            --neon-rose: #f43f5e;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 50% 25%, rgba(250, 204, 21, 0.08) 0%, transparent 55%),
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .hud-frame {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid rgba(51, 65, 85, 0.85);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(250, 204, 21, 0.04);
+            position: relative;
+        }
+
+        .hud-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #334155;
+            transition: all 0.25s ease;
+        }
+
+        .guild-node {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #475569;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .guild-node:hover,
+        .guild-node.active {
+            border-color: #facc15;
+            background: rgba(250, 204, 21, 0.12);
+            box-shadow: 0 0 20px rgba(250, 204, 21, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .q-item {
+            opacity: 0.3;
+            filter: grayscale(0.8);
+            transition: all 0.35s ease;
+        }
+
+        .q-item.unlocked {
+            opacity: 1;
+            filter: grayscale(0);
+        }
+
+        .hud-btn {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            padding: 0.7rem 1.15rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 2px solid #facc15;
+            background: rgba(250, 204, 21, 0.15);
+            color: #fef08a;
+        }
+
+        .hud-btn:hover:not(:disabled) {
+            background: #facc15;
+            color: #080c14;
+            box-shadow: 0 0 18px rgba(250, 204, 21, 0.55);
+        }
+
+        .hud-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: #475569;
+            color: #94a3b8;
+            background: rgba(30, 41, 59, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 md:p-6 lg:p-8">
+
+    <!-- Barra de navegación superior (oculta en Google Sites) -->
+    <nav class="hide-in-embed w-full max-w-6xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-2 border-slate-700/80 rounded-xl px-5 py-3 shadow-lg backdrop-blur-md">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-base transition-colors">
+            <span>⌂</span>
+            <span>Índice general VJ1224</span>
+        </a>
+        <div class="flex items-center gap-3 text-sm md:text-base font-semibold">
+            <span class="px-2.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 pixel-font text-[10px]">TEMA 3 · 07/08</span>
+            <a href="06%20Auditor%C3%ADa%20del%20backlog.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+            <span class="text-slate-600">|</span>
+            <a href="08%20Scrum%20Lego%20city.html" class="text-amber-300 hover:text-amber-200 transition-colors">Siguiente →</a>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-6xl hud-frame rounded-2xl p-6 md:p-10 my-auto">
+
+        <!-- Cabecera -->
+        <header class="text-center mb-10 border-b-2 border-slate-800 pb-8">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-950/70 border-2 border-amber-400/50 text-amber-300 text-xs pixel-font mb-4">
+                <span>🏰</span>
+                <span>ESCALADO ÁGIL EN GRANDES ESTUDIOS</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold text-white tracking-wide mb-3">
+                Scrum of Scrums
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 font-semibold max-w-3xl mx-auto">
+                Coordinando gremios para la <em>raid</em> final
+            </p>
+        </header>
+
+        <!-- Sección 1: El problema del caos entre equipos -->
+        <section class="mb-12">
+            <div class="hud-card rounded-xl p-6 md:p-8 border-rose-500/50">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <span class="pixel-font text-[10px] text-rose-300 bg-rose-950/80 border border-rose-500/40 px-2.5 py-1 rounded">EL PROBLEMA</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white mt-2">El caos de la batalla multiparalela</h2>
+                    </div>
+                </div>
+                <p class="text-lg md:text-xl text-slate-200 font-medium mb-6">
+                    Cuando un videojuego es tan grande que necesita varios equipos Scrum trabajando en paralelo (un equipo para la IA, otro para el combate, otro para el arte y otro para las misiones), ¿cómo evitamos que se bloqueen entre sí y que las piezas no encajen al integrar la <em>build</em>?
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-5 items-center gap-3 text-center bg-slate-950/90 border border-slate-800 rounded-xl p-5">
+                    <div class="p-3 rounded-lg bg-slate-900 border border-slate-700">
+                        <div class="text-3xl mb-1">⚔️</div>
+                        <p class="font-bold text-white text-lg">Equipo de combate</p>
+                    </div>
+                    <div class="text-rose-500 pixel-font text-sm animate-pulse">⚡ COLISIÓN ⚡</div>
+                    <div class="p-3 rounded-lg bg-slate-900 border border-slate-700">
+                        <div class="text-3xl mb-1">🎨</div>
+                        <p class="font-bold text-white text-lg">Equipo de arte</p>
+                    </div>
+                    <div class="text-rose-500 pixel-font text-sm animate-pulse">⚡ COLISIÓN ⚡</div>
+                    <div class="p-3 rounded-lg bg-slate-900 border border-slate-700">
+                        <div class="text-3xl mb-1">🗺️</div>
+                        <p class="font-bold text-white text-lg">Equipo de misiones</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: La solución interactiva (El Consejo de Líderes de Gremio) -->
+        <section class="mb-12">
+            <div class="hud-card rounded-2xl p-6 md:p-8 border-2 border-amber-400">
+                <div class="text-center max-w-3xl mx-auto mb-8">
+                    <span class="pixel-font text-[10px] text-amber-300 bg-amber-950/90 border border-amber-400/50 px-3 py-1 rounded">LA SOLUCIÓN DE ESCALADO</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-3 mb-2">
+                        El consejo de líderes de gremio (Scrum of Scrums)
+                    </h2>
+                    <p class="text-lg text-slate-300 font-medium">
+                        El <strong class="text-amber-300">Scrum of Scrums</strong> es una reunión periódica de sincronización donde un «embajador» de cada equipo acude al consejo central. Haz clic en cada gremio para inspeccionar su reporte de dependencias:
+                    </p>
+                </div>
+
+                <!-- Diagrama Hub Responsivo -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                    <!-- Columna izquierda: 2 gremios -->
+                    <div class="space-y-4">
+                        <div id="guild-combat" class="guild-node active rounded-xl p-4" onclick="selectGuild('combat')">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-2xl">⚔️</span>
+                                <span class="pixel-font text-[9px] text-amber-300">EMBAJADOR 01</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Equipo de combate</h3>
+                            <p class="text-sm text-slate-300 font-medium">Físicas de armas, <em>hitboxes</em> y animaciones de ataque.</p>
+                        </div>
+
+                        <div id="guild-art" class="guild-node rounded-xl p-4" onclick="selectGuild('art')">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-2xl">🎨</span>
+                                <span class="pixel-font text-[9px] text-cyan-300">EMBAJADOR 02</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Equipo de arte y VFX</h3>
+                            <p class="text-sm text-slate-300 font-medium">Modelado de jefes, <em>rigging</em> y sistemas de partículas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Nodo central: Scrum of Scrums -->
+                    <div class="bg-slate-950/95 border-2 border-amber-400 rounded-2xl p-6 text-center shadow-2xl">
+                        <div class="text-5xl mb-2">🏰</div>
+                        <h3 class="text-2xl font-bold text-amber-300">Scrum of Scrums</h3>
+                        <p class="pixel-font text-[10px] text-slate-400 mt-1 mb-4">CONSEJO DE EMBAJADORES</p>
+                        <div id="guild-report" class="text-left bg-slate-900 border border-amber-500/40 rounded-xl p-4">
+                            <p class="text-xs font-bold uppercase tracking-wider text-amber-300 mb-1" id="report-title">Reporte · Equipo de combate:</p>
+                            <p class="text-base text-slate-200 font-medium" id="report-body">
+                                «Hemos modificado el sistema de colisiones del jefe final. Necesitamos que el Equipo de arte actualice los pivotes del modelo 3D antes del jueves y avisamos al Equipo de IA del nuevo rango de ataque cuerpo a cuerpo».
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha: 2 gremios -->
+                    <div class="space-y-4">
+                        <div id="guild-quests" class="guild-node rounded-xl p-4" onclick="selectGuild('quests')">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-2xl">🗺️</span>
+                                <span class="pixel-font text-[9px] text-emerald-300">EMBAJADOR 03</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Equipo de misiones</h3>
+                            <p class="text-sm text-slate-300 font-medium">Diseño de niveles, narrativa y eventos de activación.</p>
+                        </div>
+
+                        <div id="guild-ai" class="guild-node rounded-xl p-4" onclick="selectGuild('ai')">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-2xl">🤖</span>
+                                <span class="pixel-font text-[9px] text-purple-300">EMBAJADOR 04</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Equipo de IA</h3>
+                            <p class="text-sm text-slate-300 font-medium">Árboles de comportamiento, <em>pathfinding</em> y patrullas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: Las reglas del consejo y las 4 preguntas del embajador -->
+        <section>
+            <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+                📜 Las reglas del consejo
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <article class="hud-card rounded-xl p-6 border-cyan-500/50">
+                    <span class="pixel-font text-[10px] text-cyan-300 bg-cyan-950/90 border border-cyan-500/40 px-2.5 py-1 rounded">REGLA 01</span>
+                    <h3 class="font-bold text-2xl text-white mt-3 mb-2">¿Quién asiste?</h3>
+                    <p class="text-slate-300 text-lg font-medium">
+                        Un <strong class="text-cyan-300">embajador</strong> designado por cada equipo Scrum (normalmente un perfil técnico o el Scrum Master) que conozca al detalle las dependencias e integraciones en curso.
+                    </p>
+                </article>
+
+                <article class="hud-card rounded-xl p-6 border-purple-500/50">
+                    <span class="pixel-font text-[10px] text-purple-300 bg-purple-950/90 border border-purple-500/40 px-2.5 py-1 rounded">REGLA 02</span>
+                    <h3 class="font-bold text-2xl text-white mt-3 mb-2">¿Cuándo se celebra?</h3>
+                    <p class="text-slate-300 text-lg font-medium">
+                        De forma regular (por ejemplo, 2 o 3 veces por semana o a diario en fases críticas), justo después de los <strong class="text-purple-300">Daily Scrums</strong> de cada equipo para llevar información fresca.
+                    </p>
+                </article>
+
+                <article class="hud-card rounded-xl p-6 border-emerald-500/50">
+                    <span class="pixel-font text-[10px] text-emerald-300 bg-emerald-950/90 border border-emerald-500/40 px-2.5 py-1 rounded">REGLA 03</span>
+                    <h3 class="font-bold text-2xl text-white mt-3 mb-2">¿Cuál es la agenda?</h3>
+                    <p class="text-slate-300 text-lg font-medium">
+                        El foco exclusivo está en las <strong class="text-amber-300">dependencias, colisiones e integración</strong> entre equipos respondiendo a las 4 preguntas del embajador.
+                    </p>
+                </article>
+            </div>
+
+            <!-- Las 4 preguntas del embajador con revelación progresiva -->
+            <div class="hud-card rounded-2xl p-6 md:p-8 border-slate-700">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <h3 class="text-2xl font-bold text-white">
+                        🎯 Las 4 preguntas del embajador
+                    </h3>
+                    <span class="pixel-font text-xs text-amber-300" id="q-counter">PREGUNTA 1 / 4</span>
+                </div>
+
+                <ol class="space-y-4">
+                    <li id="q-1" class="q-item unlocked flex items-start gap-4 bg-slate-900/90 border-2 border-amber-500/40 rounded-xl p-4">
+                        <span class="pixel-font text-xs bg-amber-500 text-slate-950 px-2.5 py-1.5 rounded shrink-0">01</span>
+                        <p class="text-lg md:text-xl text-slate-200 font-medium">
+                            ¿Qué ha logrado mi equipo desde la última reunión que <strong class="text-amber-300">pueda afectar a otros equipos</strong>?
+                        </p>
+                    </li>
+                    <li id="q-2" class="q-item flex items-start gap-4 bg-slate-900/90 border-2 border-amber-500/40 rounded-xl p-4">
+                        <span class="pixel-font text-xs bg-amber-500 text-slate-950 px-2.5 py-1.5 rounded shrink-0">02</span>
+                        <p class="text-lg md:text-xl text-slate-200 font-medium">
+                            ¿Qué hará mi equipo antes de la próxima reunión que <strong class="text-amber-300">pueda afectar a otros equipos</strong>?
+                        </p>
+                    </li>
+                    <li id="q-3" class="q-item flex items-start gap-4 bg-slate-900/90 border-2 border-rose-500/40 rounded-xl p-4">
+                        <span class="pixel-font text-xs bg-rose-500 text-white px-2.5 py-1.5 rounded shrink-0">03</span>
+                        <p class="text-lg md:text-xl text-slate-200 font-medium">
+                            ¿Qué <strong class="text-rose-400">obstáculos o bloqueos</strong> tiene mi equipo que necesiten la ayuda de otro gremio para resolverse?
+                        </p>
+                    </li>
+                    <li id="q-4" class="q-item flex items-start gap-4 bg-slate-900/90 border-2 border-rose-500/40 rounded-xl p-4">
+                        <span class="pixel-font text-xs bg-rose-500 text-white px-2.5 py-1.5 rounded shrink-0">04</span>
+                        <p class="text-lg md:text-xl text-slate-200 font-medium">
+                            ¿Estamos a punto de <strong class="text-rose-400">generar un obstáculo o romper la integración</strong> para otro equipo sin darnos cuenta?
+                        </p>
+                    </li>
+                </ol>
+
+                <div class="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-800">
+                    <span class="text-sm text-slate-400 font-semibold">Usa las flechas del teclado o los botones para revelar cada pregunta en clase.</span>
+                    <div class="flex items-center gap-3">
+                        <button id="q-prev" onclick="stepQuestion(-1)" class="hud-btn" disabled>← Anterior</button>
+                        <button id="q-next" onclick="stepQuestion(1)" class="hud-btn">Siguiente pregunta →</button>
+                        <button onclick="unlockAllQuestions()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-bold border border-slate-600 transition-colors">
+                            Revelar todas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página académico estandarizado -->
+    <footer class="w-full max-w-6xl mt-8 py-6 border-t border-slate-800/90 text-center text-slate-400 text-sm md:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+            <div class="text-left">
+                <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+                <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const guildReports = {
+            combat: {
+                title: 'Reporte · Equipo de combate:',
+                body: '«Hemos modificado el sistema de colisiones del jefe final. Necesitamos que el Equipo de arte actualice los pivotes del modelo 3D antes del jueves y avisamos al Equipo de IA del nuevo rango de ataque cuerpo a cuerpo».'
+            },
+            art: {
+                title: 'Reporte · Equipo de arte y VFX:',
+                body: '«Ya tenemos listos los shaders de fuego de la mazmorra, pero superan el presupuesto de memoria de texturas en consola. Necesitamos coordinar con Combate y Misiones qué efectos se cargan simultáneamente».'
+            },
+            quests: {
+                title: 'Reporte · Equipo de misiones:',
+                body: '«Hemos cerrado el guion de la cinemática de entrada a la raid. Necesitamos que el Equipo de IA desactive las patrullas enemigas en el radio de 30 metros mientras dure el diálogo del jefe».'
+            },
+            ai: {
+                title: 'Reporte · Equipo de IA:',
+                body: '«Hemos actualizado la malla de navegación (NavMesh) del escenario principal. Avisamos al Equipo de misiones por si algún punto de aparición (spawn point) ha quedado fuera de la geometría caminable».'
+            }
+        };
+
+        function selectGuild(key) {
+            ['combat', 'art', 'quests', 'ai'].forEach(k => {
+                document.getElementById(`guild-${k}`).classList.toggle('active', k === key);
+            });
+            document.getElementById('report-title').textContent = guildReports[key].title;
+            document.getElementById('report-body').textContent = guildReports[key].body;
+        }
+
+        let currentQ = 1;
+        const totalQ = 4;
+
+        function updateQuestionsUI() {
+            for (let i = 1; i <= totalQ; i++) {
+                document.getElementById(`q-${i}`).classList.toggle('unlocked', i <= currentQ);
+            }
+            document.getElementById('q-counter').textContent = `PREGUNTA ${currentQ} / ${totalQ}`;
+            document.getElementById('q-prev').disabled = currentQ <= 1;
+            document.getElementById('q-next').disabled = currentQ >= totalQ;
+        }
+
+        function stepQuestion(delta) {
+            const next = currentQ + delta;
+            if (next < 1 || next > totalQ) return;
+            currentQ = next;
+            updateQuestionsUI();
+        }
+
+        function unlockAllQuestions() {
+            currentQ = totalQ;
+            updateQuestionsUI();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT', 'TEXTAREA', 'BUTTON'].includes(document.activeElement?.tagName)) return;
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentQ < totalQ) {
+                    e.preventDefault();
+                    stepQuestion(1);
+                }
+            } else if (e.code === 'ArrowLeft') {
+                if (currentQ > 1) {
+                    e.preventDefault();
+                    stepQuestion(-1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

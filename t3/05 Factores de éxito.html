@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factores críticos de éxito en proyectos ágiles | VJ1224</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --neon-cyan: #22d3ee;
+            --neon-emerald: #34d399;
+            --neon-amber: #facc15;
+            --neon-rose: #f43f5e;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 80% 15%, rgba(52, 211, 153, 0.08) 0%, transparent 55%),
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .hud-frame {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid rgba(51, 65, 85, 0.85);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(52, 211, 153, 0.04);
+            position: relative;
+        }
+
+        .hud-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #334155;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hud-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stage-block {
+            opacity: 0.22;
+            filter: grayscale(0.85);
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+
+        .stage-block.unlocked {
+            opacity: 1;
+            filter: grayscale(0);
+            pointer-events: auto;
+        }
+
+        .hud-btn {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            padding: 0.75rem 1.2rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 2px solid #34d399;
+            background: rgba(52, 211, 153, 0.15);
+            color: #a7f3d0;
+        }
+
+        .hud-btn:hover:not(:disabled) {
+            background: #34d399;
+            color: #080c14;
+            box-shadow: 0 0 18px rgba(52, 211, 153, 0.55);
+        }
+
+        .hud-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: #475569;
+            color: #94a3b8;
+            background: rgba(30, 41, 59, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 md:p-6 lg:p-8">
+
+    <!-- Barra de navegación superior (oculta en Google Sites) -->
+    <nav class="hide-in-embed w-full max-w-6xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-2 border-slate-700/80 rounded-xl px-5 py-3 shadow-lg backdrop-blur-md">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-base transition-colors">
+            <span>⌂</span>
+            <span>Índice general VJ1224</span>
+        </a>
+        <div class="flex items-center gap-3 text-sm md:text-base font-semibold">
+            <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 pixel-font text-[10px]">TEMA 3 · 05/08</span>
+            <a href="04%20El%20equipo%20de%20ensue%C3%B1o.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+            <span class="text-slate-600">|</span>
+            <a href="06%20Auditor%C3%ADa%20del%20backlog.html" class="text-emerald-300 hover:text-emerald-200 transition-colors">Siguiente →</a>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-6xl hud-frame rounded-2xl p-6 md:p-10 my-auto">
+
+        <!-- Cabecera -->
+        <header class="text-center mb-10 border-b-2 border-slate-800 pb-8">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/70 border-2 border-emerald-400/50 text-emerald-300 text-xs pixel-font mb-4">
+                <span>🔬</span>
+                <span>EVIDENCIA EMPÍRICA · CHOW Y CAO (2008)</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold text-white tracking-wide mb-3">
+                Factores críticos de éxito en Agile
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 font-semibold max-w-3xl mx-auto">
+                Lo que la ciencia de datos nos dice sobre cómo ganar la partida del desarrollo
+            </p>
+            <div class="mt-6 max-w-4xl mx-auto bg-slate-900/90 border-2 border-slate-700 rounded-xl p-5 text-left">
+                <p class="text-lg md:text-xl text-slate-200 font-medium leading-relaxed">
+                    En 2008, los investigadores <strong class="text-cyan-300">Tsun Chow</strong> y <strong class="text-cyan-300">Dac-Buu Cao</strong> analizaron <strong class="text-amber-300">109 proyectos ágiles reales</strong> de múltiples países para separar el «ruido» de la «señal»: ¿qué factores predicen de verdad el éxito de un proyecto en calidad, alcance, tiempo y coste? No todo lo que brilla en la cultura <em>cool</em> de las <em>startups</em> es oro.
+                </p>
+            </div>
+        </header>
+
+        <!-- Fase 1: El trío legendario -->
+        <section id="stage-1" class="stage-block unlocked mb-12">
+            <div class="flex items-center justify-between flex-wrap gap-3 mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-3">
+                    <span class="text-emerald-400">🏆</span>
+                    <span>El trío legendario: las 3 claves del éxito</span>
+                </h2>
+                <span class="pixel-font text-[10px] text-emerald-300 bg-emerald-950/90 border border-emerald-500/40 px-3 py-1.5 rounded">
+                    IMPACTO ESTADÍSTICO ALTO
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Estrategia de entrega -->
+                <article class="hud-card rounded-xl p-6 border-cyan-500/60 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-5xl">🚀</span>
+                        <span class="pixel-font text-[10px] text-cyan-300 bg-cyan-950/90 border border-cyan-500/40 px-2.5 py-1 rounded">FACTOR #1</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-1">Estrategia de entrega</h3>
+                    <p class="font-bold text-cyan-400 text-base mb-3">(Delivery Strategy)</p>
+                    <p class="text-slate-200 text-lg font-medium flex-grow">
+                        La capacidad de entregar software funcional de forma regular y frecuente, priorizando siempre las características de mayor valor. Es el motor del <em>feedback</em> temprano y la adaptación.
+                    </p>
+                </article>
+
+                <!-- Excelencia técnica -->
+                <article class="hud-card rounded-xl p-6 border-2 border-amber-400 bg-amber-950/15 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-5xl">🛠️</span>
+                        <span class="pixel-font text-[10px] text-amber-300 bg-amber-950/90 border border-amber-400/50 px-2.5 py-1 rounded">FACTOR #2</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-1">Excelencia técnica</h3>
+                    <p class="font-bold text-amber-400 text-base mb-3">(Agile Engineering Techniques)</p>
+                    <p class="text-slate-200 text-lg font-medium flex-grow">
+                        La agilidad nunca es excusa para el código espagueti. Prácticas como el diseño limpio, la refactorización continua y la integración rigurosa son vitales para avanzar rápido sin hundirse en deuda técnica.
+                    </p>
+                </article>
+
+                <!-- Capacidad del equipo -->
+                <article class="hud-card rounded-xl p-6 border-emerald-500/60 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-5xl">🌟</span>
+                        <span class="pixel-font text-[10px] text-emerald-300 bg-emerald-950/90 border border-emerald-500/40 px-2.5 py-1 rounded">FACTOR #3</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-1">Capacidad del equipo</h3>
+                    <p class="font-bold text-emerald-400 text-base mb-3">(Team Capability)</p>
+                    <p class="text-slate-200 text-lg font-medium flex-grow">
+                        El factor humano es decisivo. Un equipo con alta competencia técnica, motivación intrínseca y formación sólida en principios ágiles es el mayor predictor de éxito.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Fase 2: Mitos y sorpresas -->
+        <section id="stage-2" class="stage-block mb-12">
+            <div class="flex items-center justify-between flex-wrap gap-3 mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-3">
+                    <span class="text-rose-400">❌</span>
+                    <span>Mitos y sorpresas: lo que NO resultó crítico</span>
+                </h2>
+                <span class="pixel-font text-[10px] text-rose-300 bg-rose-950/90 border border-rose-500/40 px-3 py-1.5 rounded">
+                    CORRELACIÓN NO SIGNIFICATIVA
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <article class="hud-card rounded-xl p-6 border-rose-500/50">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-2xl text-rose-400">❌</span>
+                        <h3 class="text-xl font-bold text-white">Apoyo ejecutivo fuerte</h3>
+                    </div>
+                    <p class="text-slate-300 text-lg font-medium">
+                        Aunque siempre es deseable, el estudio no lo identificó como un factor estadísticamente crítico: un equipo cohesionado puede triunfar incluso sin un entusiasmo corporativo explícito.
+                    </p>
+                </article>
+
+                <article class="hud-card rounded-xl p-6 border-rose-500/50">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-2xl text-rose-400">❌</span>
+                        <h3 class="text-xl font-bold text-white">Entorno físico «cool»</h3>
+                    </div>
+                    <p class="text-slate-300 text-lg font-medium">
+                        Las oficinas con <em>puffs</em>, neones, futbolines y paredes de <em>post-its</em> son agradables, pero no garantizan el éxito por sí solas. La disciplina técnica pesa mucho más.
+                    </p>
+                </article>
+
+                <article class="hud-card rounded-xl p-6 border-rose-500/50">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-2xl text-rose-400">❌</span>
+                        <h3 class="text-xl font-bold text-white">Tipo o tamaño de proyecto</h3>
+                    </div>
+                    <p class="text-slate-300 text-lg font-medium">
+                        La excusa de que «Agile solo sirve para proyectos pequeños o sencillos» queda desmontada: los factores de éxito dependen de cómo trabaja el equipo, no de la etiqueta del proyecto.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Fase 3: Misión de debate para la clase -->
+        <section id="stage-3" class="stage-block mb-8">
+            <div class="hud-card rounded-2xl p-6 md:p-8 border-2 border-amber-400 bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/30 text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-300 pixel-font text-[10px] mb-4">
+                    <span>📡</span>
+                    <span>MISIÓN DE DEBATE EN EL AULA</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">
+                    ¡Misión para la clase!
+                </h2>
+                <p class="text-lg text-slate-300 font-medium max-w-3xl mx-auto mb-6">
+                    Ahora que conocemos la evidencia científica sobre 109 proyectos reales, imagina que diriges un estudio indie con presupuesto limitado:
+                </p>
+                <blockquote class="text-xl md:text-2xl font-bold text-amber-300 bg-slate-950/90 border-2 border-amber-500/40 rounded-xl p-5 max-w-4xl mx-auto shadow-inner">
+                    «¿Dónde debería invertir antes un estudio de videojuegos: en formar a sus equipos para alcanzar la excelencia técnica y automatizar pruebas, o en alquilar una oficina vistosa con <em>puffs</em> y recreativas?»
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Controles HUD -->
+        <div class="bg-slate-900/95 border-2 border-emerald-500/40 rounded-xl p-4 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="pixel-font text-xs text-emerald-400" id="stage-counter">BLOQUE 1 / 3</span>
+                <span class="text-slate-300 font-semibold text-base" id="stage-title">El trío legendario: las 3 claves del éxito</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <button id="btn-prev" onclick="moveStage(-1)" class="hud-btn" disabled>← Anterior</button>
+                <button id="btn-next" onclick="moveStage(1)" class="hud-btn">Desbloquear siguiente →</button>
+                <button onclick="unlockAllStages()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-bold border border-slate-600 transition-colors">
+                    Revelar todo
+                </button>
+            </div>
+        </div>
+
+        <!-- Referencia bibliográfica original -->
+        <div class="mt-6 text-center text-sm text-slate-400 bg-slate-900/60 border border-slate-800 rounded-xl p-3">
+            Fuente científica: Tsun Chow y Dac-Buu Cao (2008),
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0164121207002208" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 underline font-semibold">
+                «A survey study of critical success factors in agile software projects»
+            </a>, <em>The Journal of Systems and Software</em>, 81(6), 961-971.
+        </div>
+
+    </main>
+
+    <!-- Pie de página académico estandarizado -->
+    <footer class="w-full max-w-6xl mt-8 py-6 border-t border-slate-800/90 text-center text-slate-400 text-sm md:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+            <div class="text-left">
+                <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+                <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentStage = 1;
+        let maxStage = 1;
+        const totalStages = 3;
+
+        const titles = {
+            1: 'El trío legendario: las 3 claves del éxito',
+            2: 'Mitos y sorpresas: lo que NO resultó crítico',
+            3: '¡Misión de debate para la clase!'
+        };
+
+        function renderStages() {
+            for (let i = 1; i <= totalStages; i++) {
+                const el = document.getElementById(`stage-${i}`);
+                el.classList.toggle('unlocked', i <= maxStage);
+            }
+            document.getElementById('stage-counter').textContent = `BLOQUE ${currentStage} / ${totalStages}`;
+            document.getElementById('stage-title').textContent = titles[currentStage];
+            document.getElementById('btn-prev').disabled = currentStage <= 1;
+            document.getElementById('btn-next').disabled = currentStage >= totalStages;
+        }
+
+        function moveStage(delta) {
+            const next = currentStage + delta;
+            if (next < 1 || next > totalStages) return;
+            currentStage = next;
+            if (currentStage > maxStage) maxStage = currentStage;
+            renderStages();
+            document.getElementById(`stage-${currentStage}`).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function unlockAllStages() {
+            maxStage = totalStages;
+            currentStage = totalStages;
+            renderStages();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT', 'TEXTAREA', 'BUTTON'].includes(document.activeElement?.tagName)) return;
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentStage < totalStages) {
+                    e.preventDefault();
+                    moveStage(1);
+                }
+            } else if (e.code === 'ArrowLeft') {
+                if (currentStage > 1) {
+                    e.preventDefault();
+                    moveStage(-1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

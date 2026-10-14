@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: Briefing de misión (el Oráculo y el consejo)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para diseño fluido y adaptativo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (identidad retro-gaming) y 'Rajdhani' (legibilidad máxima en proyector) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjeta de Fase de Operación */
+        .mission-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(20, 30, 48, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mission-card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Fase 1: Elicitación con el Oráculo (Cian Neón) */
+        .phase-oracle {
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+        }
+        .phase-oracle:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 28px rgba(56, 189, 248, 0.35);
+        }
+
+        /* Fase 2: El Consejo de Guerra (Violeta Místico) */
+        .phase-council {
+            border-color: rgba(167, 139, 250, 0.45);
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.15);
+        }
+        .phase-council:hover {
+            border-color: #a78bfa;
+            box-shadow: 0 0 28px rgba(167, 139, 250, 0.35);
+        }
+
+        /* Botón de Enlace Neural al Oráculo */
+        .oracle-btn {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.3) 100%);
+            border: 2px solid #fde047;
+            color: #fde047;
+            box-shadow: 0 0 16px rgba(253, 224, 71, 0.25);
+            transition: all 0.25s ease;
+        }
+        .oracle-btn:hover {
+            background: #fde047;
+            color: #0b0f19;
+            box-shadow: 0 0 28px rgba(253, 224, 71, 0.6);
+            transform: scale(1.02);
+        }
+
+        /* Botones de Sala de Poker */
+        .poker-tool-btn {
+            border: 1.5px solid #a78bfa;
+            color: #c4b5fd;
+            background: rgba(167, 139, 250, 0.1);
+            transition: all 0.22s ease;
+        }
+        .poker-tool-btn:hover {
+            background: #a78bfa;
+            color: #0b0f19;
+            box-shadow: 0 0 18px rgba(167, 139, 250, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Reloj HUD Táctico */
+        .hud-clock-box {
+            background: rgba(10, 16, 28, 0.9);
+            border: 1.5px solid rgba(74, 222, 128, 0.4);
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.15);
+        }
+        .hud-clock-box.time-warning {
+            border-color: #f87171 !important;
+            box-shadow: 0 0 24px rgba(248, 113, 113, 0.45) !important;
+            animation: pulseWarning 1.2s infinite;
+        }
+        @keyframes pulseWarning {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Indicador de fase activa en arena */
+        .phase-active-focus {
+            border-color: #34d399 !important;
+            box-shadow: 0 0 32px rgba(52, 211, 153, 0.4) !important;
+        }
+
+        /* Rotación suave del chevron indicador */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Animación suave de entrada */
+        @keyframes cascadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(16px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .animate-cascade {
+            animation: cascadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 14/15</span>
+      <a href="13%20El%20tablero%20Kanban.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="15%20La%20jerarqu%C3%ADa%20de%20Notion.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-5xl w-full">
+        <!-- Encabezado Proyectable de la SPA -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-950/80 border border-emerald-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-emerald-300 tracking-wider">
+                    VJ1224 // TALLER PRÁCTICO EN AULA (2 HORAS)
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-300 to-amber-300 tracking-wide leading-relaxed py-1">
+                BRIEFING DE MISIÓN
+            </h1>
+            
+            <p class="text-amber-300 text-xs sm:text-base font-pixel mt-1 tracking-wider">
+                &lt;El Oráculo y el Consejo // Simulación en Vivo&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                ¡Se acabó la teoría magistral! Hoy ponemos a prueba vuestra escuadra en un entorno real: primero interrogaréis al Product Owner de <em>«Ecos del Crepúsculo»</em> para descubrir requisitos ocultos, y después libraréis un Consejo de Guerra para consensuar los puntos de historia sin regatear.
+            </p>
+        </header>
+
+        <!-- Panel del Temporizador Táctico Adaptable para el Aula -->
+        <div class="hud-clock-box rounded-2xl p-4 sm:p-5 mb-8 flex flex-col gap-4">
+            
+            <!-- Fila superior: Selector de Fase Activa y Estado -->
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-300 shrink-0">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/></svg>
+                    </div>
+                    <div>
+                        <span class="font-pixel text-[10px] text-emerald-400 block tracking-wider">RELOJ DE OPERACIONES EN VIVO</span>
+                        <span id="timer-status-text" class="text-xs sm:text-sm text-slate-200 font-semibold">FASE 1: INTERROGATORIO AL ORÁCULO</span>
+                    </div>
+                </div>
+
+                <!-- Selector de Fase Activa -->
+                <div class="flex items-center gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
+                    <button id="btn-select-phase-1" onclick="switchActivePhase(1)" class="px-3 py-1.5 rounded-lg bg-cyan-950 border border-cyan-400 text-cyan-200 font-pixel text-[10px] sm:text-xs transition shadow-sm">
+                        FASE 1 (ORÁCULO)
+                    </button>
+                    <button id="btn-select-phase-2" onclick="switchActivePhase(2)" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 hover:text-purple-300 font-pixel text-[10px] sm:text-xs transition">
+                        FASE 2 (CONSEJO)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fila inferior: Contador Digital y Ajuste Flexible de Tiempo (10 a 45 min) -->
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                
+                <!-- Display Digital Retro -->
+                <div class="flex items-center gap-3">
+                    <div id="countdown-display" class="font-pixel text-2xl sm:text-4xl text-emerald-300 tracking-widest bg-slate-950 px-4 sm:px-5 py-2 rounded-xl border border-emerald-500/50 shadow-inner">
+                        45:00
+                    </div>
+                    <button id="btn-timer-toggle" onclick="toggleTimer()" class="px-4 py-2.5 rounded-xl bg-emerald-950 hover:bg-emerald-900 border border-emerald-500 text-emerald-300 font-pixel text-xs sm:text-sm transition active:scale-95 shadow">
+                        ▶ INICIAR
+                    </button>
+                </div>
+
+                <!-- Controles Flexibles de Duración (Mín: 10m / Máx: 45m) -->
+                <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                    <span class="font-pixel text-[9px] text-slate-400 px-1 hidden md:inline">MODULAR:</span>
+                    
+                    <!-- Presets -->
+                    <button onclick="setTimerDuration(10)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 font-pixel text-[10px] transition active:scale-95" title="Mínimo: 10 minutos">
+                        10M
+                    </button>
+                    <button onclick="setTimerDuration(20)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 font-pixel text-[10px] transition active:scale-95" title="20 minutos">
+                        20M
+                    </button>
+                    <button onclick="setTimerDuration(30)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 font-pixel text-[10px] transition active:scale-95" title="30 minutos">
+                        30M
+                    </button>
+                    <button onclick="setTimerDuration(45)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 font-pixel text-[10px] transition active:scale-95" title="Máximo: 45 minutos">
+                        45M
+                    </button>
+
+                    <!-- Ajuste Fino (+/- 5m) -->
+                    <div class="flex items-center gap-1 border-l border-slate-700 pl-1.5">
+                        <button onclick="adjustMinutes(-5)" class="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-amber-300 font-pixel text-[10px] transition active:scale-95" title="Reducir 5 minutos">
+                            -5m
+                        </button>
+                        <button onclick="adjustMinutes(5)" class="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-emerald-300 font-pixel text-[10px] transition active:scale-95" title="Añadir 5 minutos">
+                            +5m
+                        </button>
+                    </div>
+
+                    <button onclick="resetTimer()" class="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-400 hover:text-slate-200 font-pixel text-[10px] transition active:scale-95" title="Reiniciar a duración inicial">
+                        ↺
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arena de Operaciones (Las 2 Fases del Taller) -->
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+            
+            <!-- PARTE 1: ENTREVISTA AL ORÁCULO -->
+            <article id="card-phase-1" class="mission-card phase-oracle phase-active-focus rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
+                <div>
+                    <!-- Cabecera de la Parte 1 -->
+                    <div class="flex items-center justify-between gap-3 mb-4 border-b border-cyan-500/30 pb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0 shadow-[0_0_12px_rgba(56,189,248,0.25)]">
+                                <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12,3C8.96,3 6.6,4.45 5.61,6.43C4.62,8.4 4.5,11.14 5.91,13.04C6.42,13.75 7.08,14.54 7,15.5C6.91,16.47 6.11,17.26 5.21,17.5C5.4,18.88 6.36,20.06 7.75,20.62C8.72,21.03 9.84,21 11,21H13C14.16,21 15.28,21.03 16.25,20.62C17.64,20.06 18.6,18.88 18.79,17.5C17.89,17.26 17.09,16.47 17,15.5C16.92,14.54 17.58,13.75 18.09,13.04C19.5,11.14 19.38,8.4 18.39,6.43C17.4,4.45 15.04,3 12,3Z"/></svg>
+                            </div>
+                            <div>
+                                <span class="font-pixel text-[10px] text-cyan-400 block tracking-wider">PARTE 01 // ELICITACIÓN EN VIVO</span>
+                                <h2 class="font-pixel text-base sm:text-lg text-cyan-200 tracking-wide mt-0.5">
+                                    ENTREVISTA AL ORÁCULO
+                                </h2>
+                            </div>
+                        </div>
+                        <span id="badge-phase-1" class="font-pixel text-[10px] text-cyan-300 bg-cyan-950 px-2.5 py-1 rounded border border-cyan-700 shadow-sm transition-all">
+                            45 MIN
+                        </span>
+                    </div>
+
+                    <!-- Instrucciones de Operación -->
+                    <div class="space-y-3 text-base sm:text-lg text-slate-200 font-medium">
+                        <div class="flex items-start gap-3 p-3 bg-slate-900/90 rounded-xl border border-slate-800">
+                            <span class="font-pixel text-xs text-cyan-400 mt-1 shrink-0">01</span>
+                            <p><strong>Formad vuestra escuadra:</strong> Reuniros en el equipo de desarrollo para repartir los roles de interrogatorio (diseño, programación y arte).</p>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 bg-slate-900/90 rounded-xl border border-slate-800">
+                            <span class="font-pixel text-xs text-cyan-400 mt-1 shrink-0">02</span>
+                            <p><strong>Conectad con el Product Owner:</strong> Abrid el enlace neural para interrogar al responsable creativo de <em>«Ecos del Crepúsculo»</em> (Gemini AI).</p>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 bg-slate-900/90 rounded-xl border border-slate-800">
+                            <span class="font-pixel text-xs text-cyan-400 mt-1 shrink-0">03</span>
+                            <p><strong>Objetivo de Misión:</strong> Extraed <strong>3 a 5 Historias de Usuario</strong> en formato canónico con sus <strong>Criterios de Aceptación Gherkin</strong> superando el filtro <strong>INVEST</strong>.</p>
+                        </div>
+                    </div>
+
+                    <!-- Recordatorio de Trinchera Desplegable -->
+                    <div class="mt-4 pt-3 border-t border-slate-800">
+                        <button onclick="toggleCardDetail('detail-oracle-tip')" class="flex items-center justify-between w-full text-xs font-pixel text-cyan-300 hover:text-cyan-200 transition">
+                            <span>💡 CONSEJO DEL DOCENTE: CÓMO PREGUNTAR</span>
+                            <span id="icon-oracle-tip" class="transition-transform duration-200">▼</span>
+                        </button>
+                        <div id="detail-oracle-tip" class="hidden mt-2 p-3 bg-slate-950/90 rounded-xl border border-cyan-500/30 text-sm text-slate-300 font-medium space-y-1.5 leading-relaxed">
+                            <p>• <strong>No pidáis código C#:</strong> Preguntad por sensaciones, riesgos y reglas jugables (ej.: <em>«¿Qué ocurre si el jugador lanza la botella sin enemigos cerca?»</em>).</p>
+                            <p>• <strong>Aplicad escucha activa:</strong> Parafrasead lo que el Oráculo responda para confirmar que el equipo visualiza la misma mecánica.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón de Conexión Neural al Oráculo -->
+                <div class="mt-6 pt-4 border-t border-slate-800 text-center">
+                    <a href="https://gemini.google.com/gem/1MNB-Wb78FOJpZrOTtComZjmg8nXRdU92?usp=sharing" target="_blank" rel="noopener noreferrer" class="oracle-btn font-pixel text-xs sm:text-sm font-bold py-3.5 px-6 rounded-xl inline-flex items-center justify-center gap-3 w-full shadow-lg">
+                        <span>💬</span> ENLACE CON EL PRODUCT OWNER <span>➔</span>
+                    </a>
+                    <span class="text-[11px] font-pixel text-slate-500 block mt-2">
+                        SE ABRE EN NUEVA PESTAÑA // GEM OFICIAL DE VJ1224
+                    </span>
+                </div>
+            </article>
+
+            <!-- PARTE 2: EL CONSEJO DE GUERRA -->
+            <article id="card-phase-2" class="mission-card phase-council rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
+                <div>
+                    <!-- Cabecera de la Parte 2 -->
+                    <div class="flex items-center justify-between gap-3 mb-4 border-b border-purple-500/30 pb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400 flex items-center justify-center text-purple-300 shrink-0 shadow-[0_0_12px_rgba(167,139,250,0.25)]">
+                                <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M12,5A2,2 0 1,0 10,7A2,2 0 0,0 12,5M12,19A2,2 0 1,0 14,17A2,2 0 0,0 12,19M7,12A2,2 0 1,0 5,14A2,2 0 0,0 7,12M17,12A2,2 0 1,0 19,10A2,2 0 0,0 17,12M12,12A2,2 0 1,0 14,10A2,2 0 0,0 12,12Z"/></svg>
+                            </div>
+                            <div>
+                                <span class="font-pixel text-[10px] text-purple-400 block tracking-wider">PARTE 02 // ESTIMACIÓN RELATIVA</span>
+                                <h2 class="font-pixel text-base sm:text-lg text-purple-200 tracking-wide mt-0.5">
+                                    EL CONSEJO DE GUERRA
+                                </h2>
+                            </div>
+                        </div>
+                        <span id="badge-phase-2" class="font-pixel text-[10px] text-purple-300 bg-purple-950 px-2.5 py-1 rounded border border-purple-700 shadow-sm transition-all">
+                            30 MIN
+                        </span>
+                    </div>
+
+                    <!-- Instrucciones de Operación -->
+                    <div class="space-y-3 text-base sm:text-lg text-slate-200 font-medium">
+                        <div class="flex items-start gap-3 p-3 bg-slate-900/90 rounded-xl border border-slate-800">
+                            <span class="font-pixel text-xs text-purple-400 mt-1 shrink-0">01</span>
+                            <p><strong>Puesta en común:</strong> Anotad vuestras mejores historias en la pizarra compartida o en un borrador conjunto.</p>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 bg-slate-900/90 rounded-xl border border-slate-800">
+                            <span class="font-pixel text-xs text-purple-400 mt-1 shrink-0">02</span>
+                            <p><strong>Ronda de Planning Poker:</strong> Jugad con cartas Fibonacci secretas. Si hay divergencia (ej. un 13 frente a un 2), solo justifican los extremos.</p>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 bg-slate-900/90 rounded-xl border border-slate-800">
+                            <span class="font-pixel text-xs text-purple-400 mt-1 shrink-0">03</span>
+                            <p><strong>Objetivo de Misión:</strong> Consensuar los <strong>Puntos de Historia</strong> de cada tarjeta sin calcular medias aritméticas y prepararlas para el Backlog.</p>
+                        </div>
+                    </div>
+
+                    <!-- Recordatorio de Trinchera Desplegable -->
+                    <div class="mt-4 pt-3 border-t border-slate-800">
+                        <button onclick="toggleCardDetail('detail-council-tip')" class="flex items-center justify-between w-full text-xs font-pixel text-purple-300 hover:text-purple-200 transition">
+                            <span>🛡 REGLA INNEGOCIABLE: CERO MEDIAS</span>
+                            <span id="icon-council-tip" class="transition-transform duration-200">▼</span>
+                        </button>
+                        <div id="detail-council-tip" class="hidden mt-2 p-3 bg-slate-950/90 rounded-xl border border-purple-500/30 text-sm text-slate-300 font-medium space-y-1.5 leading-relaxed">
+                            <p>• <strong>Prohibido hacer medias matemáticas:</strong> Si uno vota 3 y otro 8, no se pone 5. Se debate qué complejidad técnica está viendo uno que el otro desconoce.</p>
+                            <p>• <strong>Si sale un 13 o un ?:</strong> La historia es demasiado grande. ¡Divididla antes de terminar la sesión!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botonera de Herramientas de Poker -->
+                <div class="mt-6 pt-4 border-t border-slate-800 text-center">
+                    <span class="font-pixel text-[10px] text-slate-400 block mb-2.5">
+                        DESPLIEGUE DE LA MESA DE GUERRA:
+                    </span>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="https://www.pointingpoker.com/" target="_blank" rel="noopener noreferrer" class="poker-tool-btn font-pixel text-xs font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5">
+                            <span>🎲</span> Pointing Poker
+                        </a>
+                        <a href="https://scrumpoker.online/" target="_blank" rel="noopener noreferrer" class="poker-tool-btn font-pixel text-xs font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5">
+                            <span>🃏</span> ScrumPoker
+                        </a>
+                    </div>
+                    <p class="text-xs text-slate-400 font-medium mt-2.5 italic">
+                        ...o si lo preferís, ¡repartid una baraja de cartas físicas o papel y boli!
+                    </p>
+                </div>
+            </article>
+
+        </main>
+
+        <!-- Resumen Final del Taller hacia Notion (40%) -->
+        <div class="mt-8 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-slate-950/95 via-emerald-950/30 to-slate-950/95 border border-emerald-500/40 text-center space-y-2">
+            <div class="inline-flex items-center gap-2">
+                <span class="text-emerald-400 text-lg">🏁</span>
+                <h4 class="font-pixel text-xs sm:text-sm text-emerald-300">
+                    DESTINO FINAL: VUESTRO PRODUCT BACKLOG
+                </h4>
+            </div></div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <!-- LÓGICA INTERACTIVA DEL TEMPORIZADOR Y DESPLEGABLES -->
+    <script>
+        const MIN_MINUTES = 10;
+        const MAX_MINUTES = 45;
+
+        let activePhase = 1;
+        const phaseDurations = {
+            1: 45, // Fase 1 por defecto: 45 min
+            2: 30  // Fase 2 por defecto: 30 min
+        };
+
+        let timerSeconds = phaseDurations[1] * 60;
+        let timerInterval = null;
+        let isRunning = false;
+
+        function updateTimerDisplay() {
+            const display = document.getElementById('countdown-display');
+            const clockBox = document.querySelector('.hud-clock-box');
+            
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
+
+            const formatted = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            if (display) {
+                display.innerText = formatted;
+            }
+
+            // Alerta visual pulsante en los últimos 5 minutos
+            if (clockBox) {
+                if (timerSeconds <= 300 && timerSeconds > 0) {
+                    clockBox.classList.add('time-warning');
+                } else {
+                    clockBox.classList.remove('time-warning');
+                }
+            }
+        }
+
+        function updatePhaseBadges() {
+            const b1 = document.getElementById('badge-phase-1');
+            const b2 = document.getElementById('badge-phase-2');
+            if (b1) b1.innerText = `${phaseDurations[1]} MIN`;
+            if (b2) b2.innerText = `${phaseDurations[2]} MIN`;
+
+            const card1 = document.getElementById('card-phase-1');
+            const card2 = document.getElementById('card-phase-2');
+            const btnP1 = document.getElementById('btn-select-phase-1');
+            const btnP2 = document.getElementById('btn-select-phase-2');
+
+            if (activePhase === 1) {
+                if (card1) card1.classList.add('phase-active-focus');
+                if (card2) card2.classList.remove('phase-active-focus');
+
+                if (btnP1) {
+                    btnP1.className = 'px-3 py-1.5 rounded-lg bg-cyan-950 border border-cyan-400 text-cyan-200 font-pixel text-[10px] sm:text-xs transition shadow-sm';
+                }
+                if (btnP2) {
+                    btnP2.className = 'px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 hover:text-purple-300 font-pixel text-[10px] sm:text-xs transition';
+                }
+            } else {
+                if (card1) card1.classList.remove('phase-active-focus');
+                if (card2) card2.classList.add('phase-active-focus');
+
+                if (btnP1) {
+                    btnP1.className = 'px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 hover:text-cyan-300 font-pixel text-[10px] sm:text-xs transition';
+                }
+                if (btnP2) {
+                    btnP2.className = 'px-3 py-1.5 rounded-lg bg-purple-950 border border-purple-400 text-purple-200 font-pixel text-[10px] sm:text-xs transition shadow-sm';
+                }
+            }
+        }
+
+        function switchActivePhase(phaseNumber) {
+            pauseTimer();
+            activePhase = phaseNumber;
+            timerSeconds = phaseDurations[activePhase] * 60;
+
+            const statusText = document.getElementById('timer-status-text');
+            if (statusText) {
+                statusText.innerText = activePhase === 1 
+                    ? 'FASE 1: INTERROGATORIO AL ORÁCULO' 
+                    : 'FASE 2: EL CONSEJO DE GUERRA';
+            }
+
+            updatePhaseBadges();
+            updateTimerDisplay();
+        }
+
+        function pauseTimer() {
+            if (isRunning) {
+                clearInterval(timerInterval);
+                isRunning = false;
+                const btn = document.getElementById('btn-timer-toggle');
+                if (btn) {
+                    btn.innerText = '▶ CONTINUAR';
+                    btn.className = 'px-4 py-2.5 rounded-xl bg-emerald-950 hover:bg-emerald-900 border border-emerald-500 text-emerald-300 font-pixel text-xs sm:text-sm transition active:scale-95 shadow';
+                }
+            }
+        }
+
+        function toggleTimer() {
+            const btn = document.getElementById('btn-timer-toggle');
+            if (isRunning) {
+                pauseTimer();
+            } else {
+                isRunning = true;
+                if (btn) {
+                    btn.innerText = '⏸ PAUSAR';
+                    btn.className = 'px-4 py-2.5 rounded-xl bg-amber-950 hover:bg-amber-900 border border-amber-500 text-amber-300 font-pixel text-xs sm:text-sm transition active:scale-95 shadow';
+                }
+
+                timerInterval = setInterval(() => {
+                    if (timerSeconds > 0) {
+                        timerSeconds--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        isRunning = false;
+                        if (btn) btn.innerText = '✔ TIEMPO';
+                        const statusText = document.getElementById('timer-status-text');
+                        if (statusText) statusText.innerText = '¡MISIÓN CUMPLIDA! TIEMPO DE FASE AGOTADO';
+                    }
+                }, 1000);
+            }
+        }
+
+        function setTimerDuration(minutes) {
+            const clamped = Math.max(MIN_MINUTES, Math.min(MAX_MINUTES, minutes));
+            phaseDurations[activePhase] = clamped;
+            pauseTimer();
+            timerSeconds = clamped * 60;
+            updatePhaseBadges();
+            updateTimerDisplay();
+        }
+
+        function adjustMinutes(delta) {
+            const currentMins = Math.round(timerSeconds / 60);
+            const targetMins = currentMins + delta;
+            setTimerDuration(targetMins);
+        }
+
+        function resetTimer() {
+            setTimerDuration(phaseDurations[activePhase]);
+        }
+
+        function toggleCardDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id.replace('detail-', ''));
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+            }
+        }
+
+        // Inicialización
+        updatePhaseBadges();
+        updateTimerDisplay();
+    </script>
+</body>
+</html>

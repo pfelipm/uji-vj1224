@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditoría del Product Backlog: lista de control de salud | VJ1224</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --neon-cyan: #22d3ee;
+            --neon-purple: #a855f7;
+            --neon-emerald: #34d399;
+            --neon-amber: #facc15;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.08) 0%, transparent 60%),
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .hud-frame {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid rgba(51, 65, 85, 0.85);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(34, 211, 238, 0.04);
+            position: relative;
+        }
+
+        .check-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #334155;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .check-card:hover {
+            border-color: #64748b;
+            transform: translateY(-2px);
+        }
+
+        .check-card.verified {
+            border-color: #34d399;
+            background: rgba(6, 78, 59, 0.2);
+            box-shadow: 0 0 22px rgba(52, 211, 153, 0.18);
+        }
+
+        .check-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 0.5rem;
+            border: 2px solid #475569;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .check-card.verified .check-badge {
+            background: #34d399;
+            border-color: #34d399;
+            color: #080c14;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 md:p-6 lg:p-8">
+
+    <!-- Barra de navegación superior (oculta en Google Sites) -->
+    <nav class="hide-in-embed w-full max-w-6xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-2 border-slate-700/80 rounded-xl px-5 py-3 shadow-lg backdrop-blur-md">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-base transition-colors">
+            <span>⌂</span>
+            <span>Índice general VJ1224</span>
+        </a>
+        <div class="flex items-center gap-3 text-sm md:text-base font-semibold">
+            <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 pixel-font text-[10px]">TEMA 3 · 06/08</span>
+            <a href="05%20Factores%20de%20%C3%A9xito.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+            <span class="text-slate-600">|</span>
+            <a href="07%20Scrum%20of%20Scrums.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-5xl hud-frame rounded-2xl p-6 md:p-10 my-auto">
+
+        <!-- Cabecera -->
+        <header class="text-center mb-8 border-b-2 border-slate-800 pb-8">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/70 border-2 border-cyan-400/50 text-cyan-300 text-xs pixel-font mb-4">
+                <span>🩺</span>
+                <span>CLÍNICA DE PRODUCT BACKLOG</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold text-white tracking-wide mb-3">
+                Auditoría del Product Backlog
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 font-semibold max-w-3xl mx-auto">
+                La lista de control de salud para las misiones de tu videojuego
+            </p>
+        </header>
+
+        <!-- Barra de salud interactiva del Backlog -->
+        <section class="mb-8 bg-slate-900/95 border-2 border-slate-700 rounded-xl p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <div class="flex items-center gap-2.5">
+                    <span class="text-xl">❤️‍🩹</span>
+                    <span class="pixel-font text-xs text-white">SALUD DEL BACKLOG:</span>
+                    <span id="health-status" class="pixel-font text-xs text-amber-300">0 % · PENDIENTE DE AUDITORÍA</span>
+                </div>
+                <button onclick="toggleAllChecks()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs font-bold text-cyan-300 transition-colors">
+                    Marcar / desmarcar todos
+                </button>
+            </div>
+            <div class="w-full h-4 bg-slate-950 rounded-full overflow-hidden border border-slate-700 p-0.5">
+                <div id="health-bar" class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+            <p class="text-sm text-slate-400 font-semibold mt-2">
+                Haz clic en cada criterio (o pulsa <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-600 rounded text-xs text-slate-200">Espacio</kbd> / <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-600 rounded text-xs text-slate-200">→</kbd>) a medida que audites las historias de usuario de tu equipo.
+            </p>
+        </section>
+
+        <!-- Los 4 criterios de salud -->
+        <section class="space-y-5">
+
+            <!-- Criterio 1 -->
+            <article id="check-1" class="check-card rounded-xl p-6" onclick="toggleCheck(1)">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl shrink-0">📜</div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between gap-3">
+                            <h2 class="text-2xl font-bold text-white">1. ¿La historia tiene un propósito claro?</h2>
+                            <div class="check-badge shrink-0" id="badge-1">✓</div>
+                        </div>
+                        <p class="mt-2 text-slate-300 text-lg font-medium">
+                            Verifica que cada historia de usuario siga el formato conversacional de Connextra. Es el alma de la historia, conectando la funcionalidad técnica con el valor real para el jugador.
+                        </p>
+                        <div class="mt-4 bg-slate-950/90 p-4 rounded-xl border-2 border-slate-800">
+                            <p class="font-mono text-base text-slate-200">
+                                <strong class="text-emerald-400">Como</strong> [ROL / JUGADOR], <strong class="text-cyan-400">quiero</strong> [OBJETIVO / ACCIÓN], <strong class="text-amber-300">para</strong> [BENEFICIO / MOTIVACIÓN].
+                            </p>
+                            <p class="mt-2 text-base text-slate-400 italic font-medium">
+                                Ejemplo: «Como explorador, quiero un minimapa que revele las zonas visitadas, para sentir el progreso de mi aventura sin perderme».
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Criterio 2 -->
+            <article id="check-2" class="check-card rounded-xl p-6" onclick="toggleCheck(2)">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl shrink-0">🏆</div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between gap-3">
+                            <h2 class="text-2xl font-bold text-white">2. ¿El Product Backlog está priorizado por valor?</h2>
+                            <div class="check-badge shrink-0" id="badge-2">✓</div>
+                        </div>
+                        <p class="mt-2 text-slate-300 text-lg font-medium">
+                            Lo que figura más arriba en la lista es lo que aporta mayor valor al núcleo jugable (<em>core loop</em>) y a los jugadores, no necesariamente lo más fácil o apetecible de programar. El <strong class="text-rose-300">Product Owner</strong> es el responsable último de este orden.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Criterio 3 -->
+            <article id="check-3" class="check-card rounded-xl p-6" onclick="toggleCheck(3)">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl shrink-0">✅</div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between gap-3">
+                            <h2 class="text-2xl font-bold text-white">3. ¿Están claros los criterios de aceptación?</h2>
+                            <div class="check-badge shrink-0" id="badge-3">✓</div>
+                        </div>
+                        <p class="mt-2 text-slate-300 text-lg font-medium">
+                            Cada historia necesita una lista de condiciones concretas y verificables que deben cumplirse para considerarla terminada. Sin criterios de aceptación claros, la <strong class="text-cyan-300">Definition of Done</strong> es imposible de validar objetivamente.
+                        </p>
+                        <div class="mt-4 bg-slate-950/90 p-4 rounded-xl border-2 border-slate-800">
+                            <p class="font-bold text-amber-300 text-base mb-2">Ejemplo para la historia «Quiero un doble salto»:</p>
+                            <ul class="list-disc list-outside pl-5 space-y-1.5 text-base text-slate-200 font-medium">
+                                <li>El segundo salto solo se activa si se pulsa el botón estando en el aire.</li>
+                                <li>El segundo salto reproduce un efecto visual de partículas y un efecto de sonido propio.</li>
+                                <li>El personaje no puede encadenar un tercer salto antes de tocar el suelo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Criterio 4 -->
+            <article id="check-4" class="check-card rounded-xl p-6" onclick="toggleCheck(4)">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl shrink-0">📏</div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between gap-3">
+                            <h2 class="text-2xl font-bold text-white">4. ¿La historia es suficientemente pequeña (Small)?</h2>
+                            <div class="check-badge shrink-0" id="badge-4">✓</div>
+                        </div>
+                        <p class="mt-2 text-slate-300 text-lg font-medium">
+                            Una buena historia de usuario debe poder completarse dentro de un único Sprint. Si un elemento es demasiado grande (una <strong class="text-rose-400">épica</strong>), hay que trocearlo en historias más pequeñas y manejables antes de entrar al Sprint.
+                        </p>
+                        <div class="mt-4 grid grid-cols-1 md:grid-cols-11 items-center gap-3 bg-slate-950/90 p-4 rounded-xl border-2 border-slate-800">
+                            <div class="md:col-span-4 bg-rose-950/50 border border-rose-500/40 rounded-lg p-3">
+                                <span class="pixel-font text-[9px] text-rose-300 block mb-1">ÉPICA (DEMASIADO GRANDE)</span>
+                                <p class="text-base font-bold text-white">«Crear el sistema de inventario»</p>
+                            </div>
+                            <div class="md:col-span-1 text-center text-2xl font-black text-amber-400">➔</div>
+                            <div class="md:col-span-6 bg-emerald-950/50 border border-emerald-500/40 rounded-lg p-3">
+                                <span class="pixel-font text-[9px] text-emerald-300 block mb-1">HISTORIAS DE USUARIO (LISTAS PARA EL SPRINT)</span>
+                                <p class="text-base font-semibold text-slate-200">«Visualizar cuadrícula de objetos», «Equipar un arma activa», «Soltar objeto al suelo»…</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Panel del Asistente IA: GameDev-Scrum Sensei -->
+        <section class="mt-10 bg-gradient-to-br from-purple-950/70 via-slate-900 to-cyan-950/50 rounded-2xl p-6 md:p-8 border-2 border-purple-400/70 shadow-2xl text-center">
+            <div class="flex flex-col items-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-400/50 text-purple-300 pixel-font text-[10px] mb-3">
+                    <span>🤖</span>
+                    <span>ASISTENTE IA OFICIAL · GEM DE GEMINI</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-white">
+                    ¿Atascado? ¿Necesitas una segunda opinión?
+                </h2>
+                <p class="mt-2 text-slate-200 text-lg font-medium max-w-2xl">
+                    Consulta a vuestro compañero de equipo: el <strong class="text-purple-300">GameDev-Scrum Sensei</strong>, un asistente de IA especializado para ayudaros a refinar historias de usuario, criterios de aceptación, diseño de videojuegos y Unity.
+                </p>
+                <a href="https://gemini.google.com/gem/1gyutyBOh6RUnwjhyVlKhJEPRTvrN0yEB?usp=sharing" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-3 bg-purple-500 hover:bg-purple-400 text-slate-950 font-bold py-3.5 px-7 rounded-xl border-2 border-purple-200 shadow-lg hover:shadow-purple-500/30 transform hover:-translate-y-0.5 transition-all text-lg">
+                    <span>🧘‍♂️</span>
+                    <span>¡Consultar al GameDev-Scrum Sensei ahora!</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página académico estandarizado -->
+    <footer class="w-full max-w-5xl mt-8 py-6 border-t border-slate-800/90 text-center text-slate-400 text-sm md:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+            <div class="text-left">
+                <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+                <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const checkedState = { 1: false, 2: false, 3: false, 4: false };
+
+        function updateChecklistUI() {
+            let count = 0;
+            for (let i = 1; i <= 4; i++) {
+                const card = document.getElementById(`check-${i}`);
+                if (checkedState[i]) {
+                    card.classList.add('verified');
+                    count++;
+                } else {
+                    card.classList.remove('verified');
+                }
+            }
+            const pct = count * 25;
+            document.getElementById('health-bar').style.width = `${pct}%`;
+
+            const statusEl = document.getElementById('health-status');
+            if (pct === 0) {
+                statusEl.textContent = '0 % · PENDIENTE DE AUDITORÍA';
+                statusEl.className = 'pixel-font text-xs text-amber-300';
+            } else if (pct < 100) {
+                statusEl.textContent = `${pct} % · EN REVISIÓN (${count}/4)`;
+                statusEl.className = 'pixel-font text-xs text-cyan-300';
+            } else {
+                statusEl.textContent = '100 % · ¡BACKLOG LISTO PARA EL SPRINT!';
+                statusEl.className = 'pixel-font text-xs text-emerald-300';
+            }
+        }
+
+        function toggleCheck(id) {
+            checkedState[id] = !checkedState[id];
+            updateChecklistUI();
+        }
+
+        function toggleAllChecks() {
+            const allChecked = Object.values(checkedState).every(Boolean);
+            for (let i = 1; i <= 4; i++) {
+                checkedState[i] = !allChecked;
+            }
+            updateChecklistUI();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT', 'TEXTAREA', 'BUTTON', 'A'].includes(document.activeElement?.tagName)) return;
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                const nextUnchecked = [1, 2, 3, 4].find(i => !checkedState[i]);
+                if (nextUnchecked) {
+                    e.preventDefault();
+                    checkedState[nextUnchecked] = true;
+                    updateChecklistUI();
+                    document.getElementById(`check-${nextUnchecked}`).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            } else if (e.code === 'ArrowLeft') {
+                const lastChecked = [4, 3, 2, 1].find(i => checkedState[i]);
+                if (lastChecked) {
+                    e.preventDefault();
+                    checkedState[lastChecked] = false;
+                    updateChecklistUI();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

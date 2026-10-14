@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224 - Guía docente interactiva (día 0) | UJI</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAF8F5;
+            --main-yellow: #FACC15;
+            --main-red: #EF4444;
+            --main-dark: #18181B;
+            --main-white: #FFFFFF;
+            --main-blue: #3B82F6;
+            --main-green: #22C55E;
+            --main-purple: #8B5CF6;
+            --border-style: 3px solid #18181B;
+            --shadow-style: 5px 5px 0px #18181B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--main-dark);
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.5;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', monospace;
+            text-transform: uppercase;
+        }
+
+        /* Header / Banner */
+        header {
+            background-color: var(--main-yellow);
+            border: var(--border-style);
+            box-shadow: var(--shadow-style);
+            padding: 30px 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 1rem;
+            font-weight: 700;
+            background-color: var(--main-dark);
+            color: var(--main-white);
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 4px;
+        }
+
+        .badge-live {
+            background-color: var(--main-red);
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            vertical-align: middle;
+            margin-left: 8px;
+            border: 2px solid #000;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        @media (min-width: 850px) {
+            .grid-2 { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* Card System */
+        .card {
+            background-color: var(--main-white);
+            border: var(--border-style);
+            box-shadow: var(--shadow-style);
+            padding: 25px;
+            position: relative;
+        }
+
+        .card-header {
+            border-bottom: var(--border-style);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 900;
+        }
+
+        /* Meta Chips */
+        .chips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .chip {
+            background: #F3F4F6;
+            border: 2px solid #000;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 2px 2px 0px #000;
+        }
+
+        /* Dev Team */
+        .team-member {
+            background-color: var(--bg-color);
+            border: var(--border-style);
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .avatar-img {
+            width: 75px;
+            height: 75px;
+            border: 3px solid #18181B;
+            object-fit: cover;
+            box-shadow: 3px 3px 0px #18181B;
+            background-color: var(--main-yellow);
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .avatar-img:hover {
+            transform: scale(1.06) rotate(-1deg);
+            box-shadow: 5px 5px 0px #18181B;
+        }
+
+        .avatar-initials {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF !important;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 0px #000;
+            user-select: none;
+        }
+
+        .team-role {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border: 2px solid #18181B;
+            box-shadow: 2px 2px 0px #18181B;
+            margin-bottom: 6px;
+            border-radius: 4px;
+            background-color: var(--main-yellow);
+            color: var(--main-dark);
+            line-height: 1.2;
+        }
+
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(24, 24, 27, 0.85);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+
+        .lightbox-card {
+            background-color: var(--main-white);
+            border: var(--border-style);
+            box-shadow: 10px 10px 0px #000;
+            padding: 25px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox-img {
+            width: 100%;
+            max-height: 320px;
+            object-fit: cover;
+            border: 3px solid #18181B;
+            box-shadow: 4px 4px 0px #18181B;
+            margin-bottom: 15px;
+            background-color: var(--main-yellow);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: var(--main-red);
+            color: white;
+            border: 3px solid #000;
+            width: 36px;
+            height: 36px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #000;
+        }
+
+        /* Quest Log Tabs */
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tab-btn {
+            background: var(--main-white);
+            border: var(--border-style);
+            padding: 10px 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .tab-btn.active {
+            background: var(--main-yellow);
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #000;
+        }
+
+        .quest-item {
+            border: 2px solid #000;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+
+        .quest-header {
+            padding: 12px;
+            background-color: #f0f0f0;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quest-header:hover { background-color: var(--main-yellow); }
+
+        .quest-body {
+            padding: 12px;
+            display: none;
+            border-top: 2px solid #000;
+            font-size: 0.9rem;
+            background-color: #fff;
+        }
+
+        /* Boss Fight / Evaluation Breakdown */
+        .boss-card {
+            border: var(--border-style);
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+
+        .boss-hp {
+            height: 16px;
+            background: #e5e7eb;
+            border: 2px solid #000;
+            margin-top: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .boss-hp-fill {
+            height: 100%;
+            background-color: var(--main-red);
+            width: 100%;
+        }
+
+        .tag-rec {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border: 1px solid #000;
+        }
+
+        .tag-rec.yes { background-color: #86efac; }
+        .tag-rec.no { background-color: #fca5a5; }
+
+        /* Calculator */
+        .calc-container {
+            background-color: var(--main-yellow);
+            border: var(--border-style);
+            box-shadow: var(--shadow-style);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .calc-slider-group { margin-bottom: 18px; }
+
+        .calc-slider-group label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        input[type=range] {
+            width: 100%;
+            height: 12px;
+            background: #fff;
+            border: 2px solid #000;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--main-red);
+            border: 2px solid #000;
+            cursor: pointer;
+        }
+
+        .calc-result-box {
+            background-color: var(--main-dark);
+            color: var(--main-white);
+            border: var(--border-style);
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .calc-score {
+            font-size: 2.8rem;
+            color: var(--main-yellow);
+            margin: 10px 0;
+        }
+
+        /* Tech & Tools */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tech-card {
+            border: 2px solid #000;
+            padding: 12px;
+            background: #fff;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .tech-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        /* Books Section */
+        .book-item {
+            padding: 8px 12px;
+            border: 2px solid #000;
+            margin-bottom: 8px;
+            background: #fff;
+            font-size: 0.85rem;
+        }
+
+        /* Direct Links Grid */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        @media (min-width: 600px) {
+            .links-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .big-btn {
+            display: block;
+            text-align: center;
+            background-color: var(--main-white);
+            border: var(--border-style);
+            box-shadow: var(--shadow-style);
+            padding: 18px;
+            font-weight: 900;
+            text-decoration: none;
+            color: var(--main-dark);
+            font-size: 1rem;
+            transition: all 0.1s ease;
+        }
+
+        .big-btn:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 2px 2px 0px #000;
+            background-color: var(--main-yellow);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-weight: 700;
+            border-top: var(--border-style);
+            font-size: 0.9rem;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .top-nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background-color: var(--main-dark);
+            color: var(--main-white);
+            border: var(--border-style);
+            box-shadow: var(--shadow-style);
+            padding: 12px 18px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .top-nav a {
+            color: var(--main-yellow);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .top-nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav hide-in-embed">
+    <a href="../index.html">⌂ Índice general VJ1224</a>
+    <div style="display: flex; align-items: center; gap: 12px; font-size: 0.9rem;">
+        <span class="pixel-font" style="font-size: 0.65rem; background: var(--main-yellow); color: var(--main-dark); padding: 4px 8px;">DÍA 0 · PRESENTACIÓN</span>
+        <a href="../t1/01%20La%20ingenier%C3%ADa%20del%20software.html">Comenzar Tema 1 →</a>
+    </div>
+</nav>
+
+<!-- HEADER / HERO BANNER -->
+<header>
+    <h1 class="pixel-font">VJ1224: INGENIERÍA DEL SOFTWARE</h1>
+    <p>DEV STUDIO MODE: SEMESTRE 1 <span class="badge-live pixel-font">2026/2027</span></p>
+    <div class="chips-container" style="justify-content: center; margin-top: 15px;">
+        <span class="chip">🎓 Grado en Diseño y Desarrollo de Videojuegos</span>
+        <span class="chip">🏛️ Universitat Jaume I (UJI)</span>
+        <span class="chip">⚡ 6 créditos ECTS</span>
+        <span class="chip">📅 3.º curso / 1.er semestre</span>
+    </div>
+</header>
+
+<!-- INTRO NARRATIVE -->
+<div class="card" style="margin-bottom: 25px; background-color: #E0F2FE;">
+    <div class="card-title pixel-font" style="font-size: 0.95rem; margin-bottom: 10px;">🎮 MISIÓN PRINCIPAL: DEL CONCEPTO AL JUEGO JUGABLE</div>
+    <p>¡Bienvenid@s al estudio de desarrollo de VJ1224! Esta asignatura es la única sobre la materia en el grado y sirve como guía práctica para pasar de la idea a un producto de software sólido. Construirás un videojuego real en equipo coordinado (con <strong>VJ1222</strong> y <strong>VJ1223</strong>) aplicando metodologías ágiles (<strong>Scrum</strong>), modelado UML, gestión de deuda técnica, TDD y pruebas continuas para presentar tu juego en la <strong>Feria del Videojuego de enero</strong>.</p>
+</div>
+
+<!-- MAIN GRID: TEAM & QUEST LOG -->
+<div class="grid-2">
+    
+    <!-- DEV TEAM (PARTY MEMBERS) -->
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title pixel-font">👥 EL EQUIPO DOCENTE</span>
+        </div>
+
+        <!-- Pablo Felip Monferrer -->
+        <div class="team-member">
+            <img src="https://drive.google.com/thumbnail?id=1fqLJBxsBAZqG9jNEiy7WuWaTOOswKEbA&sz=w500-h500" 
+                 alt="Pablo Felip Monferrer" 
+                 class="avatar-img"
+                 title="🔍 Haz clic para ampliar"
+                 onclick="openAvatarLightbox('https://drive.google.com/thumbnail?id=1fqLJBxsBAZqG9jNEiy7WuWaTOOswKEbA&sz=w500-h500', 'Pablo Felip Monferrer', '¿Un aire familiar? ¡Cualquier parecido con la realidad (o con la IA) es pura coincidencia de ingeniería de software! 😉 🤖')">
+            <div class="team-info">
+                <div><span class="team-role pixel-font">RESPONSABLE & TEORÍA</span></div>
+                <strong style="font-size: 1.05rem; display: block; margin-bottom: 2px;">Pablo Felip Monferrer</strong>
+                <p style="font-size: 0.85rem; margin-bottom: 8px;">Dep. Lenguajes y Sistemas Informáticos. Clases de teoría (26 h). Arquitectura, UML y gestión conceptual.</p>
+                <div>
+                    <a href="https://www.uji.es/institucional/estructura/personal?p_departamento=1443&p_profesor=96815" target="_blank" class="btn-link pixel-font" style="text-decoration: none; display: inline-block; padding: 4px 8px; border: 2px solid #000; box-shadow: 2px 2px 0px #000; background-color: #18181B; color: #FFFFFF; font-size: 0.65rem; transition: background-color 0.2s;">🔗 Ficha UJI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emilio Bueso -->
+        <div class="team-member">
+            <div class="avatar-img avatar-initials pixel-font" style="background-color: var(--main-red); display: flex; align-items: center; justify-content: center; color: #FFFFFF; text-shadow: 2px 2px 0px #000;">EB</div>
+            <div class="team-info">
+                <div><span class="team-role pixel-font" style="background-color: var(--main-red); color: #FFFFFF;">LAB PRODUCER & SCRUM</span></div>
+                <strong style="font-size: 1.05rem; display: block; margin-bottom: 2px;">Emilio Bueso</strong>
+                <p style="font-size: 0.85rem; margin-bottom: 8px;">Prácticas en aulas de informática (30 h). Dirección de producción con Scrum y control de hitos.</p>
+                <a href="https://www.uji.es/institucional/estructura/personal?p_departamento=1443&p_profesor=63786" target="_blank" class="btn-link pixel-font" style="text-decoration: none; display: inline-block; padding: 4px 8px; border: 2px solid #000; box-shadow: 2px 2px 0px #000; background-color: #18181B; color: #FFFFFF; font-size: 0.65rem; transition: background-color 0.2s;">🔗 Ficha UJI</a>
+            </div>
+        </div>
+
+        <!-- Damaris Pascual -->
+        <div class="team-member">
+            <div class="avatar-img avatar-initials pixel-font" style="background-color: var(--main-blue); display: flex; align-items: center; justify-content: center; color: #FFFFFF; text-shadow: 2px 2px 0px #000;">DP</div>
+            <div class="team-info">
+                <div><span class="team-role pixel-font" style="background-color: var(--main-blue); color: #FFFFFF;">LAB PRODUCER & SCRUM</span></div>
+                <strong style="font-size: 1.05rem; display: block; margin-bottom: 2px;">Damaris Pascual</strong>
+                <p style="font-size: 0.85rem; margin-bottom: 8px;">Prácticas en aulas de informática (30 h). Dirección de producción con Scrum y control de hitos.</p>
+                <a href="https://www.uji.es/institucional/estructura/personal?p_departamento=1443&p_profesor=168666" target="_blank" class="btn-link pixel-font" style="text-decoration: none; display: inline-block; padding: 4px 8px; border: 2px solid #000; box-shadow: 2px 2px 0px #000; background-color: #18181B; color: #FFFFFF; font-size: 0.65rem; transition: background-color 0.2s;">🔗 Ficha UJI</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUEST LOG (SYLLABUS) -->
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title pixel-font">📜 QUEST LOG (TEMARIO)</span>
+        </div>
+
+        <div class="tab-buttons">
+            <button class="tab-btn pixel-font active" onclick="switchTab('teoria')">TEORÍA</button>
+            <button class="tab-btn pixel-font" onclick="switchTab('practica')">PRÁCTICAS</button>
+        </div>
+
+        <!-- TEORIA CONTENT -->
+        <div id="tab-teoria">
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>Tema 1. IS y videojuegos</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Retos de ingeniería y gestión en la industria. De la deuda técnica al diseño sólido y sostenible.</div>
+            </div>
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>Tema 2. Historias de usuario</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Captura de requisitos del juego, definición del mapa de historias, criterios de aceptación y estimación de esfuerzo.</div>
+            </div>
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>Tema 3. Scrum Manager</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Roles (Product Owner, Scrum Master, Developers), artefactos (Product Backlog, Sprint Backlog, Incremento) y eventos ágiles.</div>
+            </div>
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>Tema 4. DCU de UML</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Diagramas de casos de uso aplicados a la especificación de funcionalidades y flujos de juego.</div>
+            </div>
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>Tema 5. DC de UML</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Diagramas de clases: relaciones, herencia, composición y diseño estructural de componentes.</div>
+            </div>
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>Tema 6. DA de UML</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Diagramas de actividades: modelado de procesos, algoritmos de juego y lógica de estados.</div>
+            </div>
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>Tema 7. Presupuesto y contrato</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Planificación económica, costes de desarrollo, pliegos de condiciones técnicas (IR04) y formalización contractual.</div>
+            </div>
+        </div>
+
+        <!-- PRACTICA CONTENT -->
+        <div id="tab-practica" style="display: none;">
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>P1. Planificación del proyecto</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Configuración del entorno de trabajo, Notion, repositorios en Unity y preparación del Product Backlog inicial.</div>
+            </div>
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>P2. Gestión de equipos</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Asignación de roles internos, acuerdo sobre la Definition of Done (DoD) y protocolo de comunicación interna.</div>
+            </div>
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>P3. Seguimiento del proyecto</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Ejecución secuenciada de Sprints de Scrum, control de velocidad, burn-down y revisiones continuas.</div>
+            </div>
+            <div class="quest-item">
+                <div class="quest-header" onclick="toggleQuest(this)">
+                    <span>P4. Playtesting y feria</span> <span>▼</span>
+                </div>
+                <div class="quest-body">Pruebas de jugabilidad, balanceo, pulido e integración para la presentación final en la Feria del Videojuego de enero (coordinado con VJ1222 y VJ1223).</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- BOSS FIGHT BREAKDOWN (EVALUATION SYSTEM) -->
+<div class="card" style="margin-bottom: 30px;">
+    <div class="card-header">
+        <span class="card-title pixel-font">⚔️ BOSS FIGHT BREAKDOWN (SISTEMA DE EVALUACIÓN)</span>
+    </div>
+    <p style="margin-bottom: 15px; font-size: 0.95rem;">
+        La evaluación se compone de un <strong>60 % de evaluación continua</strong> y un <strong>40 % de examen final</strong> (no hay nota mínima por bloque):
+    </p>
+
+    <div class="grid-2">
+        <!-- Boss 1 -->
+        <div class="boss-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong>1. Examen final individual</strong>
+                <span class="tag-rec yes">Recuperable (2.ª conv.)</span>
+            </div>
+            <p style="font-size: 0.85rem; color: #444; margin-top: 6px;">
+                Prueba escrita individual sobre teoría y modelado UML en la fecha oficial de exámenes.
+            </p>
+            <div class="boss-hp"><div class="boss-hp-fill" style="width: 40%;"></div></div>
+            <span class="pixel-font" style="font-size: 0.75rem; float: right; margin-top: 4px;">PESO: 40 % (RA04)</span>
+        </div>
+
+        <!-- Boss 2 -->
+        <div class="boss-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong>2. Sprints de Scrum (prácticas)</strong>
+                <span class="tag-rec no">No recuperable</span>
+            </div>
+            <p style="font-size: 0.85rem; color: #444; margin-top: 6px;">
+                Planificación y seguimiento individual del desempeño en las sesiones de laboratorio durante los Sprints.
+            </p>
+            <div class="boss-hp"><div class="boss-hp-fill" style="width: 40%; background-color: var(--main-yellow);"></div></div>
+            <span class="pixel-font" style="font-size: 0.75rem; float: right; margin-top: 4px;">PESO: 40 % (RA01, RA02)</span>
+        </div>
+
+        <!-- Boss 3 -->
+        <div class="boss-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong>3. TDD del proyecto</strong>
+                <span class="tag-rec yes">Recuperable (enero)</span>
+            </div>
+            <p style="font-size: 0.85rem; color: #444; margin-top: 6px;">
+                Trabajo grupal centrado en las estrategias de evaluación y pruebas continuas aplicadas al videojuego.
+            </p>
+            <div class="boss-hp"><div class="boss-hp-fill" style="width: 10%; background-color: var(--main-blue);"></div></div>
+            <span class="pixel-font" style="font-size: 0.75rem; float: right; margin-top: 4px;">PESO: 10 % (RA03, RA04)</span>
+        </div>
+
+        <!-- Boss 4 -->
+        <div class="boss-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong>4. Proyecto y Feria del Videojuego</strong>
+                <span class="tag-rec no">No recuperable</span>
+            </div>
+            <p style="font-size: 0.85rem; color: #444; margin-top: 6px;">
+                Presentación pública en la feria de enero. Trabajo coordinado con las asignaturas VJ1222 y VJ1223.
+            </p>
+            <div class="boss-hp"><div class="boss-hp-fill" style="width: 10%; background-color: var(--main-purple);"></div></div>
+            <span class="pixel-font" style="font-size: 0.75rem; float: right; margin-top: 4px;">PESO: 10 % (RA03)</span>
+        </div>
+    </div>
+</div>
+
+<!-- CALCULADORA DE NOTA / XP -->
+<div class="calc-container">
+    <div class="card-title pixel-font" style="margin-bottom: 15px; font-size: 1.1rem;">🧮 CALCULADORA DE XP Y NOTA FINAL</div>
+    <p style="margin-bottom: 20px; font-size: 0.95rem;">Ajusta los marcadores para simular tus calificaciones en cada apartado y calcular la nota estimada:</p>
+
+    <div class="calc-slider-group">
+        <label><span>Examen final individual (40 %)</span> <span id="val-examen">7.0</span></label>
+        <input type="range" id="range-examen" min="0" max="10" step="0.1" value="7.0" oninput="calculateGrade()">
+    </div>
+
+    <div class="calc-slider-group">
+        <label><span>Seguimiento Scrum en prácticas (40 %)</span> <span id="val-scrum">8.0</span></label>
+        <input type="range" id="range-scrum" min="0" max="10" step="0.1" value="8.0" oninput="calculateGrade()">
+    </div>
+
+    <div class="calc-slider-group">
+        <label><span>TDD del proyecto · grupal (10 %)</span> <span id="val-tdd">8.5</span></label>
+        <input type="range" id="range-tdd" min="0" max="10" step="0.1" value="8.5" oninput="calculateGrade()">
+    </div>
+
+    <div class="calc-slider-group">
+        <label><span>Feria del Videojuego · grupal (10 %)</span> <span id="val-feria">9.0</span></label>
+        <input type="range" id="range-feria" min="0" max="10" step="0.1" value="9.0" oninput="calculateGrade()">
+    </div>
+
+    <div class="calc-result-box">
+        <div class="pixel-font" style="font-size: 0.85rem;">NOTA FINAL ESTIMADA</div>
+        <div class="calc-score pixel-font" id="final-score">7.65</div>
+        <div class="pixel-font" id="rank-status" style="color: var(--main-yellow); font-size: 0.8rem;">RANK: SENIOR GAME ARCHITECT</div>
+    </div>
+</div>
+
+<!-- TOOLS & BIBLIOGRAPHY -->
+<div class="grid-2">
+    <!-- TECH STACK -->
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title pixel-font">🛠️ SOFTWARE Y HERRAMIENTAS</span>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h4>🎮 Unity Engine</h4>
+                <p style="font-size: 0.8rem;">Motor de desarrollo principal recomendado para el prototipado y la build final.</p>
+            </div>
+            <div class="tech-card">
+                <h4>📝 Notion</h4>
+                <p style="font-size: 0.8rem;">Gestión de Product Backlog. El alumnado tiene acceso ilimitado al plan Plus para educación utilizando sus cuentas de la UJI.</p>
+            </div>
+            <div class="tech-card">
+                <h4>📐 Diagramación UML</h4>
+                <p style="font-size: 0.8rem;">Software para diseño de diagramas DCU, DC y DA (StarUML, Draw.io, etc.).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BIBLIOGRAFÍA -->
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title pixel-font">📚 BIBLIOGRAFÍA RECOMENDADA</span>
+        </div>
+        <div class="book-item">
+            <strong>Keith, C. (2010)</strong> — <em>Agile Game Development with Scrum</em>. Addison-Wesley.
+        </div>
+        <div class="book-item">
+            <strong>Flynt, J. P. y Salem, O. (2004)</strong> — <em>Software Engineering for Game Developers</em>. Course Technology.
+        </div>
+        <div class="book-item">
+            <strong>Bethke, E. (2003)</strong> — <em>Game Development and Production</em>. Wordware Publishing.
+        </div>
+        <div class="book-item">
+            <strong>McShaffry, M. y Graham, D. (2012)</strong> — <em>Game Coding Complete (4th Ed.)</em>. Cengage Learning.
+        </div>
+    </div>
+</div>
+
+<!-- DIRECT LINKS PORTAL -->
+<div class="links-grid">
+    <a href="https://aulavirtual.uji.es/course/view.php?id=88360" target="_blank" class="big-btn pixel-font">
+        🎓 AULA VIRTUAL UJI (VJ1224)
+    </a>
+    <a href="https://www.pablofelip.uji.es/" target="_blank" class="big-btn pixel-font">
+        👨‍🏫 PROF. PABLO FELIP (WEB PERSONAL)
+    </a>
+</div>
+
+<!-- LIGHTBOX MODAL FOR AVATAR -->
+<div id="avatar-lightbox" class="lightbox-modal" onclick="closeAvatarLightbox(event)">
+    <div class="lightbox-card" onclick="event.stopPropagation()">
+        <button class="lightbox-close pixel-font" onclick="closeAvatarLightbox()">✕</button>
+        <img id="lightbox-img" src="" alt="Profile Large" class="lightbox-img">
+        <h3 id="lightbox-title" class="pixel-font" style="font-size: 0.95rem; margin-bottom: 8px; color: var(--main-dark);"></h3>
+        <p id="lightbox-caption" style="font-size: 0.9rem; font-weight: 500; color: #27272a; line-height: 1.4; background: #fef08a; padding: 10px; border: 2px solid #000;"></p>
+    </div>
+</div>
+
+<footer>
+    <p>VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+    <p style="font-size: 0.85rem; color: #333; margin-top: 4px;">Autor: <strong>Pablo Felip Monferrer</strong> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+    <p style="font-size: 0.78rem; color: #555; margin-top: 6px;">
+        Licencia CC BY-NC-SA 4.0
+        <span class="hide-in-embed"> · <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" style="color: #18181B; text-decoration: underline;">Repositorio en GitHub ↗</a></span>
+    </p>
+</footer>
+
+<script>
+    function switchTab(tabName) {
+        document.getElementById('tab-teoria').style.display = tabName === 'teoria' ? 'block' : 'none';
+        document.getElementById('tab-practica').style.display = tabName === 'practica' ? 'block' : 'none';
+        
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons[0].classList.toggle('active', tabName === 'teoria');
+        buttons[1].classList.toggle('active', tabName === 'practica');
+    }
+
+    function toggleQuest(element) {
+        const body = element.nextElementSibling;
+        const isVisible = body.style.display === 'block';
+        body.style.display = isVisible ? 'none' : 'block';
+        element.querySelector('span:last-child').innerText = isVisible ? '▼' : '▲';
+    }
+
+    function calculateGrade() {
+        const ex = parseFloat(document.getElementById('range-examen').value);
+        const sc = parseFloat(document.getElementById('range-scrum').value);
+        const td = parseFloat(document.getElementById('range-tdd').value);
+        const fe = parseFloat(document.getElementById('range-feria').value);
+
+        document.getElementById('val-examen').innerText = ex.toFixed(1);
+        document.getElementById('val-scrum').innerText = sc.toFixed(1);
+        document.getElementById('val-tdd').innerText = td.toFixed(1);
+        document.getElementById('val-feria').innerText = fe.toFixed(1);
+
+        const total = (ex * 0.4) + (sc * 0.4) + (td * 0.1) + (fe * 0.1);
+        
+        const scoreEl = document.getElementById('final-score');
+        const rankEl = document.getElementById('rank-status');
+
+        scoreEl.innerText = total.toFixed(2);
+
+        if (total < 5.0) {
+            rankEl.innerText = "STATUS: GAME OVER (SUSPENSO)";
+            rankEl.style.color = "var(--main-red)";
+        } else if (total < 7.0) {
+            rankEl.innerText = "RANK: JUNIOR DEV (APROBADO)";
+            rankEl.style.color = "#6ee7b7";
+        } else if (total < 9.0) {
+            rankEl.innerText = "RANK: SENIOR GAME ARCHITECT (NOTABLE)";
+            rankEl.style.color = "var(--main-yellow)";
+        } else {
+            rankEl.innerText = "RANK: LEGENDARY LEAD PRODUCER (SOBRESALIENTE)";
+            rankEl.style.color = "#f472b6";
+        }
+    }
+
+    function openAvatarLightbox(imgUrl, title, caption) {
+        document.getElementById('lightbox-img').src = imgUrl;
+        document.getElementById('lightbox-title').innerText = title;
+        document.getElementById('lightbox-caption').innerText = caption;
+        document.getElementById('avatar-lightbox').classList.add('active');
+    }
+
+    function closeAvatarLightbox(e) {
+        if (!e || e.target === document.getElementById('avatar-lightbox') || e.target.classList.contains('lightbox-close')) {
+            document.getElementById('avatar-lightbox').classList.remove('active');
+        }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAvatarLightbox();
+        }
+    });
+</script>
+
+</body>
+</html>

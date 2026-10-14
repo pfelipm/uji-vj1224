@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: El origen de Scrum (Takeuchi y Nonaka, 1986)</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .font-pixel {
+            font-family: 'Press Start 2P', monospace;
+        }
+        .font-body {
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        html, body {
+            background-color: #080c14;
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(52, 211, 153, 0.14), transparent 55%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .card-relay {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.96) 0%, rgba(45, 18, 25, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(244, 63, 94, 0.65);
+            box-shadow: 0 0 22px rgba(244, 63, 94, 0.2);
+            transition: all 0.25s ease;
+        }
+        .card-relay:hover {
+            border-color: #f43f5e;
+            box-shadow: 0 0 28px rgba(244, 63, 94, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .card-rugby {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.96) 0%, rgba(10, 42, 38, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(52, 211, 153, 0.65);
+            box-shadow: 0 0 22px rgba(52, 211, 153, 0.2);
+            transition: all 0.25s ease;
+        }
+        .card-rugby:hover {
+            border-color: #34d399;
+            box-shadow: 0 0 28px rgba(52, 211, 153, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .trait-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.96) 0%, rgba(20, 30, 48, 0.94) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(56, 189, 248, 0.45);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .trait-card:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.3);
+            transform: translateY(-3px);
+        }
+        .trait-card.active-card {
+            border-color: #facc15;
+            box-shadow: 0 0 26px rgba(250, 204, 21, 0.35);
+        }
+
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .animate-reveal {
+            animation: fadeInDown 0.32s ease-out forwards;
+        }
+
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.96);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(56, 189, 248, 0.55);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.65), 0 0 16px rgba(56, 189, 248, 0.18);
+        }
+    </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center min-h-screen selection:bg-cyan-500 selection:text-black">
+
+    <div class="max-w-6xl w-full flex-1 flex flex-col justify-between">
+        <div>
+            <!-- Barra superior de navegación (oculta en Google Sites) -->
+            <nav aria-label="Navegación del portal" class="hide-in-embed flex flex-wrap items-center justify-between gap-3 mb-6 px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 shadow-lg text-xs sm:text-sm">
+                <div class="flex items-center gap-2">
+                    <a href="../index.html" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-950/80 hover:bg-cyan-900 text-cyan-300 border border-cyan-500/40 font-semibold transition">
+                        <span>🏠</span>
+                        <span>Índice general</span>
+                    </a>
+                    <span class="text-slate-500 hidden sm:inline">·</span>
+                    <span class="font-pixel text-[10px] text-slate-400 hidden sm:inline">TEMA 3 // 02 DE 08</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="01%20Lean,%20Agile%20y%20Scrum.html" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-600 font-semibold transition">
+                        ← 01. Lean, Agile y Scrum
+                    </a>
+                    <a href="03%20El%20coraz%C3%B3n%20de%20Scrum.html" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/40 font-semibold transition">
+                        03. El corazón de Scrum →
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Encabezado proyectable -->
+            <header class="text-center mb-6 sm:mb-8">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-950/90 border-2 border-emerald-400/70 rounded-full mb-3 shadow-inner">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="font-pixel text-[10px] sm:text-xs text-emerald-300 tracking-wider">
+                        VJ1224 // TEMA 3: HISTORIA Y FUNDAMENTOS DE SCRUM
+                    </span>
+                </div>
+
+                <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-300 to-yellow-300 tracking-wide leading-relaxed py-1">
+                    EL ORIGEN DE SCRUM
+                </h1>
+
+                <p class="text-slate-400 text-xs sm:text-sm font-pixel mt-1 tracking-wider">
+                    &lt;«The New New Product Development Game» (Takeuchi y Nonaka, 1986)&gt;
+                </p>
+
+                <p class="text-cyan-300 text-base sm:text-xl max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                    En 1986, Hirotaka Takeuchi e Ikujiro Nonaka publicaron en <em>Harvard Business Review</em> el estudio fundacional que comparó el desarrollo tradicional con una carrera de relevos frente a un equipo de rugby avanzando en melé (<em>scrum</em>).
+                </p>
+            </header>
+
+            <!-- SECCIÓN 1: DUELO RELEVOS VS RUGBY (SIEMPRE VISIBLE COMO BASE) -->
+            <section class="mb-10">
+                <h2 class="font-pixel text-sm sm:text-lg text-center text-yellow-300 mb-5 tracking-wide">
+                    Dos formas de jugar: carrera de relevos frente a partido de rugby
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Relevos -->
+                    <article class="card-relay rounded-2xl p-6">
+                        <div class="flex items-center justify-between border-b border-rose-500/30 pb-3 mb-4">
+                            <span class="font-pixel text-[10px] bg-rose-950 text-rose-300 px-2.5 py-1 rounded border border-rose-500/60">
+                                PARADIGMA CASCADA
+                            </span>
+                            <span class="text-3xl">🏃‍♂️➔🏃‍♀️➔🏃‍♂️</span>
+                        </div>
+                        <h3 class="font-pixel text-base sm:text-lg text-rose-400 mb-2">
+                            El viejo juego: carrera de relevos
+                        </h3>
+                        <p class="text-slate-200 text-base sm:text-lg mb-4 font-medium">
+                            Un grupo de especialistas funcionales pasa el «testigo» al siguiente departamento. El proceso es lineal, secuencial y compartimentado.
+                        </p>
+                        <ul class="space-y-2 text-sm sm:text-base text-rose-200 font-medium">
+                            <li class="flex items-start gap-2">
+                                <span class="text-rose-400 font-bold shrink-0">✗</span>
+                                <span><strong class="text-white">Secuencial:</strong> fase tras fase, sin solapamiento real entre diseño, código y arte.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-rose-400 font-bold shrink-0">✗</span>
+                                <span><strong class="text-white">Rígido:</strong> bajísima capacidad de adaptación cuando el prototipo no divierte.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-rose-400 font-bold shrink-0">✗</span>
+                                <span><strong class="text-white">Lento:</strong> cualquier cuello de botella paraliza toda la cadena de montaje.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-rose-400 font-bold shrink-0">✗</span>
+                                <span><strong class="text-white">Aislado:</strong> el conocimiento se encierra en silos departamentales.</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <!-- Rugby -->
+                    <article class="card-rugby rounded-2xl p-6">
+                        <div class="flex items-center justify-between border-b border-emerald-500/30 pb-3 mb-4">
+                            <span class="font-pixel text-[10px] bg-emerald-950 text-emerald-300 px-2.5 py-1 rounded border border-emerald-500/60">
+                                PARADIGMA ÁGIL / SCRUM
+                            </span>
+                            <span class="text-3xl">🏉👥🏉</span>
+                        </div>
+                        <h3 class="font-pixel text-base sm:text-lg text-emerald-400 mb-2">
+                            El nuevo juego: partido de rugby
+                        </h3>
+                        <p class="text-slate-200 text-base sm:text-lg mb-4 font-medium">
+                            Una escuadra multifuncional recorre el campo unida, pasándose el balón constantemente. El proceso es holístico, iterativo y adaptable.
+                        </p>
+                        <ul class="space-y-2 text-sm sm:text-base text-emerald-100 font-medium">
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold shrink-0">✔</span>
+                                <span><strong class="text-white">Holístico:</strong> todo el equipo avanza unido hacia el objetivo del sprint.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold shrink-0">✔</span>
+                                <span><strong class="text-white">Flexible:</strong> responde en tiempo real a los hallazgos del playtesting.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold shrink-0">✔</span>
+                                <span><strong class="text-white">Rápido:</strong> el propio equipo detecta y resuelve sus bloqueos a diario.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold shrink-0">✔</span>
+                                <span><strong class="text-white">Colaborativo:</strong> programadores, artistas y diseñadores co-crean cada mecánica.</span>
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: LAS 6 CARACTERÍSTICAS DEL EQUIPO DE RUGBY (REVELADO PROGRESIVO) -->
+            <section class="space-y-5">
+                <div class="text-center">
+                    <span class="font-pixel text-[10px] text-cyan-300 bg-cyan-950 border border-cyan-500/60 px-3 py-1 rounded-full">
+                        LOS 6 PILARES DE TAKEUCHI Y NONAKA
+                    </span>
+                    <h2 class="font-pixel text-base sm:text-2xl text-white mt-3">
+                        Las 6 características del «equipo de rugby»
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1 font-medium">
+                        Usa la barra inferior o <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-600 rounded text-cyan-300">Espacio</kbd> para descubrir cada característica; haz clic en cada tarjeta para ver su aplicación en un estudio de videojuegos.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                    <!-- Rasgo 1 -->
+                    <div id="wrapper-trait-1" class="hidden">
+                        <article class="trait-card animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('trait-1')">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-pixel text-[10px] text-cyan-300 bg-cyan-950 px-2.5 py-1 rounded border border-cyan-500/50">RASGO 01</span>
+                                    <span class="text-2xl">🎯</span>
+                                    <span id="icon-trait-1" class="text-cyan-400 text-lg transition-transform duration-200">▼</span>
+                                </div>
+                                <h3 class="font-pixel text-sm sm:text-base text-yellow-300 mb-2">Inestabilidad controlada</h3>
+                                <p class="text-slate-200 text-base leading-snug font-medium">
+                                    La dirección no impone un plan microgestionado, sino un reto ambicioso y margen de maniobra creativo.
+                                </p>
+                            </div>
+                            <div id="trait-1" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-950/90 p-3.5 rounded-xl text-sm text-slate-300">
+                                <strong class="text-cyan-300">En el estudio:</strong> Es como marcar el objetivo «el combate debe sentirse tan contundente como en <em>God of War</em>» y dejar que el equipo experimente con el <em>hitstop</em> y la cámara.
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Rasgo 2 -->
+                    <div id="wrapper-trait-2" class="hidden">
+                        <article class="trait-card animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('trait-2')">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-pixel text-[10px] text-emerald-300 bg-emerald-950 px-2.5 py-1 rounded border border-emerald-500/50">RASGO 02</span>
+                                    <span class="text-2xl">🌱</span>
+                                    <span id="icon-trait-2" class="text-cyan-400 text-lg transition-transform duration-200">▼</span>
+                                </div>
+                                <h3 class="font-pixel text-sm sm:text-base text-yellow-300 mb-2">Equipos autoorganizados</h3>
+                                <p class="text-slate-200 text-base leading-snug font-medium">
+                                    Reúnen autonomía, autotrascendencia (superar sus propios límites) y fertilización cruzada de perfiles diversos.
+                                </p>
+                            </div>
+                            <div id="trait-2" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-950/90 p-3.5 rounded-xl text-sm text-slate-300">
+                                <strong class="text-emerald-300">En el estudio:</strong> Un artista técnico, un programador de IA y un diseñador de niveles deciden juntos cómo estructurar su Sprint Backlog sin esperar órdenes.
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Rasgo 3 -->
+                    <div id="wrapper-trait-3" class="hidden">
+                        <article class="trait-card animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('trait-3')">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-pixel text-[10px] text-purple-300 bg-purple-950 px-2.5 py-1 rounded border border-purple-500/50">RASGO 03</span>
+                                    <span class="text-2xl">🔄</span>
+                                    <span id="icon-trait-3" class="text-cyan-400 text-lg transition-transform duration-200">▼</span>
+                                </div>
+                                <h3 class="font-pixel text-sm sm:text-base text-yellow-300 mb-2">Fases de desarrollo solapadas</h3>
+                                <p class="text-slate-200 text-base leading-snug font-medium">
+                                    La programación arranca con cajas grises (<em>greyboxing</em>) mientras arte modela los <em>assets</em> definitivos en paralelo.
+                                </p>
+                            </div>
+                            <div id="trait-3" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-950/90 p-3.5 rounded-xl text-sm text-slate-300">
+                                <strong class="text-purple-300">En el estudio:</strong> Elimina los tiempos muertos donde programación espera meses a que diseño cierre todas las especificaciones.
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Rasgo 4 -->
+                    <div id="wrapper-trait-4" class="hidden">
+                        <article class="trait-card animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('trait-4')">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-pixel text-[10px] text-amber-300 bg-amber-950 px-2.5 py-1 rounded border border-amber-500/50">RASGO 04</span>
+                                    <span class="text-2xl">🧠</span>
+                                    <span id="icon-trait-4" class="text-cyan-400 text-lg transition-transform duration-200">▼</span>
+                                </div>
+                                <h3 class="font-pixel text-sm sm:text-base text-yellow-300 mb-2">Multiaprendizaje</h3>
+                                <p class="text-slate-200 text-base leading-snug font-medium">
+                                    El aprendizaje ocurre en múltiples niveles y disciplinas: se fomenta el perfil en «T» (especialistas con visión generalista).
+                                </p>
+                            </div>
+                            <div id="trait-4" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-950/90 p-3.5 rounded-xl text-sm text-slate-300">
+                                <strong class="text-amber-300">En el estudio:</strong> Quien programa comprende principios de <em>game feel</em>, y quien diseña niveles conoce las restricciones de rendimiento en Unity.
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Rasgo 5 -->
+                    <div id="wrapper-trait-5" class="hidden">
+                        <article class="trait-card animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('trait-5')">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-pixel text-[10px] text-rose-300 bg-rose-950 px-2.5 py-1 rounded border border-rose-500/50">RASGO 05</span>
+                                    <span class="text-2xl">🕹️</span>
+                                    <span id="icon-trait-5" class="text-cyan-400 text-lg transition-transform duration-200">▼</span>
+                                </div>
+                                <h3 class="font-pixel text-sm sm:text-base text-yellow-300 mb-2">Control sutil</h3>
+                                <p class="text-slate-200 text-base leading-snug font-medium">
+                                    Se establece un entorno abierto, se evalúa el desempeño grupal y se toleran los errores tempranos como parte del prototipado.
+                                </p>
+                            </div>
+                            <div id="trait-5" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-950/90 p-3.5 rounded-xl text-sm text-slate-300">
+                                <strong class="text-rose-300">En el estudio:</strong> «Falla rápido, falla barato» en el Sprint 1 mediante prototipos de papel o <em>whitebox</em> antes de invertir cien horas de arte 3D.
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Rasgo 6 -->
+                    <div id="wrapper-trait-6" class="hidden">
+                        <article class="trait-card animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('trait-6')">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-pixel text-[10px] text-teal-300 bg-teal-950 px-2.5 py-1 rounded border border-teal-500/50">RASGO 06</span>
+                                    <span class="text-2xl">🛰️</span>
+                                    <span id="icon-trait-6" class="text-cyan-400 text-lg transition-transform duration-200">▼</span>
+                                </div>
+                                <h3 class="font-pixel text-sm sm:text-base text-yellow-300 mb-2">Transferencia de conocimiento</h3>
+                                <p class="text-slate-200 text-base leading-snug font-medium">
+                                    Lo aprendido en un sprint o proyecto se institucionaliza y se transmite por ósmosis al resto del estudio.
+                                </p>
+                            </div>
+                            <div id="trait-6" class="hidden mt-4 pt-3 border-t border-slate-700/80 bg-slate-950/90 p-3.5 rounded-xl text-sm text-slate-300">
+                                <strong class="text-teal-300">En el estudio:</strong> Documentar las retrospectivas y mantener viva la wiki en Notion evita tropezar dos veces con el mismo bug de integración.
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+
+                <!-- Referencia bibliográfica original -->
+                <div class="text-center pt-3">
+                    <a href="https://hbr.org/1986/01/the-new-new-product-development-game" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-cyan-300 text-xs sm:text-sm font-semibold transition">
+                        <span>📄</span>
+                        <span>Consultar el artículo original de H. Takeuchi e I. Nonaka en Harvard Business Review (1986) ↗</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- CONTROLES DE NAVEGACIÓN HUD -->
+            <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+                <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                    <button id="btn-next" onclick="revealNext()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                        <span class="font-pixel text-[11px]">▶</span> Siguiente rasgo <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/6)</span>
+                    </button>
+                    <button onclick="revealAll()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                        Mostrar todos
+                    </button>
+                    <button onclick="resetAll()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                        Reiniciar
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Pie de página académico oficial UJI -->
+        <footer class="mt-8 pt-5 border-t border-slate-800/90 text-center text-xs text-slate-400 space-y-1.5 pb-4">
+            <p class="font-pixel text-[10px] sm:text-xs text-slate-400 tracking-wider">
+                VJ1224 // INGENIERÍA DEL SOFTWARE · GRADO EN DISEÑO Y DESARROLLO DE VIDEOJUEGOS
+            </p>
+            <p class="text-slate-400 text-xs sm:text-sm font-medium">
+                Autor: <a href="https://www.pablofelip.uji.es" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-semibold">Pablo Felip Monferrer</a> ·
+                <a href="https://www.uji.es/departaments/lsi/" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:underline">DLSI (Universitat Jaume I)</a> ·
+                Curso 2026/2027 ·
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">CC BY-NC-SA 4.0</a>
+                <span class="hide-in-embed"> · <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">GitHub ↗</a></span>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        let currentRevealed = 0;
+        const totalTraits = 6;
+
+        function updateCounter() {
+            const counter = document.getElementById('counter');
+            if (counter) counter.innerText = `(${currentRevealed}/${totalTraits})`;
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentRevealed >= totalTraits) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        function revealNext() {
+            if (currentRevealed < totalTraits) {
+                currentRevealed++;
+                const wrapper = document.getElementById('wrapper-trait-' + currentRevealed);
+                if (wrapper) wrapper.classList.remove('hidden');
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 80);
+                updateCounter();
+            }
+        }
+
+        function revealAll() {
+            for (let i = 1; i <= totalTraits; i++) {
+                const wrapper = document.getElementById('wrapper-trait-' + i);
+                if (wrapper) wrapper.classList.remove('hidden');
+            }
+            currentRevealed = totalTraits;
+            updateCounter();
+        }
+
+        function resetAll() {
+            for (let i = 1; i <= totalTraits; i++) {
+                const wrapper = document.getElementById('wrapper-trait-' + i);
+                if (wrapper) wrapper.classList.add('hidden');
+                const detail = document.getElementById('trait-' + i);
+                if (detail) detail.classList.add('hidden');
+                const icon = document.getElementById('icon-trait-' + i);
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (wrapper) {
+                    const card = wrapper.querySelector('.trait-card');
+                    if (card) card.classList.remove('active-card');
+                }
+            }
+            currentRevealed = 0;
+            updateCounter();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            if (!panel) return;
+            const card = panel.closest('.trait-card');
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+                if (card) card.classList.add('active-card');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (card) card.classList.remove('active-card');
+            }
+        }
+
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentRevealed < totalTraits) {
+                    e.preventDefault();
+                    revealNext();
+                }
+            }
+        });
+
+        updateCounter();
+    </script>
+</body>
+</html>

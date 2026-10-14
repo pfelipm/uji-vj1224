@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: El mapa de la mazmorra (Kanban)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para diseño fluido y adaptativo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (retro-gaming) y 'Rajdhani' (legibilidad máxima en proyector) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(167, 139, 250, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjeta de Regla Filosófica de Kanban */
+        .law-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(20, 30, 48, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .law-card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Colores de las 3 Leyes */
+        .law-visualize {
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.12);
+        }
+        .law-visualize:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
+        }
+
+        .law-wip {
+            border-color: rgba(248, 113, 113, 0.45);
+            box-shadow: 0 0 16px rgba(248, 113, 113, 0.12);
+        }
+        .law-wip:hover {
+            border-color: #f87171;
+            box-shadow: 0 0 24px rgba(248, 113, 113, 0.35);
+        }
+
+        .law-flow {
+            border-color: rgba(52, 211, 153, 0.45);
+            box-shadow: 0 0 16px rgba(52, 211, 153, 0.12);
+        }
+        .law-flow:hover {
+            border-color: #34d399;
+            box-shadow: 0 0 24px rgba(52, 211, 153, 0.35);
+        }
+
+        /* Tablero Kanban y Columnas */
+        .kanban-board-frame {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 16, 28, 0.98) 100%);
+            border: 2px solid rgba(167, 139, 250, 0.4);
+            box-shadow: 0 0 24px rgba(167, 139, 250, 0.18);
+        }
+
+        .kanban-col {
+            background: rgba(18, 26, 43, 0.85);
+            border: 1.5px solid rgba(71, 85, 105, 0.45);
+            transition: all 0.25s ease;
+        }
+
+        .kanban-col.col-wip-danger {
+            border-color: #f87171 !important;
+            background: rgba(45, 18, 25, 0.85) !important;
+            box-shadow: 0 0 24px rgba(239, 68, 68, 0.35) !important;
+        }
+
+        /* Tarjeta de tarea dentro del tablero */
+        .board-task-card {
+            background: rgba(30, 41, 59, 0.9);
+            border-left: 4px solid #38bdf8;
+            transition: all 0.22s ease;
+        }
+        .board-task-card:hover {
+            transform: translateX(3px);
+            background: rgba(51, 65, 85, 0.95);
+        }
+
+        .task-done {
+            border-left-color: #34d399 !important;
+        }
+        .task-wip {
+            border-left-color: #f59e0b !important;
+        }
+        .task-danger {
+            border-left-color: #f87171 !important;
+            animation: pulseCard 1.5s infinite;
+        }
+
+        @keyframes pulseCard {
+            0%, 100% { box-shadow: 0 0 0 rgba(248, 113, 113, 0); }
+            50% { box-shadow: 0 0 14px rgba(248, 113, 113, 0.6); }
+        }
+
+        /* Rotación suave del chevron indicador */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Animación suave de entrada en cascada */
+        @keyframes cascadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(16px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .animate-cascade {
+            animation: cascadeIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Alerta visual de cuello de botella */
+        @keyframes alertBlink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.02); }
+        }
+        .animate-bottleneck {
+            animation: alertBlink 1.4s infinite ease-in-out;
+        }
+
+        /* Barra HUD inferior en flujo natural */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 13/15</span>
+      <a href="12%20Definition%20of%20done.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="14%20Briefing%20de%20misi%C3%B3n.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-5xl w-full">
+        <!-- Encabezado Proyectable de la SPA -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-purple-950/80 border border-purple-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-purple-300 tracking-wider">
+                    VJ1224 // TEMA 2: EL MAPA OPERATIVO EN NOTION
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-cyan-300 to-emerald-400 tracking-wide leading-relaxed py-1">
+                EL MAPA DE LA MAZMORRA
+            </h1>
+            
+            <p class="text-amber-300 text-xs sm:text-base font-pixel mt-1 tracking-wider">
+                &lt;El Tablero Kanban // Deja de empezar y empieza a terminar&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                Un tablero no es un adorno de post-its de colores. Es el sistema de control de flujo en Notion que impide que el equipo se ahogue en la multitarea y garantiza que las mecánicas se completen antes de arrancar otras nuevas.
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                Usa el botón inferior o la barra espaciadora para desvelar cada acto; interactúa con el simulador de la mazmorra para comprobar el impacto del límite de trabajo en curso.
+            </p>
+        </header>
+
+        <!-- Main: Los 2 Actos de Kanban -->
+        <main class="space-y-10 w-full">
+            
+            <!-- ========================================== -->
+            <!-- ACTO I: LAS 3 LEYES SAGRADAS DEL FLUJO -->
+            <!-- ========================================== -->
+            <section id="act-1-wrapper" class="hidden space-y-4">
+                <div class="flex items-center justify-between border-b border-cyan-500/30 pb-2.5">
+                    <div class="flex items-center gap-3">
+                        <span class="font-pixel text-xs bg-cyan-500/20 text-cyan-300 border border-cyan-400/50 px-2.5 py-1 rounded whitespace-nowrap shrink-0">
+                            ACTO I
+                        </span>
+                        <h2 class="font-pixel text-lg sm:text-xl text-cyan-300 tracking-wide">
+                            LAS 3 LEYES SAGRADAS DEL FLUJO
+                        </h2>
+                    </div>
+                    <span class="font-pixel text-[10px] text-cyan-400 hidden sm:inline-block">FILOSOFÍA KANBAN</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+                    
+                    <!-- Ley 1: Visualizar el Trabajo -->
+                    <article id="card-law-1" class="law-card law-visualize animate-cascade rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-law-1')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 shrink-0 shadow-[0_0_12px_rgba(56,189,248,0.25)]">
+                                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-cyan-400">LEY 01</span>
+                                <span id="icon-law-1" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-cyan-200 mb-2">VISUALIZAR EL TRABAJO</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                El código C#, los shaders y el audio son invisibles. Si no están en una tarjeta de Notion, no existen para el equipo.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable Ley 1 -->
+                        <div id="detail-law-1" class="hidden mt-4 pt-3 border-t border-cyan-500/30 bg-slate-950/90 p-4 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-cyan-300 px-2 py-0.5 bg-cyan-950 border border-cyan-800 rounded inline-block">
+                                EN EL DÍA A DÍA
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                Evita el <em>«trabajo fantasma»</em>: horas invertidas en retocar partículas o físicas sin que nadie sepa que se está trabajando en ello. Todo esfuerzo debe tener tarjeta asignada.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Ley 2: Limitar el Trabajo en Curso (WIP) -->
+                    <article id="card-law-2" class="law-card law-wip animate-cascade rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-law-2')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-12 h-12 rounded-xl bg-red-500/20 border border-red-400 flex items-center justify-center text-red-300 shrink-0 shadow-[0_0_12px_rgba(248,113,113,0.25)]">
+                                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M9,9H15V11H9V9M9,13H15V15H9V13Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-red-400">LEY 02</span>
+                                <span id="icon-law-2" class="text-red-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-red-200 mb-2">LIMITAR EL WIP</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                Máximo de tareas abiertas a la vez. La multitarea es una trampa cognitiva que retrasa todas las entregas.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable Ley 2 -->
+                        <div id="detail-law-2" class="hidden mt-4 pt-3 border-t border-red-500/30 bg-slate-950/90 p-4 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-red-300 px-2 py-0.5 bg-red-950 border border-red-800 rounded inline-block">
+                                EL MANTRA INNEGOCIABLE
+                            </span>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border-l-4 border-red-400 text-sm sm:text-base text-red-200 font-semibold leading-relaxed">
+                                «Deja de empezar y empieza a terminar». Si tu columna de En curso está llena, está prohibido coger una tarjeta nueva del montón.
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Ley 3: Gestionar el Flujo -->
+                    <article id="card-law-3" class="law-card law-flow animate-cascade rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between" onclick="toggleDetail('detail-law-3')">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-300 shrink-0 shadow-[0_0_12px_rgba(52,211,153,0.25)]">
+                                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M19,15L13,21L11.58,19.58L15.17,16H3V14H15.17L11.58,10.42L13,9L19,15M21,3H3A2,2 0 0,0 1,5V9H3V5H21V19H17V21H21A2,2 0 0,0 23,19V5A2,2 0 0,0 21,3Z"/></svg>
+                                </div>
+                                <span class="font-pixel text-[10px] text-emerald-400">LEY 03</span>
+                                <span id="icon-law-3" class="text-emerald-400 text-xl transition-transform duration-200">▼</span>
+                            </div>
+
+                            <h3 class="font-pixel text-base sm:text-lg text-emerald-200 mb-2">GESTIONAR EL FLUJO</h3>
+                            <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                                El trabajo no se empuja a la fuerza; se jala con ritmo constante cuando se libera capacidad en el equipo.
+                            </p>
+                        </div>
+
+                        <!-- Detalle Desplegable Ley 3 -->
+                        <div id="detail-law-3" class="hidden mt-4 pt-3 border-t border-emerald-500/30 bg-slate-950/90 p-4 rounded-xl space-y-2">
+                            <span class="font-pixel text-[10px] text-emerald-300 px-2 py-0.5 bg-emerald-950 border border-emerald-800 rounded inline-block">
+                                ENLACE CON LA DOD
+                            </span>
+                            <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                                Una tarjeta solo cruza a <strong>Hecho</strong> si supera el pacto de calidad (Definition of Done). Mover cosas a Done a medias crea falsa sensación de avance.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- ACTO II: EL TABLERO INTERACTIVO DE LA MAZMORRA -->
+            <!-- ========================================== -->
+            <section id="act-2-wrapper" class="hidden space-y-4">
+                <div class="flex items-center justify-between border-b border-purple-500/30 pb-2.5">
+                    <div class="flex items-center gap-3">
+                        <span class="font-pixel text-xs bg-purple-500/20 text-purple-300 border border-purple-400/50 px-2.5 py-1 rounded whitespace-nowrap shrink-0">
+                            ACTO II
+                        </span>
+                        <h2 class="font-pixel text-lg sm:text-xl text-purple-300 tracking-wide">
+                            SIMULADOR DEL TABLERO KANBAN EN NOTION
+                        </h2>
+                    </div>
+                    <span class="font-pixel text-[10px] text-purple-400 hidden sm:inline-block">PRUEBA EL LÍMITE WIP</span>
+                </div>
+
+                <p class="text-slate-300 text-base sm:text-lg font-medium leading-relaxed">
+                    Experimenta en directo cómo fluyen las tarjetas entre las tres columnas de Notion y observa qué sucede cuando un miembro del equipo intenta saltarse el límite de trabajo en curso.
+                </p>
+
+                <!-- Panel del Tablero Kanban -->
+                <div class="kanban-board-frame rounded-2xl p-4 sm:p-6 space-y-4">
+                    
+                    <!-- Barra de control del simulador -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-950/80 p-3 sm:p-4 rounded-xl border border-slate-700">
+                        <div class="flex items-center gap-3">
+                            <span class="font-pixel text-xs text-amber-300">ESTADO DEL EQUIPO:</span>
+                            <span id="sim-status" class="font-pixel text-[11px] sm:text-xs text-emerald-400 bg-emerald-950/80 border border-emerald-800 px-2.5 py-1 rounded">
+                                ✔ FLUJO SANO (2/2 EN CURSO)
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button id="btn-overload" onclick="triggerOverload()" class="px-3 py-1.5 rounded-lg bg-red-950/90 hover:bg-red-900 border border-red-500 text-red-300 font-pixel text-[10px] sm:text-xs transition active:scale-95">
+                                ⚠ FORZAR 3ª TAREA (SOBRECARGA)
+                            </button>
+                            <button id="btn-advance" onclick="advanceTask()" class="px-3 py-1.5 rounded-lg bg-emerald-950/90 hover:bg-emerald-900 border border-emerald-500 text-emerald-300 font-pixel text-[10px] sm:text-xs transition active:scale-95">
+                                ➔ COMPLETAR CON DOD
+                            </button>
+                            <button onclick="resetBoard()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 font-pixel text-[10px] transition active:scale-95">
+                                ↺ REINICIAR
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cuadrícula de 3 Columnas Kanban -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        
+                        <!-- Columna 1: La Armería (Por Hacer) -->
+                        <div class="kanban-col rounded-xl p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-3">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+                                        <h3 class="font-pixel text-xs sm:text-sm text-cyan-300">LA ARMERÍA</h3>
+                                    </div>
+                                    <span class="font-pixel text-[10px] text-slate-400 bg-slate-900 px-2 py-0.5 rounded">POR HACER</span>
+                                </div>
+                                <p class="text-xs text-slate-400 mb-3 font-medium">Priorizadas por diseño. Esperan capacidad libre.</p>
+
+                                <div id="col-todo-list" class="space-y-2.5">
+                                    <div class="board-task-card p-3 rounded-lg">
+                                        <div class="flex items-center justify-between text-[10px] font-pixel text-cyan-400 mb-1">
+                                            <span>#TASK-104</span>
+                                            <span class="bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">3 PTS</span>
+                                        </div>
+                                        <p class="text-sm sm:text-base text-slate-100 font-medium">Diseñar HUD de vida y stamina</p>
+                                    </div>
+                                    <div class="board-task-card p-3 rounded-lg">
+                                        <div class="flex items-center justify-between text-[10px] font-pixel text-cyan-400 mb-1">
+                                            <span>#TASK-105</span>
+                                            <span class="bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">5 PTS</span>
+                                        </div>
+                                        <p class="text-sm sm:text-base text-slate-100 font-medium">IA de patrulla para guardia básico</p>
+                                    </div>
+                                    <div class="board-task-card p-3 rounded-lg">
+                                        <div class="flex items-center justify-between text-[10px] font-pixel text-cyan-400 mb-1">
+                                            <span>#TASK-106</span>
+                                            <span class="bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">2 PTS</span>
+                                        </div>
+                                        <p class="text-sm sm:text-base text-slate-100 font-medium">Audio FMOD para pasos en barro</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="mt-4 font-pixel text-[9px] text-slate-500 block text-center border-t border-slate-800 pt-2">
+                                NO ENTRAN HASTA LIBERAR CAPACIDAD
+                            </span>
+                        </div>
+
+                        <!-- Columna 2: En la Mazmorra (En Curso) -->
+                        <div id="col-wip-box" class="kanban-col rounded-xl p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-3">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+                                        <h3 class="font-pixel text-xs sm:text-sm text-amber-300">EN LA MAZMORRA</h3>
+                                    </div>
+                                    <span id="badge-wip-count" class="font-pixel text-[10px] text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">
+                                        LÍMITE WIP: 2/2
+                                    </span>
+                                </div>
+                                <p class="text-xs text-slate-400 mb-3 font-medium">Trabajo activo del equipo. Máximo 2 a la vez.</p>
+
+                                <div id="col-wip-list" class="space-y-2.5">
+                                    <div id="card-wip-1" class="board-task-card task-wip p-3 rounded-lg">
+                                        <div class="flex items-center justify-between text-[10px] font-pixel text-amber-400 mb-1">
+                                            <span>#TASK-102</span>
+                                            <span class="text-slate-300">PROGRAMACIÓN</span>
+                                        </div>
+                                        <p class="text-sm sm:text-base text-slate-100 font-medium">Programar sistema de guardado persistente</p>
+                                    </div>
+                                    <div id="card-wip-2" class="board-task-card task-wip p-3 rounded-lg">
+                                        <div class="flex items-center justify-between text-[10px] font-pixel text-amber-400 mb-1">
+                                            <span>#TASK-103</span>
+                                            <span class="text-slate-300">ARTE 3D</span>
+                                        </div>
+                                        <p class="text-sm sm:text-base text-slate-100 font-medium">Modelar cofre con animación de apertura</p>
+                                    </div>
+                                    <!-- Tarjeta intrusa de sobrecarga (oculta por defecto) -->
+                                    <div id="card-wip-overload" class="board-task-card task-danger p-3 rounded-lg hidden animate-cascade">
+                                        <div class="flex items-center justify-between text-[10px] font-pixel text-red-400 mb-1">
+                                            <span>#TASK-104 [ILEGAL]</span>
+                                            <span class="text-red-300 bg-red-950 px-1 rounded">¡WIP ROTO!</span>
+                                        </div>
+                                        <p class="text-sm sm:text-base text-red-200 font-semibold">Diseñar HUD de vida y stamina</p>
+                                        <p class="text-[11px] text-red-300/90 mt-1 font-medium">⚠ El programador abre otra tarea sin cerrar la anterior. Resultado: cambio de contexto y bloqueo.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Alerta Dinámica de Cuello de Botella -->
+                            <div id="wip-alert-banner" class="mt-4 p-2.5 rounded-lg bg-red-950/90 border border-red-500 text-center hidden animate-bottleneck">
+                                <span class="font-pixel text-[10px] text-red-300 block">⛔ ¡CUELLO DE BOTELLA DETECTADO!</span>
+                                <span class="text-xs text-red-200 font-medium">El equipo ha superado el límite WIP. Deben terminar o desbloquear antes de continuar.</span>
+                            </div>
+                        </div>
+
+                        <!-- Columna 3: Tesoro Conseguido (Hecho) -->
+                        <div class="kanban-col rounded-xl p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-3">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                                        <h3 class="font-pixel text-xs sm:text-sm text-emerald-300">TESORO CONSEGUIDO</h3>
+                                    </div>
+                                    <span class="font-pixel text-[10px] text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">CUMPLE DOD</span>
+                                </div>
+                                <p class="text-xs text-slate-400 mb-3 font-medium">Blindado por el Sello de Calidad. Build lista.</p>
+
+                                <div id="col-done-list" class="space-y-2.5">
+                                    <div class="board-task-card task-done p-3 rounded-lg">
+                                        <div class="flex items-center justify-between text-[10px] font-pixel text-emerald-400 mb-1">
+                                            <span>#TASK-101</span>
+                                            <span class="text-slate-400 line-through">5 PTS</span>
+                                        </div>
+                                        <p class="text-sm sm:text-base text-slate-200 font-medium">Diseño y locomoción del personaje principal</p>
+                                        <span class="text-[10px] font-pixel text-emerald-400 mt-1 block">✔ Cero errores de consola</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="mt-4 font-pixel text-[9px] text-emerald-400 block text-center border-t border-slate-800 pt-2">
+                                🛡 CERRADO Y ENTREGABLE
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Resumen de Trinchera sobre Notion -->
+                <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-slate-950/95 via-purple-950/40 to-slate-950/95 border border-purple-500/40 space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-purple-400 text-lg">💡</span>
+                        <h4 class="font-pixel text-xs sm:text-sm text-purple-300">
+                            EL TABLERO EN LA EVALUACIÓN CONTINUA
+                        </h4>
+                    </div>
+                    <p class="text-slate-200 text-sm sm:text-base font-medium leading-relaxed">
+                        Durante el seguimiento en Notion, los docentes inspeccionamos la coherencia del tablero: si un equipo tiene 10 tareas en <em>«En curso»</em> y 0 en <em>«Hecho»</em> al final del sprint, se penaliza la gestión. En la industria, un equipo que entrega poco pero terminado de verdad es infinitamente más valioso que uno que deja 20 cosas a medias.
+                    </p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ========================================== -->
+        <!-- CONTROLES DE NAVEGACIÓN: HUD Flujo Natural -->
+        <!-- ========================================== -->
+        <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+            <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <button id="btn-next" onclick="revealNextAct()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                    <span class="font-pixel text-[11px]">▶</span> Siguiente acto <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/2)</span>
+                </button>
+                <button onclick="revealAllActs()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                    Mostrar todo
+                </button>
+                <button onclick="resetAllActs()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                    Reiniciar
+                </button>
+            </nav>
+        </div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- LÓGICA INTERACTIVA JAVASCRIPT -->
+    <!-- ========================================== -->
+    <script>
+        let currentAct = 0;
+        const totalActs = 2;
+        let isOverloaded = false;
+        let tasksFinished = 0;
+
+        function updateHUD() {
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.innerText = `(${currentAct}/${totalActs})`;
+            }
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentAct >= totalActs) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        function revealNextAct() {
+            if (currentAct < totalActs) {
+                currentAct++;
+                const wrapper = document.getElementById(`act-${currentAct}-wrapper`);
+                if (wrapper) {
+                    wrapper.classList.remove('hidden');
+                }
+
+                // Scroll suave enfocado hacia la botonera sin solapar
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) {
+                        controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 100);
+
+                updateHUD();
+            }
+        }
+
+        function revealAllActs() {
+            for (let i = 1; i <= totalActs; i++) {
+                const wrapper = document.getElementById(`act-${i}-wrapper`);
+                if (wrapper) wrapper.classList.remove('hidden');
+            }
+            currentAct = totalActs;
+            updateHUD();
+        }
+
+        function resetAllActs() {
+            for (let i = 1; i <= totalActs; i++) {
+                const wrapper = document.getElementById(`act-${i}-wrapper`);
+                if (wrapper) wrapper.classList.add('hidden');
+
+                // Cerrar detalles abiertos
+                const details = wrapper ? wrapper.querySelectorAll('[id^="detail-"]') : [];
+                details.forEach(d => d.classList.add('hidden'));
+
+                const icons = wrapper ? wrapper.querySelectorAll('[id^="icon-"]') : [];
+                icons.forEach(ic => ic.classList.remove('rotate-chevron'));
+            }
+
+            resetBoard();
+            currentAct = 0;
+            updateHUD();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id.replace('detail-', ''));
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+            }
+        }
+
+        // Lógica interactiva del Simulador de Mazmorra (Kanban)
+        function triggerOverload() {
+            const overloadCard = document.getElementById('card-wip-overload');
+            const alertBanner = document.getElementById('wip-alert-banner');
+            const colWip = document.getElementById('col-wip-box');
+            const statusLabel = document.getElementById('sim-status');
+            const badgeWip = document.getElementById('badge-wip-count');
+
+            isOverloaded = true;
+            if (overloadCard) overloadCard.classList.remove('hidden');
+            if (alertBanner) alertBanner.classList.remove('hidden');
+            if (colWip) colWip.classList.add('col-wip-danger');
+
+            if (statusLabel) {
+                statusLabel.innerText = '⛔ CUELLO DE BOTELLA (3/2 WIP)';
+                statusLabel.className = 'font-pixel text-[11px] sm:text-xs text-red-300 bg-red-950/90 border border-red-700 px-2.5 py-1 rounded animate-pulse';
+            }
+            if (badgeWip) {
+                badgeWip.innerText = 'LÍMITE ROTO: 3/2';
+                badgeWip.className = 'font-pixel text-[10px] text-red-300 bg-red-950 px-2 py-0.5 rounded border border-red-600 animate-pulse';
+            }
+        }
+
+        function advanceTask() {
+            const doneList = document.getElementById('col-done-list');
+            const overloadCard = document.getElementById('card-wip-overload');
+            const alertBanner = document.getElementById('wip-alert-banner');
+            const colWip = document.getElementById('col-wip-box');
+            const statusLabel = document.getElementById('sim-status');
+            const badgeWip = document.getElementById('badge-wip-count');
+
+            // Si estaba sobrecargado, resolverlo
+            if (isOverloaded) {
+                if (overloadCard) overloadCard.classList.add('hidden');
+                if (alertBanner) alertBanner.classList.add('hidden');
+                if (colWip) colWip.classList.remove('col-wip-danger');
+                isOverloaded = false;
+            }
+
+            // Añadir tarjeta a Done demostrando la DoD
+            if (tasksFinished < 2 && doneList) {
+                tasksFinished++;
+                const newDone = document.createElement('div');
+                newDone.className = 'board-task-card task-done p-3 rounded-lg animate-cascade';
+                newDone.innerHTML = `
+                    <div class="flex items-center justify-between text-[10px] font-pixel text-emerald-400 mb-1">
+                        <span>#TASK-10${tasksFinished + 1}</span>
+                        <span class="text-slate-400 line-through">RESUELTA</span>
+                    </div>
+                    <p class="text-sm sm:text-base text-slate-200 font-medium">
+                        ${tasksFinished === 1 ? 'Programar sistema de guardado persistente' : 'Modelar cofre con animación de apertura'}
+                    </p>
+                    <span class="text-[10px] font-pixel text-emerald-400 mt-1 block">✔ Cumple DoD al 100% y probado en build</span>
+                `;
+                doneList.prepend(newDone);
+
+                // Ocultar una de WIP para simular el paso
+                const wipCard = document.getElementById('card-wip-' + tasksFinished);
+                if (wipCard) wipCard.classList.add('opacity-30', 'pointer-events-none');
+            }
+
+            if (statusLabel) {
+                statusLabel.innerText = '✔ TAREA FINALIZADA Y VALIDADA CON DOD';
+                statusLabel.className = 'font-pixel text-[11px] sm:text-xs text-emerald-300 bg-emerald-950/90 border border-emerald-700 px-2.5 py-1 rounded';
+            }
+            if (badgeWip) {
+                badgeWip.innerText = `LÍMITE WIP: ${Math.max(0, 2 - tasksFinished)}/2`;
+                badgeWip.className = 'font-pixel text-[10px] text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800';
+            }
+        }
+
+        function resetBoard() {
+            isOverloaded = false;
+            tasksFinished = 0;
+
+            const overloadCard = document.getElementById('card-wip-overload');
+            const alertBanner = document.getElementById('wip-alert-banner');
+            const colWip = document.getElementById('col-wip-box');
+            const statusLabel = document.getElementById('sim-status');
+            const badgeWip = document.getElementById('badge-wip-count');
+
+            if (overloadCard) overloadCard.classList.add('hidden');
+            if (alertBanner) alertBanner.classList.add('hidden');
+            if (colWip) colWip.classList.remove('col-wip-danger');
+
+            for (let i = 1; i <= 2; i++) {
+                const wipCard = document.getElementById('card-wip-' + i);
+                if (wipCard) wipCard.classList.remove('opacity-30', 'pointer-events-none');
+            }
+
+            const doneList = document.getElementById('col-done-list');
+            if (doneList) {
+                doneList.innerHTML = `
+                    <div class="board-task-card task-done p-3 rounded-lg">
+                        <div class="flex items-center justify-between text-[10px] font-pixel text-emerald-400 mb-1">
+                            <span>#TASK-101</span>
+                            <span class="text-slate-400 line-through">5 PTS</span>
+                        </div>
+                        <p class="text-sm sm:text-base text-slate-200 font-medium">Diseño y locomoción del personaje principal</p>
+                        <span class="text-[10px] font-pixel text-emerald-400 mt-1 block">✔ Cero errores de consola</span>
+                    </div>
+                `;
+            }
+
+            if (statusLabel) {
+                statusLabel.innerText = '✔ FLUJO SANO (2/2 EN CURSO)';
+                statusLabel.className = 'font-pixel text-[11px] sm:text-xs text-emerald-400 bg-emerald-950/80 border border-emerald-800 px-2.5 py-1 rounded';
+            }
+            if (badgeWip) {
+                badgeWip.innerText = 'LÍMITE WIP: 2/2';
+                badgeWip.className = 'font-pixel text-[10px] text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800';
+            }
+        }
+
+        // Navegación ágil por teclado
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentAct < totalActs) {
+                    e.preventDefault();
+                    revealNextAct();
+                }
+            }
+        });
+
+        // Inicialización
+        updateHUD();
+    </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VJ1224 - Definición de ingeniería del software</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Space Grotesk & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Space Mono', monospace;
+      background-color: #08080c;
+      color: #ffffff;
+      background-image: 
+        radial-gradient(#1e1e2e 2px, transparent 2px),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 24px 24px, 36px 36px, 36px 36px;
+    }
+
+    .font-grotesk {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* High impact brutalist shadows */
+    .brutal-box-yellow {
+      border: 4px solid #000000;
+      box-shadow: 6px 6px 0px 0px #ffffff;
+    }
+
+    .brutal-box-white {
+      border: 4px solid #ffffff;
+      box-shadow: 6px 6px 0px 0px #facc15;
+    }
+
+    .brutal-box-emerald {
+      border: 4px solid #000000;
+      box-shadow: 6px 6px 0px 0px #ffffff;
+    }
+      .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-black text-white flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 select-none cursor-pointer" onclick="nextStep(event)">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 1 · 01/07</span>
+      <a href="../auxiliar/Gu%C3%ADa%20docente%20interactiva%20%28d%C3%ADa%200%20-%20presentaci%C3%B3n%29.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="02%20La%20crisis%20del%20software.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+  <div class="w-full max-w-full px-2 sm:px-4 md:px-8 mx-auto flex flex-col justify-center items-center space-y-4 sm:space-y-6 my-auto">
+
+    <!-- QUESTION BOX -->
+    <div class="w-full bg-yellow-400 text-black p-4 sm:p-6 md:p-8 text-center brutal-box-yellow">
+      <span class="text-xs sm:text-sm font-extrabold uppercase tracking-widest block mb-1">
+        PREGUNTA CLAVE DE INICIO
+      </span>
+      <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold font-grotesk uppercase tracking-tight leading-tight">
+        ¿Qué es la ingeniería del software?
+      </h1>
+    </div>
+
+    <!-- DEFINITION BOX WITH PROGRESSIVE REVEAL -->
+    <div class="w-full bg-zinc-950 p-5 sm:p-8 md:p-10 brutal-box-white text-left">
+      <div class="flex justify-between items-center mb-4 sm:mb-6 border-b-2 border-zinc-800 pb-3">
+        <span class="text-xs sm:text-sm text-yellow-400 font-bold uppercase tracking-widest">
+          DEFINICIÓN CANÓNICA
+        </span>
+        <span id="step-indicator" class="text-xs sm:text-sm bg-zinc-800 text-zinc-300 px-3 py-1 font-bold border border-zinc-600">
+          PASO 0/5 (Haz clic o pulsa ESPACIO)
+        </span>
+      </div>
+
+      <p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold font-grotesk leading-[2.2] sm:leading-[2.4] text-white">
+        "La <span class="text-yellow-400">ingeniería del software</span> es una 
+        <span id="slot-1" class="inline-block my-1"></span> 
+        que permite desarrollar 
+        <span id="slot-2" class="inline-block my-1"></span> 
+        aplicando 
+        <span id="slot-3" class="inline-block my-1"></span>, 
+        considerando siempre las 
+        <span id="slot-4" class="inline-block my-1"></span>."
+      </p>
+    </div>
+
+    <!-- FINALE BANNER -->
+    <div id="finale-banner" class="w-full bg-emerald-400 text-black p-4 sm:p-6 text-center brutal-box-emerald hidden">
+      <p class="text-base sm:text-xl md:text-2xl font-bold font-grotesk uppercase">
+        🏆 La ingeniería del software es el puente entre una visión artística y un videojuego estable, jugable y rentable.
+      </p>
+    </div>
+
+  </div>
+
+
+    <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  <script>
+    let currentStep = 0;
+    const maxSteps = 5;
+
+    /* Data definition for locked vs revealed content */
+    const conceptData = [
+      {
+        id: 1,
+        slotPlaceholder: '<span class="bg-zinc-800 text-zinc-400 border border-zinc-600 px-2.5 py-1 rounded text-sm sm:text-xl font-mono align-middle">🔒 [01: ???]</span>',
+        slotRevealed: '<span class="bg-yellow-400 text-black font-black px-3 py-1 border-2 border-black align-middle">DISCIPLINA</span>'
+      },
+      {
+        id: 2,
+        slotPlaceholder: '<span class="bg-zinc-800 text-zinc-400 border border-zinc-600 px-2.5 py-1 rounded text-sm sm:text-xl font-mono align-middle">🔒 [02: ???]</span>',
+        slotRevealed: '<span class="bg-cyan-400 text-black font-black px-3 py-1 border-2 border-black align-middle">SISTEMAS INFORMÁTICOS</span>'
+      },
+      {
+        id: 3,
+        slotPlaceholder: '<span class="bg-zinc-800 text-zinc-400 border border-zinc-600 px-2.5 py-1 rounded text-sm sm:text-xl font-mono align-middle">🔒 [03: ???]</span>',
+        slotRevealed: '<span class="bg-rose-500 text-white font-black px-3 py-1 border-2 border-black align-middle">TÉCNICAS, PROCESOS Y HERRAMIENTAS ESPECÍFICAS</span>'
+      },
+      {
+        id: 4,
+        slotPlaceholder: '<span class="bg-zinc-800 text-zinc-400 border border-zinc-600 px-2.5 py-1 rounded text-sm sm:text-xl font-mono align-middle">🔒 [04: ???]</span>',
+        slotRevealed: '<span class="bg-emerald-400 text-black font-black px-3 py-1 border-2 border-black align-middle">RESTRICCIONES DE TIEMPO, ECONÓMICAS Y HUMANAS</span>'
+      }
+    ];
+
+    function renderUI() {
+      // Update definition slots
+      conceptData.forEach((item) => {
+        const slotEl = document.getElementById(`slot-${item.id}`);
+        if (slotEl) {
+          slotEl.innerHTML = (currentStep >= item.id) ? item.slotRevealed : item.slotPlaceholder;
+        }
+      });
+
+      // Update indicator
+      const indicator = document.getElementById('step-indicator');
+      const finaleBanner = document.getElementById('finale-banner');
+
+      if (currentStep === maxSteps) {
+        if (indicator) {
+          indicator.innerText = '✔ COMPLETO (Clic para reiniciar)';
+          indicator.className = 'text-xs sm:text-sm bg-emerald-400 text-black px-3 py-1 font-bold border border-black';
+        }
+        if (finaleBanner) finaleBanner.classList.remove('hidden');
+      } else {
+        if (indicator) {
+          indicator.innerText = `PASO ${currentStep}/${maxSteps} (Clic o ESPACIO)`;
+          indicator.className = 'text-xs sm:text-sm bg-zinc-800 text-zinc-300 px-3 py-1 font-bold border border-zinc-600';
+        }
+        if (finaleBanner) finaleBanner.classList.add('hidden');
+      }
+    }
+
+    function nextStep(e) {
+      if (e) e.stopPropagation();
+      if (currentStep < maxSteps) {
+        currentStep++;
+      } else {
+        currentStep = 0; // Loop back on click after finish
+      }
+      renderUI();
+    }
+
+    function prevStep(e) {
+      if (e) e.stopPropagation();
+      if (currentStep > 0) {
+        currentStep--;
+        renderUI();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (['Space', 'ArrowRight', 'Enter', 'PageDown'].includes(e.code)) {
+        e.preventDefault();
+        nextStep();
+      } else if (['ArrowLeft', 'Backspace', 'PageUp'].includes(e.code)) {
+        e.preventDefault();
+        prevStep();
+      }
+    });
+
+    window.onload = function() {
+      renderUI();
+    };
+  </script>
+</body>
+</html>

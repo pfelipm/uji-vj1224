@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ1224: La receta de una buena historia de usuario (INVEST)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+    <!-- Tailwind CSS para diseño fluido y adaptativo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografía dual: 'Press Start 2P' (retro-gaming) y 'Rajdhani' (legibilidad máxima en proyector) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-pixel { 
+            font-family: 'Press Start 2P', monospace; 
+        }
+        .font-body { 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
+        html, body {
+            background-color: #080c14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.12), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: #f1f5f9;
+        }
+
+        /* Tarjeta de ingrediente interactiva */
+        .ingredient-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(20, 30, 48, 0.92) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .ingredient-card:hover {
+            transform: translateY(-3px) scale(1.01);
+        }
+
+        /* Codificación cromática de los 6 ingredientes */
+        /* I: Independiente (Cian Neón) */
+        .theme-i {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.12);
+        }
+        .theme-i:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
+        }
+
+        /* N: Negociable (Violeta Místico) */
+        .theme-n {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 0 16px rgba(167, 139, 250, 0.12);
+        }
+        .theme-n:hover {
+            border-color: #a78bfa;
+            box-shadow: 0 0 24px rgba(167, 139, 250, 0.35);
+        }
+
+        /* V: Valiosa (Amarillo Ámbar) */
+        .theme-v {
+            border-color: rgba(253, 224, 71, 0.4);
+            box-shadow: 0 0 16px rgba(253, 224, 71, 0.12);
+        }
+        .theme-v:hover {
+            border-color: #fde047;
+            box-shadow: 0 0 24px rgba(253, 224, 71, 0.35);
+        }
+
+        /* E: Estimable (Rojo Carmesí) */
+        .theme-e {
+            border-color: rgba(248, 113, 113, 0.4);
+            box-shadow: 0 0 16px rgba(248, 113, 113, 0.12);
+        }
+        .theme-e:hover {
+            border-color: #f87171;
+            box-shadow: 0 0 24px rgba(248, 113, 113, 0.35);
+        }
+
+        /* S: Pequeña / Small (Naranja Llamativo) */
+        .theme-s {
+            border-color: rgba(251, 146, 60, 0.4);
+            box-shadow: 0 0 16px rgba(251, 146, 60, 0.12);
+        }
+        .theme-s:hover {
+            border-color: #fb923c;
+            box-shadow: 0 0 24px rgba(251, 146, 60, 0.35);
+        }
+
+        /* T: Testeable (Verde Esmeralda) */
+        .theme-t {
+            border-color: rgba(52, 211, 153, 0.4);
+            box-shadow: 0 0 16px rgba(52, 211, 153, 0.12);
+        }
+        .theme-t:hover {
+            border-color: #34d399;
+            box-shadow: 0 0 24px rgba(52, 211, 153, 0.35);
+        }
+
+        /* Estado activo con borde resaltado */
+        .card-active {
+            box-shadow: 0 0 28px rgba(56, 189, 248, 0.4) !important;
+        }
+
+        /* Rotación suave del chevron indicador */
+        .rotate-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Animación suave de entrada */
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .animate-reveal {
+            animation: fadeInSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Barra HUD inferior en flujo natural */
+        .hud-dock {
+            background: rgba(10, 16, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+        }
+        .is-embedded .hide-in-embed {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="font-body p-3 sm:p-6 md:p-8 flex flex-col items-center selection:bg-cyan-500 selection:text-black">
+  <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+  <nav onclick="event.stopPropagation()" class="hide-in-embed w-full max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 bg-slate-900/95 border-2 border-slate-700 rounded-xl px-5 py-3 shadow-lg text-slate-200">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-sm sm:text-base transition-colors">
+      <span>⌂</span>
+      <span>Índice general VJ1224</span>
+    </a>
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-bold">
+      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-[11px]">TEMA 2 · 09/15</span>
+      <a href="08%20El%20di%C3%A1logo%20del%20h%C3%A9roe.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+      <span class="text-slate-600">|</span>
+      <a href="10%20Puntos%20de%20historia.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+    </div>
+  </nav>
+
+    <div class="max-w-6xl w-full">
+        <!-- Encabezado Proyectable de la SPA -->
+        <header class="text-center mb-6 sm:mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/80 border border-cyan-500/50 rounded-full mb-3 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-pixel text-[10px] sm:text-xs text-cyan-300 tracking-wider">
+                    VJ1224 // TEMA 2: EL FILTRO DE CALIDAD DEFINITIVO
+                </span>
+            </div>
+            
+            <h1 class="font-pixel text-xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-amber-300 to-emerald-400 tracking-wide leading-relaxed py-1">
+                LA RECETA DE UNA BUENA HISTORIA
+            </h1>
+            
+            <p class="text-slate-400 text-xs sm:text-sm font-pixel mt-1 tracking-wider">
+                &lt;Los 6 Ingredientes I.N.V.E.S.T. // Criterios de Aceptación&gt;
+            </p>
+
+            <p class="text-cyan-300 text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed font-semibold">
+                No cualquier frase es una historia de usuario lista para entrar al sprint. Bill Wake definió seis atributos innegociables para blindar el Backlog y garantizar que el equipo entregue valor sin atascarse.
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 hidden sm:block font-medium">
+                Usa el botón interactivo inferior o la barra espaciadora para adivinar y desvelar cada ingrediente; haz clic en cada tarjeta para consultar su aplicación en el motor y el antipatrón de aula.
+            </p>
+        </header>
+
+        <!-- Main: Cuadrícula interactiva de 6 Ingredientes INVEST -->
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+            
+            <!-- ========================================== -->
+            <!-- 1. I - INDEPENDIENTE -->
+            <!-- ========================================== -->
+            <div id="wrapper-card-1" class="hidden">
+                <article class="ingredient-card theme-i animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('detail-1')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center font-pixel text-xl text-cyan-300 shrink-0 shadow-[0_0_12px_rgba(56,189,248,0.25)]">
+                                    I
+                                </div>
+                                <div>
+                                    <span class="font-pixel text-[10px] text-cyan-400 block">INGREDIENTE 01</span>
+                                    <h2 class="font-pixel text-base sm:text-lg text-cyan-200 tracking-wide mt-0.5">INDEPENDIENTE</h2>
+                                </div>
+                            </div>
+                            <span id="icon-detail-1" class="text-cyan-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            Debe poder priorizarse, desarrollarse y probarse <strong>sin depender directamente del avance de otra historia</strong> dentro del mismo sprint.
+                        </p>
+                    </div>
+
+                    <!-- Detalle Desplegable 1 -->
+                    <div id="detail-1" class="hidden mt-4 pt-3 border-t border-cyan-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-cyan-300 px-2 py-0.5 bg-cyan-950 border border-cyan-800 rounded inline-block">
+                            EN EL AULA UJI // UNITY & NOTION
+                        </span>
+                        <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                            🎮 <strong>Enfoque correcto:</strong> Separar la mecánica de disparo de la interfaz HUD de munición mediante un bus de eventos (C# Actions/UnityEvents). Así, diseño puede balancear las armas aunque la UI final esté en proceso.
+                        </p>
+                        <div class="p-3 bg-slate-900 rounded-lg border border-cyan-500/30 text-sm sm:text-base text-cyan-200 font-semibold leading-relaxed">
+                            📌 <strong>Antipatrón a evitar:</strong> Crear cadenas rígidas (<em>«Historia B no puede testearse sin Historia A terminada»</em>), generando bloqueos mortales en el sprint.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 2. N - NEGOCIABLE -->
+            <!-- ========================================== -->
+            <div id="wrapper-card-2" class="hidden">
+                <article class="ingredient-card theme-n animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('detail-2')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400 flex items-center justify-center font-pixel text-xl text-purple-300 shrink-0 shadow-[0_0_12px_rgba(167,139,250,0.25)]">
+                                    N
+                                </div>
+                                <div>
+                                    <span class="font-pixel text-[10px] text-purple-400 block">INGREDIENTE 02</span>
+                                    <h2 class="font-pixel text-base sm:text-lg text-purple-200 tracking-wide mt-0.5">NEGOCIABLE</h2>
+                                </div>
+                            </div>
+                            <span id="icon-detail-2" class="text-purple-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            <strong>No es un contrato legal cerrado.</strong> Es una invitación a dialogar entre diseño, arte y programación sobre la solución más elegante y viable.
+                        </p>
+                    </div>
+
+                    <!-- Detalle Desplegable 2 -->
+                    <div id="detail-2" class="hidden mt-4 pt-3 border-t border-purple-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-purple-300 px-2 py-0.5 bg-purple-950 border border-purple-800 rounded inline-block">
+                            CULTURA MULTIDISCIPLINAR
+                        </span>
+                        <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                            🎮 <strong>Enfoque correcto:</strong> La historia fija el objetivo jugable (<em>«hacer que el enemigo huya al recibir fuego»</em>). Los detalles técnicos (¿IA con árboles de comportamiento o máquina de estados?) se negocian en equipo según el tiempo restante.
+                        </p>
+                        <div class="p-3 bg-slate-900 rounded-lg border border-purple-500/30 text-sm sm:text-base text-purple-200 font-semibold leading-relaxed">
+                            📌 <strong>Regla de oro:</strong> Una historia redactada con especificaciones técnicas inmutables mata la adaptabilidad ágil propia de los videojuegos.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 3. V - VALIOSA -->
+            <!-- ========================================== -->
+            <div id="wrapper-card-3" class="hidden">
+                <article class="ingredient-card theme-v animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('detail-3')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-12 h-12 rounded-xl bg-yellow-500/20 border border-yellow-400 flex items-center justify-center font-pixel text-xl text-yellow-300 shrink-0 shadow-[0_0_12px_rgba(253,224,71,0.25)]">
+                                    V
+                                </div>
+                                <div>
+                                    <span class="font-pixel text-[10px] text-yellow-400 block">INGREDIENTE 03</span>
+                                    <h2 class="font-pixel text-base sm:text-lg text-yellow-200 tracking-wide mt-0.5">VALIOSA</h2>
+                                </div>
+                            </div>
+                            <span id="icon-detail-3" class="text-yellow-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            Debe entregar <strong>valor tangible y perceptible a quien juega</strong> (o al equipo de desarrollo en términos de experiencia lúdica), nunca ser solo código invisible.
+                        </p>
+                    </div>
+
+                    <!-- Detalle Desplegable 3 -->
+                    <div id="detail-3" class="hidden mt-4 pt-3 border-t border-yellow-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-yellow-300 px-2 py-0.5 bg-yellow-950 border border-yellow-800 rounded inline-block">
+                            FOCO EN EL GAMEPLAY
+                        </span>
+                        <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                            🎮 <strong>Enfoque correcto:</strong> Si un playtester juega la build tras cerrar la historia, debe poder experimentar una nueva emoción, interacción o ventaja táctica palpable con el gamepad.
+                        </p>
+                        <div class="p-3 bg-slate-900 rounded-lg border border-yellow-500/30 text-sm sm:text-base text-yellow-200 font-semibold leading-relaxed">
+                            📌 <strong>Antipatrón de aula:</strong> Redactar <em>«Configurar tablas en SQLite»</em> como historia. Eso es una tarea técnica; la historia es <em>«Guardar partida para no perder el progreso del héroe»</em>.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 4. E - ESTIMABLE -->
+            <!-- ========================================== -->
+            <div id="wrapper-card-4" class="hidden">
+                <article class="ingredient-card theme-e animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('detail-4')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-12 h-12 rounded-xl bg-rose-500/20 border border-rose-400 flex items-center justify-center font-pixel text-xl text-rose-300 shrink-0 shadow-[0_0_12px_rgba(248,113,113,0.25)]">
+                                    E
+                                </div>
+                                <div>
+                                    <span class="font-pixel text-[10px] text-rose-400 block">INGREDIENTE 04</span>
+                                    <h2 class="font-pixel text-base sm:text-lg text-rose-200 tracking-wide mt-0.5">ESTIMABLE</h2>
+                                </div>
+                            </div>
+                            <span id="icon-detail-4" class="text-rose-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            El equipo debe poseer suficiente claridad de dominio para <strong>asignarle un tamaño relativo en Story Points</strong> sin que sea una ruleta rusa.
+                        </p>
+                    </div>
+
+                    <!-- Detalle Desplegable 4 -->
+                    <div id="detail-4" class="hidden mt-4 pt-3 border-t border-rose-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-rose-300 px-2 py-0.5 bg-rose-950 border border-rose-800 rounded inline-block">
+                            ESTIMACIÓN ÁGIL EN SPRINT
+                        </span>
+                        <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                            🎮 <strong>Enfoque correcto:</strong> Si nadie sabe estimarla, no se fuerza: se crea un *Spike de investigación* de 2 días en Unity para probar el shader o el plugin de audio antes de comprometer la historia.
+                        </p>
+                        <div class="p-3 bg-slate-900 rounded-lg border border-rose-500/30 text-sm sm:text-base text-rose-200 font-semibold leading-relaxed">
+                            📌 <strong>Diagnóstico de alerta:</strong> Si una historia recibe 40 Story Points en Planning Poker, ¡es un Jefe Final disfrazado! Divídela de inmediato.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 5. S - SMALL (PEQUEÑA) -->
+            <!-- ========================================== -->
+            <div id="wrapper-card-5" class="hidden">
+                <article class="ingredient-card theme-s animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('detail-5')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-12 h-12 rounded-xl bg-orange-500/20 border border-orange-400 flex items-center justify-center font-pixel text-xl text-orange-300 shrink-0 shadow-[0_0_12px_rgba(251,146,60,0.25)]">
+                                    S
+                                </div>
+                                <div>
+                                    <span class="font-pixel text-[10px] text-orange-400 block">INGREDIENTE 05</span>
+                                    <h2 class="font-pixel text-base sm:text-lg text-orange-200 tracking-wide mt-0.5">PEQUEÑA (SMALL)</h2>
+                                </div>
+                            </div>
+                            <span id="icon-detail-5" class="text-orange-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            Debe ser lo bastante acotada como para <strong>completarse y probarse cómodamente dentro de un único sprint</strong> de 1 o 2 semanas.
+                        </p>
+                    </div>
+
+                    <!-- Detalle Desplegable 5 -->
+                    <div id="detail-5" class="hidden mt-4 pt-3 border-t border-orange-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-orange-300 px-2 py-0.5 bg-orange-950 border border-orange-800 rounded inline-block">
+                            RITMO DE PRODUCCIÓN
+                        </span>
+                        <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                            🎮 <strong>Enfoque correcto:</strong> Una historia ideal se resuelve en 2 o 3 días de trabajo efectivo de un integrante o pareja, permitiendo cerrar múltiples historias en cada iteración y ver progresos reales.
+                        </p>
+                        <div class="p-3 bg-slate-900 rounded-lg border border-orange-500/30 text-sm sm:text-base text-orange-200 font-semibold leading-relaxed">
+                            📌 <strong>Síntoma en Notion:</strong> Si arrastras una misma tarjeta en la columna <em>En progreso</em> durante dos sprints seguidos, has roto la regla de la dimensionalidad.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 6. T - TESTEABLE -->
+            <!-- ========================================== -->
+            <div id="wrapper-card-6" class="hidden">
+                <article class="ingredient-card theme-t animate-reveal rounded-2xl p-5 cursor-pointer select-none h-full flex flex-col justify-between" onclick="toggleDetail('detail-6')">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center font-pixel text-xl text-emerald-300 shrink-0 shadow-[0_0_12px_rgba(52,211,153,0.25)]">
+                                    T
+                                </div>
+                                <div>
+                                    <span class="font-pixel text-[10px] text-emerald-400 block">INGREDIENTE 06</span>
+                                    <h2 class="font-pixel text-base sm:text-lg text-emerald-200 tracking-wide mt-0.5">TESTEABLE</h2>
+                                </div>
+                            </div>
+                            <span id="icon-detail-6" class="text-emerald-400 text-xl transition-transform duration-200">▼</span>
+                        </div>
+
+                        <p class="text-slate-200 text-base sm:text-lg leading-snug font-medium">
+                            Debe incluir <strong>Criterios de Aceptación objetivos</strong> que permitan dictaminar si funciona tanto en tests unitarios como en playtesting (P4).
+                        </p>
+                    </div>
+
+                    <!-- Detalle Desplegable 6 -->
+                    <div id="detail-6" class="hidden mt-4 pt-4 border-t border-emerald-500/30 bg-slate-950/90 p-4 rounded-xl space-y-3">
+                        <span class="font-pixel text-[10px] text-emerald-300 px-2 py-0.5 bg-emerald-950 border border-emerald-800 rounded inline-block">
+                            PUENTE CON PLAYTESTING (P4)
+                        </span>
+                        <p class="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
+                            🎮 <strong>Enfoque correcto:</strong> Usar la sintaxis Gherkin (<em>Dado / Cuando / Entonces</em>). Cualquier persona del equipo puede agarrar el mando y comprobar sin ambigüedades si la historia cumple su promesa.
+                        </p>
+                        <div class="p-3 bg-slate-900 rounded-lg border border-emerald-500/30 text-sm sm:text-base text-emerald-200 font-semibold leading-relaxed">
+                            📌 <strong>La prueba del algodón:</strong> Si no sabes cómo probarías la historia con el gamepad en la build de Unity, la historia no está lista para ser programada.
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </main>
+
+        <!-- ========================================== -->
+        <!-- CONTROLES DE NAVEGACIÓN: HUD Flujo Natural -->
+        <!-- ========================================== -->
+        <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
+            <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <button id="btn-next" onclick="revealNextIngredient()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
+                    <span class="font-pixel text-[11px]">▶</span> <span id="btn-hint-text">¡ADIVINA! I...</span> <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/6)</span>
+                </button>
+                <button onclick="revealAllIngredients()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-600 transition font-semibold text-sm active:scale-95">
+                    Mostrar todo
+                </button>
+                <button onclick="resetAllIngredients()" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition font-semibold text-sm active:scale-95">
+                    Reiniciar
+                </button>
+            </nav>
+        </div>
+
+        <footer onclick="event.stopPropagation()" class="w-full max-w-6xl mx-auto mt-8 pt-5 pb-4 border-t border-slate-800/90 text-center text-slate-400 text-xs sm:text-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 px-2">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+          <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+            Licencia CC BY-NC-SA 4.0
+          </span>
+          <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- LÓGICA INTERACTIVA JAVASCRIPT -->
+    <!-- ========================================== -->
+    <script>
+        let currentIngredient = 0;
+        const totalIngredients = 6;
+
+        // Pistas dinámicas letra por letra
+        const hintLabels = [
+            "¡ADIVINA! I...",
+            "¡ADIVINA! N...",
+            "¡ADIVINA! V...",
+            "¡ADIVINA! E...",
+            "¡ADIVINA! S...",
+            "¡ADIVINA! T...",
+            "RECETA COMPLETA ✔"
+        ];
+
+        function updateHUD() {
+            const counter = document.getElementById('counter');
+            if (counter) {
+                counter.innerText = `(${currentIngredient}/${totalIngredients})`;
+            }
+
+            const btnHintText = document.getElementById('btn-hint-text');
+            if (btnHintText) {
+                btnHintText.innerText = hintLabels[currentIngredient] || "COMPLETO";
+            }
+
+            const btnNext = document.getElementById('btn-next');
+            if (btnNext) {
+                if (currentIngredient >= totalIngredients) {
+                    btnNext.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnNext.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        function revealNextIngredient() {
+            if (currentIngredient < totalIngredients) {
+                currentIngredient++;
+                const wrapper = document.getElementById('wrapper-card-' + currentIngredient);
+                if (wrapper) {
+                    wrapper.classList.remove('hidden');
+                }
+
+                // Desplazamiento suave enfocado a la botonera para mantener el encuadre natural
+                setTimeout(() => {
+                    const controls = document.getElementById('controls-container');
+                    if (controls) {
+                        controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 90);
+
+                updateHUD();
+            }
+        }
+
+        function revealAllIngredients() {
+            for (let i = 1; i <= totalIngredients; i++) {
+                const wrapper = document.getElementById('wrapper-card-' + i);
+                if (wrapper) wrapper.classList.remove('hidden');
+            }
+            currentIngredient = totalIngredients;
+            updateHUD();
+        }
+
+        function resetAllIngredients() {
+            for (let i = 1; i <= totalIngredients; i++) {
+                const wrapper = document.getElementById('wrapper-card-' + i);
+                if (wrapper) wrapper.classList.add('hidden');
+
+                const detail = document.getElementById('detail-' + i);
+                if (detail) detail.classList.add('hidden');
+
+                const icon = document.getElementById('icon-detail-' + i);
+                if (icon) icon.classList.remove('rotate-chevron');
+
+                if (wrapper) {
+                    const card = wrapper.querySelector('.ingredient-card');
+                    if (card) card.classList.remove('card-active');
+                }
+            }
+            currentIngredient = 0;
+            updateHUD();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDetail(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            const card = panel.closest('.ingredient-card');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-chevron');
+                if (card) card.classList.add('card-active');
+            } else {
+                panel.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-chevron');
+                if (card) card.classList.remove('card-active');
+            }
+        }
+
+        // Navegación ágil por teclado para dinamizar la explicación en clase
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentIngredient < totalIngredients) {
+                    e.preventDefault();
+                    revealNextIngredient();
+                }
+            }
+        });
+
+        // Inicialización
+        updateHUD();
+    </script>
+</body>
+</html>
