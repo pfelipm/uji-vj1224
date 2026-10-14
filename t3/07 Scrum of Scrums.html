@@ -72,15 +72,13 @@
             transform: translateY(-2px);
         }
 
-        .q-item {
-            opacity: 0.3;
-            filter: grayscale(0.8);
-            transition: all 0.35s ease;
+        @keyframes revealQ {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .q-item.unlocked {
-            opacity: 1;
-            filter: grayscale(0);
+        .q-item {
+            animation: revealQ 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .hud-btn {
@@ -289,25 +287,25 @@
                 </div>
 
                 <ol class="space-y-4">
-                    <li id="q-1" class="q-item unlocked flex items-start gap-4 bg-slate-900/90 border-2 border-amber-500/40 rounded-xl p-4">
+                    <li id="q-1" class="q-item flex items-start gap-4 bg-slate-900/90 border-2 border-amber-500/40 rounded-xl p-4">
                         <span class="pixel-font text-xs bg-amber-500 text-slate-950 px-2.5 py-1.5 rounded shrink-0">01</span>
                         <p class="text-lg md:text-xl text-slate-200 font-medium">
                             ¿Qué ha logrado mi equipo desde la última reunión que <strong class="text-amber-300">pueda afectar a otros equipos</strong>?
                         </p>
                     </li>
-                    <li id="q-2" class="q-item flex items-start gap-4 bg-slate-900/90 border-2 border-amber-500/40 rounded-xl p-4">
+                    <li id="q-2" class="hidden q-item flex items-start gap-4 bg-slate-900/90 border-2 border-amber-500/40 rounded-xl p-4">
                         <span class="pixel-font text-xs bg-amber-500 text-slate-950 px-2.5 py-1.5 rounded shrink-0">02</span>
                         <p class="text-lg md:text-xl text-slate-200 font-medium">
                             ¿Qué hará mi equipo antes de la próxima reunión que <strong class="text-amber-300">pueda afectar a otros equipos</strong>?
                         </p>
                     </li>
-                    <li id="q-3" class="q-item flex items-start gap-4 bg-slate-900/90 border-2 border-rose-500/40 rounded-xl p-4">
+                    <li id="q-3" class="hidden q-item flex items-start gap-4 bg-slate-900/90 border-2 border-rose-500/40 rounded-xl p-4">
                         <span class="pixel-font text-xs bg-rose-500 text-white px-2.5 py-1.5 rounded shrink-0">03</span>
                         <p class="text-lg md:text-xl text-slate-200 font-medium">
                             ¿Qué <strong class="text-rose-400">obstáculos o bloqueos</strong> tiene mi equipo que necesiten la ayuda de otro gremio para resolverse?
                         </p>
                     </li>
-                    <li id="q-4" class="q-item flex items-start gap-4 bg-slate-900/90 border-2 border-rose-500/40 rounded-xl p-4">
+                    <li id="q-4" class="hidden q-item flex items-start gap-4 bg-slate-900/90 border-2 border-rose-500/40 rounded-xl p-4">
                         <span class="pixel-font text-xs bg-rose-500 text-white px-2.5 py-1.5 rounded shrink-0">04</span>
                         <p class="text-lg md:text-xl text-slate-200 font-medium">
                             ¿Estamos a punto de <strong class="text-rose-400">generar un obstáculo o romper la integración</strong> para otro equipo sin darnos cuenta?
@@ -315,13 +313,16 @@
                     </li>
                 </ol>
 
-                <div class="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-800">
+                <div id="q-dock" class="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-800">
                     <span class="text-sm text-slate-400 font-semibold">Usa las flechas del teclado o los botones para revelar cada pregunta en clase.</span>
-                    <div class="flex items-center gap-3">
+                    <div class="flex flex-wrap items-center gap-3">
                         <button id="q-prev" onclick="stepQuestion(-1)" class="hud-btn" disabled>← Anterior</button>
                         <button id="q-next" onclick="stepQuestion(1)" class="hud-btn">Siguiente pregunta →</button>
                         <button onclick="unlockAllQuestions()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-bold border border-slate-600 transition-colors">
-                            Revelar todas
+                            Mostrar todas
+                        </button>
+                        <button onclick="resetQuestions()" class="px-3 py-2 rounded-lg bg-slate-900 hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 text-sm font-bold border border-slate-700 hover:border-rose-500/40 transition-colors">
+                            Reiniciar
                         </button>
                     </div>
                 </div>
@@ -382,7 +383,7 @@
 
         function updateQuestionsUI() {
             for (let i = 1; i <= totalQ; i++) {
-                document.getElementById(`q-${i}`).classList.toggle('unlocked', i <= currentQ);
+                document.getElementById(`q-${i}`).classList.toggle('hidden', i > currentQ);
             }
             document.getElementById('q-counter').textContent = `PREGUNTA ${currentQ} / ${totalQ}`;
             document.getElementById('q-prev').disabled = currentQ <= 1;
@@ -394,10 +395,21 @@
             if (next < 1 || next > totalQ) return;
             currentQ = next;
             updateQuestionsUI();
+            setTimeout(() => {
+                document.getElementById('q-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
         }
 
         function unlockAllQuestions() {
             currentQ = totalQ;
+            updateQuestionsUI();
+            setTimeout(() => {
+                document.getElementById('q-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function resetQuestions() {
+            currentQ = 1;
             updateQuestionsUI();
         }
 

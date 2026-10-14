@@ -62,19 +62,13 @@
             transform: translateY(-3px);
         }
 
-        .quest-step {
-            opacity: 0.25;
-            filter: grayscale(0.8);
-            transform: translateY(8px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
+        @keyframes revealStep {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .quest-step.unlocked {
-            opacity: 1;
-            filter: grayscale(0);
-            transform: translateY(0);
-            pointer-events: auto;
+        .quest-step {
+            animation: revealStep 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .quest-step.active-focus {
@@ -264,7 +258,7 @@
 
             <div class="flex flex-col items-center space-y-3">
                 <!-- Paso 1 -->
-                <div id="step-1" class="quest-step unlocked active-focus hud-card rounded-xl p-5 w-full max-w-3xl border-cyan-500/60 cursor-pointer" onclick="focusStep(1)">
+                <div id="step-1" class="quest-step active-focus hud-card rounded-xl p-5 w-full max-w-3xl border-cyan-500/60">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1">
                         <span class="pixel-font text-[10px] text-cyan-300 bg-cyan-950/90 border border-cyan-500/40 px-2.5 py-1 rounded w-fit">FASE 01 · ARTEFACTO DE ENTRADA</span>
                         <span class="text-sm font-bold text-cyan-400">Product Owner</span>
@@ -275,10 +269,10 @@
                     </p>
                 </div>
 
-                <div class="text-2xl font-black text-amber-400">▼</div>
+                <div id="arrow-2" class="hidden text-2xl font-black text-amber-400">▼</div>
 
                 <!-- Paso 2 -->
-                <div id="step-2" class="quest-step hud-card rounded-xl p-5 w-full max-w-3xl border-purple-500/60 cursor-pointer" onclick="focusStep(2)">
+                <div id="step-2" class="hidden quest-step hud-card rounded-xl p-5 w-full max-w-3xl border-purple-500/60">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1">
                         <span class="pixel-font text-[10px] text-purple-300 bg-purple-950/90 border border-purple-500/40 px-2.5 py-1 rounded w-fit">FASE 02 · EVENTO DE PLANIFICACIÓN</span>
                         <span class="text-sm font-bold text-purple-400">Todo el Scrum Team</span>
@@ -289,10 +283,10 @@
                     </p>
                 </div>
 
-                <div class="text-2xl font-black text-amber-400">▼</div>
+                <div id="arrow-3" class="hidden text-2xl font-black text-amber-400">▼</div>
 
                 <!-- Paso 3 -->
-                <div id="step-3" class="quest-step hud-card rounded-xl p-5 w-full max-w-3xl border-emerald-500/60 cursor-pointer" onclick="focusStep(3)">
+                <div id="step-3" class="hidden quest-step hud-card rounded-xl p-5 w-full max-w-3xl border-emerald-500/60">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1">
                         <span class="pixel-font text-[10px] text-emerald-300 bg-emerald-950/90 border border-emerald-500/40 px-2.5 py-1 rounded w-fit">FASE 03 · ARTEFACTO TÁCTICO</span>
                         <span class="text-sm font-bold text-emerald-400">Developers</span>
@@ -303,10 +297,10 @@
                     </p>
                 </div>
 
-                <div class="text-2xl font-black text-amber-400">▼</div>
+                <div id="arrow-4" class="hidden text-2xl font-black text-amber-400">▼</div>
 
                 <!-- Paso 4 -->
-                <div id="step-4" class="quest-step hud-card rounded-xl p-6 w-full max-w-3xl border-2 border-amber-400 bg-amber-950/20 cursor-pointer" onclick="focusStep(4)">
+                <div id="step-4" class="hidden quest-step hud-card rounded-xl p-6 w-full max-w-3xl border-2 border-amber-400 bg-amber-950/20">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                         <span class="pixel-font text-[10px] text-amber-300 bg-amber-950/90 border border-amber-400/60 px-2.5 py-1 rounded w-fit">FASE 04 · EL CORAZÓN (1 A 4 SEMANAS)</span>
                         <span class="text-sm font-bold text-amber-300">Iteración de duración fija</span>
@@ -329,10 +323,10 @@
                     </div>
                 </div>
 
-                <div class="text-2xl font-black text-amber-400">▼</div>
+                <div id="arrow-5" class="hidden text-2xl font-black text-amber-400">▼</div>
 
                 <!-- Paso 5 -->
-                <div id="step-5" class="quest-step hud-card rounded-xl p-5 w-full max-w-3xl border-rose-500/60 cursor-pointer" onclick="focusStep(5)">
+                <div id="step-5" class="hidden quest-step hud-card rounded-xl p-5 w-full max-w-3xl border-rose-500/60">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1">
                         <span class="pixel-font text-[10px] text-rose-300 bg-rose-950/90 border border-rose-500/40 px-2.5 py-1 rounded w-fit">FASE 05 · ARTEFACTO DE SALIDA</span>
                         <span class="text-sm font-bold text-rose-400">Cumple la Definition of Done</span>
@@ -343,10 +337,10 @@
                     </p>
                 </div>
 
-                <div class="text-2xl font-black text-amber-400">▼</div>
+                <div id="arrow-6" class="hidden text-2xl font-black text-amber-400">▼</div>
 
                 <!-- Paso 6 -->
-                <div id="step-6" class="quest-step w-full max-w-4xl cursor-pointer" onclick="focusStep(6)">
+                <div id="step-6" class="hidden quest-step w-full max-w-4xl">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="hud-card rounded-xl p-5 border-cyan-500/60">
                             <span class="pixel-font text-[10px] text-cyan-300 bg-cyan-950/90 border border-cyan-500/40 px-2.5 py-1 rounded inline-block mb-2">FASE 06A · INSPECCIÓN DEL PRODUCTO</span>
@@ -371,17 +365,20 @@
                 </div>
             </div>
 
-            <!-- Dock de controles de la Quest Loop -->
-            <div class="hud-dock rounded-xl p-4 mt-6 flex flex-wrap items-center justify-between gap-4">
+            <!-- Dock de controles de la Quest Loop (siempre pegado al último paso visible) -->
+            <div id="quest-dock" class="hud-dock rounded-xl p-4 mt-6 max-w-3xl mx-auto flex flex-wrap items-center justify-between gap-4">
                 <div class="flex items-center gap-3">
                     <span class="pixel-font text-xs text-cyan-400" id="step-counter">FASE 1 / 6</span>
-                    <span class="text-slate-300 font-semibold text-base hidden sm:inline" id="step-label">Input: el Product Backlog</span>
+                    <span class="text-slate-300 font-semibold text-base hidden sm:inline" id="step-label">1. Input: el Product Backlog</span>
                 </div>
                 <div class="flex flex-wrap items-center gap-3">
                     <button id="btn-prev" onclick="changeStep(-1)" class="hud-btn" disabled>← Anterior</button>
                     <button id="btn-next" onclick="changeStep(1)" class="hud-btn">Siguiente fase →</button>
                     <button id="btn-all" onclick="unlockAllSteps()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-bold border border-slate-600 transition-colors">
-                        Revelar todo
+                        Mostrar todo
+                    </button>
+                    <button id="btn-reset" onclick="resetSteps()" class="px-3 py-2 rounded-lg bg-slate-900 hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 text-sm font-bold border border-slate-700 hover:border-rose-500/40 transition-colors">
+                        Reiniciar
                     </button>
                 </div>
             </div>
@@ -462,7 +459,6 @@
     <script>
         const totalSteps = 6;
         let currentStep = 1;
-        let maxUnlocked = 1;
 
         const stepTitles = {
             1: '1. Input: el Product Backlog',
@@ -476,16 +472,15 @@
         function updateStepUI() {
             for (let i = 1; i <= totalSteps; i++) {
                 const el = document.getElementById(`step-${i}`);
-                if (i <= maxUnlocked) {
-                    el.classList.add('unlocked');
+                const arrow = document.getElementById(`arrow-${i}`);
+                if (i <= currentStep) {
+                    el.classList.remove('hidden');
+                    if (arrow) arrow.classList.remove('hidden');
                 } else {
-                    el.classList.remove('unlocked');
+                    el.classList.add('hidden');
+                    if (arrow) arrow.classList.add('hidden');
                 }
-                if (i === currentStep) {
-                    el.classList.add('active-focus');
-                } else {
-                    el.classList.remove('active-focus');
-                }
+                el.classList.toggle('active-focus', i === currentStep);
             }
             document.getElementById('step-counter').textContent = `FASE ${currentStep} / ${totalSteps}`;
             document.getElementById('step-label').textContent = stepTitles[currentStep];
@@ -497,26 +492,26 @@
             const next = currentStep + delta;
             if (next < 1 || next > totalSteps) return;
             currentStep = next;
-            if (currentStep > maxUnlocked) {
-                maxUnlocked = currentStep;
-            }
             updateStepUI();
-            const target = document.getElementById(`step-${currentStep}`);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        }
-
-        function focusStep(step) {
-            if (step > maxUnlocked) return;
-            currentStep = step;
-            updateStepUI();
+            setTimeout(() => {
+                document.getElementById('quest-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
         }
 
         function unlockAllSteps() {
-            maxUnlocked = totalSteps;
             currentStep = totalSteps;
             updateStepUI();
+            setTimeout(() => {
+                document.getElementById('quest-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function resetSteps() {
+            currentStep = 1;
+            updateStepUI();
+            setTimeout(() => {
+                document.getElementById('step-1')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
         }
 
         document.addEventListener('keydown', (e) => {

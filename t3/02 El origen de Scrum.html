@@ -370,16 +370,19 @@
 
                 <!-- Referencia bibliográfica original -->
                 <div class="text-center pt-3">
-                    <a href="https://hbr.org/1986/01/the-new-new-product-development-game" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-cyan-300 text-xs sm:text-sm font-semibold transition">
+                    <a href="https://agile247.pl/wp-content/uploads/2015/11/The-New-New-Product-Development-Game-Nonaka-and-Takeuchi.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-cyan-300 text-xs sm:text-sm font-semibold transition">
                         <span>📄</span>
-                        <span>Consultar el artículo original de H. Takeuchi e I. Nonaka en Harvard Business Review (1986) ↗</span>
+                        <span>Consultar el artículo original de H. Takeuchi e I. Nonaka en Harvard Business Review (1986, PDF) ↗</span>
                     </a>
                 </div>
             </section>
 
             <!-- CONTROLES DE NAVEGACIÓN HUD -->
             <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
-                <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-2xl w-full">
+                    <button id="btn-prev" onclick="revealPrev()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-300 border border-slate-600 transition font-semibold text-sm active:scale-95 opacity-50 pointer-events-none">
+                        ← Anterior
+                    </button>
                     <button id="btn-next" onclick="revealNext()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
                         <span class="font-pixel text-[11px]">▶</span> Siguiente rasgo <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/6)</span>
                     </button>
@@ -415,6 +418,14 @@
         function updateCounter() {
             const counter = document.getElementById('counter');
             if (counter) counter.innerText = `(${currentRevealed}/${totalTraits})`;
+            const btnPrev = document.getElementById('btn-prev');
+            if (btnPrev) {
+                if (currentRevealed <= 0) {
+                    btnPrev.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnPrev.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
             const btnNext = document.getElementById('btn-next');
             if (btnNext) {
                 if (currentRevealed >= totalTraits) {
@@ -434,6 +445,15 @@
                     const controls = document.getElementById('controls-container');
                     if (controls) controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 80);
+                updateCounter();
+            }
+        }
+
+        function revealPrev() {
+            if (currentRevealed > 0) {
+                const wrapper = document.getElementById('wrapper-trait-' + currentRevealed);
+                if (wrapper) wrapper.classList.add('hidden');
+                currentRevealed--;
                 updateCounter();
             }
         }
@@ -486,6 +506,11 @@
                 if (currentRevealed < totalTraits) {
                     e.preventDefault();
                     revealNext();
+                }
+            } else if (e.code === 'ArrowLeft') {
+                if (currentRevealed > 0) {
+                    e.preventDefault();
+                    revealPrev();
                 }
             }
         });

@@ -343,7 +343,10 @@
 
             <!-- CONTROLES DE NAVEGACIÓN HUD -->
             <div id="controls-container" class="relative mt-8 mb-4 flex justify-center w-full z-10">
-                <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-xl w-full">
+                <nav aria-label="Controles de presentación" class="hud-dock rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all max-w-2xl w-full">
+                    <button id="btn-prev" onclick="revealPrev()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-300 border border-slate-600 transition font-semibold text-sm active:scale-95 opacity-50 pointer-events-none">
+                        ← Anterior
+                    </button>
                     <button id="btn-next" onclick="revealNext()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.5)] transition flex items-center gap-2 text-sm sm:text-base active:scale-95">
                         <span class="font-pixel text-[11px]">▶</span> Siguiente capa <span id="counter" class="font-mono text-xs bg-slate-950/60 px-2 py-0.5 rounded text-cyan-200">(0/4)</span>
                     </button>
@@ -379,6 +382,14 @@
         function updateCounter() {
             const counter = document.getElementById('counter');
             if (counter) counter.innerText = `(${currentStep}/${totalSteps})`;
+            const btnPrev = document.getElementById('btn-prev');
+            if (btnPrev) {
+                if (currentStep <= 0) {
+                    btnPrev.classList.add('opacity-50', 'pointer-events-none');
+                } else {
+                    btnPrev.classList.remove('opacity-50', 'pointer-events-none');
+                }
+            }
             const btnNext = document.getElementById('btn-next');
             if (btnNext) {
                 if (currentStep >= totalSteps) {
@@ -398,6 +409,15 @@
                     const controls = document.getElementById('controls-container');
                     if (controls) controls.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 80);
+                updateCounter();
+            }
+        }
+
+        function revealPrev() {
+            if (currentStep > 0) {
+                const el = document.getElementById('step-' + currentStep);
+                if (el) el.classList.add('hidden');
+                currentStep--;
                 updateCounter();
             }
         }
@@ -449,10 +469,7 @@
             } else if (e.code === 'ArrowLeft') {
                 if (currentStep > 0) {
                     e.preventDefault();
-                    const el = document.getElementById('step-' + currentStep);
-                    if (el) el.classList.add('hidden');
-                    currentStep--;
-                    updateCounter();
+                    revealPrev();
                 }
             }
         });
