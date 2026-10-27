@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El mapa del modelado UML | VJ1224</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --neon-cyan: #22d3ee;
+            --neon-purple: #a855f7;
+            --neon-emerald: #34d399;
+            --neon-amber: #facc15;
+            --neon-rose: #f43f5e;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            background-image:
+                radial-gradient(circle at 20% 15%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 85%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .hud-frame {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid rgba(51, 65, 85, 0.85);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(34, 211, 238, 0.04);
+            position: relative;
+        }
+
+        .hud-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #334155;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hud-card:hover {
+            transform: translateY(-3px);
+        }
+
+        @keyframes revealAct {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .act-step {
+            animation: revealAct 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .hud-dock {
+            background: rgba(9, 13, 22, 0.96);
+            border: 2px solid rgba(34, 211, 238, 0.35);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+        }
+
+        .hud-btn {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            padding: 0.75rem 1.2rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 2px solid #22d3ee;
+            background: rgba(34, 211, 238, 0.15);
+            color: #a5f3fc;
+        }
+
+        .hud-btn:hover:not(:disabled) {
+            background: #22d3ee;
+            color: #080c14;
+            box-shadow: 0 0 18px rgba(34, 211, 238, 0.55);
+            transform: translateY(-1px);
+        }
+
+        .hud-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: #475569;
+            color: #94a3b8;
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .case-tab.active {
+            background: rgba(168, 85, 247, 0.22);
+            border-color: #a855f7;
+            color: #f3e8ff;
+            box-shadow: 0 0 16px rgba(168, 85, 247, 0.35);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 md:p-6 lg:p-8">
+
+    <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+    <nav class="hide-in-embed w-full max-w-6xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-2 border-slate-700/80 rounded-xl px-5 py-3 shadow-lg backdrop-blur-md">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-base transition-colors">
+            <span>⌂</span>
+            <span>Índice general VJ1224</span>
+        </a>
+        <div class="flex items-center gap-3 text-sm md:text-base font-semibold">
+            <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 pixel-font text-[10px]">TEMAS 4–6 · 01/08</span>
+            <a href="../t3/08%20Scrum%20Lego%20city.html" class="text-slate-300 hover:text-white transition-colors">← Tema 3</a>
+            <span class="text-slate-600">|</span>
+            <a href="02%20De%20Agile%20a%20UML.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-6xl hud-frame rounded-2xl p-6 md:p-10 my-auto">
+
+        <!-- Cabecera -->
+        <header class="text-center mb-10 border-b-2 border-slate-800 pb-8">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/70 border-2 border-cyan-400/50 text-cyan-300 text-xs pixel-font mb-4">
+                <span>🗺️</span>
+                <span>BLOQUE DE MODELADO UML · TEMAS 4, 5 Y 6</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold text-white tracking-wide mb-3">
+                El mapa del modelado UML
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 font-semibold max-w-3xl mx-auto">
+                La narrativa del diseño de software en el desarrollo de videojuegos
+            </p>
+            <div class="mt-6 max-w-4xl mx-auto bg-slate-900/90 border-2 border-cyan-500/40 rounded-xl p-5 text-left">
+                <p class="text-lg md:text-xl font-bold text-cyan-300 mb-1.5">
+                    🏰 ¿Construirías un castillo sin planos? ¡Tampoco un videojuego!
+                </p>
+                <p class="text-lg text-slate-200 font-medium leading-relaxed">
+                    Modelar con <strong class="text-white">UML</strong> (<em>Unified Modeling Language</em>) consiste en trazar el plano arquitectónico de nuestro videojuego <strong class="text-amber-300">antes</strong> de escribir código a ciegas en Unity. Es el lenguaje visual que permite que diseño, arte y programación compartan exactamente la misma visión técnica.
+                </p>
+            </div>
+        </header>
+
+        <!-- Sección 1: La narrativa del diseño en 3 actos (Revelado progresivo) -->
+        <section id="acts-section" class="mb-10">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-amber-300">
+                    🎭 La narrativa del diseño en 3 actos
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mt-1 max-w-2xl mx-auto">
+                    Recorremos un viaje lógico que va de lo general a lo específico. Cada diagrama oficial de la asignatura responde a una pregunta fundamental:
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Acto 1: DCU -->
+                <article id="act-1" class="act-step hud-card rounded-xl p-6 border-2 border-cyan-500/70 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/50">ACTO 1 · TEMA 4</span>
+                        <span class="text-3xl">🎯</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-cyan-300 mb-1">El «qué» funcional</h3>
+                    <p class="text-lg font-bold text-white mb-2">Diagrama de casos de uso (DCU)</p>
+                    <p class="italic text-amber-300 font-semibold text-lg mb-4">«¿Qué promete hacer nuestro juego?»</p>
+                    <p class="text-slate-300 text-lg font-medium mb-5">
+                        Definimos el contrato externo con el jugador. No importa <em>cómo</em> se programa por dentro, sino qué funcionalidades ofrece el sistema y quién interactúa con ellas.
+                    </p>
+                    <ul class="space-y-3 text-slate-200 text-base md:text-lg font-medium mb-6">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-cyan-400 shrink-0 mt-0.5">👤</span>
+                            <span><strong class="text-white">Actores:</strong> ¿quién interactúa desde fuera? (jugador, servidor online, API externa).</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-cyan-400 shrink-0 mt-0.5">🎯</span>
+                            <span><strong class="text-white">Casos de uso:</strong> ¿qué metas cumple? (p. ej., <code class="bg-slate-800 text-cyan-300 px-2 py-0.5 rounded font-mono text-sm">Lanzar hechizo</code>).</span>
+                        </li>
+                    </ul>
+                    <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-cyan-500/40">
+                        <p class="text-sm font-bold uppercase tracking-wider text-cyan-400 mb-1">🦋 Ejemplo en Hollow Knight:</p>
+                        <p class="text-base text-slate-200 font-medium">
+                            El actor <code class="bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded font-mono text-sm">Jugador</code> ejecuta el caso de uso <code class="bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded font-mono text-sm">Descansar en un banco</code>.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Acto 2: DC -->
+                <article id="act-2" class="hidden act-step hud-card rounded-xl p-6 border-2 border-amber-400/70 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-400/50">ACTO 2 · TEMA 5</span>
+                        <span class="text-3xl">🧱</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-amber-300 mb-1">El «quién» estructural</h3>
+                    <p class="text-lg font-bold text-white mb-2">Diagrama de clases (DC)</p>
+                    <p class="italic text-amber-300 font-semibold text-lg mb-4">«¿Quiénes son responsables de cumplir esas promesas?»</p>
+                    <p class="text-slate-300 text-lg font-medium mb-5">
+                        Identificamos las piezas de software (entidades y componentes) que colaboran entre sí. Es el esqueleto y la arquitectura estática de nuestro mundo virtual.
+                    </p>
+                    <ul class="space-y-3 text-slate-200 text-base md:text-lg font-medium mb-6">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-amber-400 shrink-0 mt-0.5">📦</span>
+                            <span><strong class="text-white">Clases:</strong> plantillas con atributos y métodos (<code class="bg-slate-800 text-amber-300 px-2 py-0.5 rounded font-mono text-sm">Personaje</code>, <code class="bg-slate-800 text-amber-300 px-2 py-0.5 rounded font-mono text-sm">Inventario</code>).</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-amber-400 shrink-0 mt-0.5">🔗</span>
+                            <span><strong class="text-white">Relaciones:</strong> asociaciones, herencia (△), agregación (◇) y composición (◆).</span>
+                        </li>
+                    </ul>
+                    <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-amber-500/40">
+                        <p class="text-sm font-bold uppercase tracking-wider text-amber-400 mb-1">🦋 Ejemplo en Hollow Knight:</p>
+                        <p class="text-base text-slate-200 font-medium">
+                            Intervienen las clases <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">Caballero</code>, <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">Banco</code>, <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">Alma</code> y <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">MapaDelJuego</code>.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Acto 3: DA -->
+                <article id="act-3" class="hidden act-step hud-card rounded-xl p-6 border-2 border-emerald-500/70 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/50">ACTO 3 · TEMA 6</span>
+                        <span class="text-3xl">⚙️</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-emerald-300 mb-1">El «cómo» algorítmico</h3>
+                    <p class="text-lg font-bold text-white mb-2">Diagrama de actividades (DA)</p>
+                    <p class="italic text-amber-300 font-semibold text-lg mb-4">«¿Cómo colaboran esas piezas paso a paso?»</p>
+                    <p class="text-slate-300 text-lg font-medium mb-5">
+                        Es la receta dinámica y el algoritmo detallado. Describimos el flujo de ejecución paso a paso, incluyendo decisiones condicionales y acciones paralelas.
+                    </p>
+                    <ul class="space-y-3 text-slate-200 text-base md:text-lg font-medium mb-6">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-emerald-400 shrink-0 mt-0.5">▶️</span>
+                            <span><strong class="text-white">Acciones:</strong> pasos concretos (<code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">Recuperar máscaras</code>, <code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">Guardar partida</code>).</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-emerald-400 shrink-0 mt-0.5">◇</span>
+                            <span><strong class="text-white">Decisiones y carriles:</strong> lógica condicional (<code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">[¿Tiene amuleto?]</code>) y <em>swimlanes</em>.</span>
+                        </li>
+                    </ul>
+                    <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-emerald-500/40">
+                        <p class="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-1">🦋 Ejemplo en Hollow Knight:</p>
+                        <p class="text-base text-slate-200 font-medium">
+                            Flujo: <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Sentarse</code> → <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Restaurar vida</code> → <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Actualizar mapa</code> → <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Guardar partida</code>.
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Paso 4: El viaje completo y simulador transversal de ejemplos -->
+            <div id="act-4" class="hidden act-step mt-8 hud-card rounded-2xl p-6 md:p-8 border-2 border-purple-500/60">
+                <div class="text-center mb-6">
+                    <span class="pixel-font text-[10px] text-purple-300 bg-purple-950/90 border border-purple-400/50 px-3 py-1 rounded">TRAZABILIDAD EXTREMO A EXTREMO</span>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mt-3">
+                        El viaje completo del arquitecto de videojuegos
+                    </h3>
+                    <p class="text-slate-300 text-lg font-medium mt-1">
+                        Selecciona una mecánica real para comprobar cómo se conecta desde el requisito funcional hasta el algoritmo:
+                    </p>
+                </div>
+
+                <!-- Cadena visual de los 3 diagramas -->
+                <div class="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 mb-8">
+                    <div class="w-full md:w-auto text-center bg-cyan-500/20 border-2 border-cyan-400 text-cyan-200 font-bold py-3 px-5 rounded-xl">
+                        <span class="pixel-font text-[9px] block text-cyan-400 mb-0.5">TEMA 4</span>
+                        <span>1. DCU (Requisito · QUÉ)</span>
+                    </div>
+                    <div class="text-2xl font-black text-amber-400 rotate-90 md:rotate-0">➔</div>
+                    <div class="w-full md:w-auto text-center bg-amber-500/20 border-2 border-amber-400 text-amber-200 font-bold py-3 px-5 rounded-xl">
+                        <span class="pixel-font text-[9px] block text-amber-400 mb-0.5">TEMA 5</span>
+                        <span>2. DC (Estructura · QUIÉN)</span>
+                    </div>
+                    <div class="text-2xl font-black text-emerald-400 rotate-90 md:rotate-0">➔</div>
+                    <div class="w-full md:w-auto text-center bg-emerald-500/20 border-2 border-emerald-400 text-emerald-200 font-bold py-3 px-5 rounded-xl">
+                        <span class="pixel-font text-[9px] block text-emerald-400 mb-0.5">TEMA 6</span>
+                        <span>3. DA (Algoritmo · CÓMO)</span>
+                    </div>
+                </div>
+
+                <!-- Selector interactivo de casos de videojuegos -->
+                <div class="flex flex-wrap justify-center gap-3 mb-6">
+                    <button onclick="selectGameCase('hollow')" id="case-hollow" class="case-tab active px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 font-bold text-base text-slate-200 transition-all cursor-pointer">
+                        🦋 Hollow Knight (Banco)
+                    </button>
+                    <button onclick="selectGameCase('witcher')" id="case-witcher" class="case-tab px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 font-bold text-base text-slate-200 transition-all cursor-pointer">
+                        🐺 The Witcher 3 (Alquimia)
+                    </button>
+                    <button onclick="selectGameCase('zelda')" id="case-zelda" class="case-tab px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 font-bold text-base text-slate-200 transition-all cursor-pointer">
+                        🗡️ Zelda: TotK (Ultramano)
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-950/90 border border-slate-800 rounded-xl p-5">
+                    <div class="p-4 rounded-lg bg-slate-900/90 border-l-4 border-cyan-400">
+                        <div class="pixel-font text-[9px] text-cyan-400 mb-1">1. EN EL DCU (QUÉ)</div>
+                        <p id="case-dcu" class="text-base md:text-lg text-slate-200 font-medium">
+                            Actor <code class="text-cyan-300">Jugador</code> ejecuta el caso de uso <code class="text-cyan-300">Descansar en un banco</code> (con extensión opcional <code class="text-cyan-300">Equipar amuletos</code>).
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-slate-900/90 border-l-4 border-amber-400">
+                        <div class="pixel-font text-[9px] text-amber-400 mb-1">2. EN EL DC (QUIÉN)</div>
+                        <p id="case-dc" class="text-base md:text-lg text-slate-200 font-medium">
+                            Clase <code class="text-amber-300">Caballero</code> asociada con <code class="text-amber-300">Banco</code> (0..1) y compuesta por <code class="text-amber-300">InventarioAmuletos</code> (◆ 1) y <code class="text-amber-300">GestorGuardado</code>.
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-slate-900/90 border-l-4 border-emerald-400">
+                        <div class="pixel-font text-[9px] text-emerald-400 mb-1">3. EN EL DA (CÓMO)</div>
+                        <p id="case-da" class="text-base md:text-lg text-slate-200 font-medium">
+                            Carriles <code class="text-emerald-300">[Caballero]</code> y <code class="text-emerald-300">[SistemaGuardado]</code>: Sentarse → Curar máscaras → Rellenar enemigos del mundo → Serializar JSON.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dock de controles de revelado progresivo (siempre pegado al último bloque visible) -->
+            <div id="acts-dock" class="hud-dock rounded-xl p-4 mt-6 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <span class="pixel-font text-xs text-cyan-400" id="act-counter">PASO 1 / 4</span>
+                    <span class="text-slate-300 font-semibold text-base hidden sm:inline" id="act-label">Acto 1: El «qué» funcional (DCU)</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <button id="btn-prev" onclick="changeAct(-1)" class="hud-btn" disabled>← Anterior</button>
+                    <button id="btn-next" onclick="changeAct(1)" class="hud-btn">Siguiente acto →</button>
+                    <button onclick="unlockAllActs()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-bold border border-slate-600 transition-colors cursor-pointer">
+                        Mostrar todo
+                    </button>
+                    <button onclick="resetActs()" class="px-3 py-2 rounded-lg bg-slate-900 hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 text-sm font-bold border border-slate-700 hover:border-rose-500/40 transition-colors cursor-pointer">
+                        Reiniciar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página académico estandarizado -->
+    <footer class="w-full max-w-6xl mt-8 py-6 border-t border-slate-800/90 text-center text-slate-400 text-sm md:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+            <div class="text-left">
+                <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+                <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentAct = 1;
+        const totalActs = 4;
+
+        const actTitles = {
+            1: 'Acto 1: El «qué» funcional (DCU)',
+            2: 'Acto 2: El «quién» estructural (DC)',
+            3: 'Acto 3: El «cómo» algorítmico (DA)',
+            4: 'El viaje completo del arquitecto (Trazabilidad)'
+        };
+
+        const gameCases = {
+            hollow: {
+                dcu: 'Actor <code class="text-cyan-300 font-mono">Jugador</code> ejecuta el caso de uso <code class="text-cyan-300 font-mono">Descansar en un banco</code> (con extensión opcional <code class="text-cyan-300 font-mono">Equipar amuletos</code>).',
+                dc: 'Clase <code class="text-amber-300 font-mono">Caballero</code> asociada con <code class="text-amber-300 font-mono">Banco</code> (0..1) y compuesta por <code class="text-amber-300 font-mono">InventarioAmuletos</code> (◆ 1) y <code class="text-amber-300 font-mono">GestorGuardado</code>.',
+                da: 'Carriles <code class="text-emerald-300 font-mono">[Caballero]</code> y <code class="text-emerald-300 font-mono">[SistemaGuardado]</code>: Sentarse → Curar máscaras → Regenerar enemigos del mundo → Guardar progreso.'
+            },
+            witcher: {
+                dcu: 'Actor <code class="text-cyan-300 font-mono">Jugador</code> ejecuta el caso de uso <code class="text-cyan-300 font-mono">Elaborar poción</code> (que incluye obligatoriamente <code class="text-cyan-300 font-mono">Verificar ingredientes</code>).',
+                dc: 'Clase <code class="text-amber-300 font-mono">Brujo</code> usa <code class="text-amber-300 font-mono">RecetaAlquimia</code> (1..*) que agrega múltiples objetos <code class="text-amber-300 font-mono">Ingrediente</code> (◇ 1..* a 0..*).',
+                da: 'Decisión <code class="text-emerald-300 font-mono">◇ ¿Tiene alcohol e ingredientes?</code> → <code class="text-emerald-300 font-mono">[Sí]</code> Consumir hierbas → Crear ítem <code class="text-emerald-300 font-mono">Golondrina</code> → Añadir al inventario.'
+            },
+            zelda: {
+                dcu: 'Actor <code class="text-cyan-300 font-mono">Jugador</code> ejecuta el caso de uso <code class="text-cyan-300 font-mono">Ensamblar vehículo</code> y <code class="text-cyan-300 font-mono">Activar artilugio zonnan</code>.',
+                dc: 'Clase <code class="text-amber-300 font-mono">Construccion</code> agrega piezas <code class="text-amber-300 font-mono">ObjetoFisico</code> (◇ 2..21); <code class="text-amber-300 font-mono">Turbina</code> y <code class="text-amber-300 font-mono">Rueda</code> heredan de la clase abstracta <code class="text-amber-300 font-mono italic">ArtilugioZonnan</code> (△).',
+                da: 'Bifurcación paralela (Fork █): <code class="text-emerald-300 font-mono">Aplicar empuje físico</code> en paralelo con <code class="text-emerald-300 font-mono">Consumir batería energética</code> hasta agotar carga.'
+            }
+        };
+
+        function updateActsUI() {
+            for (let i = 1; i <= totalActs; i++) {
+                const el = document.getElementById(`act-${i}`);
+                el.classList.toggle('hidden', i > currentAct);
+            }
+            document.getElementById('act-counter').textContent = `PASO ${currentAct} / ${totalActs}`;
+            document.getElementById('act-label').textContent = actTitles[currentAct];
+            document.getElementById('btn-prev').disabled = currentAct <= 1;
+            document.getElementById('btn-next').disabled = currentAct >= totalActs;
+        }
+
+        function changeAct(delta) {
+            const next = currentAct + delta;
+            if (next < 1 || next > totalActs) return;
+            currentAct = next;
+            updateActsUI();
+            setTimeout(() => {
+                document.getElementById('acts-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function unlockAllActs() {
+            currentAct = totalActs;
+            updateActsUI();
+            setTimeout(() => {
+                document.getElementById('acts-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function resetActs() {
+            currentAct = 1;
+            updateActsUI();
+            setTimeout(() => {
+                document.getElementById('act-1')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function selectGameCase(key) {
+            ['hollow', 'witcher', 'zelda'].forEach(k => {
+                document.getElementById(`case-${k}`).classList.toggle('active', k === key);
+            });
+            document.getElementById('case-dcu').innerHTML = gameCases[key].dcu;
+            document.getElementById('case-dc').innerHTML = gameCases[key].dc;
+            document.getElementById('case-da').innerHTML = gameCases[key].da;
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT', 'TEXTAREA', 'BUTTON'].includes(document.activeElement?.tagName)) return;
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentAct < totalActs) {
+                    e.preventDefault();
+                    changeAct(1);
+                }
+            } else if (e.code === 'ArrowLeft') {
+                if (currentAct > 1) {
+                    e.preventDefault();
+                    changeAct(-1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

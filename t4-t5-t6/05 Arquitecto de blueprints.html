@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conoce a tu mentor: El Arquitecto de Blueprints | VJ1224</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --neon-cyan: #22d3ee;
+            --neon-emerald: #34d399;
+            --neon-amber: #facc15;
+            --neon-purple: #a855f7;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            background-image:
+                radial-gradient(circle at 50% 20%, rgba(34, 211, 238, 0.1) 0%, transparent 55%),
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .hud-frame {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid rgba(51, 65, 85, 0.85);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(34, 211, 238, 0.05);
+            position: relative;
+        }
+
+        .hud-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #334155;
+            transition: all 0.25s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 md:p-6 lg:p-8">
+
+    <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+    <nav class="hide-in-embed w-full max-w-6xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-2 border-slate-700/80 rounded-xl px-5 py-3 shadow-lg backdrop-blur-md">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-base transition-colors">
+            <span>⌂</span>
+            <span>Índice general VJ1224</span>
+        </a>
+        <div class="flex items-center gap-3 text-sm md:text-base font-semibold">
+            <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 pixel-font text-[10px]">TEMAS 4–6 · IA · 05/08</span>
+            <a href="04%20Gu%C3%ADa%20r%C3%A1pida%20DCU.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+            <span class="text-slate-600">|</span>
+            <a href="06%20Los%20actores%20del%20juego.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-5xl hud-frame rounded-2xl p-6 md:p-10 my-auto">
+
+        <!-- Cabecera del Gem -->
+        <header class="text-center mb-8 border-b-2 border-slate-800 pb-8">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/70 border-2 border-cyan-400/50 text-cyan-300 text-xs pixel-font mb-4">
+                <span>🤖</span>
+                <span>ASISTENTE DE IA ENTRENADO · GEMINI GEM</span>
+            </div>
+            <div class="text-6xl mb-3">📐</div>
+            <h1 class="text-3xl md:text-5xl font-bold text-white tracking-wide mb-2">
+                El Arquitecto de Blueprints
+            </h1>
+            <p class="text-xl md:text-2xl text-cyan-300 font-semibold">
+                Tu mentor experto en UML, MagicDraw y arquitectura en Unity para VJ1224
+            </p>
+        </header>
+
+        <!-- Perfil y capacidades -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 items-stretch">
+
+            <!-- Ficha de personaje -->
+            <div class="lg:col-span-5 hud-card rounded-2xl p-6 border-2 border-cyan-500/60 flex flex-col justify-between bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">PERFIL DEL MENTOR</span>
+                        <span class="pixel-font text-[10px] text-emerald-400">NV. 99</span>
+                    </div>
+                    <p class="text-lg text-slate-200 font-medium leading-relaxed mb-4">
+                        Con más de 15 años de experiencia diseñando arquitecturas de sistemas en estudios como <strong class="text-emerald-300">Naughty Dog</strong> y <strong class="text-cyan-300">CD Projekt RED</strong>, <strong class="text-white">«El Arquitecto»</strong> es tu especialista de referencia para transformar ideas de diseño en software sólido.
+                    </p>
+                    <p class="text-lg text-slate-300 font-medium leading-relaxed">
+                        Su misión es ayudarte a dominar <strong class="text-amber-300">UML</strong> y <strong class="text-amber-300">MagicDraw</strong> de forma práctica, evitando el código espagueti antes de abrir Unity.
+                    </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-800">
+                    <a href="https://gemini.google.com/gem/1P3nO8hRPQJNATorPn5XojUgbZ-nooX_Q?usp=sharing"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="w-full inline-flex items-center justify-center gap-3 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-3.5 px-6 rounded-xl text-xl border-2 border-cyan-200 shadow-lg hover:shadow-cyan-400/30 transition-all">
+                        <span>Abrir el Gem del Arquitecto</span>
+                        <span>↗</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ¿En qué puede ayudarte? -->
+            <div class="lg:col-span-7 hud-card rounded-2xl p-6 border-2 border-slate-700 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2.5">
+                        <span>🛠️</span>
+                        <span>¿En qué puede ayudar a vuestro equipo?</span>
+                    </h2>
+                    <ul class="space-y-3.5 text-slate-200 text-lg font-medium">
+                        <li class="flex items-start gap-3">
+                            <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                            <span>Conectar vuestras <strong class="text-emerald-300">historias de usuario de Notion</strong> con los actores y <strong class="text-cyan-300">casos de uso (DCU)</strong> sin caer en tareas técnicas.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                            <span>Explicar cualquier concepto de <strong class="text-amber-300">UML (DCU, DC y DA)</strong> con ejemplos reales de mecánicas de videojuegos.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                            <span>Resolver dudas paso a paso sobre el manejo de la herramienta <strong class="text-purple-300">MagicDraw</strong> (estereotipos, multiplicidades, <em>swimlanes</em>).</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                            <span>Mostrarte cómo un diagrama de clases o actividades se traduce directamente a <strong class="text-cyan-300">código C# limpio en Unity</strong>.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Prompts rápidos copiables -->
+                <div class="mt-6 bg-slate-950/90 border border-slate-800 rounded-xl p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="pixel-font text-[9px] text-amber-300">PROMPTS RÁPIDOS PARA COPIAR Y PEGAR EN GEMINI</span>
+                        <span id="copy-feedback" class="text-xs font-bold text-emerald-400 hidden">¡Copiado al portapapeles!</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <button onclick="copyPrompt('dcu')" class="text-left p-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 transition-colors cursor-pointer">
+                            <div class="font-bold text-cyan-300 text-sm">📋 Prompt DCU (Tema 4)</div>
+                            <div class="text-xs text-slate-400 mt-0.5">De historia de usuario a actores y casos de uso</div>
+                        </button>
+                        <button onclick="copyPrompt('dc')" class="text-left p-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-amber-500/40 transition-colors cursor-pointer">
+                            <div class="font-bold text-amber-300 text-sm">📋 Prompt DC (Tema 5)</div>
+                            <div class="text-xs text-slate-400 mt-0.5">Clases, multiplicidad y composición vs. agregación</div>
+                        </button>
+                        <button onclick="copyPrompt('da')" class="text-left p-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-emerald-500/40 transition-colors cursor-pointer">
+                            <div class="font-bold text-emerald-300 text-sm">📋 Prompt DA (Tema 6)</div>
+                            <div class="text-xs text-slate-400 mt-0.5">Algoritmo paso a paso con decisiones y swimlanes</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Pie de página académico estandarizado -->
+    <footer class="w-full max-w-6xl mt-8 py-6 border-t border-slate-800/90 text-center text-slate-400 text-sm md:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+            <div class="text-left">
+                <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+                <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const prompts = {
+            dcu: 'Hola, Arquitecto. Aquí tienes una historia de usuario de nuestro Product Backlog en Notion: "[PEGA AQUÍ TU HISTORIA DE USUARIO]". ¿Qué actores externos y qué casos de uso (con formato Verbo en infinitivo + objeto) identificas, y si habría alguna relación <<include>> o <<extend>>?',
+            dc: 'Hola, Arquitecto. Queremos diseñar el diagrama de clases (DC) para el caso de uso "[NOMBRE DEL CASO DE USO]". ¿Qué clases candidatas, atributos privados (-), operaciones públicas (+) y relaciones (asociación con multiplicidad, herencia, agregación ◇ o composición ◆) nos sugieres plantear?',
+            da: 'Hola, Arquitecto. Queremos modelar el diagrama de actividades (DA) del caso de uso "[NOMBRE DEL CASO DE USO]". ¿Qué carriles (swimlanes) deberían participar y cómo sería el flujo paso a paso incluyendo nodos de decisión (◇) o paralelismo (Fork/Join)?'
+        };
+
+        function copyTextWithFallback(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                return navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+            }
+            return Promise.resolve(fallbackCopy(text));
+        }
+
+        function fallbackCopy(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try {
+                document.execCommand('copy');
+            } catch (e) {}
+            document.body.removeChild(ta);
+        }
+
+        function copyPrompt(key) {
+            copyTextWithFallback(prompts[key]).then(() => {
+                const fb = document.getElementById('copy-feedback');
+                fb.classList.remove('hidden');
+                setTimeout(() => fb.classList.add('hidden'), 2500);
+            });
+        }
+    </script>
+</body>
+</html>

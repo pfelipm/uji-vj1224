@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía rápida: diagrama de casos de uso (DCU) | VJ1224</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --neon-cyan: #22d3ee;
+            --neon-emerald: #34d399;
+            --neon-amber: #facc15;
+            --neon-purple: #a855f7;
+            --neon-rose: #f43f5e;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            background-image:
+                radial-gradient(circle at 20% 15%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .hud-frame {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid rgba(51, 65, 85, 0.85);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(34, 211, 238, 0.04);
+            position: relative;
+        }
+
+        .hud-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #334155;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        details > summary {
+            cursor: pointer;
+            list-style: none;
+        }
+
+        details > summary::-webkit-details-marker,
+        details > summary::marker {
+            display: none;
+        }
+
+        details > summary .marker {
+            transition: transform 0.25s ease;
+            display: inline-block;
+        }
+
+        details[open] > summary .marker {
+            transform: rotate(90deg);
+        }
+
+        .check-row.checked {
+            border-color: #34d399;
+            background: rgba(6, 78, 59, 0.25);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 md:p-6 lg:p-8">
+
+    <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+    <nav class="hide-in-embed w-full max-w-6xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-2 border-slate-700/80 rounded-xl px-5 py-3 shadow-lg backdrop-blur-md">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-base transition-colors">
+            <span>⌂</span>
+            <span>Índice general VJ1224</span>
+        </a>
+        <div class="flex items-center gap-3 text-sm md:text-base font-semibold">
+            <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 pixel-font text-[10px]">TEMA 4 · DCU · 04/08</span>
+            <a href="03%20Los%20pilares%20del%20dise%C3%B1o.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+            <span class="text-slate-600">|</span>
+            <a href="05%20Arquitecto%20de%20blueprints.html" class="text-cyan-300 hover:text-cyan-200 transition-colors">Siguiente →</a>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-6xl hud-frame rounded-2xl p-6 md:p-10 my-auto">
+
+        <!-- Cabecera -->
+        <header class="text-center mb-8 border-b-2 border-slate-800 pb-8">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/70 border-2 border-cyan-400/50 text-cyan-300 text-xs pixel-font mb-4">
+                <span>📐</span>
+                <span>CHULETA DE REFERENCIA · TEMA 4 (DCU)</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold text-white tracking-wide mb-3">
+                Guía rápida: diagrama de casos de uso
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 font-semibold max-w-3xl mx-auto">
+                Tu manual táctico de referencia para el diseño funcional del videojuego
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <button onclick="toggleAllDetails(true)" class="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border-2 border-cyan-400/60 text-cyan-200 font-bold text-sm transition-all cursor-pointer">
+                    ▼ Expandir todas las secciones
+                </button>
+                <button onclick="toggleAllDetails(false)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border-2 border-slate-600 text-slate-300 font-bold text-sm transition-all cursor-pointer">
+                    ▲ Colapsar todas
+                </button>
+            </div>
+        </header>
+
+        <div class="space-y-6">
+
+            <!-- Sección 1: ¿Qué es un DCU? -->
+            <details class="hud-card rounded-2xl p-6 border-2 border-cyan-500/50" open>
+                <summary class="flex justify-between items-center gap-4">
+                    <h2 class="text-2xl md:text-3xl font-bold text-cyan-300">
+                        1. ¿Qué es un diagrama de casos de uso (DCU)?
+                    </h2>
+                    <span class="marker text-2xl text-cyan-400 shrink-0">▶</span>
+                </summary>
+                <div class="mt-5 border-t border-slate-800 pt-5 text-lg md:text-xl text-slate-200 font-medium leading-relaxed">
+                    <p>
+                        Es el <strong class="text-white">mapa de la funcionalidad</strong> de tu videojuego desde el punto de vista externo de quienes interactúan con él. No describe <em>cómo</em> está programado por dentro, sino <strong class="text-cyan-300">qué</strong> metas se pueden realizar. Es el primer paso formal para traducir las historias de usuario del <em>Product Backlog</em> en un modelo de ingeniería.
+                    </p>
+                </div>
+            </details>
+
+            <!-- Sección 2: Los 4 componentes principales -->
+            <details class="hud-card rounded-2xl p-6 border-2 border-slate-700" open>
+                <summary class="flex justify-between items-center gap-4">
+                    <h2 class="text-2xl md:text-3xl font-bold text-cyan-300">
+                        2. Los 4 componentes principales (la anatomía)
+                    </h2>
+                    <span class="marker text-2xl text-cyan-400 shrink-0">▶</span>
+                </summary>
+                <div class="mt-6 border-t border-slate-800 pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Actor -->
+                    <article class="bg-slate-950/90 rounded-xl p-6 border-2 border-purple-500/50 flex flex-col">
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-4xl">👤</span>
+                            <div>
+                                <span class="pixel-font text-[9px] text-purple-300">ELEMENTO EXTERNO</span>
+                                <h3 class="text-2xl font-bold text-white">Actor</h3>
+                            </div>
+                        </div>
+                        <p class="text-slate-200 text-lg font-medium mb-4">
+                            Un rol que interactúa con nuestro juego (persona, otro sistema o dispositivo). <strong class="text-purple-300">Siempre se dibuja fuera</strong> del límite del sistema.
+                        </p>
+                        <ul class="list-disc list-outside pl-5 space-y-2 text-slate-300 text-base md:text-lg font-medium mb-4">
+                            <li><strong class="text-white">Humanos:</strong> <code class="bg-slate-800 text-purple-300 px-2 py-0.5 rounded font-mono text-sm">Jugador</code>, <code class="bg-slate-800 text-purple-300 px-2 py-0.5 rounded font-mono text-sm">Administrador</code>.</li>
+                            <li><strong class="text-white">No humanos:</strong> <code class="bg-slate-800 text-purple-300 px-2 py-0.5 rounded font-mono text-sm">API de Steam</code>, <code class="bg-slate-800 text-purple-300 px-2 py-0.5 rounded font-mono text-sm">Servidor de clanes</code>.</li>
+                        </ul>
+                        <div class="mt-auto bg-slate-900 p-4 rounded-xl border border-amber-400/50">
+                            <h4 class="font-bold text-amber-300 text-base mb-1">💡 ¿Cuándo una IA o el tiempo es un actor?</h4>
+                            <p class="text-base text-slate-300 font-medium">
+                                Un enemigo común controlado por un script de Unity es una <strong>clase interna</strong> (no un actor). Solo modelamos una IA como actor si es un <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">servicio externo</code> (p. ej., un LLM en la nube o motor de ajedrez independiente) o el actor <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">Tiempo</code> que dispara eventos programados.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Caso de uso -->
+                    <article class="bg-slate-950/90 rounded-xl p-6 border-2 border-cyan-500/50 flex flex-col">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="border-2 border-cyan-400 bg-cyan-950/60 rounded-full px-4 py-1.5 text-lg font-bold text-cyan-200">CU</div>
+                            <div>
+                                <span class="pixel-font text-[9px] text-cyan-300">META FUNCIONAL</span>
+                                <h3 class="text-2xl font-bold text-white">Caso de uso</h3>
+                            </div>
+                        </div>
+                        <p class="text-slate-200 text-lg font-medium mb-4">
+                            Una funcionalidad completa que el sistema ofrece a un actor. <strong class="text-cyan-300">Siempre se dibuja dentro</strong> del límite del sistema como una elipse.
+                        </p>
+                        <div class="mt-auto bg-slate-900 p-5 rounded-xl border border-emerald-500/50">
+                            <h4 class="pixel-font text-[10px] text-emerald-300 mb-2">REGLA DE NOMENCLATURA OBLIGATORIA</h4>
+                            <p class="text-xl font-bold text-white font-mono bg-slate-950 p-3 rounded-lg border border-emerald-500/30 text-center mb-3">
+                                Verbo en infinitivo + objeto
+                            </p>
+                            <p class="text-base text-slate-300 font-medium">
+                                ✔️ <code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">Lanzar hechizo</code> · ❌ Nunca <code class="bg-slate-800 text-rose-300 px-2 py-0.5 rounded font-mono text-sm">Sistema de magia</code>.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Límite del sistema -->
+                    <article class="bg-slate-950/90 rounded-xl p-6 border-2 border-amber-500/50">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="border-2 border-dashed border-amber-400 rounded-lg p-2.5 text-amber-300 font-mono font-bold text-lg">[ ]</div>
+                            <div>
+                                <span class="pixel-font text-[9px] text-amber-300">FRONTERA</span>
+                                <h3 class="text-2xl font-bold text-white">Límite del sistema</h3>
+                            </div>
+                        </div>
+                        <p class="text-slate-200 text-lg font-medium">
+                            Un gran rectángulo con el nombre de nuestro videojuego en la parte superior. Separa el <strong>mundo interior</strong> (lo que construimos) del <strong>mundo exterior</strong> (los actores).
+                        </p>
+                    </article>
+
+                    <!-- Asociación simple -->
+                    <article class="bg-slate-950/90 rounded-xl p-6 border-2 border-emerald-500/50">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="text-3xl font-black text-emerald-400">───</div>
+                            <div>
+                                <span class="pixel-font text-[9px] text-emerald-300">COMUNICACIÓN</span>
+                                <h3 class="text-2xl font-bold text-white">Asociación simple</h3>
+                            </div>
+                        </div>
+                        <p class="text-slate-200 text-lg font-medium">
+                            Una línea continua sin punta de flecha que conecta un <strong>Actor</strong> con un <strong>Caso de uso</strong>. Indica que ese actor inicia o participa en dicha funcionalidad.
+                        </p>
+                    </article>
+
+                </div>
+            </details>
+
+            <!-- Sección 3: Las 3 relaciones avanzadas (con diagramas visuales claros) -->
+            <details class="hud-card rounded-2xl p-6 border-2 border-slate-700" open>
+                <summary class="flex justify-between items-center gap-4">
+                    <h2 class="text-2xl md:text-3xl font-bold text-cyan-300">
+                        3. Las 3 relaciones avanzadas (la gramática y sentido de las flechas)
+                    </h2>
+                    <span class="marker text-2xl text-cyan-400 shrink-0">▶</span>
+                </summary>
+                <div class="mt-6 border-t border-slate-800 pt-6 space-y-6">
+
+                    <div class="bg-amber-950/40 border-2 border-amber-400/60 rounded-xl p-4 text-center">
+                        <p class="text-base md:text-lg font-bold text-amber-200">
+                            ⚠️ ¡Atención al sentido de las flechas discontinuas en MagicDraw! En <code class="font-mono text-emerald-300">&lt;&lt;include&gt;&gt;</code> y <code class="font-mono text-purple-300">&lt;&lt;extend&gt;&gt;</code> las puntas apuntan en sentidos opuestos respecto al caso base.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                        <!-- Generalización -->
+                        <article class="bg-slate-950/90 rounded-xl p-6 border-2 border-cyan-500/50 flex flex-col">
+                            <span class="pixel-font text-[9px] text-cyan-300 mb-1">HERENCIA FUNCIONAL</span>
+                            <h3 class="text-2xl font-bold text-white mb-1">Generalización</h3>
+                            <p class="italic text-cyan-300 font-semibold text-lg mb-4">«…es un tipo especializado de…»</p>
+                            <p class="text-slate-300 text-base md:text-lg font-medium mb-4">
+                                Clasifica actores o casos de uso. La línea es <strong>continua</strong> y la punta triangular hueca (<strong class="text-cyan-300">▷</strong>) apunta siempre al elemento <strong class="text-white">padre (más general)</strong>.
+                            </p>
+                            <!-- Mini-diagrama visual -->
+                            <div class="mt-auto bg-slate-900 border border-cyan-500/40 rounded-xl p-4 text-center space-y-2">
+                                <div class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Dirección de la flecha (Hijo ──▷ Padre)</div>
+                                <div class="flex items-center justify-center gap-2 text-sm font-bold">
+                                    <span class="px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-600 text-slate-200">Jugador VIP</span>
+                                    <span class="text-cyan-400 font-mono text-base">───▷</span>
+                                    <span class="px-2.5 py-1.5 rounded-lg bg-cyan-950 border border-cyan-400 text-cyan-200">Jugador</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Inclusión <<include>> -->
+                        <article class="bg-slate-950/90 rounded-xl p-6 border-2 border-emerald-500/50 flex flex-col">
+                            <span class="pixel-font text-[9px] text-emerald-300 mb-1">OBLIGATORIA (SIEMPRE)</span>
+                            <h3 class="text-2xl font-bold text-white mb-1">
+                                Inclusión <code class="text-emerald-300 font-mono text-lg">&lt;&lt;include&gt;&gt;</code>
+                            </h3>
+                            <p class="italic text-emerald-300 font-semibold text-lg mb-4">«…ejecuta obligatoriamente…»</p>
+                            <p class="text-slate-300 text-base md:text-lg font-medium mb-4">
+                                Extrae pasos comunes y <strong>obligatorios</strong>. La flecha discontinua sale del <strong>caso base</strong> y apunta hacia el <strong class="text-emerald-300">caso incluido</strong>.
+                            </p>
+                            <!-- Mini-diagrama visual -->
+                            <div class="mt-auto bg-slate-900 border border-emerald-500/40 rounded-xl p-4 text-center space-y-2">
+                                <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Caso base - - -&gt; Caso obligatorio</div>
+                                <div class="flex flex-col items-center gap-1.5 text-sm font-bold">
+                                    <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-500 text-white">🎯 Comprar en tienda</span>
+                                    <span class="text-emerald-400 font-mono text-xs">│ &lt;&lt;include&gt;&gt; ▼</span>
+                                    <span class="px-3 py-1 rounded-full bg-emerald-950 border border-emerald-400 text-emerald-200">🎯 Verificar oro disponible</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Extensión <<extend>> -->
+                        <article class="bg-slate-950/90 rounded-xl p-6 border-2 border-purple-500/50 flex flex-col">
+                            <span class="pixel-font text-[9px] text-purple-300 mb-1">OPCIONAL (CONDICIONAL)</span>
+                            <h3 class="text-2xl font-bold text-white mb-1">
+                                Extensión <code class="text-purple-300 font-mono text-lg">&lt;&lt;extend&gt;&gt;</code>
+                            </h3>
+                            <p class="italic text-purple-300 font-semibold text-lg mb-4">«…a veces, si se cumple condición…»</p>
+                            <p class="text-slate-300 text-base md:text-lg font-medium mb-4">
+                                Modela comportamiento <strong>opcional</strong>. La flecha discontinua sale del <strong class="text-purple-300">caso opcional (extensor)</strong> y apunta hacia el <strong>caso base</strong>.
+                            </p>
+                            <!-- Mini-diagrama visual -->
+                            <div class="mt-auto bg-slate-900 border border-purple-500/40 rounded-xl p-4 text-center space-y-2">
+                                <div class="text-xs font-bold text-purple-400 uppercase tracking-wider">Caso opcional - - -&gt; Caso base</div>
+                                <div class="flex flex-col items-center gap-1.5 text-sm font-bold">
+                                    <span class="px-3 py-1 rounded-full bg-purple-950 border border-purple-400 text-purple-200">🎯 Aplicar golpe crítico</span>
+                                    <span class="text-purple-400 font-mono text-xs">│ &lt;&lt;extend&gt;&gt; ▼</span>
+                                    <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-500 text-white">🎯 Atacar enemigo</span>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </details>
+
+            <!-- Sección 4: Checklist interactiva de buenas prácticas -->
+            <details class="hud-card rounded-2xl p-6 border-2 border-emerald-500/50" open>
+                <summary class="flex justify-between items-center gap-4">
+                    <h2 class="text-2xl md:text-3xl font-bold text-emerald-300">
+                        4. Checklist interactiva de verificación del DCU
+                    </h2>
+                    <span class="marker text-2xl text-emerald-400 shrink-0">▶</span>
+                </summary>
+                <div class="mt-6 border-t border-slate-800 pt-6">
+                    <!-- Barra de progreso -->
+                    <div class="mb-6 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="pixel-font text-[10px] text-emerald-400" id="chk-status">PROGRESO DE AUDITORÍA DCU: 0 / 6 (0 %)</span>
+                            <button onclick="resetChecklist()" class="text-xs font-bold text-slate-400 hover:text-rose-300 underline cursor-pointer">Reiniciar marcas</button>
+                        </div>
+                        <div class="w-full h-3 bg-slate-900 rounded-full overflow-hidden border border-slate-700">
+                            <div id="chk-bar" class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3" id="chk-list">
+                        <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
+                            <span class="text-lg text-slate-200 font-medium">¿Todos mis <strong class="text-white">actores</strong> están situados <strong class="text-purple-300">fuera</strong> del rectángulo del sistema y representan agentes verdaderamente externos?</span>
+                        </label>
+                        <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
+                            <span class="text-lg text-slate-200 font-medium">¿Todos mis <strong class="text-white">casos de uso</strong> están situados <strong class="text-cyan-300">dentro</strong> del límite del sistema?</span>
+                        </label>
+                        <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
+                            <span class="text-lg text-slate-200 font-medium">¿El nombre de cada caso de uso sigue estrictamente la fórmula <code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">Verbo en infinitivo + objeto</code>?</span>
+                        </label>
+                        <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
+                            <span class="text-lg text-slate-200 font-medium">¿Uso <code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">&lt;&lt;include&gt;&gt;</code> con la flecha apuntando hacia el subproceso <strong class="text-emerald-300">obligatorio</strong>?</span>
+                        </label>
+                        <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
+                            <span class="text-lg text-slate-200 font-medium">¿Uso <code class="bg-slate-800 text-purple-300 px-2 py-0.5 rounded font-mono text-sm">&lt;&lt;extend&gt;&gt;</code> solo para variantes <strong class="text-purple-300">opcionales</strong> y con la flecha apuntando hacia el caso base?</span>
+                        </label>
+                        <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
+                            <span class="text-lg text-slate-200 font-medium">¿El diagrama es limpio, legible y evita descomponer casos de uso en micro-pasos de interfaz (como «Pulsar botón izquierdo»)?</span>
+                        </label>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+    </main>
+
+    <!-- Pie de página académico estandarizado -->
+    <footer class="w-full max-w-6xl mt-8 py-6 border-t border-slate-800/90 text-center text-slate-400 text-sm md:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+            <div class="text-left">
+                <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+                <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleAllDetails(openState) {
+            document.querySelectorAll('details').forEach(d => {
+                d.open = openState;
+            });
+        }
+
+        function updateChecklist() {
+            const rows = document.querySelectorAll('#chk-list .check-row');
+            let checkedCount = 0;
+            rows.forEach(row => {
+                const cb = row.querySelector('input[type="checkbox"]');
+                row.classList.toggle('checked', cb.checked);
+                if (cb.checked) checkedCount++;
+            });
+            const pct = Math.round((checkedCount / rows.length) * 100);
+            document.getElementById('chk-bar').style.width = `${pct}%`;
+            document.getElementById('chk-status').textContent = `PROGRESO DE AUDITORÍA DCU: ${checkedCount} / ${rows.length} (${pct} %)`;
+        }
+
+        function resetChecklist() {
+            document.querySelectorAll('#chk-list input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+            });
+            updateChecklist();
+        }
+    </script>
+</body>
+</html>

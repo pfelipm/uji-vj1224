@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El puente de Agile a UML: de la historia de usuario al caso de uso | VJ1224</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --neon-cyan: #22d3ee;
+            --neon-emerald: #34d399;
+            --neon-amber: #facc15;
+            --neon-purple: #a855f7;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(52, 211, 153, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .hud-frame {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid rgba(51, 65, 85, 0.85);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(52, 211, 153, 0.04);
+            position: relative;
+        }
+
+        .hud-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #334155;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes revealStage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stage-block {
+            animation: revealStage 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .hud-dock {
+            background: rgba(9, 13, 22, 0.96);
+            border: 2px solid rgba(52, 211, 153, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+        }
+
+        .hud-btn {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            padding: 0.75rem 1.2rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 2px solid #34d399;
+            background: rgba(52, 211, 153, 0.15);
+            color: #a7f3d0;
+        }
+
+        .hud-btn:hover:not(:disabled) {
+            background: #34d399;
+            color: #080c14;
+            box-shadow: 0 0 18px rgba(52, 211, 153, 0.55);
+            transform: translateY(-1px);
+        }
+
+        .hud-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: #475569;
+            color: #94a3b8;
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .epic-btn.active {
+            background: rgba(34, 211, 238, 0.2);
+            border-color: #22d3ee;
+            color: #a5f3fc;
+            box-shadow: 0 0 14px rgba(34, 211, 238, 0.35);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 md:p-6 lg:p-8">
+
+    <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+    <nav class="hide-in-embed w-full max-w-6xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-2 border-slate-700/80 rounded-xl px-5 py-3 shadow-lg backdrop-blur-md">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-base transition-colors">
+            <span>⌂</span>
+            <span>Índice general VJ1224</span>
+        </a>
+        <div class="flex items-center gap-3 text-sm md:text-base font-semibold">
+            <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 pixel-font text-[10px]">TEMAS 4–6 · 02/08</span>
+            <a href="01%20El%20mapa%20del%20modelado.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+            <span class="text-slate-600">|</span>
+            <a href="03%20Los%20pilares%20del%20dise%C3%B1o.html" class="text-emerald-300 hover:text-emerald-200 transition-colors">Siguiente →</a>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-6xl hud-frame rounded-2xl p-6 md:p-10 my-auto">
+
+        <!-- Cabecera -->
+        <header class="text-center mb-10 border-b-2 border-slate-800 pb-8">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/70 border-2 border-emerald-400/50 text-emerald-300 text-xs pixel-font mb-4">
+                <span>🌉</span>
+                <span>CONEXIÓN ENTRE GESTIÓN ÁGIL Y MODELADO UML</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold text-white tracking-wide mb-3">
+                El puente de Agile a UML
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 font-semibold max-w-3xl mx-auto">
+                De la historia de usuario en el Product Backlog al caso de uso en el diseño
+            </p>
+        </header>
+
+        <!-- Bloque 1: Cara a cara Historia de usuario vs Caso de uso -->
+        <section id="stage-1" class="stage-block mb-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+
+                <!-- Columna izquierda: Historia de usuario -->
+                <article class="hud-card rounded-xl p-6 border-2 border-emerald-500/60 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">MUNDO AGILE · TEMA 2</span>
+                        <span class="text-3xl">📝</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-emerald-300 mb-3">
+                        La historia de usuario (HU)
+                    </h2>
+                    <div class="bg-slate-950/95 border border-emerald-500/40 p-4 rounded-xl mb-5">
+                        <p class="font-mono text-base md:text-lg text-emerald-200">
+                            «Como <strong class="text-white">jugador</strong>, quiero <strong class="text-white">gestionar mi inventario</strong> para <strong class="text-white">poder equiparme y usar objetos en combate</strong>».
+                        </p>
+                    </div>
+                    <h3 class="font-bold text-xl text-white mb-3">
+                        Su misión: la planificación (el «porqué»)
+                    </h3>
+                    <ul class="space-y-2.5 text-slate-200 text-lg font-medium mt-auto">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-emerald-400 font-bold shrink-0 mt-0.5">▶</span>
+                            <span>Define una necesidad desde la <strong class="text-emerald-300">perspectiva del jugador</strong>.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-emerald-400 font-bold shrink-0 mt-0.5">▶</span>
+                            <span>Es un recordatorio para <strong class="text-white">dialogar</strong> y <strong class="text-white">estimar</strong> esfuerzo (<em>Planning Poker</em>).</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-emerald-400 font-bold shrink-0 mt-0.5">▶</span>
+                            <span>Se centra en el <strong class="text-emerald-300">valor de negocio o diversión</strong> que aporta.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-emerald-400 font-bold shrink-0 mt-0.5">▶</span>
+                            <span>Vive en el <strong class="text-amber-300">Product Backlog</strong> (en Notion).</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- Columna derecha: Caso de uso -->
+                <article class="hud-card rounded-xl p-6 border-2 border-cyan-500/60 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">MUNDO UML · TEMA 4</span>
+                        <span class="text-3xl">⚙️</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-cyan-300 mb-3">
+                        El caso de uso (CU)
+                    </h2>
+                    <div class="bg-slate-950/95 border border-cyan-500/40 p-4 rounded-xl mb-5 flex items-center justify-center">
+                        <div class="border-2 border-cyan-400 rounded-full px-6 py-2 bg-cyan-950/50 text-lg md:text-xl font-bold text-white flex items-center gap-2">
+                            <span>🎯</span>
+                            <span class="font-mono">Equipar objeto</span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-white mb-3">
+                        Su misión: el diseño funcional (el «qué» hace el sistema)
+                    </h3>
+                    <ul class="space-y-2.5 text-slate-200 text-lg font-medium mt-auto">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-cyan-400 font-bold shrink-0 mt-0.5">▶</span>
+                            <span>Describe una interacción completa entre un actor externo y el <strong class="text-cyan-300">sistema</strong>.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-cyan-400 font-bold shrink-0 mt-0.5">▶</span>
+                            <span>Es una especificación formal para <strong class="text-white">analizar</strong> y <strong class="text-white">diseñar</strong> la arquitectura.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-cyan-400 font-bold shrink-0 mt-0.5">▶</span>
+                            <span>Contempla el flujo principal, flujos alternativos y condiciones de error.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-cyan-400 font-bold shrink-0 mt-0.5">▶</span>
+                            <span>Vive en el <strong class="text-amber-300">modelo de diseño UML</strong> (en MagicDraw).</span>
+                        </li>
+                    </ul>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Bloque 2: El flujo de descomposición (De HU/Épica a Casos de uso) -->
+        <section id="stage-2" class="hidden stage-block mb-10">
+            <div class="hud-card rounded-2xl p-6 md:p-8 border-2 border-cyan-500/50">
+                <div class="text-center mb-6">
+                    <span class="pixel-font text-[10px] text-cyan-300 bg-cyan-950/90 border border-cyan-500/40 px-3 py-1 rounded">DESGLOSE FUNCIONAL</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-3">
+                        El flujo: de la historia de usuario a los casos de uso
+                    </h2>
+                    <p class="text-slate-300 text-lg font-medium mt-1">
+                        Una historia de usuario amplia o épica sirve como fuente para identificar múltiples casos de uso atómicos (<code class="text-amber-300 font-mono">Verbo en infinitivo + objeto</code>):
+                    </p>
+                </div>
+
+                <!-- Selector interactivo de ejemplos -->
+                <div class="flex flex-wrap justify-center gap-3 mb-6">
+                    <button onclick="selectEpic('inventory')" id="epic-inventory" class="epic-btn active px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 font-bold text-base text-slate-200 transition-all cursor-pointer">
+                        🎒 1. Gestión de inventario
+                    </button>
+                    <button onclick="selectEpic('shop')" id="epic-shop" class="epic-btn px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 font-bold text-base text-slate-200 transition-all cursor-pointer">
+                        🪙 2. Comercio en tienda
+                    </button>
+                    <button onclick="selectEpic('guild')" id="epic-guild" class="epic-btn px-4 py-2 rounded-xl border-2 border-slate-700 bg-slate-900 font-bold text-base text-slate-200 transition-all cursor-pointer">
+                        🏰 3. Clanes multijugador
+                    </button>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-6">
+                    <!-- Caja de la HU -->
+                    <div class="w-full lg:w-5/12 bg-slate-950/95 p-5 rounded-xl border-2 border-dashed border-emerald-400">
+                        <p class="pixel-font text-[10px] text-emerald-400 mb-2">1. PUNTO DE PARTIDA (HISTORIA / ÉPICA)</p>
+                        <p id="epic-hu-text" class="font-mono text-base md:text-lg text-slate-100 leading-relaxed">
+                            «Como jugador, quiero gestionar mi inventario para poder equiparme y usar objetos durante la aventura».
+                        </p>
+                    </div>
+
+                    <div class="text-3xl font-black text-amber-400 rotate-90 lg:rotate-0 shrink-0">➔</div>
+
+                    <!-- Contenedor de los Casos de Uso -->
+                    <div class="w-full lg:w-7/12 bg-slate-950/95 p-5 rounded-xl border-2 border-dashed border-cyan-400">
+                        <p class="pixel-font text-[10px] text-cyan-400 mb-3 text-center">2. SE DESGLOSA EN CASOS DE USO (DENTRO DEL LÍMITE DEL SISTEMA)</p>
+                        <div id="epic-cu-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 text-center text-base font-bold">
+                            <div class="bg-slate-900 border border-cyan-500/40 p-2.5 rounded-full text-cyan-200">🎯 Equipar objeto</div>
+                            <div class="bg-slate-900 border border-cyan-500/40 p-2.5 rounded-full text-cyan-200">🎯 Usar consumible</div>
+                            <div class="bg-slate-900 border border-cyan-500/40 p-2.5 rounded-full text-cyan-200">🎯 Soltar objeto</div>
+                            <div class="bg-slate-900 border border-cyan-500/40 p-2.5 rounded-full text-cyan-200">🎯 Inspeccionar estadísticas</div>
+                            <div class="bg-slate-900 border border-cyan-500/40 p-2.5 rounded-full text-cyan-200">🎯 Ordenar inventario</div>
+                            <div class="bg-slate-900 border border-cyan-500/40 p-2.5 rounded-full text-cyan-200">🎯 Combinar materiales</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloque 3: Tabla comparativa rápida -->
+        <section id="stage-3" class="hidden stage-block mb-8">
+            <div class="hud-card rounded-2xl p-6 md:p-8 border-2 border-amber-400/60">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-white mb-6">
+                    📊 Tabla comparativa rápida
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b-2 border-slate-700 text-base md:text-lg">
+                                <th class="p-3.5 text-amber-300 font-bold">Dimensión</th>
+                                <th class="p-3.5 text-emerald-300 font-bold">Historia de usuario (Agile)</th>
+                                <th class="p-3.5 text-cyan-300 font-bold">Caso de uso (UML)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-200 text-base md:text-lg font-medium divide-y divide-slate-800">
+                            <tr class="hover:bg-slate-900/60">
+                                <td class="p-3.5 font-bold text-white">Propósito principal</td>
+                                <td class="p-3.5">Planificación, priorización y estimación por Sprints</td>
+                                <td class="p-3.5">Análisis funcional y diseño arquitectónico detallado</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/60">
+                                <td class="p-3.5 font-bold text-white">Perspectiva</td>
+                                <td class="p-3.5">Del usuario o jugador (el <strong>«porqué»</strong> aporta valor)</td>
+                                <td class="p-3.5">Del sistema interactivo (el <strong>«qué»</strong> hace ante estímulos)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/60">
+                                <td class="p-3.5 font-bold text-white">Formato gramatical</td>
+                                <td class="p-3.5"><code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">Como &lt;rol&gt;, quiero &lt;meta&gt; para &lt;beneficio&gt;</code></td>
+                                <td class="p-3.5"><code class="bg-slate-800 text-cyan-300 px-2 py-0.5 rounded font-mono text-sm">Verbo en infinitivo + objeto</code> (p. ej., <em>Guardar partida</em>)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/60">
+                                <td class="p-3.5 font-bold text-white">Nivel de detalle</td>
+                                <td class="p-3.5">Conciso (invita a conversar + criterios en <em>Gherkin</em>)</td>
+                                <td class="p-3.5">Estructural (con relaciones <code class="font-mono text-sm">&lt;&lt;include&gt;&gt;</code> y <code class="font-mono text-sm">&lt;&lt;extend&gt;&gt;</code>)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/60">
+                                <td class="p-3.5 font-bold text-white">Ciclo de vida y herramienta</td>
+                                <td class="p-3.5">Iterativo en el <strong>Product Backlog (Notion)</strong></td>
+                                <td class="p-3.5">Persistente en el <strong>modelo arquitectónico (MagicDraw)</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controles HUD (siempre pegados debajo del último bloque visible) -->
+        <div id="stage-dock" class="hud-dock rounded-xl p-4 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="pixel-font text-xs text-emerald-400" id="stage-counter">BLOQUE 1 / 3</span>
+                <span class="text-slate-300 font-semibold text-base hidden sm:inline" id="stage-title">Historia de usuario vs. caso de uso</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <button id="btn-prev" onclick="moveStage(-1)" class="hud-btn" disabled>← Anterior</button>
+                <button id="btn-next" onclick="moveStage(1)" class="hud-btn">Siguiente bloque →</button>
+                <button onclick="unlockAllStages()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-bold border border-slate-600 transition-colors cursor-pointer">
+                    Mostrar todo
+                </button>
+                <button onclick="resetStages()" class="px-3 py-2 rounded-lg bg-slate-900 hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 text-sm font-bold border border-slate-700 hover:border-rose-500/40 transition-colors cursor-pointer">
+                    Reiniciar
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Pie de página académico estandarizado -->
+    <footer class="w-full max-w-6xl mt-8 py-6 border-t border-slate-800/90 text-center text-slate-400 text-sm md:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+            <div class="text-left">
+                <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+                <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentStage = 1;
+        const totalStages = 3;
+
+        const titles = {
+            1: 'Historia de usuario vs. caso de uso',
+            2: 'El flujo: de la historia de usuario a los casos de uso',
+            3: 'Tabla comparativa rápida (Agile vs. UML)'
+        };
+
+        const epicExamples = {
+            inventory: {
+                hu: '«Como jugador, quiero gestionar mi inventario para poder equiparme y usar objetos durante la aventura».',
+                cus: [
+                    'Equipar objeto',
+                    'Usar consumible',
+                    'Soltar objeto',
+                    'Inspeccionar estadísticas',
+                    'Ordenar inventario',
+                    'Combinar materiales'
+                ]
+            },
+            shop: {
+                hu: '«Como jugador, quiero comerciar con los mercaderes de la aldea para mejorar mi equipo y vender el botín sobrante».',
+                cus: [
+                    'Comprar objeto',
+                    'Vender botín',
+                    'Comparar equipamiento',
+                    'Reparar armadura',
+                    'Recomprar objeto vendido',
+                    'Verificar oro disponible'
+                ]
+            },
+            guild: {
+                hu: '«Como líder de gremio, quiero administrar mi clan online para coordinar incursiones cooperativas con otros jugadores».',
+                cus: [
+                    'Crear clan',
+                    'Invitar jugador',
+                    'Asignar rango',
+                    'Depositar en banco común',
+                    'Convocar incursión (raid)',
+                    'Expulsar miembro'
+                ]
+            }
+        };
+
+        function selectEpic(key) {
+            ['inventory', 'shop', 'guild'].forEach(k => {
+                document.getElementById(`epic-${k}`).classList.toggle('active', k === key);
+            });
+            const data = epicExamples[key];
+            document.getElementById('epic-hu-text').textContent = data.hu;
+            document.getElementById('epic-cu-grid').innerHTML = data.cus.map(cu => `
+                <div class="bg-slate-900 border border-cyan-500/40 p-2.5 rounded-full text-cyan-200">🎯 ${cu}</div>
+            `).join('');
+        }
+
+        function renderStages() {
+            for (let i = 1; i <= totalStages; i++) {
+                const el = document.getElementById(`stage-${i}`);
+                el.classList.toggle('hidden', i > currentStage);
+            }
+            document.getElementById('stage-counter').textContent = `BLOQUE ${currentStage} / ${totalStages}`;
+            document.getElementById('stage-title').textContent = titles[currentStage];
+            document.getElementById('btn-prev').disabled = currentStage <= 1;
+            document.getElementById('btn-next').disabled = currentStage >= totalStages;
+        }
+
+        function moveStage(delta) {
+            const next = currentStage + delta;
+            if (next < 1 || next > totalStages) return;
+            currentStage = next;
+            renderStages();
+            setTimeout(() => {
+                document.getElementById('stage-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function unlockAllStages() {
+            currentStage = totalStages;
+            renderStages();
+            setTimeout(() => {
+                document.getElementById('stage-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function resetStages() {
+            currentStage = 1;
+            renderStages();
+            setTimeout(() => {
+                document.getElementById('stage-1')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT', 'TEXTAREA', 'BUTTON'].includes(document.activeElement?.tagName)) return;
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentStage < totalStages) {
+                    e.preventDefault();
+                    moveStage(1);
+                }
+            } else if (e.code === 'ArrowLeft') {
+                if (currentStage > 1) {
+                    e.preventDefault();
+                    moveStage(-1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

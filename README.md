@@ -14,10 +14,11 @@ Repositorio público de **aplicaciones web interactivas de página única (SPA)*
 
 ## 🤖 Asistentes de IA de la asignatura (Gems de Google Gemini)
 
-El ecosistema docente de VJ1224 integra dos asistentes conversacionales personalizados (**Gems**) entrenados específicamente para acompañar al estudiantado en el diseño y gestión ágil de su videojuego:
+El ecosistema docente de VJ1224 integra tres asistentes conversacionales personalizados (**Gems**) entrenados específicamente para acompañar al estudiantado en el diseño, gestión ágil y modelado de arquitectura de su videojuego:
 
 1. 🔮 **[El Oráculo (Product Owner)](https://gemini.google.com/gem/1MNB-Wb78FOJpZrOTtComZjmg8nXRdU92?usp=sharing)** — Simulador de cliente para las dinámicas de entrevista de elicitación de requisitos, redacción de historias de usuario y priorización del *Product Backlog* (Tema 2).
 2. 🧘‍♂️ **[GameDev-Scrum Sensei](https://gemini.google.com/gem/1gyutyBOh6RUnwjhyVlKhJEPRTvrN0yEB?usp=sharing)** — Mentor experto en producción ágil con Scrum, auditoría del *Product Backlog*, criterios de aceptación en formato *Gherkin*, regla INVEST y desarrollo con Unity (Tema 3).
+3. 📐 **[El Arquitecto de Blueprints](https://gemini.google.com/gem/1P3nO8hRPQJNATorPn5XojUgbZ-nooX_Q?usp=sharing)** — Copiloto socrático experto en modelado UML y patrones de diseño para videojuegos: revisa diagramas de casos de uso (DCU), clases (DC) y actividades (DA) sin regalar la solución hecha (Temas 4, 5 y 6).
 
 ---
 
@@ -98,11 +99,23 @@ Todas las píldoras interactivas de este repositorio siguen una arquitectura **1
 
 ---
 
+### 📐 Temas 4, 5 y 6. Modelado de videojuegos con UML (DCU, DC y DA)
+
+| # | Píldora interactiva (SPA) | Archivo local | URL directa (GitHub Pages / Google Sites) |
+| :-: | :--- | :--- | :--- |
+| **01** | **El mapa del modelado** | [`t4-t5-t6/01 El mapa del modelado.html`](t4-t5-t6/01%20El%20mapa%20del%20modelado.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/01%20El%20mapa%20del%20modelado.html` |
+| **02** | **De Agile a UML** | [`t4-t5-t6/02 De Agile a UML.html`](t4-t5-t6/02%20De%20Agile%20a%20UML.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/02%20De%20Agile%20a%20UML.html` |
+| **03** | **Los pilares del diseño** | [`t4-t5-t6/03 Los pilares del diseño.html`](t4-t5-t6/03%20Los%20pilares%20del%20dise%C3%B1o.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/03%20Los%20pilares%20del%20dise%C3%B1o.html` |
+| **04** | **Guía rápida DCU** | [`t4-t5-t6/04 Guía rápida DCU.html`](t4-t5-t6/04%20Gu%C3%ADa%20r%C3%A1pida%20DCU.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/04%20Gu%C3%ADa%20r%C3%A1pida%20DCU.html` |
+| **05** | **Arquitecto de blueprints** | [`t4-t5-t6/05 Arquitecto de blueprints.html`](t4-t5-t6/05%20Arquitecto%20de%20blueprints.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/05%20Arquitecto%20de%20blueprints.html` |
+| **06** | **Los actores del juego** | [`t4-t5-t6/06 Los actores del juego.html`](t4-t5-t6/06%20Los%20actores%20del%20juego.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/06%20Los%20actores%20del%20juego.html` |
+| **07** | **Guía rápida DC** | [`t4-t5-t6/07 Guía rápida DC.html`](t4-t5-t6/07%20Gu%C3%ADa%20r%C3%A1pida%20DC.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/07%20Gu%C3%ADa%20r%C3%A1pida%20DC.html` |
+| **08** | **Guía rápida DA** | [`t4-t5-t6/08 Guía rápida DA.html`](t4-t5-t6/08%20Gu%C3%ADa%20r%C3%A1pida%20DA.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/08%20Gu%C3%ADa%20r%C3%A1pida%20DA.html` |
+
+---
+
 ## 🗺️ Próximos temas en desarrollo
 
-- **Tema 4:** Diagramas de casos de uso (DCU) de UML aplicados a videojuegos.
-- **Tema 5:** Diagramas de clases (DC) de UML y arquitectura de componentes.
-- **Tema 6:** Diagramas de actividades (DA) de UML y lógica de estados.
 - **Tema 7:** Planificación económica, presupuesto y contratación en el desarrollo de videojuegos.
 
 ---
