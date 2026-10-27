@@ -9,6 +9,16 @@ Repositorio público de **aplicaciones web interactivas de página única (SPA)*
 - **Profesor responsable de teoría y autor de los materiales:** [Pablo Felip Monferrer](https://www.pablofelip.uji.es/) (Departamento de Lenguajes y Sistemas Informáticos · UJI)
 - **Catálogo interactivo en GitHub Pages:** [https://pfelipm.github.io/uji-vj1224/](https://pfelipm.github.io/uji-vj1224/)
 - **Web docente en Google Sites:** [https://sites.google.com/uji.es/vj1224-2026](https://sites.google.com/uji.es/vj1224-2026)
+- **Editor web educativo UML (AS-UML):** [https://umlsimple.pablofelip.online](https://umlsimple.pablofelip.online)
+
+---
+
+## 🛠️ Herramientas gratuitas de modelado UML en la asignatura
+
+Para los bloques de **Temas 4, 5 y 6 (DCU, DC y DA)** se utiliza como herramienta docente principal **[Arquitecto Simple UML (AS-UML)](https://umlsimple.pablofelip.online)**, un editor web educativo de código abierto desarrollado específicamente para la asignatura (soporte directo para DCU, DC y DA con *swimlanes*, persistencia local, copias de seguridad JSON y exportación PNG). Como herramientas gratuitas complementarias se recomiendan:
+
+- **Editores visuales (*Drag & Drop*):** [draw.io / diagrams.net](https://app.diagrams.net/), [Apollon Editor (TUM)](https://apollon.ase.in.tum.de/) y [Gaphor](https://gaphor.org/).
+- **Diagramas como código (*Diagrams as Code* para Notion y GitHub):** [Mermaid.js](https://mermaid.live/) (integrado nativamente en bloques `/code` de Notion) y [PlantUML](https://www.planttext.com/).
 
 ---
 
