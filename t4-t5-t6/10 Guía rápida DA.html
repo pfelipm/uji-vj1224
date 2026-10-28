@@ -259,9 +259,14 @@
                         <p class="text-slate-300 text-lg font-medium mb-4">
                             <strong class="text-amber-300">Fusión (MergeNode):</strong> recibe 2 o más flechas de entrada alternativas y saca <strong>1 única flecha</strong> para reunir caminos condicionales o reenganchar bucles.
                         </p>
-                        <div class="mt-auto bg-rose-950/40 border border-rose-500/50 rounded-xl p-3.5 text-base text-slate-200 font-medium">
-                            <strong class="text-rose-300 block mb-0.5">⚠️ Regla estricta de UML 2 (flujo de <em>tokens</em>):</strong>
-                            Nunca conectes 2 flechas directamente a una misma <strong class="text-white">Acción</strong>. En UML 2 una acción espera un <em>token</em> por <strong>todas</strong> sus entradas (<em>AND</em> implícito) y quedaría bloqueada (<em>deadlock</em>); unifica siempre antes con un rombo de fusión <strong class="text-amber-300">◇</strong>.
+                        <div class="mt-auto bg-rose-950/40 border border-rose-500/50 rounded-xl p-3.5 text-base text-slate-200 font-medium space-y-2">
+                            <div>
+                                <strong class="text-rose-300 block mb-0.5">⚠️ Regla estricta de UML 2 (flujo de <em>tokens</em> y Redes de Petri):</strong>
+                                Nunca conectes 2 flechas directamente a una misma <strong class="text-white">Acción</strong>. Desde UML 2.0 los diagramas de actividades siguen una semántica inspirada en las <a href="https://es.wikipedia.org/wiki/Red_de_Petri" target="_blank" rel="noopener noreferrer" class="text-amber-300 hover:text-amber-200 underline font-bold">Redes de Petri ↗</a>: una acción espera una ficha (<em>token</em>) por <strong>todas</strong> sus entradas (<em>AND</em> implícito) y quedaría bloqueada (<em>deadlock</em>); unifica siempre antes con un rombo de fusión <strong class="text-amber-300">◇</strong>.
+                            </div>
+                            <div class="pt-1.5 border-t border-rose-500/30 text-sm text-slate-300">
+                                📖 Fuente técnica original: <a href="https://www.jot.fm/issues/issue_2003_07/column3/" target="_blank" rel="noopener noreferrer" class="text-cyan-300 hover:text-cyan-200 underline font-bold">Conrad Bock (OMG) · <em>UML 2 Activity and Action Models</em> (JOT) ↗</a>
+                            </div>
                         </div>
                     </div>
 
