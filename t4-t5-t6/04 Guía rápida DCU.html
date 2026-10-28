@@ -268,12 +268,12 @@
                                 Clasifica actores o casos de uso. La línea es <strong>continua</strong> y la punta triangular hueca (<strong class="text-cyan-300">▷</strong>) apunta siempre al elemento <strong class="text-white">padre (más general)</strong>.
                             </p>
                             <!-- Mini-diagrama visual -->
-                            <div class="mt-auto bg-slate-900 border border-cyan-500/40 rounded-xl p-4 text-center space-y-2">
-                                <div class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Dirección de la flecha (Hijo ──▷ Padre)</div>
-                                <div class="flex items-center justify-center gap-2 text-sm font-bold">
-                                    <span class="px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-600 text-slate-200">Jugador VIP</span>
-                                    <span class="text-cyan-400 font-mono text-base">───▷</span>
-                                    <span class="px-2.5 py-1.5 rounded-lg bg-cyan-950 border border-cyan-400 text-cyan-200">Jugador</span>
+                            <div class="mt-auto bg-slate-900 border border-cyan-500/40 rounded-xl p-4 text-center space-y-2.5">
+                                <div class="text-sm font-bold text-cyan-300 uppercase tracking-wider">Dirección de la flecha (Hijo ──▷ Padre)</div>
+                                <div class="flex items-center justify-center gap-2.5 text-base font-bold">
+                                    <span class="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-600 text-slate-200">Jugador VIP</span>
+                                    <span class="text-cyan-400 font-mono text-lg">───▷</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-cyan-950 border border-cyan-400 text-cyan-200">Jugador</span>
                                 </div>
                             </div>
                         </article>
@@ -289,12 +289,12 @@
                                 Extrae pasos comunes y <strong>obligatorios</strong>. La flecha discontinua sale del <strong>caso base</strong> y apunta hacia el <strong class="text-emerald-300">caso incluido</strong>.
                             </p>
                             <!-- Mini-diagrama visual -->
-                            <div class="mt-auto bg-slate-900 border border-emerald-500/40 rounded-xl p-4 text-center space-y-2">
-                                <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Caso base - - -&gt; Caso obligatorio</div>
-                                <div class="flex flex-col items-center gap-1.5 text-sm font-bold">
-                                    <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-500 text-white">🎯 Comprar en tienda</span>
-                                    <span class="text-emerald-400 font-mono text-xs">│ &lt;&lt;include&gt;&gt; ▼</span>
-                                    <span class="px-3 py-1 rounded-full bg-emerald-950 border border-emerald-400 text-emerald-200">🎯 Verificar oro disponible</span>
+                            <div class="mt-auto bg-slate-900 border border-emerald-500/40 rounded-xl p-4 text-center space-y-2.5">
+                                <div class="text-sm font-bold text-emerald-300 uppercase tracking-wider">Caso base - - -&gt; Caso obligatorio</div>
+                                <div class="flex flex-col items-center gap-1.5 text-base font-bold">
+                                    <span class="px-3.5 py-1.5 rounded-full bg-slate-800 border border-slate-500 text-white">🎯 Comprar en tienda</span>
+                                    <span class="text-emerald-400 font-mono text-sm">│ &lt;&lt;include&gt;&gt; ▼</span>
+                                    <span class="px-3.5 py-1.5 rounded-full bg-emerald-950 border border-emerald-400 text-emerald-200">🎯 Verificar oro disponible</span>
                                 </div>
                             </div>
                         </article>
@@ -310,12 +310,12 @@
                                 Modela comportamiento <strong>opcional</strong>. La flecha discontinua sale del <strong class="text-purple-300">caso opcional (extensor)</strong> y apunta hacia el <strong>caso base</strong>.
                             </p>
                             <!-- Mini-diagrama visual -->
-                            <div class="mt-auto bg-slate-900 border border-purple-500/40 rounded-xl p-4 text-center space-y-2">
-                                <div class="text-xs font-bold text-purple-400 uppercase tracking-wider">Caso opcional - - -&gt; Caso base</div>
-                                <div class="flex flex-col items-center gap-1.5 text-sm font-bold">
-                                    <span class="px-3 py-1 rounded-full bg-purple-950 border border-purple-400 text-purple-200">🎯 Aplicar golpe crítico</span>
-                                    <span class="text-purple-400 font-mono text-xs">│ &lt;&lt;extend&gt;&gt; ▼</span>
-                                    <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-500 text-white">🎯 Atacar enemigo</span>
+                            <div class="mt-auto bg-slate-900 border border-purple-500/40 rounded-xl p-4 text-center space-y-2.5">
+                                <div class="text-sm font-bold text-purple-300 uppercase tracking-wider">Caso opcional - - -&gt; Caso base</div>
+                                <div class="flex flex-col items-center gap-1.5 text-base font-bold">
+                                    <span class="px-3.5 py-1.5 rounded-full bg-purple-950 border border-purple-400 text-purple-200">🎯 Aplicar golpe crítico</span>
+                                    <span class="text-purple-400 font-mono text-sm">│ &lt;&lt;extend&gt;&gt; ▼</span>
+                                    <span class="px-3.5 py-1.5 rounded-full bg-slate-800 border border-slate-500 text-white">🎯 Atacar enemigo</span>
                                 </div>
                             </div>
                         </article>
@@ -337,7 +337,7 @@
                     <div class="mb-6 bg-slate-950 p-4 rounded-xl border border-slate-800">
                         <div class="flex items-center justify-between mb-2">
                             <span class="pixel-font text-[10px] text-emerald-400" id="chk-status">PROGRESO DE AUDITORÍA DCU: 0 / 6 (0 %)</span>
-                            <button onclick="resetChecklist()" class="text-xs font-bold text-slate-400 hover:text-rose-300 underline cursor-pointer">Reiniciar marcas</button>
+                            <button onclick="resetChecklist()" class="text-sm font-bold text-slate-300 hover:text-rose-300 underline cursor-pointer">Reiniciar marcas</button>
                         </div>
                         <div class="w-full h-3 bg-slate-900 rounded-full overflow-hidden border border-slate-700">
                             <div id="chk-bar" class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 transition-all duration-300" style="width: 0%"></div>
@@ -355,15 +355,15 @@
                         </label>
                         <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
-                            <span class="text-lg text-slate-200 font-medium">¿El nombre de cada caso de uso sigue estrictamente la fórmula <code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">Verbo en infinitivo + objeto</code>?</span>
+                            <span class="text-lg text-slate-200 font-medium">¿El nombre de cada caso de uso sigue estrictamente la fórmula <code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-base">Verbo en infinitivo + objeto</code>?</span>
                         </label>
                         <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
-                            <span class="text-lg text-slate-200 font-medium">¿Uso <code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">&lt;&lt;include&gt;&gt;</code> con la flecha apuntando hacia el subproceso <strong class="text-emerald-300">obligatorio</strong>?</span>
+                            <span class="text-lg text-slate-200 font-medium">¿Uso <code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-base">&lt;&lt;include&gt;&gt;</code> con la flecha apuntando hacia el subproceso <strong class="text-emerald-300">obligatorio</strong>?</span>
                         </label>
                         <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
-                            <span class="text-lg text-slate-200 font-medium">¿Uso <code class="bg-slate-800 text-purple-300 px-2 py-0.5 rounded font-mono text-sm">&lt;&lt;extend&gt;&gt;</code> solo para variantes <strong class="text-purple-300">opcionales</strong> y con la flecha apuntando hacia el caso base?</span>
+                            <span class="text-lg text-slate-200 font-medium">¿Uso <code class="bg-slate-800 text-purple-300 px-2 py-0.5 rounded font-mono text-base">&lt;&lt;extend&gt;&gt;</code> solo para variantes <strong class="text-purple-300">opcionales</strong> y con la flecha apuntando hacia el caso base?</span>
                         </label>
                         <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
@@ -415,26 +415,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="bg-slate-900/90 rounded-xl p-5 border-2 border-amber-500/40 space-y-4">
                     <div class="pixel-font text-[10px] text-amber-300">1. EDITORES VISUALES (DRAG &amp; DROP)</div>
-                    <ul class="space-y-3.5 text-base font-medium text-slate-200">
+                    <ul class="space-y-4 text-base font-medium text-slate-200">
                         <li class="flex items-start gap-2.5">
                             <span class="text-amber-400 shrink-0 mt-1">🔷</span>
                             <div>
-                                <a href="https://app.diagrams.net/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">draw.io / diagrams.net ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Estándar gratuito y <em>open source</em> de dibujo vectorial con librerías completas de UML 2.5 (web y escritorio, integrable con Google Drive y GitHub). <em>Ojo: da libertad gráfica total, pero no valida reglas semánticas de UML.</em></p>
+                                <a href="https://app.diagrams.net/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">draw.io / diagrams.net ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Estándar gratuito y <em>open source</em> de dibujo vectorial con librerías completas de UML 2.5 (web y escritorio, integrable con Google Drive y GitHub). <em>Ojo: da libertad gráfica total, pero no valida reglas semánticas de UML.</em></p>
                             </div>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <span class="text-amber-400 shrink-0 mt-1">🏛️</span>
                             <div>
-                                <a href="https://apollon.ase.in.tum.de/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">Apollon Editor (TUM) ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Modelador web académico de código abierto creado por la Universidad Técnica de Múnich: rápido, sin registro y con soporte nativo para DCU, DC y DA.</p>
+                                <a href="https://apollon.ase.in.tum.de/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">Apollon Editor (TUM) ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Modelador web académico de código abierto creado por la Universidad Técnica de Múnich: rápido, sin registro y con soporte nativo para DCU, DC y DA.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <span class="text-amber-400 shrink-0 mt-1">🖥️</span>
                             <div>
-                                <a href="https://gaphor.org/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">Gaphor ↗</a> / <a href="https://staruml.io/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">StarUML ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Alternativas clásicas de escritorio multiplataforma (Linux, Windows y macOS) si prefieres instalar una aplicación local.</p>
+                                <a href="https://gaphor.org/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">Gaphor ↗</a> / <a href="https://staruml.io/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">StarUML ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Alternativas clásicas de escritorio multiplataforma (Linux, Windows y macOS) si prefieres instalar una aplicación local.</p>
                             </div>
                         </li>
                     </ul>
@@ -442,29 +442,29 @@
 
                 <div class="bg-slate-900/90 rounded-xl p-5 border-2 border-purple-500/40 space-y-4">
                     <div class="pixel-font text-[10px] text-purple-300">2. DIAGRAMAS COMO CÓDIGO (NOTION Y GIT)</div>
-                    <ul class="space-y-3.5 text-base font-medium text-slate-200">
+                    <ul class="space-y-4 text-base font-medium text-slate-200">
                         <li class="flex items-start gap-2.5">
                             <span class="text-purple-400 shrink-0 mt-1">🧜‍♀️</span>
                             <div>
-                                <a href="https://mermaid.live/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-purple-300 underline">Mermaid.js (nativo en Notion) ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Integrado de serie en <strong>Notion</strong> (bloque <code class="font-mono text-xs bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">/code</code> → <code class="font-mono text-xs bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">Mermaid</code>) y GitHub. Ideal para incrustar Diagramas de Clases directamente en el GDD vivo del estudio.</p>
+                                <a href="https://mermaid.live/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-purple-300 underline">Mermaid.js (nativo en Notion) ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Integrado de serie en <strong>Notion</strong> (bloque <code class="font-mono text-sm bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">/code</code> → <code class="font-mono text-sm bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">Mermaid</code>) y GitHub. Ideal para incrustar Diagramas de Clases directamente en el GDD vivo del estudio.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <span class="text-purple-400 shrink-0 mt-1">🌱</span>
                             <div>
-                                <a href="https://www.planttext.com/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-purple-300 underline">PlantUML (PlantText) ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">El estándar veterano de texto a UML: soporta al 100 % los tres diagramas de la asignatura (DCU con <code class="font-mono text-xs">&lt;&lt;include&gt;&gt;</code>/<code class="font-mono text-xs">&lt;&lt;extend&gt;&gt;</code>, DC y DA con <em>swimlanes</em>).</p>
+                                <a href="https://www.planttext.com/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-purple-300 underline">PlantUML (PlantText) ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">El estándar veterano de texto a UML: soporta al 100 % los tres diagramas de la asignatura (DCU con <code class="font-mono text-sm">&lt;&lt;include&gt;&gt;</code>/<code class="font-mono text-sm">&lt;&lt;extend&gt;&gt;</code>, DC y DA con <em>swimlanes</em>).</p>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="flex items-center justify-between flex-wrap gap-3 pt-2 border-t border-slate-800 text-xs text-slate-400 font-semibold">
-                <span>💡 Pulsa <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">Esc</kbd> o haz clic fuera de esta ventana para cerrarla.</span>
+            <div class="flex items-center justify-between flex-wrap gap-3 pt-2 border-t border-slate-800 text-sm text-slate-300 font-semibold">
+                <span>💡 Pulsa <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200 font-mono">Esc</kbd> o haz clic fuera de esta ventana para cerrarla.</span>
                 <form method="dialog">
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 text-cyan-200 font-bold text-sm cursor-pointer">
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 text-cyan-200 font-bold text-base cursor-pointer">
                         Entendido
                     </button>
                 </form>

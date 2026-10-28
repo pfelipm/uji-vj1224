@@ -198,14 +198,14 @@
                 </p>
                 <div class="mt-auto grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div class="bg-rose-950/35 border border-rose-500/50 rounded-xl p-4">
-                        <p class="text-rose-400 font-bold text-base mb-1">❌ Clase Dios (espagueti)</p>
-                        <p class="text-sm text-slate-300 font-medium">
+                        <p class="text-rose-400 font-bold text-base md:text-lg mb-1">❌ Clase Dios (espagueti)</p>
+                        <p class="text-base text-slate-200 font-medium">
                             Una sola clase <code class="font-mono text-rose-300">Jugador</code> que mueve físicas, controla la cámara, pinta la barra de vida en UI, reproduce sonidos y guarda en disco.
                         </p>
                     </div>
                     <div class="bg-emerald-950/35 border border-emerald-500/50 rounded-xl p-4">
-                        <p class="text-emerald-400 font-bold text-base mb-1">✔️ Responsabilidad única</p>
-                        <p class="text-sm text-slate-200 font-medium">
+                        <p class="text-emerald-400 font-bold text-base md:text-lg mb-1">✔️ Responsabilidad única</p>
+                        <p class="text-base text-slate-200 font-medium">
                             Dividir en clases cohesivas que colaboran: <code class="font-mono text-emerald-300">MovimientoJugador</code>, <code class="font-mono text-emerald-300">SistemaSalud</code>, <code class="font-mono text-emerald-300">Inventario</code> y <code class="font-mono text-emerald-300">HUDJugador</code>.
                         </p>
                     </div>
@@ -248,14 +248,14 @@
                 </p>
                 <div class="mt-auto grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div class="bg-slate-950/90 p-4 rounded-xl border border-cyan-500/40">
-                        <div class="font-bold text-cyan-300 text-base mb-1">◇ Agregación (independiente)</div>
-                        <p class="text-sm text-slate-300 font-medium">
+                        <div class="font-bold text-cyan-300 text-base md:text-lg mb-1">◇ Agregación (independiente)</div>
+                        <p class="text-base text-slate-200 font-medium">
                             Si el <code class="font-mono text-white">Guerrero</code> muere, su <code class="font-mono text-cyan-300">Espada</code> no desaparece del juego: cae al suelo para que otro la recoja.
                         </p>
                     </div>
                     <div class="bg-slate-950/90 p-4 rounded-xl border border-amber-500/40">
-                        <div class="font-bold text-amber-300 text-base mb-1">◆ Composición (vida ligada)</div>
-                        <p class="text-sm text-slate-300 font-medium">
+                        <div class="font-bold text-amber-300 text-base md:text-lg mb-1">◆ Composición (vida ligada)</div>
+                        <p class="text-base text-slate-200 font-medium">
                             Si se descarga la <code class="font-mono text-white">Mazmorra</code>, sus <code class="font-mono text-amber-300">Salas</code> se destruyen con ella automáticamente.
                         </p>
                     </div>
@@ -278,7 +278,7 @@
                     <p class="text-base text-slate-200 font-medium">
                         ✔️ Si acordamos en el DC que la clase <code class="font-mono text-amber-300">Enemigo</code> tendrá el método público <code class="font-mono text-emerald-300">+ RecibirDanio( puntos: int ): void</code>:
                     </p>
-                    <ul class="list-disc list-outside pl-5 text-sm md:text-base text-slate-300 font-medium space-y-1">
+                    <ul class="list-disc list-outside pl-5 text-base text-slate-200 font-medium space-y-1.5">
                         <li>Quien programa las <strong>armas del jugador</strong> ya puede invocar ese método hoy mismo.</li>
                         <li>Quien programa la <strong>IA del enemigo</strong> puede implementar su lógica interna (<code class="font-mono text-rose-300">-</code>) en paralelo sin conflictos en Git.</li>
                     </ul>

@@ -290,7 +290,7 @@
                             <p class="text-slate-300 text-base md:text-lg font-medium mb-4">
                                 Representa una conexión estructural («usa un» o «conoce a»). Debe especificar siempre la <strong class="text-white">multiplicidad en ambos extremos</strong>:
                             </p>
-                            <div class="grid grid-cols-2 gap-2.5 text-sm font-mono">
+                            <div class="grid grid-cols-2 gap-2.5 text-base font-mono">
                                 <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-700"><strong class="text-amber-300">1</strong> → Exactamente uno</div>
                                 <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-700"><strong class="text-amber-300">0..1</strong> → Cero o uno (opcional)</div>
                                 <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-700"><strong class="text-amber-300">* (0..*)</strong> → Cero o muchos</div>
@@ -345,7 +345,7 @@
                                     Si destruyo el contenedor, ¿las partes sobreviven? ➔ <strong class="text-emerald-400">SÍ</strong> (agregación).
                                 </p>
                             </div>
-                            <div class="mt-auto bg-slate-900 p-3.5 rounded-lg border border-slate-700 text-center font-mono text-sm text-cyan-200">
+                            <div class="mt-auto bg-slate-900 p-3.5 rounded-lg border border-slate-700 text-center font-mono text-base font-bold text-cyan-200">
                                 [Gremio] 0..* ◇─────── 1..* [Jugador]
                             </div>
                         </div>
@@ -368,7 +368,7 @@
                                     Si destruyo el «todo», ¿sus partes mueren con él? ➔ <strong class="text-emerald-400">SÍ</strong> (composición).
                                 </p>
                             </div>
-                            <div class="mt-auto bg-slate-900 p-3.5 rounded-lg border border-slate-700 text-center font-mono text-sm text-amber-200">
+                            <div class="mt-auto bg-slate-900 p-3.5 rounded-lg border border-slate-700 text-center font-mono text-base font-bold text-amber-200">
                                 [Mazmorra] 1 ◆─────── 1..* [Sala]
                             </div>
                         </div>
@@ -390,7 +390,7 @@
                     <div class="mb-6 bg-slate-950 p-4 rounded-xl border border-slate-800">
                         <div class="flex items-center justify-between mb-2">
                             <span class="pixel-font text-[10px] text-emerald-400" id="dc-chk-status">AUDITORÍA DEL DIAGRAMA DE CLASES: 0 / 10 (0 %)</span>
-                            <button onclick="resetDcChecklist()" class="text-xs font-bold text-slate-400 hover:text-rose-300 underline cursor-pointer">Reiniciar marcas</button>
+                            <button onclick="resetDcChecklist()" class="text-sm font-bold text-slate-300 hover:text-rose-300 underline cursor-pointer">Reiniciar marcas</button>
                         </div>
                         <div class="w-full h-3 bg-slate-900 rounded-full overflow-hidden border border-slate-700">
                             <div id="dc-chk-bar" class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 transition-all duration-300" style="width: 0%"></div>
@@ -400,11 +400,11 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="dc-chk-list">
                         <label class="check-row flex items-start gap-3 p-3.5 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateDcChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
-                            <span class="text-base md:text-lg text-slate-200 font-medium"><strong class="text-amber-300">Nomenclatura de clases:</strong> sustantivo en singular y en <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">PascalCase</code> (p. ej., <code class="font-mono text-sm">GestorDeMisiones</code>).</span>
+                            <span class="text-base md:text-lg text-slate-200 font-medium"><strong class="text-amber-300">Nomenclatura de clases:</strong> sustantivo en singular y en <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-base">PascalCase</code> (p. ej., <code class="font-mono text-base">GestorDeMisiones</code>).</span>
                         </label>
                         <label class="check-row flex items-start gap-3 p-3.5 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateDcChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
-                            <span class="text-base md:text-lg text-slate-200 font-medium"><strong class="text-amber-300">Miembros en camelCase:</strong> atributos y operaciones empiezan en minúscula (<code class="bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded font-mono text-sm">vidaActual</code>, <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">recibirDano()</code>).</span>
+                            <span class="text-base md:text-lg text-slate-200 font-medium"><strong class="text-amber-300">Miembros en camelCase:</strong> atributos y operaciones empiezan en minúscula (<code class="bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded font-mono text-base">vidaActual</code>, <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-base">recibirDano()</code>).</span>
                         </label>
                         <label class="check-row flex items-start gap-3 p-3.5 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateDcChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
@@ -484,26 +484,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="bg-slate-900/90 rounded-xl p-5 border-2 border-amber-500/40 space-y-4">
                     <div class="pixel-font text-[10px] text-amber-300">1. EDITORES VISUALES (DRAG &amp; DROP)</div>
-                    <ul class="space-y-3.5 text-base font-medium text-slate-200">
+                    <ul class="space-y-4 text-base font-medium text-slate-200">
                         <li class="flex items-start gap-2.5">
                             <span class="text-amber-400 shrink-0 mt-1">🔷</span>
                             <div>
-                                <a href="https://app.diagrams.net/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">draw.io / diagrams.net ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Estándar gratuito y <em>open source</em> de dibujo vectorial con librerías completas de UML 2.5 (web y escritorio, integrable con Google Drive y GitHub). <em>Ojo: da libertad gráfica total, pero no valida reglas semánticas de UML.</em></p>
+                                <a href="https://app.diagrams.net/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">draw.io / diagrams.net ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Estándar gratuito y <em>open source</em> de dibujo vectorial con librerías completas de UML 2.5 (web y escritorio, integrable con Google Drive y GitHub). <em>Ojo: da libertad gráfica total, pero no valida reglas semánticas de UML.</em></p>
                             </div>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <span class="text-amber-400 shrink-0 mt-1">🏛️</span>
                             <div>
-                                <a href="https://apollon.ase.in.tum.de/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">Apollon Editor (TUM) ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Modelador web académico de código abierto creado por la Universidad Técnica de Múnich: rápido, sin registro y con soporte nativo para DCU, DC y DA.</p>
+                                <a href="https://apollon.ase.in.tum.de/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">Apollon Editor (TUM) ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Modelador web académico de código abierto creado por la Universidad Técnica de Múnich: rápido, sin registro y con soporte nativo para DCU, DC y DA.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <span class="text-amber-400 shrink-0 mt-1">🖥️</span>
                             <div>
-                                <a href="https://gaphor.org/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">Gaphor ↗</a> / <a href="https://staruml.io/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">StarUML ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Alternativas clásicas de escritorio multiplataforma (Linux, Windows y macOS) si prefieres instalar una aplicación local.</p>
+                                <a href="https://gaphor.org/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">Gaphor ↗</a> / <a href="https://staruml.io/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">StarUML ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Alternativas clásicas de escritorio multiplataforma (Linux, Windows y macOS) si prefieres instalar una aplicación local.</p>
                             </div>
                         </li>
                     </ul>
@@ -511,29 +511,29 @@
 
                 <div class="bg-slate-900/90 rounded-xl p-5 border-2 border-purple-500/40 space-y-4">
                     <div class="pixel-font text-[10px] text-purple-300">2. DIAGRAMAS COMO CÓDIGO (NOTION Y GIT)</div>
-                    <ul class="space-y-3.5 text-base font-medium text-slate-200">
+                    <ul class="space-y-4 text-base font-medium text-slate-200">
                         <li class="flex items-start gap-2.5">
                             <span class="text-purple-400 shrink-0 mt-1">🧜‍♀️</span>
                             <div>
-                                <a href="https://mermaid.live/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-purple-300 underline">Mermaid.js (nativo en Notion) ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Integrado de serie en <strong>Notion</strong> (bloque <code class="font-mono text-xs bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">/code</code> → <code class="font-mono text-xs bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">Mermaid</code>) y GitHub. Ideal para incrustar Diagramas de Clases directamente en el GDD vivo del estudio.</p>
+                                <a href="https://mermaid.live/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-purple-300 underline">Mermaid.js (nativo en Notion) ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Integrado de serie en <strong>Notion</strong> (bloque <code class="font-mono text-sm bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">/code</code> → <code class="font-mono text-sm bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">Mermaid</code>) y GitHub. Ideal para incrustar Diagramas de Clases directamente en el GDD vivo del estudio.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <span class="text-purple-400 shrink-0 mt-1">🌱</span>
                             <div>
-                                <a href="https://www.planttext.com/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-purple-300 underline">PlantUML (PlantText) ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">El estándar veterano de texto a UML: soporta al 100 % los tres diagramas de la asignatura (DCU con <code class="font-mono text-xs">&lt;&lt;include&gt;&gt;</code>/<code class="font-mono text-xs">&lt;&lt;extend&gt;&gt;</code>, DC y DA con <em>swimlanes</em>).</p>
+                                <a href="https://www.planttext.com/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-purple-300 underline">PlantUML (PlantText) ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">El estándar veterano de texto a UML: soporta al 100 % los tres diagramas de la asignatura (DCU con <code class="font-mono text-sm">&lt;&lt;include&gt;&gt;</code>/<code class="font-mono text-sm">&lt;&lt;extend&gt;&gt;</code>, DC y DA con <em>swimlanes</em>).</p>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="flex items-center justify-between flex-wrap gap-3 pt-2 border-t border-slate-800 text-xs text-slate-400 font-semibold">
-                <span>💡 Pulsa <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">Esc</kbd> o haz clic fuera de esta ventana para cerrarla.</span>
+            <div class="flex items-center justify-between flex-wrap gap-3 pt-2 border-t border-slate-800 text-sm text-slate-300 font-semibold">
+                <span>💡 Pulsa <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200 font-mono">Esc</kbd> o haz clic fuera de esta ventana para cerrarla.</span>
                 <form method="dialog">
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 text-cyan-200 font-bold text-sm cursor-pointer">
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 text-cyan-200 font-bold text-base cursor-pointer">
                         Entendido
                     </button>
                 </form>

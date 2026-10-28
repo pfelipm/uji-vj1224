@@ -193,15 +193,15 @@
                     Los jugadores siempre intentan hacer lo inesperado. Si solo programas pensando en cuando todo sale bien, tu juego estará lleno de *bugs* y bloqueos.
                 </p>
                 <div class="mt-auto bg-slate-950/90 p-5 rounded-xl border border-amber-500/40 space-y-3">
-                    <p class="font-bold text-amber-300 text-base">El DA te obliga a diseñar los caminos de excepción con guardas <code class="font-mono">[...]</code>:</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-medium">
-                        <div class="p-3 rounded-lg bg-emerald-950/35 border border-emerald-500/40 text-slate-200">
-                            <strong class="text-emerald-300 block mb-0.5">✔️ Camino feliz:</strong>
-                            <code class="font-mono text-xs text-emerald-300">[mana &gt;= coste]</code> → Descontar maná y lanzar bola de fuego.
+                    <p class="font-bold text-amber-300 text-base md:text-lg">El DA te obliga a diseñar los caminos de excepción con guardas <code class="font-mono">[...]</code>:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-base font-medium">
+                        <div class="p-3.5 rounded-lg bg-emerald-950/35 border border-emerald-500/40 text-slate-200">
+                            <strong class="text-emerald-300 block mb-1">✔️ Camino feliz:</strong>
+                            <code class="font-mono text-sm text-emerald-300">[mana &gt;= coste]</code> → Descontar maná y lanzar bola de fuego.
                         </div>
-                        <div class="p-3 rounded-lg bg-rose-950/35 border border-rose-500/40 text-slate-200">
-                            <strong class="text-rose-300 block mb-0.5">⚠️ Camino alternativo:</strong>
-                            <code class="font-mono text-xs text-rose-300">[mana &lt; coste]</code> → Reproducir sonido de fallo y parpadear barra azul.
+                        <div class="p-3.5 rounded-lg bg-rose-950/35 border border-rose-500/40 text-slate-200">
+                            <strong class="text-rose-300 block mb-1">⚠️ Camino alternativo:</strong>
+                            <code class="font-mono text-sm text-rose-300">[mana &lt; coste]</code> → Reproducir sonido de fallo y parpadear barra azul.
                         </div>
                     </div>
                 </div>
@@ -221,14 +221,14 @@
                 </p>
                 <div class="mt-auto grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div class="bg-slate-950/90 p-4 rounded-xl border border-amber-500/40">
-                        <div class="font-bold text-amber-300 text-base mb-1">◇ Decisión (O esto O aquello)</div>
-                        <p class="text-sm text-slate-300 font-medium">
+                        <div class="font-bold text-amber-300 text-base md:text-lg mb-1">◇ Decisión (O esto O aquello)</div>
+                        <p class="text-base text-slate-200 font-medium">
                             Equivale a un <code class="font-mono text-amber-300">if / else</code>. El flujo toma <strong>una única salida</strong> según qué guarda <code class="font-mono">[condición]</code> se cumpla.
                         </p>
                     </div>
                     <div class="bg-slate-950/90 p-4 rounded-xl border border-purple-500/40">
-                        <div class="font-bold text-purple-300 text-base mb-1">▬ Fork / Join (Todo a la vez)</div>
-                        <p class="text-sm text-slate-300 font-medium">
+                        <div class="font-bold text-purple-300 text-base md:text-lg mb-1">▬ Fork / Join (Todo a la vez)</div>
+                        <p class="text-base text-slate-200 font-medium">
                             Al abrir un cofre: <code class="font-mono text-purple-300">Animar tapa</code> + <code class="font-mono text-purple-300">Sonar fanfarria</code> + <code class="font-mono text-purple-300">Emitir partículas</code> ocurren <strong>simultáneamente</strong>.
                         </p>
                     </div>
@@ -270,7 +270,7 @@
                     En un videojuego a 60 FPS no podemos bloquear el hilo principal con un bucle infinito esperando a que el jugador pulse un botón. El DA nos guía en la traducción a Unity:
                 </p>
                 <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-emerald-500/40">
-                    <ul class="list-disc list-outside pl-5 text-sm md:text-base text-slate-200 font-medium space-y-1.5">
+                    <ul class="list-disc list-outside pl-5 text-base text-slate-200 font-medium space-y-1.5">
                         <li><strong class="text-emerald-300">Secuencias con esperas temporales o animaciones:</strong> se traducen de forma natural a <strong class="text-white">corrutinas (<code class="font-mono text-emerald-300">IEnumerator</code> / <code class="font-mono text-emerald-300">yield return</code>)</strong> o máquinas de estados.</li>
                         <li><strong class="text-cyan-300">Cruces entre carriles:</strong> se traducen a invocaciones directas o <strong class="text-white">eventos desacoplados (<code class="font-mono text-cyan-300">UnityEvent</code> / <code class="font-mono text-cyan-300">Action</code>)</strong>.</li>
                     </ul>

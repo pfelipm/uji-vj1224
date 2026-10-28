@@ -331,87 +331,87 @@
 
                         <!-- Cabecera de los 3 carriles -->
                         <div class="grid grid-cols-3 gap-2 md:gap-4 text-center mb-3">
-                            <div class="bg-purple-950/80 border-2 border-purple-400/60 rounded-xl py-2.5 px-2">
+                            <div class="bg-purple-950/80 border-2 border-purple-400/60 rounded-xl py-3 px-2">
                                 <span class="pixel-font text-[8px] md:text-[10px] text-purple-300 block">CARRIL 1 · ACTOR</span>
-                                <strong class="text-white text-sm md:text-lg">[Jugador]</strong>
+                                <strong class="text-white text-base md:text-xl">[Jugador]</strong>
                             </div>
-                            <div class="bg-amber-950/80 border-2 border-amber-400/60 rounded-xl py-2.5 px-2">
+                            <div class="bg-amber-950/80 border-2 border-amber-400/60 rounded-xl py-3 px-2">
                                 <span class="pixel-font text-[8px] md:text-[10px] text-amber-300 block">CARRIL 2 · CLASE</span>
-                                <strong class="text-white text-sm md:text-lg">[Vendedor PNJ]</strong>
+                                <strong class="text-white text-base md:text-xl">[Vendedor PNJ]</strong>
                             </div>
-                            <div class="bg-cyan-950/80 border-2 border-cyan-400/60 rounded-xl py-2.5 px-2">
+                            <div class="bg-cyan-950/80 border-2 border-cyan-400/60 rounded-xl py-3 px-2">
                                 <span class="pixel-font text-[8px] md:text-[10px] text-cyan-300 block">CARRIL 3 · CLASE</span>
-                                <strong class="text-white text-sm md:text-lg">[SistemaInventario]</strong>
+                                <strong class="text-white text-base md:text-xl">[SistemaInventario]</strong>
                             </div>
                         </div>
 
                         <!-- Filas de pasos del flujo (ocultación real con hidden) -->
-                        <div class="space-y-2.5">
+                        <div class="space-y-3">
                             <!-- Paso 1 -->
-                            <div id="swim-1" class="swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-2.5 rounded-xl border border-slate-800">
+                            <div id="swim-1" class="swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-3 rounded-xl border border-slate-800">
                                 <div class="bg-purple-900/40 border-2 border-purple-400 rounded-xl p-3 text-center">
-                                    <div class="text-xs font-bold text-purple-300 mb-0.5">● Inicio → Acción 1</div>
-                                    <div class="font-bold text-white text-sm md:text-base">Iniciar diálogo de compra</div>
+                                    <div class="text-sm font-bold text-purple-300 mb-0.5">● Inicio → Acción 1</div>
+                                    <div class="font-bold text-white text-base md:text-lg">Iniciar diálogo de compra</div>
                                 </div>
-                                <div class="text-center text-slate-600 text-xs font-mono">── cruza a PNJ ──▶</div>
+                                <div class="text-center text-amber-300 text-sm md:text-base font-bold font-mono">── cruza a PNJ ──▶</div>
                                 <div></div>
                             </div>
 
                             <!-- Paso 2 -->
-                            <div id="swim-2" class="hidden swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-2.5 rounded-xl border border-slate-800">
-                                <div class="text-center text-slate-500 text-xs font-mono">◀── espera selección ──</div>
+                            <div id="swim-2" class="hidden swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-3 rounded-xl border border-slate-800">
+                                <div class="text-center text-purple-300 text-sm md:text-base font-bold font-mono">◀── espera selección ──</div>
                                 <div class="bg-amber-900/40 border-2 border-amber-400 rounded-xl p-3 text-center">
-                                    <div class="text-xs font-bold text-amber-300 mb-0.5">Acción 2</div>
-                                    <div class="font-bold text-white text-sm md:text-base">Mostrar catálogo y precios</div>
+                                    <div class="text-sm font-bold text-amber-300 mb-0.5">Acción 2</div>
+                                    <div class="font-bold text-white text-base md:text-lg">Mostrar catálogo y precios</div>
                                 </div>
                                 <div></div>
                             </div>
 
                             <!-- Paso 3 -->
-                            <div id="swim-3" class="hidden swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-2.5 rounded-xl border border-slate-800">
+                            <div id="swim-3" class="hidden swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-3 rounded-xl border border-slate-800">
                                 <div class="bg-purple-900/40 border-2 border-purple-400 rounded-xl p-3 text-center">
-                                    <div class="text-xs font-bold text-purple-300 mb-0.5">Acción 3</div>
-                                    <div class="font-bold text-white text-sm md:text-base">Seleccionar ítem y confirmar pago</div>
+                                    <div class="text-sm font-bold text-purple-300 mb-0.5">Acción 3</div>
+                                    <div class="font-bold text-white text-base md:text-lg">Seleccionar ítem y confirmar pago</div>
                                 </div>
-                                <div class="text-center text-slate-500 text-xs font-mono">── envía petición ──▶</div>
+                                <div class="text-center text-amber-300 text-sm md:text-base font-bold font-mono">── envía petición ──▶</div>
                                 <div></div>
                             </div>
 
                             <!-- Paso 4 -->
-                            <div id="swim-4" class="hidden swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-2.5 rounded-xl border border-slate-800">
+                            <div id="swim-4" class="hidden swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-3 rounded-xl border border-slate-800">
                                 <div></div>
                                 <div class="bg-amber-900/40 border-2 border-amber-400 rounded-xl p-3 text-center">
-                                    <div class="text-xs font-bold text-amber-300 mb-0.5">◇ Decisión (Guarda)</div>
-                                    <div class="font-bold text-white text-sm md:text-base">¿Oro suficiente?</div>
-                                    <div class="text-xs text-emerald-300 font-mono mt-1">[Sí] ──▶ | [No] Mostrar error</div>
+                                    <div class="text-sm font-bold text-amber-300 mb-0.5">◇ Decisión (Guarda)</div>
+                                    <div class="font-bold text-white text-base md:text-lg">¿Oro suficiente?</div>
+                                    <div class="text-sm text-emerald-300 font-mono mt-1 font-bold">[Sí] ──▶ | [No] Mostrar error</div>
                                 </div>
-                                <div class="text-center text-emerald-400 text-xs font-mono">── [Sí] cruza a Sistema ──▶</div>
+                                <div class="text-center text-emerald-300 text-sm md:text-base font-bold font-mono">── [Sí] cruza a Sistema ──▶</div>
                             </div>
 
                             <!-- Paso 5 -->
-                            <div id="swim-5" class="hidden swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-2.5 rounded-xl border border-slate-800">
+                            <div id="swim-5" class="hidden swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-3 rounded-xl border border-slate-800">
                                 <div></div>
                                 <div></div>
                                 <div class="bg-cyan-900/40 border-2 border-cyan-400 rounded-xl p-3 text-center">
-                                    <div class="text-xs font-bold text-cyan-300 mb-0.5">Acción 4 y 5</div>
-                                    <div class="font-bold text-white text-sm md:text-base">Descontar oro y transferir ítem al jugador</div>
+                                    <div class="text-sm font-bold text-cyan-300 mb-0.5">Acción 4 y 5</div>
+                                    <div class="font-bold text-white text-base md:text-lg">Descontar oro y transferir ítem al jugador</div>
                                 </div>
                             </div>
 
                             <!-- Paso 6 -->
-                            <div id="swim-6" class="hidden swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-2.5 rounded-xl border border-slate-800">
+                            <div id="swim-6" class="hidden swim-row grid grid-cols-3 gap-2 md:gap-4 items-center bg-slate-900/70 p-3 rounded-xl border border-slate-800">
                                 <div class="bg-emerald-950/60 border-2 border-emerald-400 rounded-xl p-3 text-center">
-                                    <div class="text-xs font-bold text-emerald-300 mb-0.5">Acción 6 → ◉ Fin</div>
-                                    <div class="font-bold text-white text-sm md:text-base">Recibir confirmación visual (◉)</div>
+                                    <div class="text-sm font-bold text-emerald-300 mb-0.5">Acción 6 → ◉ Fin</div>
+                                    <div class="font-bold text-white text-base md:text-lg">Recibir confirmación visual (◉)</div>
                                 </div>
-                                <div class="text-center text-emerald-400 text-xs font-mono">◀── notifica éxito ──</div>
+                                <div class="text-center text-emerald-300 text-sm md:text-base font-bold font-mono">◀── notifica éxito ──</div>
                                 <div></div>
                             </div>
                         </div>
 
                         <!-- Controles del simulador de swimlanes -->
                         <div id="swim-dock" class="mt-5 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
-                            <span class="text-sm text-slate-300 font-semibold" id="swim-desc">Paso 1: El jugador inicia la conversación con el mercader.</span>
+                            <span class="text-base md:text-lg text-slate-200 font-semibold" id="swim-desc">Paso 1: El jugador inicia la conversación con el mercader.</span>
                             <div class="flex flex-wrap items-center gap-2.5">
                                 <button id="swim-prev" onclick="moveSwim(-1)" class="hud-btn" disabled>← Anterior</button>
                                 <button id="swim-next" onclick="moveSwim(1)" class="hud-btn">Siguiente paso →</button>
@@ -441,7 +441,7 @@
                     <div class="mb-6 bg-slate-950 p-4 rounded-xl border border-slate-800">
                         <div class="flex items-center justify-between mb-2">
                             <span class="pixel-font text-[10px] text-emerald-400" id="da-chk-status">PROGRESO DE AUDITORÍA DA: 0 / 7 (0 %)</span>
-                            <button onclick="resetDaChecklist()" class="text-xs font-bold text-slate-400 hover:text-rose-300 underline cursor-pointer">Reiniciar marcas</button>
+                            <button onclick="resetDaChecklist()" class="text-sm font-bold text-slate-300 hover:text-rose-300 underline cursor-pointer">Reiniciar marcas</button>
                         </div>
                         <div class="w-full h-3 bg-slate-900 rounded-full overflow-hidden border border-slate-700">
                             <div id="da-chk-bar" class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 transition-all duration-300" style="width: 0%"></div>
@@ -459,15 +459,15 @@
                         </label>
                         <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateDaChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
-                            <span class="text-lg text-slate-200 font-medium">¿Todas las acciones están nombradas con <code class="bg-slate-800 text-cyan-300 px-2 py-0.5 rounded font-mono text-sm">Verbo + objeto</code>?</span>
+                            <span class="text-lg text-slate-200 font-medium">¿Todas las acciones están nombradas con <code class="bg-slate-800 text-cyan-300 px-2 py-0.5 rounded font-mono text-base">Verbo + objeto</code>?</span>
                         </label>
                         <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateDaChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
-                            <span class="text-lg text-slate-200 font-medium">¿Uso un <strong class="text-amber-300">rombo de decisión (◇)</strong> con guardas <code class="font-mono text-sm">[condición]</code> para los <code class="font-mono text-sm">if / else</code>?</span>
+                            <span class="text-lg text-slate-200 font-medium">¿Uso un <strong class="text-amber-300">rombo de decisión (◇)</strong> con guardas <code class="font-mono text-base">[condición]</code> para los <code class="font-mono text-base">if / else</code>?</span>
                         </label>
                         <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateDaChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
-                            <span class="text-lg text-slate-200 font-medium">¿Uso una <strong class="text-purple-300">barra de bifurcación/unión (Fork/Join ▬)</strong> únicamente para tareas que ocurren en <em>paralelo</em> (sin confundirla con un <code class="font-mono text-sm">if</code>)?</span>
+                            <span class="text-lg text-slate-200 font-medium">¿Uso una <strong class="text-purple-300">barra de bifurcación/unión (Fork/Join ▬)</strong> únicamente para tareas que ocurren en <em>paralelo</em> (sin confundirla con un <code class="font-mono text-base">if</code>)?</span>
                         </label>
                         <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateDaChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
@@ -523,26 +523,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="bg-slate-900/90 rounded-xl p-5 border-2 border-amber-500/40 space-y-4">
                     <div class="pixel-font text-[10px] text-amber-300">1. EDITORES VISUALES (DRAG &amp; DROP)</div>
-                    <ul class="space-y-3.5 text-base font-medium text-slate-200">
+                    <ul class="space-y-4 text-base font-medium text-slate-200">
                         <li class="flex items-start gap-2.5">
                             <span class="text-amber-400 shrink-0 mt-1">🔷</span>
                             <div>
-                                <a href="https://app.diagrams.net/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">draw.io / diagrams.net ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Estándar gratuito y <em>open source</em> de dibujo vectorial con librerías completas de UML 2.5 (web y escritorio, integrable con Google Drive y GitHub). <em>Ojo: da libertad gráfica total, pero no valida reglas semánticas de UML.</em></p>
+                                <a href="https://app.diagrams.net/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">draw.io / diagrams.net ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Estándar gratuito y <em>open source</em> de dibujo vectorial con librerías completas de UML 2.5 (web y escritorio, integrable con Google Drive y GitHub). <em>Ojo: da libertad gráfica total, pero no valida reglas semánticas de UML.</em></p>
                             </div>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <span class="text-amber-400 shrink-0 mt-1">🏛️</span>
                             <div>
-                                <a href="https://apollon.ase.in.tum.de/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">Apollon Editor (TUM) ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Modelador web académico de código abierto creado por la Universidad Técnica de Múnich: rápido, sin registro y con soporte nativo para DCU, DC y DA.</p>
+                                <a href="https://apollon.ase.in.tum.de/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">Apollon Editor (TUM) ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Modelador web académico de código abierto creado por la Universidad Técnica de Múnich: rápido, sin registro y con soporte nativo para DCU, DC y DA.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <span class="text-amber-400 shrink-0 mt-1">🖥️</span>
                             <div>
-                                <a href="https://gaphor.org/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">Gaphor ↗</a> / <a href="https://staruml.io/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-amber-300 underline">StarUML ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Alternativas clásicas de escritorio multiplataforma (Linux, Windows y macOS) si prefieres instalar una aplicación local.</p>
+                                <a href="https://gaphor.org/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">Gaphor ↗</a> / <a href="https://staruml.io/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-amber-300 underline">StarUML ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Alternativas clásicas de escritorio multiplataforma (Linux, Windows y macOS) si prefieres instalar una aplicación local.</p>
                             </div>
                         </li>
                     </ul>
@@ -550,29 +550,29 @@
 
                 <div class="bg-slate-900/90 rounded-xl p-5 border-2 border-purple-500/40 space-y-4">
                     <div class="pixel-font text-[10px] text-purple-300">2. DIAGRAMAS COMO CÓDIGO (NOTION Y GIT)</div>
-                    <ul class="space-y-3.5 text-base font-medium text-slate-200">
+                    <ul class="space-y-4 text-base font-medium text-slate-200">
                         <li class="flex items-start gap-2.5">
                             <span class="text-purple-400 shrink-0 mt-1">🧜‍♀️</span>
                             <div>
-                                <a href="https://mermaid.live/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-purple-300 underline">Mermaid.js (nativo en Notion) ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">Integrado de serie en <strong>Notion</strong> (bloque <code class="font-mono text-xs bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">/code</code> → <code class="font-mono text-xs bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">Mermaid</code>) y GitHub. Ideal para incrustar Diagramas de Clases directamente en el GDD vivo del estudio.</p>
+                                <a href="https://mermaid.live/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-purple-300 underline">Mermaid.js (nativo en Notion) ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">Integrado de serie en <strong>Notion</strong> (bloque <code class="font-mono text-sm bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">/code</code> → <code class="font-mono text-sm bg-slate-800 px-1.5 py-0.5 rounded text-purple-300">Mermaid</code>) y GitHub. Ideal para incrustar Diagramas de Clases directamente en el GDD vivo del estudio.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <span class="text-purple-400 shrink-0 mt-1">🌱</span>
                             <div>
-                                <a href="https://www.planttext.com/" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:text-purple-300 underline">PlantUML (PlantText) ↗</a>
-                                <p class="text-sm text-slate-300 mt-0.5">El estándar veterano de texto a UML: soporta al 100 % los tres diagramas de la asignatura (DCU con <code class="font-mono text-xs">&lt;&lt;include&gt;&gt;</code>/<code class="font-mono text-xs">&lt;&lt;extend&gt;&gt;</code>, DC y DA con <em>swimlanes</em>).</p>
+                                <a href="https://www.planttext.com/" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-white hover:text-purple-300 underline">PlantUML (PlantText) ↗</a>
+                                <p class="text-base text-slate-200 mt-0.5 leading-snug">El estándar veterano de texto a UML: soporta al 100 % los tres diagramas de la asignatura (DCU con <code class="font-mono text-sm">&lt;&lt;include&gt;&gt;</code>/<code class="font-mono text-sm">&lt;&lt;extend&gt;&gt;</code>, DC y DA con <em>swimlanes</em>).</p>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="flex items-center justify-between flex-wrap gap-3 pt-2 border-t border-slate-800 text-xs text-slate-400 font-semibold">
-                <span>💡 Pulsa <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">Esc</kbd> o haz clic fuera de esta ventana para cerrarla.</span>
+            <div class="flex items-center justify-between flex-wrap gap-3 pt-2 border-t border-slate-800 text-sm text-slate-300 font-semibold">
+                <span>💡 Pulsa <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200 font-mono">Esc</kbd> o haz clic fuera de esta ventana para cerrarla.</span>
                 <form method="dialog">
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 text-cyan-200 font-bold text-sm cursor-pointer">
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 text-cyan-200 font-bold text-base cursor-pointer">
                         Entendido
                     </button>
                 </form>
