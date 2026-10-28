@@ -248,31 +248,39 @@
                 <div class="mt-6 border-t border-slate-800 pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
 
                     <!-- Decisión y fusión -->
-                    <div class="bg-slate-950/90 p-6 rounded-xl border-2 border-amber-400/50">
+                    <div class="bg-slate-950/90 p-6 rounded-xl border-2 border-amber-400/50 flex flex-col">
                         <div class="flex items-center gap-3 mb-3">
                             <span class="text-4xl text-amber-300 font-mono">◇</span>
                             <h3 class="text-2xl font-bold text-white">Decisión y fusión (<code class="font-mono text-amber-300">if / else</code>)</h3>
                         </div>
                         <p class="text-slate-300 text-lg font-medium mb-3">
-                            <strong class="text-amber-300">Decisión:</strong> 1 flecha de entrada y 2 o más salidas mutuamente excluyentes, cada una etiquetada con su condición de guarda entre corchetes <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">[oro &gt;= precio]</code> / <code class="bg-slate-800 text-rose-300 px-1.5 py-0.5 rounded font-mono text-sm">[oro &lt; precio]</code>.
+                            <strong class="text-amber-300">Decisión (DecisionNode):</strong> 1 flecha de entrada y 2 o más salidas mutuamente excluyentes, cada una etiquetada con su condición de guarda entre corchetes <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-base">[oro &gt;= precio]</code> / <code class="bg-slate-800 text-rose-300 px-1.5 py-0.5 rounded font-mono text-base">[oro &lt; precio]</code>.
                         </p>
-                        <p class="text-slate-300 text-lg font-medium">
-                            <strong class="text-amber-300">Fusión (Merge):</strong> varias flechas de entrada alternativas y 1 sola salida para reunir caminos condicionales.
+                        <p class="text-slate-300 text-lg font-medium mb-4">
+                            <strong class="text-amber-300">Fusión (MergeNode):</strong> recibe 2 o más flechas de entrada alternativas y saca <strong>1 única flecha</strong> para reunir caminos condicionales o reenganchar bucles.
                         </p>
+                        <div class="mt-auto bg-rose-950/40 border border-rose-500/50 rounded-xl p-3.5 text-base text-slate-200 font-medium">
+                            <strong class="text-rose-300 block mb-0.5">⚠️ Regla estricta de UML 2 (flujo de <em>tokens</em>):</strong>
+                            Nunca conectes 2 flechas directamente a una misma <strong class="text-white">Acción</strong>. En UML 2 una acción espera un <em>token</em> por <strong>todas</strong> sus entradas (<em>AND</em> implícito) y quedaría bloqueada (<em>deadlock</em>); unifica siempre antes con un rombo de fusión <strong class="text-amber-300">◇</strong>.
+                        </div>
                     </div>
 
                     <!-- Bifurcación y unión -->
-                    <div class="bg-slate-950/90 p-6 rounded-xl border-2 border-purple-500/50">
+                    <div class="bg-slate-950/90 p-6 rounded-xl border-2 border-purple-500/50 flex flex-col">
                         <div class="flex items-center gap-3 mb-3">
                             <span class="text-3xl text-purple-300 font-mono">▬</span>
                             <h3 class="text-2xl font-bold text-white">Bifurcación y unión (paralelismo)</h3>
                         </div>
                         <p class="text-slate-300 text-lg font-medium mb-3">
-                            <strong class="text-purple-300">Bifurcación (Fork):</strong> barra gruesa con 1 entrada y varias salidas que se ejecutan <strong class="text-white">simultáneamente en paralelo</strong> (p. ej., <code class="font-mono text-sm">Reproducir animación de espada</code> y <code class="font-mono text-sm">Reproducir sonido SFX</code>).
+                            <strong class="text-purple-300">Bifurcación (ForkNode):</strong> barra gruesa con 1 entrada y varias salidas que se ejecutan <strong class="text-white">simultáneamente en paralelo</strong> (p. ej., <code class="font-mono text-base">Reproducir animación de espada</code> y <code class="font-mono text-base">Reproducir sonido SFX</code>).
                         </p>
-                        <p class="text-slate-300 text-lg font-medium">
-                            <strong class="text-purple-300">Unión (Join):</strong> barra gruesa que sincroniza hilos paralelos; espera hasta que <strong>todas</strong> las ramas entrantes hayan terminado.
+                        <p class="text-slate-300 text-lg font-medium mb-4">
+                            <strong class="text-purple-300">Unión (JoinNode):</strong> barra gruesa que sincroniza hilos paralelos; espera hasta que <strong>todas</strong> las ramas entrantes hayan terminado y saca <strong>1 única flecha</strong>.
                         </p>
+                        <div class="mt-auto bg-purple-950/35 border border-purple-500/40 rounded-xl p-3.5 text-base text-slate-200 font-medium">
+                            <strong class="text-purple-300 block mb-0.5">💡 Norma de oro visual:</strong>
+                            A cada nodo de <strong class="text-white">Acción</strong> debe entrarle <strong>una sola flecha</strong> y salirle <strong>una sola flecha</strong>. Si convergen caminos alternativos usa <strong class="text-amber-300">◇ Merge</strong>; si convergen hilos paralelos usa <strong class="text-purple-300">▬ Join</strong>.
+                        </div>
                     </div>
 
                     <!-- Nodo final de flujo -->
@@ -440,7 +448,7 @@
                     <!-- Barra de progreso -->
                     <div class="mb-6 bg-slate-950 p-4 rounded-xl border border-slate-800">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="pixel-font text-[10px] text-emerald-400" id="da-chk-status">PROGRESO DE AUDITORÍA DA: 0 / 7 (0 %)</span>
+                            <span class="pixel-font text-[10px] text-emerald-400" id="da-chk-status">PROGRESO DE AUDITORÍA DA: 0 / 8 (0 %)</span>
                             <button onclick="resetDaChecklist()" class="text-sm font-bold text-slate-300 hover:text-rose-300 underline cursor-pointer">Reiniciar marcas</button>
                         </div>
                         <div class="w-full h-3 bg-slate-900 rounded-full overflow-hidden border border-slate-700">
@@ -464,6 +472,10 @@
                         <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateDaChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
                             <span class="text-lg text-slate-200 font-medium">¿Uso un <strong class="text-amber-300">rombo de decisión (◇)</strong> con guardas <code class="font-mono text-base">[condición]</code> para los <code class="font-mono text-base">if / else</code>?</span>
+                        </label>
+                        <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="updateDaChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
+                            <span class="text-lg text-slate-200 font-medium">¿A cada <strong class="text-white">acción</strong> le llega <strong class="text-amber-300">1 única flecha de entrada</strong>, unificando siempre los caminos alternativos o bucles mediante un <strong class="text-amber-300">rombo de fusión (◇ Merge)</strong>?</span>
                         </label>
                         <label class="check-row flex items-start gap-3.5 p-4 rounded-xl bg-slate-950/90 border-2 border-slate-800 hover:border-slate-600 cursor-pointer transition-all">
                             <input type="checkbox" onchange="updateDaChecklist()" class="mt-1 w-5 h-5 accent-emerald-400 rounded shrink-0">
