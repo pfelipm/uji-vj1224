@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los pilares de la arquitectura: diagrama de clases (DC) | VJ1224</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --neon-cyan: #22d3ee;
+            --neon-amber: #facc15;
+            --neon-emerald: #34d399;
+            --neon-rose: #f43f5e;
+            --neon-purple: #a855f7;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            background-image:
+                radial-gradient(circle at 50% 10%, rgba(250, 204, 21, 0.08) 0%, transparent 55%),
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .hud-frame {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid rgba(51, 65, 85, 0.85);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(250, 204, 21, 0.04);
+            position: relative;
+        }
+
+        .hud-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #334155;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes revealPillar {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pillar-step {
+            animation: revealPillar 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .pillar-step.active-focus {
+            box-shadow: 0 0 24px rgba(250, 204, 21, 0.22);
+        }
+
+        .hud-dock {
+            background: rgba(9, 13, 22, 0.96);
+            border: 2px solid rgba(250, 204, 21, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+        }
+
+        .hud-btn {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            padding: 0.75rem 1.2rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 2px solid #facc15;
+            background: rgba(250, 204, 21, 0.15);
+            color: #fef08a;
+        }
+
+        .hud-btn:hover:not(:disabled) {
+            background: #facc15;
+            color: #080c14;
+            box-shadow: 0 0 18px rgba(250, 204, 21, 0.55);
+            transform: translateY(-1px);
+        }
+
+        .hud-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: #475569;
+            color: #94a3b8;
+            background: rgba(30, 41, 59, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 md:p-6 lg:p-8">
+
+    <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+    <nav class="hide-in-embed w-full max-w-6xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-2 border-slate-700/80 rounded-xl px-5 py-3 shadow-lg backdrop-blur-md">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-base transition-colors">
+            <span>⌂</span>
+            <span>Índice general VJ1224</span>
+        </a>
+        <div class="flex items-center gap-3 text-sm md:text-base font-semibold">
+            <span class="px-2.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 pixel-font text-[10px]">TEMA 5 · DC · 07/10</span>
+            <a href="06%20Los%20actores%20del%20juego.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+            <span class="text-slate-600">|</span>
+            <a href="08%20Gu%C3%ADa%20r%C3%A1pida%20DC.html" class="text-amber-300 hover:text-amber-200 transition-colors">Siguiente →</a>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-6xl hud-frame rounded-2xl p-6 md:p-10 my-auto">
+
+        <!-- Cabecera -->
+        <header class="text-center mb-10 border-b-2 border-slate-800 pb-8">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-950/70 border-2 border-amber-400/50 text-amber-300 text-xs pixel-font mb-4">
+                <span>🧱</span>
+                <span>FUNDAMENTOS DE DISEÑO ESTRUCTURAL · TEMA 5</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold text-white tracking-wide mb-3">
+                Los pilares del diagrama de clases (DC)
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 font-semibold max-w-3xl mx-auto">
+                Cinco principios clave para transformar requisitos funcionales en una arquitectura limpia en Unity
+            </p>
+        </header>
+
+        <!-- Contenedor de los 5 pilares con revelado progresivo -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
+            <!-- Pilar 1: Del caso de uso al objeto (Heurística de Abbott) - Ancho completo -->
+            <section id="pillar-1" class="pillar-step active-focus hud-card rounded-2xl p-6 border-2 border-amber-500/60 lg:col-span-2">
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+                    <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-400/40">PILAR 01 · EXTRACCIÓN DE ENTIDADES</span>
+                    <span class="text-sm font-bold text-amber-300">Del «qué» (DCU) al «quién» (DC)</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">
+                    1. Del texto al código: la heurística gramatical
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mb-5">
+                    ¿Cómo descubrimos qué clases necesita nuestro videojuego? Analizando nuestros <strong class="text-cyan-300">casos de uso</strong> y el <strong class="text-emerald-300">GDD</strong> mediante la técnica clásica de análisis gramatical (Abbott):
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+                    <div class="p-4 rounded-xl bg-slate-950/90 border-2 border-amber-500/40">
+                        <div class="pixel-font text-[9px] text-amber-300 mb-1.5">1. SUSTANTIVOS PRINCIPALES</div>
+                        <div class="text-xl font-bold text-white mb-1">➔ Clases candidatas</div>
+                        <p class="text-slate-300 text-base font-medium">
+                            Entidades con identidad propia en el mundo del juego (<code class="font-mono text-amber-300">Personaje</code>, <code class="font-mono text-amber-300">Poción</code>, <code class="font-mono text-amber-300">Cofre</code>, <code class="font-mono text-amber-300">Inventario</code>).
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-950/90 border-2 border-cyan-500/40">
+                        <div class="pixel-font text-[9px] text-cyan-300 mb-1.5">2. PROPIEDADES Y VALORES</div>
+                        <div class="text-xl font-bold text-white mb-1">➔ Atributos (estado)</div>
+                        <p class="text-slate-300 text-base font-medium">
+                            Datos simples que describen a una clase (<code class="font-mono text-cyan-300">- vidaActual: int</code>, <code class="font-mono text-cyan-300">- precioOro: int</code>, <code class="font-mono text-cyan-300">- radioExplosion: float</code>).
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-950/90 border-2 border-emerald-500/40">
+                        <div class="pixel-font text-[9px] text-emerald-300 mb-1.5">3. VERBOS Y ACCIONES</div>
+                        <div class="text-xl font-bold text-white mb-1">➔ Operaciones (métodos)</div>
+                        <p class="text-slate-300 text-base font-medium">
+                            Responsabilidades que ejecuta cada clase (<code class="font-mono text-emerald-300">+ Consumir()</code>, <code class="font-mono text-emerald-300">+ RecibirDanio()</code>, <code class="font-mono text-emerald-300">+ GuardarPartida()</code>).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950/95 p-4 rounded-xl border border-slate-800 text-base md:text-lg font-medium text-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <span>
+                        🔍 <strong>Ejemplo:</strong> «El <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">Jugador</span> <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">abre</span> un <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">Cofre</span> si posee una <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">Llave</span> con el mismo <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold">código de cerradura</span>».
+                    </span>
+                </div>
+            </section>
+
+            <!-- Pilar 2: Responsabilidad única vs. la Clase Dios -->
+            <section id="pillar-2" class="hidden pillar-step hud-card rounded-2xl p-6 border-2 border-rose-500/60 flex flex-col">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 border border-rose-400/40">PILAR 02 · COHESIÓN</span>
+                    <span class="text-2xl">🐙</span>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">
+                    2. Derrotar al monstruo de la «Clase Dios»
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mb-4">
+                    El error número uno en proyectos universitarios de videojuegos es concentrar todo el juego en un único script gigante (<code class="font-mono text-rose-300">PlayerController.cs</code> o <code class="font-mono text-rose-300">GameManager.cs</code> de 3.000 líneas).
+                </p>
+                <div class="mt-auto grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div class="bg-rose-950/35 border border-rose-500/50 rounded-xl p-4">
+                        <p class="text-rose-400 font-bold text-base mb-1">❌ Clase Dios (espagueti)</p>
+                        <p class="text-sm text-slate-300 font-medium">
+                            Una sola clase <code class="font-mono text-rose-300">Jugador</code> que mueve físicas, controla la cámara, pinta la barra de vida en UI, reproduce sonidos y guarda en disco.
+                        </p>
+                    </div>
+                    <div class="bg-emerald-950/35 border border-emerald-500/50 rounded-xl p-4">
+                        <p class="text-emerald-400 font-bold text-base mb-1">✔️ Responsabilidad única</p>
+                        <p class="text-sm text-slate-200 font-medium">
+                            Dividir en clases cohesivas que colaboran: <code class="font-mono text-emerald-300">MovimientoJugador</code>, <code class="font-mono text-emerald-300">SistemaSalud</code>, <code class="font-mono text-emerald-300">Inventario</code> y <code class="font-mono text-emerald-300">HUDJugador</code>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pilar 3: Composición sobre herencia profunda -->
+            <section id="pillar-3" class="hidden pillar-step hud-card rounded-2xl p-6 border-2 border-purple-500/60 flex flex-col">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-400/40">PILAR 03 · FLEXIBILIDAD</span>
+                    <span class="text-2xl">🧩</span>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">
+                    3. Piezas LEGO frente a árboles rígidos
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mb-4">
+                    La herencia (<code class="font-mono text-purple-300">──▷</code>) es útil, pero abusar de ella crea jerarquías frágiles que se rompen cuando el equipo de diseño inventa una nueva combinación de mecánicas.
+                </p>
+                <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-purple-500/40 space-y-2.5">
+                    <p class="text-base text-slate-200 font-medium">
+                        ⚠️ Si diseñas <code class="font-mono text-rose-300">Enemigo ◁── EnemigoTerrestre</code> y <code class="font-mono text-rose-300">Enemigo ◁── EnemigoVolador</code>, ¿dónde colocas un jefe que camina y a mitad de combate saca alas?
+                    </p>
+                    <p class="text-base text-purple-200 font-semibold border-t border-slate-800 pt-2">
+                        💡 <strong>Filosofía de motores modernos (Unity):</strong> prefiere <strong class="text-white">componer piezas</strong> (<code class="font-mono text-amber-300">Enemigo</code> tiene un <code class="font-mono text-emerald-300">MotorMovimiento</code> y un <code class="font-mono text-cyan-300">AtaqueElemental</code>) antes que encadenar 5 niveles de herencia.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Pilar 4: El ciclo de vida en memoria (Agregación vs Composición) -->
+            <section id="pillar-4" class="hidden pillar-step hud-card rounded-2xl p-6 border-2 border-cyan-500/60 flex flex-col">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">PILAR 04 · CICLO DE VIDA</span>
+                    <span class="text-2xl">⏳</span>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">
+                    4. ¿Quién muere cuando haces <code class="font-mono text-rose-300">Destroy()</code>?
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mb-4">
+                    Un diagrama de clases nos obliga a decidir de antemano el <strong class="text-cyan-300">ciclo de vida en memoria</strong> de los objetos que forman parte de un contenedor:
+                </p>
+                <div class="mt-auto grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div class="bg-slate-950/90 p-4 rounded-xl border border-cyan-500/40">
+                        <div class="font-bold text-cyan-300 text-base mb-1">◇ Agregación (independiente)</div>
+                        <p class="text-sm text-slate-300 font-medium">
+                            Si el <code class="font-mono text-white">Guerrero</code> muere, su <code class="font-mono text-cyan-300">Espada</code> no desaparece del juego: cae al suelo para que otro la recoja.
+                        </p>
+                    </div>
+                    <div class="bg-slate-950/90 p-4 rounded-xl border border-amber-500/40">
+                        <div class="font-bold text-amber-300 text-base mb-1">◆ Composición (vida ligada)</div>
+                        <p class="text-sm text-slate-300 font-medium">
+                            Si se descarga la <code class="font-mono text-white">Mazmorra</code>, sus <code class="font-mono text-amber-300">Salas</code> se destruyen con ella automáticamente.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pilar 5: El contrato del equipo antes de picar código -->
+            <section id="pillar-5" class="hidden pillar-step hud-card rounded-2xl p-6 border-2 border-emerald-500/60 flex flex-col">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">PILAR 05 · TRABAJO EN EQUIPO</span>
+                    <span class="text-2xl">🤝</span>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">
+                    5. El contrato para programar en paralelo
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mb-4">
+                    En un Sprint de Scrum, varios desarrolladores programan a la vez. El diagrama de clases es el <strong class="text-emerald-300">contrato de interfaces públicas (<code class="font-mono">+</code>)</strong> que evita bloqueos:
+                </p>
+                <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-emerald-500/40 space-y-2">
+                    <p class="text-base text-slate-200 font-medium">
+                        ✔️ Si acordamos en el DC que la clase <code class="font-mono text-amber-300">Enemigo</code> tendrá el método público <code class="font-mono text-emerald-300">+ RecibirDanio( puntos: int ): void</code>:
+                    </p>
+                    <ul class="list-disc list-outside pl-5 text-sm md:text-base text-slate-300 font-medium space-y-1">
+                        <li>Quien programa las <strong>armas del jugador</strong> ya puede invocar ese método hoy mismo.</li>
+                        <li>Quien programa la <strong>IA del enemigo</strong> puede implementar su lógica interna (<code class="font-mono text-rose-300">-</code>) en paralelo sin conflictos en Git.</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Dock de controles HUD (siempre pegado al último pilar visible) -->
+        <div id="pillars-dock" class="hud-dock rounded-xl p-4 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="pixel-font text-xs text-amber-400" id="pillar-counter">PILAR 1 / 5</span>
+                <span class="text-slate-300 font-semibold text-base hidden sm:inline" id="pillar-title">1. Del texto al código: la heurística gramatical</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <button id="btn-prev" onclick="movePillar(-1)" class="hud-btn" disabled>← Anterior</button>
+                <button id="btn-next" onclick="movePillar(1)" class="hud-btn">Siguiente pilar →</button>
+                <button onclick="unlockAllPillars()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-bold border border-slate-600 transition-colors cursor-pointer">
+                    Mostrar todo
+                </button>
+                <button onclick="resetPillars()" class="px-3 py-2 rounded-lg bg-slate-900 hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 text-sm font-bold border border-slate-700 hover:border-rose-500/40 transition-colors cursor-pointer">
+                    Reiniciar
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Pie de página académico estandarizado -->
+    <footer class="w-full max-w-6xl mt-8 py-6 border-t border-slate-800/90 text-center text-slate-400 text-sm md:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+            <div class="text-left">
+                <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+                <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentPillar = 1;
+        const totalPillars = 5;
+
+        const pillarTitles = {
+            1: '1. Del texto al código: la heurística gramatical',
+            2: '2. Derrotar al monstruo de la «Clase Dios»',
+            3: '3. Piezas LEGO frente a árboles rígidos',
+            4: '4. Ciclo de vida en memoria (Agregación vs. Composición)',
+            5: '5. El contrato para programar en paralelo'
+        };
+
+        function updatePillarsUI() {
+            for (let i = 1; i <= totalPillars; i++) {
+                const el = document.getElementById(`pillar-${i}`);
+                el.classList.toggle('hidden', i > currentPillar);
+                el.classList.toggle('active-focus', i === currentPillar);
+            }
+            document.getElementById('pillar-counter').textContent = `PILAR ${currentPillar} / ${totalPillars}`;
+            document.getElementById('pillar-title').textContent = pillarTitles[currentPillar];
+            document.getElementById('btn-prev').disabled = currentPillar <= 1;
+            document.getElementById('btn-next').disabled = currentPillar >= totalPillars;
+        }
+
+        function movePillar(delta) {
+            const next = currentPillar + delta;
+            if (next < 1 || next > totalPillars) return;
+            currentPillar = next;
+            updatePillarsUI();
+            setTimeout(() => {
+                document.getElementById('pillars-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function unlockAllPillars() {
+            currentPillar = totalPillars;
+            updatePillarsUI();
+            setTimeout(() => {
+                document.getElementById('pillars-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function resetPillars() {
+            currentPillar = 1;
+            updatePillarsUI();
+            setTimeout(() => {
+                document.getElementById('pillar-1')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT', 'TEXTAREA', 'BUTTON'].includes(document.activeElement?.tagName)) return;
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentPillar < totalPillars) {
+                    e.preventDefault();
+                    movePillar(1);
+                }
+            } else if (e.code === 'ArrowLeft') {
+                if (currentPillar > 1) {
+                    e.preventDefault();
+                    movePillar(-1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

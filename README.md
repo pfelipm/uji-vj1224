@@ -116,11 +116,13 @@ Todas las píldoras interactivas de este repositorio siguen una arquitectura **1
 | **01** | **El mapa del modelado** | [`t4-t5-t6/01 El mapa del modelado.html`](t4-t5-t6/01%20El%20mapa%20del%20modelado.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/01%20El%20mapa%20del%20modelado.html` |
 | **02** | **De Agile a UML** | [`t4-t5-t6/02 De Agile a UML.html`](t4-t5-t6/02%20De%20Agile%20a%20UML.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/02%20De%20Agile%20a%20UML.html` |
 | **03** | **Los pilares del diseño** | [`t4-t5-t6/03 Los pilares del diseño.html`](t4-t5-t6/03%20Los%20pilares%20del%20dise%C3%B1o.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/03%20Los%20pilares%20del%20dise%C3%B1o.html` |
-| **04** | **Los actores del juego** | [`t4-t5-t6/04 Los actores del juego.html`](t4-t5-t6/04%20Los%20actores%20del%20juego.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/04%20Los%20actores%20del%20juego.html` |
+| **04** | **Guía rápida DCU** | [`t4-t5-t6/04 Guía rápida DCU.html`](t4-t5-t6/04%20Gu%C3%ADa%20r%C3%A1pida%20DCU.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/04%20Gu%C3%ADa%20r%C3%A1pida%20DCU.html` |
 | **05** | **Arquitecto de blueprints** | [`t4-t5-t6/05 Arquitecto de blueprints.html`](t4-t5-t6/05%20Arquitecto%20de%20blueprints.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/05%20Arquitecto%20de%20blueprints.html` |
-| **06** | **Guía rápida DCU** | [`t4-t5-t6/06 Guía rápida DCU.html`](t4-t5-t6/06%20Gu%C3%ADa%20r%C3%A1pida%20DCU.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/06%20Gu%C3%ADa%20r%C3%A1pida%20DCU.html` |
-| **07** | **Guía rápida DC** | [`t4-t5-t6/07 Guía rápida DC.html`](t4-t5-t6/07%20Gu%C3%ADa%20r%C3%A1pida%20DC.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/07%20Gu%C3%ADa%20r%C3%A1pida%20DC.html` |
-| **08** | **Guía rápida DA** | [`t4-t5-t6/08 Guía rápida DA.html`](t4-t5-t6/08%20Gu%C3%ADa%20r%C3%A1pida%20DA.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/08%20Gu%C3%ADa%20r%C3%A1pida%20DA.html` |
+| **06** | **Los actores del juego** | [`t4-t5-t6/06 Los actores del juego.html`](t4-t5-t6/06%20Los%20actores%20del%20juego.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/06%20Los%20actores%20del%20juego.html` |
+| **07** | **Los pilares de la arquitectura** | [`t4-t5-t6/07 Los pilares de la arquitectura.html`](t4-t5-t6/07%20Los%20pilares%20de%20la%20arquitectura.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/07%20Los%20pilares%20de%20la%20arquitectura.html` |
+| **08** | **Guía rápida DC** | [`t4-t5-t6/08 Guía rápida DC.html`](t4-t5-t6/08%20Gu%C3%ADa%20r%C3%A1pida%20DC.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/08%20Gu%C3%ADa%20r%C3%A1pida%20DC.html` |
+| **09** | **Los pilares de la dinámica** | [`t4-t5-t6/09 Los pilares de la dinámica.html`](t4-t5-t6/09%20Los%20pilares%20de%20la%20din%C3%A1mica.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/09%20Los%20pilares%20de%20la%20din%C3%A1mica.html` |
+| **10** | **Guía rápida DA** | [`t4-t5-t6/10 Guía rápida DA.html`](t4-t5-t6/10%20Gu%C3%ADa%20r%C3%A1pida%20DA.html) | `https://pfelipm.github.io/uji-vj1224/t4-t5-t6/10%20Gu%C3%ADa%20r%C3%A1pida%20DA.html` |
 
 ---
 

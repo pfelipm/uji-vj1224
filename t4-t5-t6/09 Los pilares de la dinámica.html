@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los pilares de la dinámica: diagrama de actividades (DA) | VJ1224</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23080c14%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22hudGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334d399%22/%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322d3ee%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22url(%23bgGrad)%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22url(%23hudGrad)%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%2246%22%20height%3D%2226%22%20rx%3D%228%22%20fill%3D%22%230b1324%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M%2019%2027%20H%2023%20V%2030%20H%2026%20V%2034%20H%2023%20V%2037%20H%2019%20V%2034%20H%2016%20V%2030%20H%2019%20Z%22%20fill%3D%22%2334d399%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2229%22%20x2%3D%2235%22%20y2%3D%2229%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2229%22%20y1%3D%2235%22%20x2%3D%2235%22%20y2%3D%2235%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2234%22%20r%3D%223%22%20fill%3D%22%23f43f5e%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%223%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('is-embedded');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --neon-cyan: #22d3ee;
+            --neon-amber: #facc15;
+            --neon-emerald: #34d399;
+            --neon-rose: #f43f5e;
+            --neon-purple: #a855f7;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            background-image:
+                radial-gradient(circle at 50% 10%, rgba(52, 211, 153, 0.08) 0%, transparent 55%),
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+        }
+
+        .is-embedded .hide-in-embed {
+            display: none !important;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .hud-frame {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid rgba(51, 65, 85, 0.85);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(52, 211, 153, 0.04);
+            position: relative;
+        }
+
+        .hud-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #334155;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes revealPillar {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pillar-step {
+            animation: revealPillar 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .pillar-step.active-focus {
+            box-shadow: 0 0 24px rgba(52, 211, 153, 0.22);
+        }
+
+        .hud-dock {
+            background: rgba(9, 13, 22, 0.96);
+            border: 2px solid rgba(52, 211, 153, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+        }
+
+        .hud-btn {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            padding: 0.75rem 1.2rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 2px solid #34d399;
+            background: rgba(52, 211, 153, 0.15);
+            color: #a7f3d0;
+        }
+
+        .hud-btn:hover:not(:disabled) {
+            background: #34d399;
+            color: #080c14;
+            box-shadow: 0 0 18px rgba(52, 211, 153, 0.55);
+            transform: translateY(-1px);
+        }
+
+        .hud-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: #475569;
+            color: #94a3b8;
+            background: rgba(30, 41, 59, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 md:p-6 lg:p-8">
+
+    <!-- Barra de navegación superior (oculta cuando se embebe en Google Sites) -->
+    <nav class="hide-in-embed w-full max-w-6xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-2 border-slate-700/80 rounded-xl px-5 py-3 shadow-lg backdrop-blur-md">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold text-base transition-colors">
+            <span>⌂</span>
+            <span>Índice general VJ1224</span>
+        </a>
+        <div class="flex items-center gap-3 text-sm md:text-base font-semibold">
+            <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 pixel-font text-[10px]">TEMA 6 · DA · 09/10</span>
+            <a href="08%20Gu%C3%ADa%20r%C3%A1pida%20DC.html" class="text-slate-300 hover:text-white transition-colors">← Anterior</a>
+            <span class="text-slate-600">|</span>
+            <a href="10%20Gu%C3%ADa%20r%C3%A1pida%20DA.html" class="text-emerald-300 hover:text-emerald-200 transition-colors">Siguiente →</a>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-6xl hud-frame rounded-2xl p-6 md:p-10 my-auto">
+
+        <!-- Cabecera -->
+        <header class="text-center mb-10 border-b-2 border-slate-800 pb-8">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/70 border-2 border-emerald-400/50 text-emerald-300 text-xs pixel-font mb-4">
+                <span>⚡</span>
+                <span>FUNDAMENTOS DE DISEÑO DINÁMICO · TEMA 6</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold text-white tracking-wide mb-3">
+                Los pilares del diagrama de actividades (DA)
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 font-semibold max-w-3xl mx-auto">
+                Cinco claves para diseñar la lógica algorítmica y el flujo de mecánicas antes de programar
+            </p>
+        </header>
+
+        <!-- Contenedor de los 5 pilares con revelado progresivo -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
+            <!-- Pilar 1: Abrir la caja negra del caso de uso (Ancho completo) -->
+            <section id="pillar-1" class="pillar-step active-focus hud-card rounded-2xl p-6 border-2 border-emerald-500/60 lg:col-span-2">
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+                    <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">PILAR 01 · DE LA CAJA NEGRA A LA CAJA BLANCA</span>
+                    <span class="text-sm font-bold text-emerald-300">Del «qué» y «quién» al «cómo»</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">
+                    1. Abrir la «caja negra» del caso de uso
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mb-6">
+                    En el Tema 4 dibujábamos una elipse como <code class="font-mono text-cyan-300">Lanzar hechizo</code> sin explicar qué pasaba dentro. En el Tema 5 creábamos las clases <code class="font-mono text-amber-300">Mago</code> y <code class="font-mono text-amber-300">Hechizo</code>, pero una foto estática no muestra el orden de los acontecimientos. <strong class="text-emerald-300">El diagrama de actividades abre el capó y modela el algoritmo paso a paso:</strong>
+                </p>
+
+                <div class="flex flex-col md:flex-row justify-between items-stretch gap-4">
+                    <div class="text-center p-5 rounded-xl bg-slate-950/90 border-2 border-cyan-500/40 w-full flex flex-col justify-center">
+                        <span class="pixel-font text-[9px] text-cyan-400 mb-1">1. VISTA EXTERNA (DCU)</span>
+                        <div class="text-xl font-bold text-white mb-1">🎯 Elipse «Caja negra»</div>
+                        <p class="text-slate-300 text-base font-medium">
+                            Solo sabemos que el <code class="font-mono text-cyan-300">Jugador</code> puede <code class="font-mono text-cyan-300">Lanzar hechizo</code>.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center text-3xl font-black text-amber-400 rotate-90 md:rotate-0 shrink-0">➔</div>
+                    <div class="text-center p-5 rounded-xl bg-slate-950/90 border-2 border-amber-500/40 w-full flex flex-col justify-center">
+                        <span class="pixel-font text-[9px] text-amber-400 mb-1">2. PIEZAS ESTATICAS (DC)</span>
+                        <div class="text-xl font-bold text-white mb-1">🧱 Clases y atributos</div>
+                        <p class="text-slate-300 text-base font-medium">
+                            Sabemos que <code class="font-mono text-amber-300">Mago</code> tiene <code class="font-mono text-amber-300">- manaActual</code> y usa <code class="font-mono text-amber-300">Grimorio</code>.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center text-3xl font-black text-emerald-400 rotate-90 md:rotate-0 shrink-0">➔</div>
+                    <div class="text-center p-5 rounded-xl bg-slate-950/90 border-2 border-emerald-400/70 w-full flex flex-col justify-center">
+                        <span class="pixel-font text-[9px] text-emerald-400 mb-1">3. RECETA DINÁMICA (DA)</span>
+                        <div class="text-xl font-bold text-white mb-1">⚡ Algoritmo «Caja blanca»</div>
+                        <p class="text-slate-200 text-base font-medium">
+                            Comprobar maná → Restar puntos → Instanciar proyectil → Aplicar enfriamiento (<em>cooldown</em>).
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pilar 2: Más allá del Happy Path -->
+            <section id="pillar-2" class="hidden pillar-step hud-card rounded-2xl p-6 border-2 border-amber-500/60 flex flex-col">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-400/40">PILAR 02 · ROBUSTEZ</span>
+                    <span class="text-2xl">🛡️</span>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">
+                    2. Más allá del «camino feliz» (<em>Happy Path</em>)
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mb-4">
+                    Los jugadores siempre intentan hacer lo inesperado. Si solo programas pensando en cuando todo sale bien, tu juego estará lleno de *bugs* y bloqueos.
+                </p>
+                <div class="mt-auto bg-slate-950/90 p-5 rounded-xl border border-amber-500/40 space-y-3">
+                    <p class="font-bold text-amber-300 text-base">El DA te obliga a diseñar los caminos de excepción con guardas <code class="font-mono">[...]</code>:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-medium">
+                        <div class="p-3 rounded-lg bg-emerald-950/35 border border-emerald-500/40 text-slate-200">
+                            <strong class="text-emerald-300 block mb-0.5">✔️ Camino feliz:</strong>
+                            <code class="font-mono text-xs text-emerald-300">[mana &gt;= coste]</code> → Descontar maná y lanzar bola de fuego.
+                        </div>
+                        <div class="p-3 rounded-lg bg-rose-950/35 border border-rose-500/40 text-slate-200">
+                            <strong class="text-rose-300 block mb-0.5">⚠️ Camino alternativo:</strong>
+                            <code class="font-mono text-xs text-rose-300">[mana &lt; coste]</code> → Reproducir sonido de fallo y parpadear barra azul.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pilar 3: Decisión vs. Paralelismo -->
+            <section id="pillar-3" class="hidden pillar-step hud-card rounded-2xl p-6 border-2 border-purple-500/60 flex flex-col">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-400/40">PILAR 03 · CONTROL DE FLUJO</span>
+                    <span class="text-2xl">🔀</span>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">
+                    3. Elegir un camino (◇) vs. lanzar en paralelo (▬)
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mb-4">
+                    En un motor de videojuegos ocurren cosas de forma condicional y cosas de forma simultánea. Confundir ambos símbolos es el fallo más habitual:
+                </p>
+                <div class="mt-auto grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div class="bg-slate-950/90 p-4 rounded-xl border border-amber-500/40">
+                        <div class="font-bold text-amber-300 text-base mb-1">◇ Decisión (O esto O aquello)</div>
+                        <p class="text-sm text-slate-300 font-medium">
+                            Equivale a un <code class="font-mono text-amber-300">if / else</code>. El flujo toma <strong>una única salida</strong> según qué guarda <code class="font-mono">[condición]</code> se cumpla.
+                        </p>
+                    </div>
+                    <div class="bg-slate-950/90 p-4 rounded-xl border border-purple-500/40">
+                        <div class="font-bold text-purple-300 text-base mb-1">▬ Fork / Join (Todo a la vez)</div>
+                        <p class="text-sm text-slate-300 font-medium">
+                            Al abrir un cofre: <code class="font-mono text-purple-300">Animar tapa</code> + <code class="font-mono text-purple-300">Sonar fanfarria</code> + <code class="font-mono text-purple-300">Emitir partículas</code> ocurren <strong>simultáneamente</strong>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pilar 4: Las fronteras de comunicación (Swimlanes) -->
+            <section id="pillar-4" class="hidden pillar-step hud-card rounded-2xl p-6 border-2 border-cyan-500/60 flex flex-col">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">PILAR 04 · RESPONSABILIDADES</span>
+                    <span class="text-2xl">🏊</span>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">
+                    4. El puente secreto entre el DA y el DC: las calles
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mb-4">
+                    Organizar el diagrama en <strong class="text-cyan-300">calles verticales (<em>swimlanes</em>)</strong> transforma un simple flujograma en una herramienta de validación arquitectónica:
+                </p>
+                <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-cyan-500/40 space-y-2.5">
+                    <p class="text-base text-slate-200 font-medium">
+                        ⚡ <strong>Regla de oro de trazabilidad:</strong> cada vez que una flecha cruza de la calle <code class="font-mono text-amber-300">[Jugador]</code> a la calle <code class="font-mono text-cyan-300">[SistemaInventario]</code> para ejecutar la acción <code class="font-mono text-emerald-300">Añadir ítem</code>…
+                    </p>
+                    <p class="text-base text-cyan-200 font-semibold border-t border-slate-800 pt-2">
+                        ¡Acabas de descubrir que la clase <code class="font-mono text-cyan-300">SistemaInventario</code> en tu Diagrama de Clases necesita obligatoriamente el método público <code class="font-mono text-emerald-300">+ AnadirItem()</code>!
+                    </p>
+                </div>
+            </section>
+
+            <!-- Pilar 5: Del diagrama al Game Loop y Corrutinas en Unity -->
+            <section id="pillar-5" class="hidden pillar-step hud-card rounded-2xl p-6 border-2 border-emerald-500/60 flex flex-col">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="pixel-font text-[10px] px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">PILAR 05 · IMPLEMENTACIÓN EN MOTOR</span>
+                    <span class="text-2xl">🎮</span>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">
+                    5. De los nodos al código C# y corrutinas en Unity
+                </h2>
+                <p class="text-slate-300 text-lg font-medium mb-4">
+                    En un videojuego a 60 FPS no podemos bloquear el hilo principal con un bucle infinito esperando a que el jugador pulse un botón. El DA nos guía en la traducción a Unity:
+                </p>
+                <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-emerald-500/40">
+                    <ul class="list-disc list-outside pl-5 text-sm md:text-base text-slate-200 font-medium space-y-1.5">
+                        <li><strong class="text-emerald-300">Secuencias con esperas temporales o animaciones:</strong> se traducen de forma natural a <strong class="text-white">corrutinas (<code class="font-mono text-emerald-300">IEnumerator</code> / <code class="font-mono text-emerald-300">yield return</code>)</strong> o máquinas de estados.</li>
+                        <li><strong class="text-cyan-300">Cruces entre carriles:</strong> se traducen a invocaciones directas o <strong class="text-white">eventos desacoplados (<code class="font-mono text-cyan-300">UnityEvent</code> / <code class="font-mono text-cyan-300">Action</code>)</strong>.</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Dock de controles HUD (siempre pegado al último pilar visible) -->
+        <div id="pillars-dock" class="hud-dock rounded-xl p-4 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="pixel-font text-xs text-emerald-400" id="pillar-counter">PILAR 1 / 5</span>
+                <span class="text-slate-300 font-semibold text-base hidden sm:inline" id="pillar-title">1. Abrir la «caja negra» del caso de uso</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <button id="btn-prev" onclick="movePillar(-1)" class="hud-btn" disabled>← Anterior</button>
+                <button id="btn-next" onclick="movePillar(1)" class="hud-btn">Siguiente pilar →</button>
+                <button onclick="unlockAllPillars()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-bold border border-slate-600 transition-colors cursor-pointer">
+                    Mostrar todo
+                </button>
+                <button onclick="resetPillars()" class="px-3 py-2 rounded-lg bg-slate-900 hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 text-sm font-bold border border-slate-700 hover:border-rose-500/40 transition-colors cursor-pointer">
+                    Reiniciar
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Pie de página académico estandarizado -->
+    <footer class="w-full max-w-6xl mt-8 py-6 border-t border-slate-800/90 text-center text-slate-400 text-sm md:text-base">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+            <div class="text-left">
+                <p class="font-bold text-slate-200">VJ1224 · Ingeniería del Software (Grado en Diseño y Desarrollo de Videojuegos)</p>
+                <p>Autor: <span class="text-cyan-400 font-semibold">Pablo Felip Monferrer</span> · Departamento de Lenguajes y Sistemas Informáticos · Universitat Jaume I · Curso 2026/2027</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-300">
+                    Licencia CC BY-NC-SA 4.0
+                </span>
+                <a href="https://github.com/pfelipm/uji-vj1224" target="_blank" rel="noopener noreferrer" class="hide-in-embed inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 transition-colors">
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentPillar = 1;
+        const totalPillars = 5;
+
+        const pillarTitles = {
+            1: '1. Abrir la «caja negra» del caso de uso',
+            2: '2. Más allá del «camino feliz» (Happy Path)',
+            3: '3. Elegir un camino (◇) vs. lanzar en paralelo (▬)',
+            4: '4. El puente secreto entre el DA y el DC: las calles',
+            5: '5. De los nodos al código C# y corrutinas en Unity'
+        };
+
+        function updatePillarsUI() {
+            for (let i = 1; i <= totalPillars; i++) {
+                const el = document.getElementById(`pillar-${i}`);
+                el.classList.toggle('hidden', i > currentPillar);
+                el.classList.toggle('active-focus', i === currentPillar);
+            }
+            document.getElementById('pillar-counter').textContent = `PILAR ${currentPillar} / ${totalPillars}`;
+            document.getElementById('pillar-title').textContent = pillarTitles[currentPillar];
+            document.getElementById('btn-prev').disabled = currentPillar <= 1;
+            document.getElementById('btn-next').disabled = currentPillar >= totalPillars;
+        }
+
+        function movePillar(delta) {
+            const next = currentPillar + delta;
+            if (next < 1 || next > totalPillars) return;
+            currentPillar = next;
+            updatePillarsUI();
+            setTimeout(() => {
+                document.getElementById('pillars-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function unlockAllPillars() {
+            currentPillar = totalPillars;
+            updatePillarsUI();
+            setTimeout(() => {
+                document.getElementById('pillars-dock')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        function resetPillars() {
+            currentPillar = 1;
+            updatePillarsUI();
+            setTimeout(() => {
+                document.getElementById('pillar-1')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT', 'TEXTAREA', 'BUTTON'].includes(document.activeElement?.tagName)) return;
+            if (e.code === 'Space' || e.code === 'ArrowRight') {
+                if (currentPillar < totalPillars) {
+                    e.preventDefault();
+                    movePillar(1);
+                }
+            } else if (e.code === 'ArrowLeft') {
+                if (currentPillar > 1) {
+                    e.preventDefault();
+                    movePillar(-1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
