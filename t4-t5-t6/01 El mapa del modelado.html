@@ -208,7 +208,7 @@
                     <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-cyan-500/40">
                         <p class="text-sm font-bold uppercase tracking-wider text-cyan-400 mb-1">🦋 Ejemplo en Hollow Knight:</p>
                         <p class="text-base text-slate-200 font-medium">
-                            El actor <code class="bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded font-mono text-sm">Jugador</code> ejecuta el caso de uso <code class="bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded font-mono text-sm">Descansar en un banco</code>.
+                            El actor <code class="bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded font-mono text-sm">Jugador</code> inicia <code class="bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded font-mono text-sm">Descansar en banco</code> (extendido por <code class="bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded font-mono text-sm">Equipar amuletos</code>).
                         </p>
                     </div>
                 </article>
@@ -238,7 +238,7 @@
                     <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-amber-500/40">
                         <p class="text-sm font-bold uppercase tracking-wider text-amber-400 mb-1">🦋 Ejemplo en Hollow Knight:</p>
                         <p class="text-base text-slate-200 font-medium">
-                            Intervienen las clases <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">Caballero</code>, <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">Banco</code>, <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">Alma</code> y <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">MapaDelJuego</code>.
+                            Colaboran las clases <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">Caballero</code>, <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">Banco</code>, <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">InventarioAmuletos</code> y <code class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono text-sm">SistemaGuardado</code>.
                         </p>
                     </div>
                 </article>
@@ -258,17 +258,17 @@
                     <ul class="space-y-3 text-slate-200 text-base md:text-lg font-medium mb-6">
                         <li class="flex items-start gap-2.5">
                             <span class="text-emerald-400 shrink-0 mt-0.5">▶️</span>
-                            <span><strong class="text-white">Acciones:</strong> pasos concretos (<code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">Recuperar máscaras</code>, <code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">Guardar partida</code>).</span>
+                            <span><strong class="text-white">Acciones:</strong> pasos concretos (<code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">Restaurar máscaras</code>, <code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">Guardar partida</code>).</span>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <span class="text-emerald-400 shrink-0 mt-0.5">◇</span>
-                            <span><strong class="text-white">Decisiones y carriles:</strong> lógica condicional (<code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">[¿Tiene amuleto?]</code>) y <em>swimlanes</em>.</span>
+                            <span><strong class="text-white">Decisiones y carriles:</strong> lógica condicional (<code class="bg-slate-800 text-emerald-300 px-2 py-0.5 rounded font-mono text-sm">[¿Cambia amuletos?]</code>) y <em>swimlanes</em>.</span>
                         </li>
                     </ul>
                     <div class="mt-auto bg-slate-950/90 p-4 rounded-xl border border-emerald-500/40">
                         <p class="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-1">🦋 Ejemplo en Hollow Knight:</p>
                         <p class="text-base text-slate-200 font-medium">
-                            Flujo: <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Sentarse</code> → <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Restaurar vida</code> → <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Actualizar mapa</code> → <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Guardar partida</code>.
+                            Flujo: <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Sentarse en banco</code> → <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Restaurar máscaras</code> → <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Actualizar amuletos</code> → <code class="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded font-mono text-sm">Guardar partida</code>.
                         </p>
                     </div>
                 </article>
@@ -321,19 +321,19 @@
                     <div class="p-4 rounded-lg bg-slate-900/90 border-l-4 border-cyan-400">
                         <div class="pixel-font text-[9px] text-cyan-400 mb-1">1. EN EL DCU (QUÉ)</div>
                         <p id="case-dcu" class="text-base md:text-lg text-slate-200 font-medium">
-                            Actor <code class="text-cyan-300">Jugador</code> ejecuta el caso de uso <code class="text-cyan-300">Descansar en un banco</code> (con extensión opcional <code class="text-cyan-300">Equipar amuletos</code>).
+                            El actor <code class="text-cyan-300 font-mono">Jugador</code> se asocia con el caso de uso <code class="text-cyan-300 font-mono">Descansar en banco</code>, al que extiende opcionalmente (<code class="text-cyan-300 font-mono">&lt;&lt;extend&gt;&gt;</code>) el caso <code class="text-cyan-300 font-mono">Equipar amuletos</code>.
                         </p>
                     </div>
                     <div class="p-4 rounded-lg bg-slate-900/90 border-l-4 border-amber-400">
                         <div class="pixel-font text-[9px] text-amber-400 mb-1">2. EN EL DC (QUIÉN)</div>
                         <p id="case-dc" class="text-base md:text-lg text-slate-200 font-medium">
-                            Clase <code class="text-amber-300">Caballero</code> asociada con <code class="text-amber-300">Banco</code> (0..1) y compuesta por <code class="text-amber-300">InventarioAmuletos</code> (◆ 1) y <code class="text-amber-300">GestorGuardado</code>.
+                            La clase <code class="text-amber-300 font-mono">Caballero</code> posee por composición un <code class="text-amber-300 font-mono">InventarioAmuletos</code> (<code class="text-amber-300 font-mono">1 ◆── 1</code>) y se asocia con <code class="text-amber-300 font-mono">Banco</code> (<code class="text-amber-300 font-mono">0..* ── 0..1</code>), el cual colabora con <code class="text-amber-300 font-mono">SistemaGuardado</code> (<code class="text-amber-300 font-mono">1</code>).
                         </p>
                     </div>
                     <div class="p-4 rounded-lg bg-slate-900/90 border-l-4 border-emerald-400">
                         <div class="pixel-font text-[9px] text-emerald-400 mb-1">3. EN EL DA (CÓMO)</div>
                         <p id="case-da" class="text-base md:text-lg text-slate-200 font-medium">
-                            Carriles <code class="text-emerald-300">[Caballero]</code> y <code class="text-emerald-300">[SistemaGuardado]</code>: Sentarse → Curar máscaras → Rellenar enemigos del mundo → Serializar JSON.
+                            Calles <code class="text-emerald-300 font-mono">[Caballero]</code>, <code class="text-emerald-300 font-mono">[Banco]</code> y <code class="text-emerald-300 font-mono">[SistemaGuardado]</code>: <code class="text-emerald-300 font-mono">Sentarse en banco</code> → <code class="text-emerald-300 font-mono">Restaurar máscaras</code> → <code class="text-emerald-300 font-mono">[¿Cambia amuletos?]</code> <code class="text-emerald-300 font-mono">Actualizar inventario</code> → <code class="text-emerald-300 font-mono">Guardar partida</code>.
                         </p>
                     </div>
                 </div>
@@ -489,19 +489,19 @@
 
         const gameCases = {
             hollow: {
-                dcu: 'Actor <code class="text-cyan-300 font-mono">Jugador</code> ejecuta el caso de uso <code class="text-cyan-300 font-mono">Descansar en un banco</code> (con extensión opcional <code class="text-cyan-300 font-mono">Equipar amuletos</code>).',
-                dc: 'Clase <code class="text-amber-300 font-mono">Caballero</code> asociada con <code class="text-amber-300 font-mono">Banco</code> (0..1) y compuesta por <code class="text-amber-300 font-mono">InventarioAmuletos</code> (◆ 1) y <code class="text-amber-300 font-mono">GestorGuardado</code>.',
-                da: 'Carriles <code class="text-emerald-300 font-mono">[Caballero]</code> y <code class="text-emerald-300 font-mono">[SistemaGuardado]</code>: Sentarse → Curar máscaras → Regenerar enemigos del mundo → Guardar progreso.'
+                dcu: 'El actor <code class="text-cyan-300 font-mono">Jugador</code> se asocia con el caso de uso <code class="text-cyan-300 font-mono">Descansar en banco</code>, al que extiende opcionalmente (<code class="text-cyan-300 font-mono">&lt;&lt;extend&gt;&gt;</code>) el caso <code class="text-cyan-300 font-mono">Equipar amuletos</code>.',
+                dc: 'La clase <code class="text-amber-300 font-mono">Caballero</code> posee por composición un <code class="text-amber-300 font-mono">InventarioAmuletos</code> (<code class="text-amber-300 font-mono">1 ◆── 1</code>) y se asocia con <code class="text-amber-300 font-mono">Banco</code> (<code class="text-amber-300 font-mono">0..* ── 0..1</code>), el cual colabora con <code class="text-amber-300 font-mono">SistemaGuardado</code> (<code class="text-amber-300 font-mono">1</code>).',
+                da: 'Calles <code class="text-emerald-300 font-mono">[Caballero]</code>, <code class="text-emerald-300 font-mono">[Banco]</code> y <code class="text-emerald-300 font-mono">[SistemaGuardado]</code>: <code class="text-emerald-300 font-mono">Sentarse en banco</code> → <code class="text-emerald-300 font-mono">Restaurar máscaras</code> → <code class="text-emerald-300 font-mono">[¿Cambia amuletos?]</code> <code class="text-emerald-300 font-mono">Actualizar inventario</code> → <code class="text-emerald-300 font-mono">Guardar partida</code>.'
             },
             witcher: {
-                dcu: 'Actor <code class="text-cyan-300 font-mono">Jugador</code> ejecuta el caso de uso <code class="text-cyan-300 font-mono">Elaborar poción</code> (que incluye obligatoriamente <code class="text-cyan-300 font-mono">Verificar ingredientes</code>).',
-                dc: 'Clase <code class="text-amber-300 font-mono">Brujo</code> usa <code class="text-amber-300 font-mono">RecetaAlquimia</code> (1..*) que agrega múltiples objetos <code class="text-amber-300 font-mono">Ingrediente</code> (◇ 1..* a 0..*).',
-                da: 'Decisión <code class="text-emerald-300 font-mono">◇ ¿Tiene alcohol e ingredientes?</code> → <code class="text-emerald-300 font-mono">[Sí]</code> Consumir hierbas → Crear ítem <code class="text-emerald-300 font-mono">Golondrina</code> → Añadir al inventario.'
+                dcu: 'El actor <code class="text-cyan-300 font-mono">Jugador</code> inicia el caso de uso <code class="text-cyan-300 font-mono">Elaborar poción</code>, que incluye obligatoriamente (<code class="text-cyan-300 font-mono">&lt;&lt;include&gt;&gt;</code>) el subproceso <code class="text-cyan-300 font-mono">Verificar ingredientes</code>.',
+                dc: 'La clase <code class="text-amber-300 font-mono">Brujo</code> consulta su <code class="text-amber-300 font-mono">InventarioAlquimia</code> (<code class="text-amber-300 font-mono">1 ◆── 1</code>) y emplea <code class="text-amber-300 font-mono">RecetaAlquimia</code> (<code class="text-amber-300 font-mono">0..*</code>), que agrega ingredientes compartibles: <code class="text-amber-300 font-mono">RecetaAlquimia 0..* ◇── 1..* Ingrediente</code>.',
+                da: 'Calles <code class="text-emerald-300 font-mono">[Brujo]</code> e <code class="text-emerald-300 font-mono">[InventarioAlquimia]</code>: <code class="text-emerald-300 font-mono">Seleccionar receta</code> → <code class="text-emerald-300 font-mono">◇ ¿Tiene ingredientes?</code> → <code class="text-emerald-300 font-mono">[Sí] Consumir hierbas</code> y <code class="text-emerald-300 font-mono">Añadir poción</code> | <code class="text-rose-300 font-mono">[No] Mostrar aviso de error</code>.'
             },
             zelda: {
-                dcu: 'Actor <code class="text-cyan-300 font-mono">Jugador</code> ejecuta el caso de uso <code class="text-cyan-300 font-mono">Ensamblar vehículo</code> y <code class="text-cyan-300 font-mono">Activar artilugio zonnan</code>.',
-                dc: 'Clase <code class="text-amber-300 font-mono">Construccion</code> agrega piezas <code class="text-amber-300 font-mono">ObjetoFisico</code> (◇ 2..21); <code class="text-amber-300 font-mono">Turbina</code> y <code class="text-amber-300 font-mono">Rueda</code> heredan de la clase abstracta <code class="text-amber-300 font-mono italic">ArtilugioZonnan</code> (△).',
-                da: 'Bifurcación paralela (Fork █): <code class="text-emerald-300 font-mono">Aplicar empuje físico</code> en paralelo con <code class="text-emerald-300 font-mono">Consumir batería energética</code> hasta agotar carga.'
+                dcu: 'El actor <code class="text-cyan-300 font-mono">Jugador</code> ejecuta los casos de uso <code class="text-cyan-300 font-mono">Ensamblar vehículo</code> y <code class="text-cyan-300 font-mono">Activar artilugio zonnan</code> (con extensión <code class="text-cyan-300 font-mono">&lt;&lt;extend&gt;&gt;</code> <code class="text-cyan-300 font-mono">Desacoplar pieza</code> si se rompe).',
+                dc: 'La clase <code class="text-amber-300 font-mono">Construccion</code> agrega piezas sueltas del mundo (<code class="text-amber-300 font-mono">0..1 ◇── 2..21 ObjetoFisico</code>); <code class="text-amber-300 font-mono">Turbina</code> y <code class="text-amber-300 font-mono">Rueda</code> heredan (<code class="text-amber-300 font-mono">──▷</code>) de la clase abstracta <code class="text-amber-300 font-mono italic">ArtilugioZonnan</code>.',
+                da: '<code class="text-emerald-300 font-mono">Golpear artilugio</code> → Bifurcación (<code class="text-emerald-300 font-mono">Fork ▬</code>): ejecutar en paralelo <code class="text-emerald-300 font-mono">Aplicar empuje físico</code> y <code class="text-emerald-300 font-mono">Consumir batería</code> → Unión (<code class="text-emerald-300 font-mono">Join ▬</code>) al agotar carga → <code class="text-emerald-300 font-mono">Detener artilugio</code>.'
             }
         };
 
