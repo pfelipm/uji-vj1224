@@ -278,27 +278,27 @@
                     <p class="pixel-font text-[10px] text-amber-300 text-center mb-3">REGLA DE ARQUITECTURA · ¿SIEMPRE 1 HU = 1 CASO DE USO?</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
                         <div class="bg-slate-950/90 border border-emerald-500/40 rounded-xl p-4">
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="font-bold text-lg text-emerald-300">1. Relación 1 : N</span>
-                                <span class="pixel-font text-[9px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">ÉPICA / HU AMPLIA</span>
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="font-bold text-lg text-emerald-300 whitespace-nowrap">1. Relación 1:N</span>
+                                <span class="pixel-font text-[9px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 whitespace-nowrap shrink-0">ÉPICA / HU AMPLIA</span>
                             </div>
                             <p class="text-slate-200 text-base font-medium leading-snug">
                                 Una historia genérica (<em>«Gestionar inventario»</em>) se desglosa en <strong>varios casos de uso atómicos</strong> (<code class="text-cyan-300 font-mono">Equipar objeto</code>, <code class="text-cyan-300 font-mono">Soltar objeto</code>...).
                             </p>
                         </div>
                         <div class="bg-slate-950/90 border border-cyan-500/40 rounded-xl p-4">
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="font-bold text-lg text-cyan-300">2. Relación 1 : 1</span>
-                                <span class="pixel-font text-[9px] px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300">HU ATÓMICA (INVEST)</span>
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="font-bold text-lg text-cyan-300 whitespace-nowrap">2. Relación 1:1</span>
+                                <span class="pixel-font text-[9px] px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 whitespace-nowrap shrink-0">HU ATÓMICA</span>
                             </div>
                             <p class="text-slate-200 text-base font-medium leading-snug">
-                                Una HU bien refinada (<em>«Descansar en un banco para curarme y guardar»</em>) equivale al caso base <code class="text-cyan-300 font-mono">Descansar en banco</code> (+ <code class="text-amber-300 font-mono">&lt;&lt;include&gt;&gt;</code>).
+                                Una HU bien refinada con <strong>INVEST</strong> (<em>«Descansar en un banco para curarme y guardar»</em>) equivale al caso base <code class="text-cyan-300 font-mono">Descansar en banco</code> (+ <code class="text-amber-300 font-mono">&lt;&lt;include&gt;&gt;</code>).
                             </p>
                         </div>
                         <div class="bg-slate-950/90 border border-amber-500/40 rounded-xl p-4">
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="font-bold text-lg text-amber-300">3. Relación N : 1</span>
-                                <span class="pixel-font text-[9px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">HUs INCREMENTALES</span>
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="font-bold text-lg text-amber-300 whitespace-nowrap">3. Relación N:1</span>
+                                <span class="pixel-font text-[9px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 whitespace-nowrap shrink-0">HUs INCREMENTALES</span>
                             </div>
                             <p class="text-slate-200 text-base font-medium leading-snug">
                                 Varias HUs de distintos Sprints (<em>«Comprar con oro»</em>, <em>«Aplicar cupón»</em>, <em>«Aviso si mochila llena»</em>) convergen en <strong>un único CU</strong> (<code class="text-cyan-300 font-mono">Comprar objeto</code> + <code class="text-purple-300 font-mono">&lt;&lt;extend&gt;&gt;</code> o guarda en el DA).
